@@ -19,7 +19,6 @@
     "verifiedAt": "데이터 재검증 날짜 (YYYY-MM-DD)",
     "verifyNote": "변동 가능성 있는 항목 메모"
   },
-
   "tokyo": {
     "nameKo": "도쿄",
     "nameEn": "Tokyo",
@@ -29,7 +28,11 @@
     "lat": 35.6762,
     "lng": 139.6503,
     "keywords": "도쿄 한인, 도쿄 정착 가이드, 도쿄 유학, 도쿄 신오쿠보, 도쿄 코리아타운, 도쿄 한인교회, 도쿄 한인 마트, 도쿄 한인 커뮤니티, Tokyo Korean, Shin-Okubo Korean, Shinjuku Korean, 재일 한인, Hebron Platform, HebronGuide, 헤브론가이드",
-    "areaServed": ["Tokyo", "Shinjuku", "Shin-Okubo"],
+    "areaServed": [
+      "Tokyo",
+      "Shinjuku",
+      "Shin-Okubo"
+    ],
     "localBusinessName": "HebronGuide Tokyo Korean Community",
     "localBusinessDesc": "도쿄 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
     "cityDescKo": "도쿄 한인 이민자·유학생·주재원·이주자를 위한 정착 생활 가이드 — HebronGuide",
@@ -96,7 +99,6 @@
     "verifiedAt": "2026-10-14",
     "verifyNote": "렌트 시세·교회 리스트·영사관 연락처·통신사 플랜·학교 등록 절차는 2026-10 기준. 영사관(overseas.mofa.go.kr)·구청·AMDA 공식 사이트 재확인 권장."
   },
-
   "la": {
     "nameKo": "로스앤젤레스",
     "nameEn": "Los Angeles",
@@ -106,7 +108,12 @@
     "lat": 34.0522,
     "lng": -118.2437,
     "keywords": "LA 한인, 로스앤젤레스 한인, LA 코리아타운, LA 정착 가이드, LA 한인교회, LA 한인 마트, 세리토스 한인, 풀러턴 한인, LA Korean, Koreatown Los Angeles, Hebron Platform, HebronGuide, 헤브론가이드",
-    "areaServed": ["Los Angeles", "Koreatown", "Cerritos", "Fullerton"],
+    "areaServed": [
+      "Los Angeles",
+      "Koreatown",
+      "Cerritos",
+      "Fullerton"
+    ],
     "localBusinessName": "HebronGuide Los Angeles Korean Community",
     "localBusinessDesc": "로스앤젤레스 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
     "cityDescKo": "로스앤젤레스 한인 이민자·유학생·주재원·이주자를 위한 정착 생활 가이드 — HebronGuide",
@@ -173,7 +180,6 @@
     "verifiedAt": "2026-10-14",
     "verifyNote": "렌트 시세·학군·영사관 연락처·통신사 플랜은 2026-10 기준. 코리아타운 1BR $2,000~2,800·영사관 전화는 공식 사이트(Zillow·overseas.mofa.go.kr·DMV) 재확인 권장. 치안 안내는 공개 데이터 수준으로, 특정 지역을 '위험'으로 단정하기보다 범죄지도·현지 커뮤니티 확인 권장."
   },
-
   "toronto": {
     "nameKo": "토론토",
     "nameEn": "Toronto",
@@ -183,7 +189,12 @@
     "lat": 43.6532,
     "lng": -79.3832,
     "keywords": "토론토 한인, 토론토 정착 가이드, 토론토 한인교회, 토론토 한인 마트, 노스욕 한인, 미시사가 한인, 손힐 한인, Toronto Korean, North York Korean, Mississauga Korean, Hebron Platform, HebronGuide, 헤브론가이드",
-    "areaServed": ["Toronto", "North York", "Mississauga", "Thornhill"],
+    "areaServed": [
+      "Toronto",
+      "North York",
+      "Mississauga",
+      "Thornhill"
+    ],
     "localBusinessName": "HebronGuide Toronto Korean Community",
     "localBusinessDesc": "토론토 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
     "cityDescKo": "토론토 한인 이민자·유학생·주재원·이주자를 위한 정착 생활 가이드 — HebronGuide",
@@ -250,7 +261,6 @@
     "verifiedAt": "2026-10-14",
     "verifyNote": "렌트 시세·면허 교환 정책·영사관 연락처·OHIP·통신사 플랜은 2026-10 기준. ServiceOntario·OHIP·overseas.mofa.go.kr 공식 사이트 재확인 권장."
   },
-
   "atlanta": {
     "nameKo": "애틀랜타",
     "nameEn": "Atlanta",
@@ -260,7 +270,12 @@
     "lat": 33.749,
     "lng": -84.388,
     "keywords": "애틀랜타 한인, 애틀랜타 정착 가이드, 애틀랜타 한인교회, 애틀랜타 한인 마트, 듀루스 한인, 존스크릭 한인, 수와니 한인, Atlanta Korean, Duluth Korean, Johns Creek Korean, Hebron Platform, HebronGuide, 헤브론가이드",
-    "areaServed": ["Atlanta", "Duluth", "Johns Creek", "Suwanee"],
+    "areaServed": [
+      "Atlanta",
+      "Duluth",
+      "Johns Creek",
+      "Suwanee"
+    ],
     "localBusinessName": "HebronGuide Atlanta Korean Community",
     "localBusinessDesc": "애틀랜타 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
     "cityDescKo": "애틀랜타 한인 이민자·유학생·주재원·이주자를 위한 정착 생활 가이드 — HebronGuide",
@@ -327,7 +342,6 @@
     "verifiedAt": "2026-10-14",
     "verifyNote": "렌트 시세·학군·영사관 연락처·현대차 Metaplant 채용은 2026-10 기준. Zillow·학군 사이트·overseas.mofa.go.kr·DDS 공식 사이트 재확인 권장."
   },
-
   "newyork": {
     "nameKo": "뉴욕",
     "nameEn": "New York",
@@ -337,7 +351,12 @@
     "lat": 40.7128,
     "lng": -74.006,
     "keywords": "뉴욕 한인, NYC 한인, 뉴욕 정착 가이드, 뉴욕 한인교회, 플러싱 한인, 맨해튼 코리아타운, 32번가 한인, Flushing Korean, Manhattan Koreatown, Queens Korean, Hebron Platform, HebronGuide, 헤브론가이드",
-    "areaServed": ["New York", "Manhattan", "Flushing", "Queens"],
+    "areaServed": [
+      "New York",
+      "Manhattan",
+      "Flushing",
+      "Queens"
+    ],
     "localBusinessName": "HebronGuide New York Korean Community",
     "localBusinessDesc": "뉴욕 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
     "cityDescKo": "뉴욕(맨해튼·퀸스 플러싱) 한인 이민자·유학생·주재원·이주자를 위한 정착 생활 가이드 — HebronGuide",
@@ -404,7 +423,6 @@
     "verifiedAt": "2026-10-14",
     "verifyNote": "렌트 시세·broker fee·NYC DOE·영사관 연락처는 2026-10 기준. StreetEasy·MySchools.nyc·overseas.mofa.go.kr·NYC DMV 공식 사이트 재확인 권장."
   },
-
   "newjersey": {
     "nameKo": "뉴저지",
     "nameEn": "New Jersey",
@@ -414,7 +432,12 @@
     "lat": 40.0583,
     "lng": -74.4057,
     "keywords": "뉴저지 한인, NJ 한인, 뉴저지 정착 가이드, 뉴저지 한인교회, 팰리세이즈파크 한인, 포트리 한인, 에지워터 한인, Palisades Park Korean, Fort Lee Korean, Edgewater Korean, Hebron Platform, HebronGuide, 헤브론가이드",
-    "areaServed": ["New Jersey", "Palisades Park", "Fort Lee", "Edgewater"],
+    "areaServed": [
+      "New Jersey",
+      "Palisades Park",
+      "Fort Lee",
+      "Edgewater"
+    ],
     "localBusinessName": "HebronGuide New Jersey Korean Community",
     "localBusinessDesc": "뉴저지 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
     "cityDescKo": "뉴저지(버겐카운티 중심) 한인 이민자·유학생·주재원·이주자를 위한 정착 생활 가이드 — HebronGuide",
@@ -481,7 +504,6 @@
     "verifiedAt": "2026-10-14",
     "verifyNote": "렌트 시세·학군·영사관·제약사 채용은 2026-10 기준. StreetEasy·NJ MVC·overseas.mofa.go.kr 공식 사이트 재확인 권장."
   },
-
   "dallas": {
     "nameKo": "달라스",
     "nameEn": "Dallas",
@@ -491,7 +513,12 @@
     "lat": 32.7767,
     "lng": -96.797,
     "keywords": "달라스 한인, 캐롤턴 한인, 플레이노 한인, 달라스 정착 가이드, 달라스 한인교회, 달라스 한인 마트, 리처드슨 한인, Dallas Korean, Carrollton Korean, Plano Korean, Hebron Platform, HebronGuide, 헤브론가이드",
-    "areaServed": ["Dallas", "Carrollton", "Plano", "Richardson"],
+    "areaServed": [
+      "Dallas",
+      "Carrollton",
+      "Plano",
+      "Richardson"
+    ],
     "localBusinessName": "HebronGuide Dallas Korean Community",
     "localBusinessDesc": "달라스 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
     "cityDescKo": "달라스-포트워스 메트로플렉스 한인 이민자·유학생·주재원·이주자를 위한 정착 생활 가이드 — HebronGuide",
@@ -558,7 +585,6 @@
     "verifiedAt": "2026-10-14",
     "verifyNote": "렌트 시세·DPS·학군·영사관·삼성 테일러 공장 채용은 2026-10 기준. Zillow·텍사스 DPS·overseas.mofa.go.kr·학군 사이트 재확인 권장."
   },
-
   "houston": {
     "nameKo": "휴스턴",
     "nameEn": "Houston",
@@ -568,7 +594,12 @@
     "lat": 29.7604,
     "lng": -95.3698,
     "keywords": "휴스턴 한인, 스프링브랜치 한인, 케이티 한인, 휴스턴 정착 가이드, 휴스턴 한인교회, Houston Korean, Spring Branch Korean, Katy Korean, Texas Medical Center, Hebron Platform, HebronGuide, 헤브론가이드",
-    "areaServed": ["Houston", "Spring Branch", "Katy", "Sugar Land"],
+    "areaServed": [
+      "Houston",
+      "Spring Branch",
+      "Katy",
+      "Sugar Land"
+    ],
     "localBusinessName": "HebronGuide Houston Korean Community",
     "localBusinessDesc": "휴스턴 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
     "cityDescKo": "휴스턴 한인 이민자·유학생·주재원·이주자를 위한 정착 생활 가이드 — HebronGuide",
@@ -635,7 +666,6 @@
     "verifiedAt": "2026-10-14",
     "verifyNote": "렌트 시세·에너지·의료 채용·영사관·학군은 2026-10 기준. Zillow·TX DPS·overseas.mofa.go.kr·Texas Medical Center 공식 사이트 재확인 권장."
   },
-
   "sf": {
     "nameKo": "샌프란시스코",
     "nameEn": "San Francisco",
@@ -645,7 +675,12 @@
     "lat": 37.7749,
     "lng": -122.4194,
     "keywords": "샌프란시스코 한인, SF 한인, 베이에어리어 한인, 산타클라라 한인, 산호세 한인, 실리콘밸리 한인, SF Korean, Santa Clara Korean, San Jose Korean, Silicon Valley Korean, Hebron Platform, HebronGuide, 헤브론가이드",
-    "areaServed": ["San Francisco", "Santa Clara", "San Jose", "Sunnyvale"],
+    "areaServed": [
+      "San Francisco",
+      "Santa Clara",
+      "San Jose",
+      "Sunnyvale"
+    ],
     "localBusinessName": "HebronGuide San Francisco Korean Community",
     "localBusinessDesc": "샌프란시스코·베이에어리어 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
     "cityDescKo": "샌프란시스코 베이에어리어 한인 이민자·유학생·주재원·엔지니어·이주자를 위한 정착 생활 가이드 — HebronGuide",
@@ -712,7 +747,6 @@
     "verifiedAt": "2026-10-14",
     "verifyNote": "렌트 시세·테크 채용·H-1B·영사관·학군은 2026-10 기준. 테크 산업 변동 큼 — Zillow·GreatSchools·overseas.mofa.go.kr·CA DMV 재확인 권장."
   },
-
   "chicago": {
     "nameKo": "시카고",
     "nameEn": "Chicago",
@@ -722,7 +756,12 @@
     "lat": 41.8781,
     "lng": -87.6298,
     "keywords": "시카고 한인, 글렌뷰 한인, 나일스 한인, 시카고 정착 가이드, 시카고 한인교회, 노스브룩 한인, Chicago Korean, Glenview Korean, Niles Korean, Hebron Platform, HebronGuide, 헤브론가이드",
-    "areaServed": ["Chicago", "Glenview", "Niles", "Northbrook"],
+    "areaServed": [
+      "Chicago",
+      "Glenview",
+      "Niles",
+      "Northbrook"
+    ],
     "localBusinessName": "HebronGuide Chicago Korean Community",
     "localBusinessDesc": "시카고 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
     "cityDescKo": "시카고(일리노이) 한인 이민자·유학생·주재원·이주자를 위한 정착 생활 가이드 — HebronGuide",
@@ -789,7 +828,6 @@
     "verifiedAt": "2026-10-14",
     "verifyNote": "렌트 시세·IL DMV·영사관·학군·NorthShore 통역 서비스는 2026-10 기준. Zillow·overseas.mofa.go.kr·IL Secretary of State 공식 사이트 재확인 권장."
   },
-
   "dc": {
     "nameKo": "워싱턴 DC",
     "nameEn": "Washington DC",
@@ -799,7 +837,12 @@
     "lat": 38.9072,
     "lng": -77.0369,
     "keywords": "DC 한인, 워싱턴 한인, 애넌데일 한인, DC 정착 가이드, Centreville 한인, Ellicott City 한인, Bethesda 한인, DC Korean, Annandale Korean, Hebron Platform, HebronGuide, 헤브론가이드",
-    "areaServed": ["Washington DC", "Annandale", "Centreville", "Ellicott City"],
+    "areaServed": [
+      "Washington DC",
+      "Annandale",
+      "Centreville",
+      "Ellicott City"
+    ],
     "localBusinessName": "HebronGuide Washington DC Korean Community",
     "localBusinessDesc": "DC 메트로(VA·MD) 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
     "cityDescKo": "워싱턴 DC 메트로(북버지니아·메릴랜드 몽고메리/하워드카운티) 한인 이민자·유학생·주재원·공무원을 위한 정착 생활 가이드 — HebronGuide",
@@ -866,7 +909,6 @@
     "verifiedAt": "2026-10-14",
     "verifyNote": "렌트 시세·연방 채용·clearance·영사관·학군은 2026-10 기준. VA DMV·MD MVA·USAJOBS·overseas.mofa.go.kr 공식 사이트 재확인 권장."
   },
-
   "boston": {
     "nameKo": "보스턴",
     "nameEn": "Boston",
@@ -876,7 +918,12 @@
     "lat": 42.3601,
     "lng": -71.0589,
     "keywords": "보스턴 한인, 캠브리지 한인, 보스턴 유학, 보스턴 정착 가이드, 보스턴 한인교회, 뉴튼 한인, 벌링턴 한인, Boston Korean, Cambridge Korean, Harvard, MIT, Hebron Platform, HebronGuide, 헤브론가이드",
-    "areaServed": ["Boston", "Cambridge", "Newton", "Burlington"],
+    "areaServed": [
+      "Boston",
+      "Cambridge",
+      "Newton",
+      "Burlington"
+    ],
     "localBusinessName": "HebronGuide Boston Korean Community",
     "localBusinessDesc": "보스턴 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
     "cityDescKo": "보스턴 메트로(매사추세츠) 한인 이민자·유학생·연구원·주재원을 위한 정착 생활 가이드 — HebronGuide",
@@ -943,7 +990,6 @@
     "verifiedAt": "2026-10-14",
     "verifyNote": "렌트 시세·3개월 보증금·바이오 채용·영사관·학군은 2026-10 기준. StreetEasy·MA RMV·overseas.mofa.go.kr·학군 사이트 재확인 권장."
   },
-
   "sandiego": {
     "nameKo": "샌디에고",
     "nameEn": "San Diego",
@@ -953,7 +999,12 @@
     "lat": 32.7157,
     "lng": -117.1611,
     "keywords": "샌디에고 한인, 미라메사 한인, Convoy Street 한인, 샌디에고 정착 가이드, San Diego Korean, Mira Mesa Korean, Rancho Bernardo Korean, Qualcomm, Hebron Platform, HebronGuide, 헤브론가이드",
-    "areaServed": ["San Diego", "Mira Mesa", "Rancho Bernardo", "Carmel Mountain"],
+    "areaServed": [
+      "San Diego",
+      "Mira Mesa",
+      "Rancho Bernardo",
+      "Carmel Mountain"
+    ],
     "localBusinessName": "HebronGuide San Diego Korean Community",
     "localBusinessDesc": "샌디에고 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
     "cityDescKo": "샌디에고(남가주) 한인 이민자·유학생·주재원·바이오/국방 종사자를 위한 정착 생활 가이드 — HebronGuide",
@@ -1020,7 +1071,6 @@
     "verifiedAt": "2026-10-14",
     "verifyNote": "렌트 시세·Qualcomm 채용·바이오·영사관·학군은 2026-10 기준. Zillow·CA DMV·overseas.mofa.go.kr·Qualcomm Careers 재확인 권장."
   },
-
   "orlando": {
     "nameKo": "올랜도",
     "nameEn": "Orlando",
@@ -1030,7 +1080,12 @@
     "lat": 28.5383,
     "lng": -81.3792,
     "keywords": "올랜도 한인, 올랜도 정착 가이드, 올랜도 한인교회, Lake Mary 한인, 플로리다 한인, Orlando Korean, Lake Mary Korean, 디즈니, 유니버설, Hebron Platform, HebronGuide, 헤브론가이드",
-    "areaServed": ["Orlando", "Lake Mary", "Winter Park", "Dr. Phillips"],
+    "areaServed": [
+      "Orlando",
+      "Lake Mary",
+      "Winter Park",
+      "Dr. Phillips"
+    ],
     "localBusinessName": "HebronGuide Orlando Korean Community",
     "localBusinessDesc": "올랜도 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
     "cityDescKo": "올랜도(플로리다) 한인 이민자·유학생·관광·호텔 종사자·이주자를 위한 정착 생활 가이드 — HebronGuide",
@@ -1097,7 +1152,6 @@
     "verifiedAt": "2026-10-14",
     "verifyNote": "렌트 시세·테마파크 채용·FL DHSMV·영사관·허리케인 보험은 2026-10 기준. Zillow·FL DHSMV·overseas.mofa.go.kr·Disney Careers 재확인 권장."
   },
-
   "portland": {
     "nameKo": "포틀랜드",
     "nameEn": "Portland",
@@ -1107,7 +1161,12 @@
     "lat": 45.5152,
     "lng": -122.6784,
     "keywords": "포틀랜드 한인, 비버튼 한인, 포틀랜드 정착 가이드, 포틀랜드 한인교회, Hillsboro 한인, Portland Korean, Beaverton Korean, Nike, Intel, Hebron Platform, HebronGuide, 헤브론가이드",
-    "areaServed": ["Portland", "Beaverton", "Tigard", "Hillsboro"],
+    "areaServed": [
+      "Portland",
+      "Beaverton",
+      "Tigard",
+      "Hillsboro"
+    ],
     "localBusinessName": "HebronGuide Portland Korean Community",
     "localBusinessDesc": "포틀랜드 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
     "cityDescKo": "포틀랜드(오리건) 한인 이민자·유학생·주재원·엔지니어를 위한 정착 생활 가이드 — HebronGuide",
@@ -1174,7 +1233,6 @@
     "verifiedAt": "2026-10-14",
     "verifyNote": "렌트 시세·Nike/Intel 채용·오리건 세율·영사관·학군은 2026-10 기준. Zillow·Oregon DMV·overseas.mofa.go.kr·Nike/Intel Careers 재확인 권장."
   },
-
   "honolulu": {
     "nameKo": "호놀룰루",
     "nameEn": "Honolulu",
@@ -1184,7 +1242,12 @@
     "lat": 21.3069,
     "lng": -157.8583,
     "keywords": "호놀룰루 한인, 하와이 한인, 호놀룰루 정착 가이드, 하와이 한인교회, Pearl City 한인, Mililani 한인, Honolulu Korean, Hawaii Korean, Hebron Platform, HebronGuide, 헤브론가이드",
-    "areaServed": ["Honolulu", "Pearl City", "Mililani", "Kapolei"],
+    "areaServed": [
+      "Honolulu",
+      "Pearl City",
+      "Mililani",
+      "Kapolei"
+    ],
     "localBusinessName": "HebronGuide Honolulu Korean Community",
     "localBusinessDesc": "호놀룰루·하와이 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
     "cityDescKo": "호놀룰루(하와이 오아후섬) 한인 이민자·유학생·관광 종사자·이주자를 위한 정착 생활 가이드 — HebronGuide",
@@ -1251,7 +1314,6 @@
     "verifiedAt": "2026-10-14",
     "verifyNote": "하와이 섬 물류 비용·전기세·군 기지·영사관·다국어 ELL 지원은 2026-10 기준. Hawaii DOE·overseas.mofa.go.kr·Hawaii Emergency Management Agency 재확인 권장."
   },
-
   "vancouver": {
     "nameKo": "밴쿠버",
     "nameEn": "Vancouver",
@@ -1261,7 +1323,12 @@
     "lat": 49.2827,
     "lng": -123.1207,
     "keywords": "밴쿠버 한인, 코퀴틀람 한인, 버나비 한인, 밴쿠버 정착 가이드, 밴쿠버 한인교회, Vancouver Korean, Coquitlam Korean, Burnaby Korean, Richmond Korean, Hebron Platform, HebronGuide, 헤브론가이드",
-    "areaServed": ["Vancouver", "Coquitlam", "Burnaby", "Richmond"],
+    "areaServed": [
+      "Vancouver",
+      "Coquitlam",
+      "Burnaby",
+      "Richmond"
+    ],
     "localBusinessName": "HebronGuide Vancouver Korean Community",
     "localBusinessDesc": "밴쿠버 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
     "cityDescKo": "밴쿠버(브리티시 컬럼비아) 한인 이민자·유학생·주재원·이주자를 위한 정착 생활 가이드 — HebronGuide",
@@ -1328,7 +1395,6 @@
     "verifiedAt": "2026-10-14",
     "verifyNote": "렌트 시세·ICBC·MSP·PHSA 통역 서비스·영사관은 2026-10 기준. BC 공공 다국어 서비스 체계적 — HealthLink BC·overseas.mofa.go.kr 공식 사이트 재확인 권장."
   },
-
   "london": {
     "nameKo": "런던",
     "nameEn": "London",
@@ -1338,7 +1404,12 @@
     "lat": 51.5074,
     "lng": -0.1278,
     "keywords": "런던 한인, 뉴몰든 한인, 런던 정착 가이드, 런던 한인교회, 영국 한인, New Malden Korean, London Korean, UK Korean, Hebron Platform, HebronGuide, 헤브론가이드",
-    "areaServed": ["London", "New Malden", "Kingston", "Wimbledon"],
+    "areaServed": [
+      "London",
+      "New Malden",
+      "Kingston",
+      "Wimbledon"
+    ],
     "localBusinessName": "HebronGuide London Korean Community",
     "localBusinessDesc": "런던 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
     "cityDescKo": "런던(영국) 한인 이민자·유학생·주재원·이주자를 위한 정착 생활 가이드 — HebronGuide",
@@ -1405,7 +1476,6 @@
     "verifiedAt": "2026-10-14",
     "verifyNote": "렌트 시세·DVLA·IHS·NHS Language Line·영사관은 2026-10 기준. GOV.UK·NHS·overseas.mofa.go.kr·DVLA 공식 사이트 재확인 권장. 런던은 세계 최다 언어 도시로 공공 통역 체계적."
   },
-
   "sydney": {
     "nameKo": "시드니",
     "nameEn": "Sydney",
@@ -1415,7 +1485,12 @@
     "lat": -33.8688,
     "lng": 151.2093,
     "keywords": "시드니 한인, 스트라스필드 한인, 시드니 정착 가이드, 호주 한인, 시드니 한인교회, Sydney Korean, Strathfield Korean, Eastwood Korean, Hebron Platform, HebronGuide, 헤브론가이드",
-    "areaServed": ["Sydney", "Strathfield", "Eastwood", "Chatswood"],
+    "areaServed": [
+      "Sydney",
+      "Strathfield",
+      "Eastwood",
+      "Chatswood"
+    ],
     "localBusinessName": "HebronGuide Sydney Korean Community",
     "localBusinessDesc": "시드니 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
     "cityDescKo": "시드니(호주 NSW) 한인 이민자·유학생·주재원·워킹홀리데이·이주자를 위한 정착 생활 가이드 — HebronGuide",
@@ -1482,7 +1557,6 @@
     "verifiedAt": "2026-10-14",
     "verifyNote": "렌트 시세(주 단위)·NSW 면허·Medicare 미협정·TIS National 통역·영사관은 2026-10 기준. TIS 24시간 전화 통역이 호주 공공 서비스 통역의 중심. NSW RMS·overseas.mofa.go.kr 공식 사이트 재확인 권장."
   },
-
   "osaka": {
     "nameKo": "오사카",
     "nameEn": "Osaka",
@@ -1492,7 +1566,12 @@
     "lat": 34.6937,
     "lng": 135.5023,
     "keywords": "오사카 한인, 쓰루하시 한인, 오사카 정착 가이드, 오사카 한인교회, 재일 한인, Osaka Korean, Tsuruhashi Korean, Ikuno Korean, Hebron Platform, HebronGuide, 헤브론가이드",
-    "areaServed": ["Osaka", "Tsuruhashi", "Ikuno", "Imazato"],
+    "areaServed": [
+      "Osaka",
+      "Tsuruhashi",
+      "Ikuno",
+      "Imazato"
+    ],
     "localBusinessName": "HebronGuide Osaka Korean Community",
     "localBusinessDesc": "오사카 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
     "cityDescKo": "오사카(간사이) 한인·재일 한인·유학생·주재원·이주자를 위한 정착 생활 가이드 — HebronGuide",
@@ -1559,7 +1638,6 @@
     "verifiedAt": "2026-10-14",
     "verifyNote": "렌트 시세·외국면허 전환·오사카부 다문화 공생 센터·영사관·AMDA 통역은 2026-10 기준. 일본은 외국어 지원이 상대적으로 제한적이나 다문화 공생 센터·AMDA 통한 통역 지원 가능. overseas.mofa.go.kr·구청 공식 사이트 재확인 권장."
   },
-
   "saopaulo": {
     "nameKo": "상파울루",
     "nameEn": "São Paulo",
@@ -1569,7 +1647,12 @@
     "lat": -23.5505,
     "lng": -46.6333,
     "keywords": "상파울루 한인, 봉헤찌로 한인, 상파울루 정착 가이드, 브라질 한인, 상파울루 한인교회, São Paulo Korean, Bom Retiro Korean, Brazil Korean, Hebron Platform, HebronGuide, 헤브론가이드",
-    "areaServed": ["São Paulo", "Bom Retiro", "Luz", "Santana"],
+    "areaServed": [
+      "São Paulo",
+      "Bom Retiro",
+      "Luz",
+      "Santana"
+    ],
     "localBusinessName": "HebronGuide São Paulo Korean Community",
     "localBusinessDesc": "상파울루 한인 커뮤니티 정보 허브 — 교회·마트·식당·기관",
     "cityDescKo": "상파울루(브라질) 한인 이민자·유학생·주재원·이주자를 위한 정착 생활 가이드 — HebronGuide",
@@ -1635,5 +1718,812 @@
     ],
     "verifiedAt": "2026-10-14",
     "verifyNote": "렌트 시세·환율·CPF 요구·공공 통역 제한·영사관 서비스는 2026-10 기준. 환율 변동 큼·브라질 공공 통역 제한적이라 영사관·한인 커뮤니티 네트워크 적극 활용 권장. overseas.mofa.go.kr·Receita Federal·DETRAN-SP 공식 사이트 재확인 권장."
+  },
+  "seoul": {
+    "nameKo": "서울",
+    "nameEn": "Seoul",
+    "country": "KR",
+    "regionEn": "Seoul",
+    "regionKo": "서울특별시",
+    "lat": 37.5665,
+    "lng": 126.978,
+    "keywords": "서울 한인, 서울 역이민, 서울 정착 가이드, 서울 재외 동포, 서울 유학 귀국, 서울 주재원 귀국, Seoul Korean diaspora, HebronGuide Seoul, 헤브론가이드 서울",
+    "areaServed": [
+      "Seoul",
+      "Gangnam",
+      "Mapo",
+      "Yongsan"
+    ],
+    "localBusinessName": "HebronGuide Seoul Korean Community",
+    "localBusinessDesc": "서울 역이민·재외동포 복귀·주재원 귀국·유학 복귀자를 위한 정착 생활 가이드",
+    "cityDescKo": "서울 재외동포·역이민·주재원 귀국·유학 복귀자를 위한 생활 가이드 — HebronGuide",
+    "touristCenterName": "HebronGuide Seoul — 서울 역이민·귀국 정착 가이드",
+    "touristCenterDesc": "서울 재외동포·역이민자를 위한 공식 정보 큐레이션",
+    "faqs": [
+      {
+        "q": "서울 역이민자가 처음 들러야 할 공공기관은?",
+        "a": "해외에서 들어오는 재외동포·역이민자는 외교부 재외동포청(세종) 또는 각 구청 민원실에서 재외국민용 주민등록을 신청할 수 있습니다. 재외국민등록을 미리 하지 않았다면 거주지 관할 구청에서 신청하세요. 자녀의 학적 이관은 교육부·교육지원청 민원 창구를 통합니다."
+      },
+      {
+        "q": "서울 한인마트는 어디가 좋나요?",
+        "a": "한인은 서울 주민이므로 일반 대형마트(이마트·홈플러스·롯데마트)를 그대로 이용합니다. 외국 식재료는 이태원·한남동·용산·광장시장을 참고하세요. 코스트코 상봉·양재·일산점은 대용량 생필품 수요에 유용합니다."
+      },
+      {
+        "q": "서울에서 재외동포 밀집 지역은?",
+        "a": "귀국 유학생·주재원 가족은 강남·분당·용산·마포 생활권을 많이 선호합니다. 자녀 영어 교육 때문에 분당(수지 포함)·용산 국제학교 인근을 찾는 경우가 많습니다. 특정 \"코리안 디아스포라\" 밀집지는 서울 안에는 없습니다."
+      },
+      {
+        "q": "서울 정착 초기 비용은 얼마나 필요한가요?",
+        "a": "보증금은 지역·형태(전세·월세·반전세)에 따라 큰 차이가 납니다. 월세 기준 보증금 1,000만 원대부터, 전세는 수억 원 이상도 흔합니다. 가전·가구 재구매, 자동차, 자녀 학원비 등 재정착 초기 지출을 넉넉히 계산하세요."
+      },
+      {
+        "q": "해외 운전면허로 서울에서 운전할 수 있나요?",
+        "a": "한국은 미국·캐나다·호주 등 상호인정 국가와 양자 협정이 있어 일부 주 면허는 교환이 가능합니다. 도로교통공단 운전면허시험장(강남·서부 등)에서 신청하세요. 세부 조건은 driver.korea.go.kr(안전운전 통합민원) 또는 영사관 안내를 확인하는 게 안전합니다."
+      },
+      {
+        "q": "서울 한인교회는 어떻게 찾나요?",
+        "a": "귀국자들이 적응하기 쉬운 교회는 외국 유학·주재원 공동체 경험이 있는 교회들입니다. 교단별 홈페이지(예장·기장·감리회·구세군 등)의 교회 찾기 또는 각 지역 노회를 통해 찾으세요. 자녀의 영어 환경 때문에 영어 예배가 있는 교회를 선호하는 가정도 많습니다."
+      },
+      {
+        "q": "서울 월세·전세 수준은?",
+        "a": "지역·연식·방 수에 따라 차이가 큽니다. 역세권 원룸 월세는 보증금 수백~수천, 월 임대료 수십~백만 원대, 전세는 억 단위가 흔합니다. 네이버부동산·직방·다방 등 공신력 있는 플랫폼으로 시세를 확인하세요."
+      },
+      {
+        "q": "귀국 뒤 건강보험·국민연금은 어떻게 되나요?",
+        "a": "한국에 180일 이상 체류하면 지역가입자로 자동 편입될 수 있고, 재취업 시 직장가입자로 전환됩니다. 재외국민등록 상태·실제 거주 입증(전입신고 등)에 따라 산정이 달라지니 국민건강보험공단(1577-1000)·국민연금공단(1355) 상담을 활용하세요."
+      },
+      {
+        "q": "서울에서 자녀 공립학교에 어떻게 등록하나요?",
+        "a": "거주지 전입신고 뒤 관할 교육지원청·주민센터를 통해 학적 이관을 신청합니다. 해외 학적 서류(원문·번역·공증) 지참이 보통 필요합니다. 서울특별시교육청 평생진로교육국 다문화·귀국 학생 담당 창구가 안내 역할을 합니다."
+      },
+      {
+        "q": "해외에서 서울로 짐·자동차를 들여올 때 유의할 점은?",
+        "a": "이사짐은 세관 \"이사물품 통관\" 절차를 거치며 거주 기간·동일인 보유 조건 등이 적용됩니다. 자동차는 배출가스·안전기준 검사·관세 납부가 필요해 비용·시간 모두 큽니다. 관세청(125) 상담을 미리 활용하세요."
+      },
+      {
+        "q": "서울의 치안과 조심할 점은?",
+        "a": "서울은 세계적으로 치안이 좋은 대도시이지만 번화가(이태원·홍대·강남) 심야에는 보이스피싱·대리운전 분쟁·외국인 상대 신종 사기 등 생활형 범죄가 있습니다. 112(경찰)·119(소방·구급)는 외국어 통역이 연결됩니다."
+      },
+      {
+        "q": "서울의 사계절 날씨는?",
+        "a": "사계절이 뚜렷합니다. 여름(6-8월) 고온다습, 장마·태풍 영향, 겨울(12-2월) 영하의 추위와 미세먼지 유의, 봄가을은 비교적 쾌적하나 꽃가루·황사가 있습니다. 겨울 외투·여름 선풍기/에어컨은 필수입니다."
+      },
+      {
+        "q": "서울에서 한국어 외 영어·외국어 가능한 병원은?",
+        "a": "서울의 주요 종합병원(세브란스·서울아산·서울대병원·삼성서울병원 등)에는 국제진료센터가 있어 영어·일본어 등 통역이 가능합니다. 외국인 환자 접수는 센터에 사전 예약하세요."
+      },
+      {
+        "q": "서울 휴대폰·인터넷 개통 방법은?",
+        "a": "SKT·KT·LG U+ 세 통신사와 다수 알뜰폰(MVNO)이 있습니다. 외국인 등록증·여권·주민등록번호 중 상황에 맞는 서류로 개통합니다. 외국 번호 유지가 필요하면 eSIM·듀얼 심 또는 한국 번호 가입 후 외국 번호 수신 전환을 고려하세요."
+      }
+    ],
+    "verifiedAt": "2026-10-17",
+    "verifyNote": "Public facts only; consular/official sources. No fabricated businesses or prices."
+  },
+  "busan": {
+    "nameKo": "부산",
+    "nameEn": "Busan",
+    "country": "KR",
+    "regionEn": "Busan",
+    "regionKo": "부산광역시",
+    "lat": 35.1796,
+    "lng": 129.0756,
+    "keywords": "부산 한인, 부산 역이민, 부산 재외 동포, 부산 정착, 해운대 외국인, Busan Korean diaspora, HebronGuide Busan, 헤브론가이드 부산",
+    "areaServed": [
+      "Busan",
+      "Haeundae",
+      "Suyeong",
+      "Yeonje"
+    ],
+    "localBusinessName": "HebronGuide Busan Korean Community",
+    "localBusinessDesc": "부산 역이민·재외동포 복귀·은퇴 귀국자를 위한 생활 가이드",
+    "cityDescKo": "부산 역이민자·재외동포 귀국·은퇴 이주자를 위한 생활 가이드 — HebronGuide",
+    "touristCenterName": "HebronGuide Busan — 부산 역이민·귀국 정착 가이드",
+    "touristCenterDesc": "부산 재외동포·역이민자를 위한 공식 정보 큐레이션",
+    "faqs": [
+      {
+        "q": "부산 역이민자가 처음 해야 할 행정은?",
+        "a": "거주지 관할 구청·동 주민센터에서 전입신고 후 재외국민용 주민등록을 신청합니다. 자녀 학적 이관은 부산광역시교육청·교육지원청 다문화·귀국학생 담당 창구로 문의합니다."
+      },
+      {
+        "q": "부산 한인 역이민자가 많이 사는 지역은?",
+        "a": "바다 조망과 생활 인프라를 선호해 해운대·수영·연제·동래 지역이 자주 선택됩니다. 자녀 영어 환경 때문에 국제학교·외국어 학원이 많은 해운대 신시가지를 선호하는 가정이 많습니다."
+      },
+      {
+        "q": "부산 정착 초기 비용은?",
+        "a": "서울보다 전·월세 수준이 낮지만 해운대 신시가지 등 선호 지역은 전세 수억 원대도 흔합니다. 반전세·월세로 시작하는 가정이 많으며 자동차·가전·자녀 교육비를 포함해 넉넉히 계산하세요."
+      },
+      {
+        "q": "해외 운전면허로 부산에서 운전할 수 있나요?",
+        "a": "도로교통공단 부산 운전면허시험장(사상·남부 등)에서 상호인정 국가 면허 교환을 신청할 수 있습니다. 세부 조건은 안전운전 통합민원(driver.korea.go.kr) 또는 영사관 안내를 따릅니다."
+      },
+      {
+        "q": "부산 한인교회·외국 유학 경험 교회는?",
+        "a": "부산 지역 교단별 홈페이지(예장·기장·감리회 등)의 교회 찾기나 지역 노회·구청 종교 담당을 통해 찾습니다. 외국 체류 경험 성도가 많은 교회는 적응이 쉽습니다."
+      },
+      {
+        "q": "부산 바다·생활권 중 외국 가족이 선호하는 곳은?",
+        "a": "해운대·광안리·센텀시티·동백섬 생활권은 바다 조망, 서면·연산동은 상업·의료 집중, 영도·남포동은 전통·관광이 강합니다. 자녀 통학과 직장 통근 거리를 함께 고려하세요."
+      },
+      {
+        "q": "귀국 뒤 건강보험·국민연금은?",
+        "a": "한국 거주 180일 이상이면 지역가입자로 편입될 수 있고, 재취업 시 직장가입자로 전환됩니다. 국민건강보험공단(1577-1000)·국민연금공단(1355) 상담을 활용하세요."
+      },
+      {
+        "q": "부산에서 자녀 공립학교·국제학교는?",
+        "a": "거주지 전입신고 뒤 교육지원청 창구에서 학적 이관을 신청합니다. 영어 교육을 지속하려면 부산국제외국인학교·국제학교·외국인학교 운영 현황을 교육청 홈페이지에서 확인하세요."
+      },
+      {
+        "q": "해외 짐·자동차 반입 유의점은?",
+        "a": "세관 \"이사물품 통관\"은 거주 조건이 있고, 자동차는 배출가스·안전기준 검사·관세가 추가됩니다. 관세청(125) 상담을 미리 받으세요."
+      },
+      {
+        "q": "부산 치안은?",
+        "a": "부산 역시 세계적으로 안전한 대도시입니다. 심야 번화가 분쟁·보이스피싱 등 생활형 범죄는 서울과 유사하게 조심해야 합니다. 112·119는 외국어 통역 가능."
+      },
+      {
+        "q": "가장 가까운 영사·외무 창구는?",
+        "a": "여권·국내 신분 관련 민원은 외교부 부산 여권사무대행기관(각 구청)과 외교부 부산 여권민원실을 이용합니다. 외국 영사·대사 업무는 서울 대사관 본부로 안내되는 경우가 많습니다."
+      },
+      {
+        "q": "부산 사계절 날씨는?",
+        "a": "해양성 기후로 서울보다 겨울이 덜 춥고 여름 습도는 더 높습니다. 태풍이 통과하는 길목이라 7-9월은 태풍 알림을 꼭 확인하세요."
+      },
+      {
+        "q": "부산 외국어 가능한 종합병원은?",
+        "a": "부산대병원·동아대병원·고신대병원·인제대 해운대백병원 등에 외국인·국제 진료 창구가 있습니다. 통역 지원·보험 처리 등은 각 병원 국제진료센터에 사전 문의하세요."
+      },
+      {
+        "q": "부산 통신·인터넷 개통은?",
+        "a": "SKT·KT·LG U+ 대리점과 알뜰폰(MVNO) 모두 가능합니다. 외국인등록증·여권·주민등록번호 중 가능한 서류로 개통합니다. 알뜰폰은 요금이 저렴한 대신 통화 품질 체감 차이를 비교하세요."
+      }
+    ],
+    "verifiedAt": "2026-10-17",
+    "verifyNote": "Public facts only; consular/official sources. No fabricated businesses or prices."
+  },
+  "incheon": {
+    "nameKo": "인천",
+    "nameEn": "Incheon",
+    "country": "KR",
+    "regionEn": "Incheon",
+    "regionKo": "인천광역시",
+    "lat": 37.4563,
+    "lng": 126.7052,
+    "keywords": "인천 한인, 인천 역이민, 송도 국제도시, 인천공항 환승, 영종도 거주, Incheon Korean diaspora, HebronGuide Incheon, 헤브론가이드 인천",
+    "areaServed": [
+      "Incheon",
+      "Songdo",
+      "Yeongjong",
+      "Bupyeong"
+    ],
+    "localBusinessName": "HebronGuide Incheon Korean Community",
+    "localBusinessDesc": "인천 역이민·국제도시 송도·공항 인접 영종 지역 정착 가이드",
+    "cityDescKo": "인천 재외동포 귀국·역이민·국제도시 거주자를 위한 생활 가이드 — HebronGuide",
+    "touristCenterName": "HebronGuide Incheon — 인천 역이민·귀국 정착 가이드",
+    "touristCenterDesc": "인천 재외동포·역이민자를 위한 공식 정보 큐레이션",
+    "faqs": [
+      {
+        "q": "인천에서 역이민자가 가장 많이 선택하는 지역은?",
+        "a": "송도국제도시는 국제학교·고층 아파트·공원이 모여 있어 외국 거주 경험 가정이 선호합니다. 영종도는 인천공항 인접 장점, 부평·구월은 전통 생활권으로 가격 접근성이 높습니다."
+      },
+      {
+        "q": "송도 국제학교 등록은 어떻게 하나요?",
+        "a": "송도 지역 국제학교(예: Chadwick International 등)는 정원·입학 조건이 학교별로 다릅니다. 공립학교는 거주지 전입신고 뒤 인천광역시교육청·교육지원청에서 학적 이관을 신청합니다."
+      },
+      {
+        "q": "인천 한인마트는?",
+        "a": "송도·연수·부평 지역 대형마트(이마트·홈플러스·롯데마트)·코스트코 송도점으로 생필품을 충분히 조달할 수 있습니다. 아시아·중국 식재료는 차이나타운(인천역 인근)에서 구할 수 있어요."
+      },
+      {
+        "q": "해외 운전면허로 인천에서 운전할 수 있나요?",
+        "a": "도로교통공단 인천 운전면허시험장에서 상호인정 국가 면허 교환을 신청할 수 있습니다. 세부 조건은 안전운전 통합민원(driver.korea.go.kr) 또는 영사관 안내를 따릅니다."
+      },
+      {
+        "q": "인천 한인교회는?",
+        "a": "인천 지역 교단별 홈페이지(예장·기장·감리회·구세군 등)의 교회 찾기나 지역 노회를 통해 찾습니다. 송도·연수·부평·주안 각 생활권에 교회가 모여 있습니다."
+      },
+      {
+        "q": "인천 월세·전세 수준은?",
+        "a": "송도는 서울 강남권에 가까운 가격대, 영종·부평·주안은 보다 낮은 수준입니다. 네이버부동산·직방·다방 등으로 시세를 비교하세요."
+      },
+      {
+        "q": "공항 인접 영종도 거주의 장단점은?",
+        "a": "장점은 공항 접근성과 자연 환경, 단점은 서울 중심 통근 시간이 길고 생활 편의시설이 분산되어 있다는 점입니다. 공항 종사자·국제 출장이 잦은 가정이 선호합니다."
+      },
+      {
+        "q": "송도 거주 외국 가족이 자주 쓰는 공공시설은?",
+        "a": "송도 센트럴파크·국제도서관·커넬워크 등을 중심으로 공원·도서관·실내 체육시설이 모여 있습니다. 자녀 활동 공간이 밀집한 생활권입니다."
+      },
+      {
+        "q": "인천 치안과 조심할 점은?",
+        "a": "송도·연수 지역은 신도시 특성상 매우 안전한 편입니다. 야간 번화가(부평·주안)·공항 환승객 상대 호객 등 일반 생활형 주의사항은 유지하세요. 112·119는 외국어 통역 가능."
+      },
+      {
+        "q": "인천 공립학교 등록 절차는?",
+        "a": "거주지 전입신고 뒤 인천광역시교육청 또는 교육지원청(남부·동부·북부·강화 등)을 통해 학적 이관을 신청합니다. 해외 학적·성적 서류는 번역·공증본을 함께 제출합니다."
+      },
+      {
+        "q": "가장 가까운 영사·여권 창구는?",
+        "a": "여권은 각 구청 여권민원실·외교부 인천 여권사무대행기관을 이용합니다. 외국 영사 업무는 서울 재한 대사관 본부로 안내되는 경우가 많습니다."
+      },
+      {
+        "q": "인천 날씨는 서울과 어떻게 다른가요?",
+        "a": "해양성 영향으로 서울보다 겨울이 덜 춥지만 바람이 셉니다. 여름은 비슷하게 덥고 습하며 송도·영종은 바닷가라 체감 바람이 강합니다."
+      },
+      {
+        "q": "인천 영어·외국어 가능 종합병원은?",
+        "a": "인하대병원·가천대 길병원 등 지역 거점 병원에 외국인 진료 창구가 있습니다. 통역 지원 가능 여부는 사전 전화 문의가 안전합니다."
+      },
+      {
+        "q": "인천 통신·인터넷 개통은?",
+        "a": "SKT·KT·LG U+ 지점과 알뜰폰 모두 이용 가능합니다. 송도·영종 신축 아파트는 통신사별 기가 인터넷 결합 상품을 자주 안내합니다."
+      }
+    ],
+    "verifiedAt": "2026-10-17",
+    "verifyNote": "Public facts only; consular/official sources. No fabricated businesses or prices."
+  },
+  "bundang": {
+    "nameKo": "분당·수지",
+    "nameEn": "Bundang-Suji",
+    "country": "KR",
+    "regionEn": "Gyeonggi",
+    "regionKo": "경기도",
+    "lat": 37.3595,
+    "lng": 127.1052,
+    "keywords": "분당 역이민, 분당 수지 한인, 분당 국제학교, 수지 미주 귀국, 판교 미국 귀국자, 분당 재외동포, HebronGuide Bundang, 헤브론가이드 분당",
+    "areaServed": [
+      "Bundang",
+      "Suji",
+      "Pangyo",
+      "Jukjeon"
+    ],
+    "localBusinessName": "HebronGuide Bundang Korean Returnee Community",
+    "localBusinessDesc": "분당·수지·판교 지역 미주 귀국자·역이민·주재원 복귀자를 위한 정착 가이드",
+    "cityDescKo": "분당·수지·판교 역이민·미주 귀국·주재원 복귀자를 위한 생활 가이드 — HebronGuide",
+    "touristCenterName": "HebronGuide Bundang — 분당·수지 미주 귀국자 정착 가이드",
+    "touristCenterDesc": "분당·수지·판교 역이민·귀국자를 위한 공식 정보 큐레이션",
+    "faqs": [
+      {
+        "q": "분당·수지가 미주 귀국자에게 인기 있는 이유는?",
+        "a": "서울 강남 접근성·IT 직장(판교)·국제학교·영어 학원 밀집·녹지 환경이 겹쳐 미국 거주 경험 가정이 선호하는 지역으로 알려져 있습니다. 자녀의 영어 환경 유지가 상대적으로 쉬운 편입니다."
+      },
+      {
+        "q": "분당·수지 역이민자 선호 생활권은?",
+        "a": "정자·서현·수내는 분당 중심 상업·학군, 수지(죽전·풍덕천·상현)는 가족 단지, 판교는 IT 직장·신축 단지가 특징입니다."
+      },
+      {
+        "q": "분당·수지 국제학교·외국인학교 선택지는?",
+        "a": "성남·용인 지역에는 복수의 국제학교·외국인학교가 운영됩니다. 입학 조건·학비는 학교별로 매우 다르니 각 학교 공식 홈페이지와 입학 설명회를 반드시 확인하세요."
+      },
+      {
+        "q": "분당 공립학교 등록은?",
+        "a": "경기도교육청·성남교육지원청·용인교육지원청을 통해 학적 이관을 신청합니다. 해외 학적·성적 서류는 번역·공증본을 함께 제출합니다."
+      },
+      {
+        "q": "분당·수지 전·월세 수준은?",
+        "a": "서울 강남권에 가까운 가격대로 알려져 있고, 신축 대단지는 지역 내에서도 상위권입니다. 네이버부동산·직방·다방 등 공신력 있는 플랫폼으로 비교하세요."
+      },
+      {
+        "q": "분당 한인교회·미주 귀국자 공동체는?",
+        "a": "분당·수지·판교에는 미국 교단과 교류 경험이 있는 교회들이 적지 않습니다. 교단별 홈페이지(예장·기장·감리회 등) 교회 찾기나 지역 노회·주위 성도의 추천을 참고하세요."
+      },
+      {
+        "q": "미국 운전면허로 운전할 수 있나요?",
+        "a": "한미 간 상호인정 조건이 적용되는 주 면허는 성남·용인 운전면허시험장에서 교환 신청이 가능합니다. 세부 조건은 안전운전 통합민원(driver.korea.go.kr)으로 확인하세요."
+      },
+      {
+        "q": "판교 IT 기업 재취업은?",
+        "a": "판교 테크노밸리에는 글로벌·국내 IT 기업이 모여 있어 미국 경력자 수요가 있는 편입니다. 각 회사 공식 채용 페이지·링크드인·국내 플랫폼(사람인·잡코리아·원티드)을 병행하세요."
+      },
+      {
+        "q": "분당 치안·안전은?",
+        "a": "분당·수지·판교는 가족 중심 신도시로 치안이 좋은 편입니다. 심야 유흥가 분쟁·보이스피싱 등 일반 생활형 주의사항은 유지하세요. 112·119는 외국어 통역 가능."
+      },
+      {
+        "q": "분당·수지 한인마트·대형마트는?",
+        "a": "이마트·홈플러스·롯데마트 지점과 코스트코 공세점(용인) 등을 생활권에서 가깝게 이용할 수 있습니다. 미국식 식재료는 코스트코·대형마트 수입식품 코너를 활용하세요."
+      },
+      {
+        "q": "귀국 뒤 건강보험·국민연금 질문은?",
+        "a": "한국 거주 180일 이상이면 지역가입자로 편입될 수 있고, 재취업 시 직장가입자로 전환됩니다. 국민건강보험공단(1577-1000)·국민연금공단(1355) 상담을 활용하세요."
+      },
+      {
+        "q": "분당 영어 가능 병원·국제진료는?",
+        "a": "분당서울대병원·분당차병원 등에 국제진료센터가 운영됩니다. 외국인·귀국자 보험 처리는 각 센터에 사전 예약으로 안내받으세요."
+      },
+      {
+        "q": "분당 사계절·생활 체감은?",
+        "a": "서울과 거의 같은 사계절이지만 녹지가 많아 체감 공기 질이 상대적으로 양호한 편입니다. 겨울 눈·결빙 지역이 있어 체인·스노우 타이어는 상황 따라 준비하세요."
+      },
+      {
+        "q": "분당 통신·인터넷 개통은?",
+        "a": "SKT·KT·LG U+ 모두 서비스되며 신축 대단지는 통신사별 기가 결합 상품이 활발합니다. 알뜰폰도 선택지입니다."
+      }
+    ],
+    "verifiedAt": "2026-10-17",
+    "verifyNote": "Public facts only; consular/official sources. No fabricated businesses or prices."
+  },
+  "jeju": {
+    "nameKo": "제주",
+    "nameEn": "Jeju",
+    "country": "KR",
+    "regionEn": "Jeju",
+    "regionKo": "제주특별자치도",
+    "lat": 33.4996,
+    "lng": 126.5312,
+    "keywords": "제주 역이민, 제주 귀국자, 제주 영어교육도시, 제주 국제학교, 제주 재외동포, Jeju Korean returnee, HebronGuide Jeju, 헤브론가이드 제주",
+    "areaServed": [
+      "Jeju",
+      "Seogwipo",
+      "Jeju International Education City"
+    ],
+    "localBusinessName": "HebronGuide Jeju Korean Community",
+    "localBusinessDesc": "제주 역이민·국제학교(JIEC) 가족 거주·귀국 은퇴자를 위한 생활 가이드",
+    "cityDescKo": "제주 역이민자·국제학교 가족·귀국 은퇴자를 위한 생활 가이드 — HebronGuide",
+    "touristCenterName": "HebronGuide Jeju — 제주 역이민·귀국 정착 가이드",
+    "touristCenterDesc": "제주 재외동포·역이민자를 위한 공식 정보 큐레이션",
+    "faqs": [
+      {
+        "q": "제주가 역이민자에게 특별한 이유는?",
+        "a": "서귀포 대정읍 일대의 \"제주영어교육도시(JIEC)\"는 복수의 국제학교가 모여 있어 자녀 영어 교육을 지속하려는 미주·호주·캐나다 귀국 가정이 선택하는 지역입니다. 조용한 자연 환경도 매력입니다."
+      },
+      {
+        "q": "제주영어교육도시 국제학교는?",
+        "a": "NLCS Jeju·BHA·KIS·SJA 등 복수의 국제학교가 교육도시 안에 운영됩니다. 입학 조건·학비·대기 기간은 학교별로 매우 다르니 공식 홈페이지를 통해 반드시 확인하세요."
+      },
+      {
+        "q": "제주 공립학교 등록은?",
+        "a": "거주지 전입신고 뒤 제주특별자치도교육청·서귀포교육지원청·제주교육지원청을 통해 학적 이관을 신청합니다. 해외 학적·성적 서류는 번역·공증본을 함께 제출합니다."
+      },
+      {
+        "q": "제주 생활권 선택은 어디가 좋나요?",
+        "a": "교육도시 가족은 서귀포 대정읍 인근, 공항·업무 접근성은 제주시(연동·노형·아라), 자연·휴식형 라이프는 애월·구좌·조천 등을 선택합니다. 바람·강수 영향도 지역별로 꽤 다릅니다."
+      },
+      {
+        "q": "제주 운전면허·대중교통은?",
+        "a": "해외 면허 교환은 도로교통공단 제주 운전면허시험장에서 신청합니다. 대중교통은 서울·수도권만큼 조밀하지 않아 가족 단위는 자가용 중심 생활이 일반적입니다."
+      },
+      {
+        "q": "제주 전·월세·단독주택 임대 수준은?",
+        "a": "교육도시 인근은 수도권 중상위에 가까운 임대료, 제주시 신축 아파트도 꾸준히 가격이 유지됩니다. 농어촌 단독주택은 지역별 격차가 큽니다. 공신력 있는 플랫폼으로 비교하세요."
+      },
+      {
+        "q": "제주 한인교회는?",
+        "a": "제주 지역 교단별 홈페이지(예장·기장·감리회 등)의 교회 찾기 또는 지역 노회를 통해 찾습니다. 서귀포·제주시 각 생활권에 교회가 모여 있습니다."
+      },
+      {
+        "q": "제주 재외동포 비자·거주 정보는?",
+        "a": "F-4 재외동포 비자 등 각 비자 유형별 체류 조건은 하이코리아(hikorea.go.kr) 또는 제주출입국·외국인청 상담을 참고하세요."
+      },
+      {
+        "q": "제주 공공 의료 접근성은?",
+        "a": "제주대병원·한라병원·서귀포의료원 등 지역 거점 병원이 있습니다. 전문 분과·중증 질환은 서울·육지 종합병원과 연계되는 경우가 있어 사전 확인이 필요합니다."
+      },
+      {
+        "q": "제주 날씨·태풍은?",
+        "a": "해양성 기후로 겨울이 비교적 온화하지만 바람이 강합니다. 여름·초가을 태풍 통과 지역이라 7-10월에는 태풍 알림을 반드시 확인하세요."
+      },
+      {
+        "q": "제주 치안은?",
+        "a": "제주 역시 안전한 편이지만 관광지 특성상 렌트카·숙박 관련 생활형 분쟁이 있을 수 있습니다. 112·119는 외국어 통역 가능."
+      },
+      {
+        "q": "제주 짐·자동차 운송 유의점은?",
+        "a": "육지 ↔ 제주 간 자동차·대형 가전·이사짐은 선박 운송(완도·목포·녹동·인천 등 노선)에 예약 변동이 있어 성수기에는 수주 전 예약이 안전합니다."
+      },
+      {
+        "q": "제주 통신·인터넷은?",
+        "a": "본토와 동일하게 SKT·KT·LG U+·알뜰폰 서비스가 가능합니다. 일부 외곽 지역은 유선 속도 체감 차이가 있을 수 있어 입주 전 통신사별 커버리지 확인이 유용합니다."
+      },
+      {
+        "q": "제주 생활 적응 팁은?",
+        "a": "바람·강수·습도가 육지와 체감이 다르니 방풍·방수 복장 준비, 자녀 하원 교통(스쿨버스·카풀) 사전 조직, 지역 공동체 참여(교회·학부모·독서 모임)로 네트워크를 만드는 것이 적응에 도움이 됩니다."
+      }
+    ],
+    "verifiedAt": "2026-10-17",
+    "verifyNote": "Public facts only; consular/official sources. No fabricated businesses or prices."
+  },
+  "mexicocity": {
+    "nameKo": "멕시코시티",
+    "nameEn": "Mexico City",
+    "country": "MX",
+    "regionEn": "CDMX",
+    "regionKo": "멕시코시티",
+    "lat": 19.4326,
+    "lng": -99.1332,
+    "keywords": "멕시코시티 한인, Zona Rosa 한인타운, 멕시코 한국영사관, 멕시코시티 정착, 멕시코 한인교회, CDMX Korean, HebronGuide Mexico City, 헤브론가이드 멕시코시티",
+    "areaServed": [
+      "Mexico City",
+      "CDMX",
+      "Zona Rosa",
+      "Polanco"
+    ],
+    "localBusinessName": "HebronGuide CDMX Korean Community",
+    "localBusinessDesc": "멕시코시티 Zona Rosa 한인타운·주재원·한국 기업 파견자 생활 가이드",
+    "cityDescKo": "멕시코시티 한인 이민자·주재원·유학생·사업가를 위한 생활 가이드 — HebronGuide",
+    "touristCenterName": "HebronGuide CDMX — 멕시코시티 한인 정착 가이드",
+    "touristCenterDesc": "멕시코시티 재외동포·주재원·유학생을 위한 공식 정보 큐레이션",
+    "faqs": [
+      {
+        "q": "멕시코시티 한인타운(Zona Rosa) 특징은?",
+        "a": "쿠아우테목(Cuauhtémoc) 구 Zona Rosa 지역은 한인 상점·식당·마트가 모여 있는 전통적 한인 커뮤니티 중심입니다. 외교·관광·사업가 다수가 거쳐 가는 상징적 자리입니다."
+      },
+      {
+        "q": "멕시코시티 주재원 가족이 선호하는 지역은?",
+        "a": "Polanco·Lomas de Chapultepec·Interlomas·Santa Fe 등 치안·국제학교 접근성이 좋은 서부 지역이 자주 선택됩니다. Zona Rosa 중심 거주와는 성격이 다릅니다."
+      },
+      {
+        "q": "멕시코시티 한인마트·한국 식재료는?",
+        "a": "Zona Rosa 일대에 한인 식료품점이 운영되며, 코스트코 멕시코 지점(폴란코·산타페·인테를로마스 등)에서 대용량 생필품을 조달하는 가정이 많습니다."
+      },
+      {
+        "q": "한국 운전면허로 멕시코시티에서 운전할 수 있나요?",
+        "a": "관광 체류 중에는 국제운전면허증(IDP) + 한국 면허 지참이 보편적이고, 장기 거주자는 CDMX 운전면허(licencia) 신청이 안전합니다. 조건은 CDMX 교통국(SEMOVI) 공식 안내를 확인하세요."
+      },
+      {
+        "q": "멕시코시티 한인교회 찾는 방법은?",
+        "a": "Zona Rosa·Polanco·남부 Coyoacán·Tlalpan 지역에 한인교회가 운영됩니다. 교단별·공동체별 특성이 다르니 재외동포청·주멕시코 대한민국 대사관 공지 또는 교단 홈페이지를 참고하세요."
+      },
+      {
+        "q": "정착 초기 비용은 얼마나 필요한가요?",
+        "a": "Polanco·Santa Fe 등 선호 지역의 월세는 멕시코 평균 대비 매우 높고, 보증금 1-2개월·중개료가 추가됩니다. 자가용·학비·보험을 더해 수개월치 생활비 여유자금 확보를 권합니다."
+      },
+      {
+        "q": "주 멕시코 대한민국 대사관·영사 연락처는?",
+        "a": "주 멕시코 대한민국 대사관은 멕시코시티 Lomas de Chapultepec 지역에 있습니다. 재외국민등록·여권·공증·각종 영사 민원은 대사관 공식 홈페이지와 영사콜센터(+82-2-3210-0404)를 이용하세요."
+      },
+      {
+        "q": "멕시코시티 치안·조심할 점은?",
+        "a": "서부·북부 중산층 밀집 지역은 상대적으로 안전하지만 소매치기·사기·택시 범죄 등 생활형 범죄가 있습니다. 공식 라이드헤일링(Uber 등) 이용, 야간 외곽 지역 이동 자제, 현지 당국 안내를 따르세요."
+      },
+      {
+        "q": "자녀 학교는 어디가 좋나요?",
+        "a": "한국·국제 학제 교육을 지속하려면 Polanco·Santa Fe·Interlomas 지역 국제학교(미국·독일·프랑스·일본 등 다양한 커리큘럼)가 선택지입니다. 공립학교는 거주지 Alcaldía(구청) 안내를 따릅니다."
+      },
+      {
+        "q": "해발 고도·날씨는 어떤가요?",
+        "a": "해발 약 2,240m 고지대라 자외선이 강하고 밤에 쌀쌀합니다. 5-10월이 우기, 11-4월이 건기이며 한국 사계절과 다르게 연중 비교적 서늘합니다."
+      },
+      {
+        "q": "한국어 가능 의료는?",
+        "a": "Zona Rosa·Polanco의 몇몇 사립 병원·클리닉에 한국어 또는 영어 지원 의료진이 있지만 수는 제한적입니다. 대사관 홈페이지의 지정 의료기관 안내 또는 한인교회 커뮤니티 추천을 참고하세요."
+      },
+      {
+        "q": "통신·인터넷 개통은?",
+        "a": "Telcel·AT&T·Movistar 중 선택이 보편적입니다. 외국인은 여권·주소 증빙(계약서·공공요금 영수증) 지참이 필요하며, 선불 심(prepaid)은 즉시 개통이 가능합니다."
+      },
+      {
+        "q": "멕시코시티에서 한국으로 송금·환전은?",
+        "a": "시중은행·국제 송금 서비스(Wise·Remitly·Western Union 등)를 비교해 쓰는 가정이 많습니다. 거래 한도·환율·수수료는 상황에 따라 다르니 비교 후 결정하세요."
+      },
+      {
+        "q": "교통 체증·대중교통은?",
+        "a": "러시아워 교통 체증이 매우 심합니다. Metrobús·지하철(Metro)은 저렴하고 광범위하지만 혼잡·안전 체감이 지역별로 다릅니다. 가족 단위는 자가용 또는 라이드헤일링을 병행합니다."
+      }
+    ],
+    "verifiedAt": "2026-10-17",
+    "verifyNote": "Public facts only; consular/official sources. No fabricated businesses or prices."
+  },
+  "monterrey": {
+    "nameKo": "몬테레이",
+    "nameEn": "Monterrey",
+    "country": "MX",
+    "regionEn": "Nuevo León",
+    "regionKo": "누에보 레온",
+    "lat": 25.6866,
+    "lng": -100.3161,
+    "keywords": "몬테레이 한인, 몬테레이 KIA, 누에보 레온 한인 주재원, 멕시코 북부 한인, Monterrey Korean, HebronGuide Monterrey, 헤브론가이드 몬테레이",
+    "areaServed": [
+      "Monterrey",
+      "San Pedro Garza García",
+      "Apodaca",
+      "Pesquería"
+    ],
+    "localBusinessName": "HebronGuide Monterrey Korean Community",
+    "localBusinessDesc": "몬테레이 한국 기업 주재원·협력사·동반 가족을 위한 생활 가이드",
+    "cityDescKo": "몬테레이·누에보 레온 한국 기업 주재원과 가족을 위한 생활 가이드 — HebronGuide",
+    "touristCenterName": "HebronGuide Monterrey — 몬테레이 한인 정착 가이드",
+    "touristCenterDesc": "몬테레이 재외동포·주재원 가족을 위한 공식 정보 큐레이션",
+    "faqs": [
+      {
+        "q": "몬테레이에 한인이 모여 있는 이유는?",
+        "a": "누에보 레온 주 Pesquería·Apodaca 등지에 한국 완성차·부품 기업 공장이 들어서면서 주재원·협력사 가족이 지역 중심으로 유입되었습니다. 산페드로 가르사가르시아 등 교육·치안 지역에 거주하는 가정이 많습니다."
+      },
+      {
+        "q": "주재원 가족이 선호하는 거주 지역은?",
+        "a": "산페드로 가르사가르시아(San Pedro Garza García)·Valle Oriente·Cumbres 등은 치안·국제학교 접근성이 좋아 자주 선택됩니다. 공장 통근 때문에 Apodaca·Guadalupe를 선택하는 경우도 있습니다."
+      },
+      {
+        "q": "몬테레이 한국 식재료·마트는?",
+        "a": "현지 한인 식료품점이 소규모로 운영되며, 코스트코 몬테레이 지점(여러 지점)에서 대용량 생필품을 조달합니다. 서울·멕시코시티 수입 식품을 공동구매 하는 가정도 있습니다."
+      },
+      {
+        "q": "몬테레이 치안·안전은?",
+        "a": "산페드로 등 중산층 지역은 멕시코 내에서 상대적으로 매우 안전하지만 북부 멕시코 지역 특성상 공공 안전 공지는 늘 확인해야 합니다. 대사관 안전 공지, 라이드헤일링 이용 권고가 일반적입니다."
+      },
+      {
+        "q": "한국 운전면허로 몬테레이에서 운전할 수 있나요?",
+        "a": "단기는 국제운전면허증(IDP) + 한국 면허 지참이 보편적이고, 장기 거주자는 누에보 레온 주 교통국(Movilidad) 안내에 따라 현지 면허(licencia de conducir)를 신청합니다."
+      },
+      {
+        "q": "자녀 학교는?",
+        "a": "산페드로·발레 지역의 American School Foundation of Monterrey(ASFM)·Instituto Irlandés·Prepa Tec 등 사립·국제학교가 다수 운영됩니다. 입학 조건·대기 기간은 학교별로 다르니 미리 확인하세요."
+      },
+      {
+        "q": "정착 초기 비용은?",
+        "a": "산페드로 등 선호 지역의 월세는 멕시코 내에서도 높은 편이고, 사립학교 학비·자가용 비용·건강보험이 큰 지출입니다. 회사 보조 패키지 조건을 먼저 확인하세요."
+      },
+      {
+        "q": "몬테레이 한인교회·공동체는?",
+        "a": "한국 기업 가족 중심의 소규모 한인 공동체·교회 모임이 운영됩니다. 재외동포청·주 멕시코 대한민국 대사관 공지, 교단·회사 커뮤니티를 통해 모임을 안내받는 경우가 많습니다."
+      },
+      {
+        "q": "몬테레이 날씨는?",
+        "a": "아열대 사막·반건조성 기후로 여름(5-9월)은 매우 덥고 건조한 시기와 소나기가 섞이며, 겨울은 비교적 짧고 서늘합니다. 여름 자외선·건조 대비가 필요합니다."
+      },
+      {
+        "q": "한국어 가능 의료는?",
+        "a": "한국어 전담 의료진은 제한적이고, 영어 가능 사립 병원(Hospital Zambrano Hellion·Hospital San José Tec·Christus Muguerza 등)이 외국인 가족에게 자주 선택됩니다. 회사 보험 네트워크를 먼저 확인하세요."
+      },
+      {
+        "q": "통신·인터넷은?",
+        "a": "Telcel·Movistar·AT&T 모두 서비스되며 몬테레이·산페드로는 광통신 커버리지가 양호한 편입니다. 외국인은 여권·주소 증빙으로 개통합니다."
+      },
+      {
+        "q": "몬테레이에서 멕시코시티 등으로 이동은?",
+        "a": "몬테레이 국제공항(MTY)에서 멕시코시티·과달라하라·미국 주요 도시 직항이 있습니다. 자동차 장거리 이동은 북부 지역 안전 공지를 참고하세요."
+      },
+      {
+        "q": "영사·외무 민원은 어디서?",
+        "a": "멕시코 내 영사 민원은 주 멕시코 대한민국 대사관(멕시코시티) 또는 영사콜센터(+82-2-3210-0404)를 이용합니다. 몬테레이 자체 분관 운영 여부·범위는 대사관 공식 안내로 확인하세요."
+      },
+      {
+        "q": "한국으로 송금·환전은?",
+        "a": "시중은행·국제 송금 서비스(Wise·Remitly·Western Union·회사 지정 송금 채널 등)를 비교해 사용합니다. 환율·수수료·거래 한도는 수시 변경되니 비교 후 결정하세요."
+      }
+    ],
+    "verifiedAt": "2026-10-17",
+    "verifyNote": "Public facts only; consular/official sources. No fabricated businesses or prices."
+  },
+  "guadalajara": {
+    "nameKo": "과달라하라",
+    "nameEn": "Guadalajara",
+    "country": "MX",
+    "regionEn": "Jalisco",
+    "regionKo": "할리스코",
+    "lat": 20.6597,
+    "lng": -103.3496,
+    "keywords": "과달라하라 한인, 할리스코 한인, 멕시코 2대 도시 한인, Guadalajara Korean, HebronGuide Guadalajara, 헤브론가이드 과달라하라",
+    "areaServed": [
+      "Guadalajara",
+      "Zapopan",
+      "Tlaquepaque"
+    ],
+    "localBusinessName": "HebronGuide Guadalajara Korean Community",
+    "localBusinessDesc": "과달라하라·할리스코 지역 한국 기업·IT·유학생 가족을 위한 생활 가이드",
+    "cityDescKo": "과달라하라 한인 주재원·IT 기업·유학생·가족 이주자를 위한 생활 가이드 — HebronGuide",
+    "touristCenterName": "HebronGuide Guadalajara — 과달라하라 한인 정착 가이드",
+    "touristCenterDesc": "과달라하라 재외동포·주재원·IT 종사자를 위한 공식 정보 큐레이션",
+    "faqs": [
+      {
+        "q": "과달라하라 한인 공동체 특징은?",
+        "a": "멕시코 제2 도시로 \"멕시코의 실리콘밸리\"로 불리는 IT 산업이 집중되어 있어 글로벌 반도체·IT 기업 소속 한국인·주재원·협력사가 소규모로 체류합니다. 공식 한인타운 형태는 아니지만 교회·식당 중심의 공동체가 있습니다."
+      },
+      {
+        "q": "거주 지역은 어디를 선호하나요?",
+        "a": "Zapopan 지역의 Providencia·Puerta de Hierro·Valle Real·Andares 등 교육·치안이 좋은 지역을 가족 단위가 선호합니다. 단독주택 커뮤니티(residencial)도 흔한 선택입니다."
+      },
+      {
+        "q": "한국 식재료는 어디서 구하나요?",
+        "a": "한인 식료품점이 소규모로 있고, 코스트코·Sam's Club 과달라하라 지점이 대용량 생필품에 유용합니다. 서울·멕시코시티에서 공동구매로 조달하는 가정도 있습니다."
+      },
+      {
+        "q": "한국 운전면허로 운전할 수 있나요?",
+        "a": "단기는 국제운전면허증(IDP) + 한국 면허가 보편적이고, 장기 거주자는 할리스코 주 교통 당국 안내에 따라 현지 면허를 신청합니다."
+      },
+      {
+        "q": "자녀 학교는?",
+        "a": "American School Foundation of Guadalajara(ASFG)·Instituto Thomas Jefferson·Colegio Americano 등 국제·사립 학교가 운영됩니다. 입학 조건·학비는 학교별로 다릅니다."
+      },
+      {
+        "q": "정착 초기 비용은?",
+        "a": "멕시코시티·몬테레이보다는 거주비가 낮은 편이지만 선호 지역(Puerta de Hierro·Valle Real 등)은 상대적으로 높습니다. 자가용·학비·사립 의료보험이 큰 지출입니다."
+      },
+      {
+        "q": "과달라하라 한인교회는?",
+        "a": "한인 공동체 중심의 소규모 교회 모임이 운영되는 것으로 알려져 있습니다. 재외동포청·주 멕시코 대한민국 대사관 공지, 교단 홈페이지 안내를 통해 참여 경로를 확인하세요."
+      },
+      {
+        "q": "과달라하라 치안은?",
+        "a": "중심·북서부 중산층 지역은 멕시코 내에서 비교적 안전한 편이지만, 외곽·심야 이동은 주의가 필요합니다. 공식 라이드헤일링 이용, 야간 외출 자제가 일반적인 권고입니다."
+      },
+      {
+        "q": "과달라하라 날씨는?",
+        "a": "해발 약 1,560m 고지대로 연중 비교적 온화합니다. 우기(6-9월)는 저녁 소나기가 자주 있고, 건기(11-4월)는 자외선이 강합니다."
+      },
+      {
+        "q": "한국어 가능 의료는?",
+        "a": "한국어 전담 의료진은 제한적이고 영어 가능 사립 병원(Hospital Puerta de Hierro·Hospital San Javier 등)이 외국인에게 자주 선택됩니다. 회사·개인 보험 네트워크를 먼저 확인하세요."
+      },
+      {
+        "q": "통신·인터넷은?",
+        "a": "Telcel·AT&T·Movistar 모두 서비스되며 과달라하라·사포판 중심지는 광통신 커버리지가 양호한 편입니다. 외국인은 여권·주소 증빙으로 개통합니다."
+      },
+      {
+        "q": "영사·외무 민원은 어디서?",
+        "a": "멕시코 내 영사 민원은 주 멕시코 대한민국 대사관(멕시코시티) 또는 영사콜센터(+82-2-3210-0404)를 이용합니다. 과달라하라 명예영사·분관 운영은 대사관 공식 안내로 확인하세요."
+      },
+      {
+        "q": "한국 왕래·국제선은?",
+        "a": "과달라하라 국제공항(GDL)에서 미국 주요 도시 직항이 운항되며, 한국은 로스앤젤레스·댈러스·멕시코시티 환승이 보편적입니다."
+      },
+      {
+        "q": "사업·법인 설립 상담은?",
+        "a": "현지 공인 회계사(Contador Público)·법률 전문가 상담이 필수적입니다. 멕시코 상공회의소·KOTRA 멕시코 지사 안내를 참고하면 초기 접근이 수월합니다."
+      }
+    ],
+    "verifiedAt": "2026-10-17",
+    "verifyNote": "Public facts only; consular/official sources. No fabricated businesses or prices."
+  },
+  "paris": {
+    "nameKo": "파리",
+    "nameEn": "Paris",
+    "country": "FR",
+    "regionEn": "Île-de-France",
+    "regionKo": "일드프랑스",
+    "lat": 48.8566,
+    "lng": 2.3522,
+    "keywords": "파리 한인, 파리 유학생, 파리 한국 식당, 재프랑스 한인, 파리 Opéra 한인, Paris Korean, HebronGuide Paris, 헤브론가이드 파리",
+    "areaServed": [
+      "Paris",
+      "Île-de-France",
+      "Opéra"
+    ],
+    "localBusinessName": "HebronGuide Paris Korean Community",
+    "localBusinessDesc": "파리 유학생·주재원·사업가·가족 이주자를 위한 생활 가이드",
+    "cityDescKo": "파리 한인 유학생·주재원·사업가·장기 체류자를 위한 생활 가이드 — HebronGuide",
+    "touristCenterName": "HebronGuide Paris — 파리 한인 정착 가이드",
+    "touristCenterDesc": "파리 재외동포·유학생·주재원 가족을 위한 공식 정보 큐레이션",
+    "faqs": [
+      {
+        "q": "파리 한인타운이 있나요?",
+        "a": "뉴욕·LA 같은 \"코리아타운\" 형태 밀집지는 없지만 1·2구 Opéra·Pyramides 역 인근에 한국 식당·마트·식료품점이 모여 있습니다. 15구·13구에도 소규모 한인 공동체가 있습니다."
+      },
+      {
+        "q": "파리 한국 식재료는 어디서 구하나요?",
+        "a": "Opéra·Pyramides 역 인근 한인 식료품점에서 라면·김치·고춧가루·간장 등을 구할 수 있습니다. 아시아 대형 수퍼마켓(Tang Frères·Paris Store)에서 쌀·조미료를 대용량으로 구매하는 가정이 많습니다."
+      },
+      {
+        "q": "학생·장기 체류자가 선호하는 거주 지역은?",
+        "a": "예산에 따라 다르지만 Cité Universitaire(14구)·Latin Quarter(5·6구) 유학생 밀집, 15구·13구 아시아 커뮤니티, 외곽(Suresnes·Boulogne·Issy) 가족 단위 등으로 나뉩니다."
+      },
+      {
+        "q": "파리 월세 수준은?",
+        "a": "시내 원룸(스튜디오) 월세는 유럽에서도 상위 수준입니다. CAF(가족수당 공단) 주거보조금(APL)을 신청할 수 있는 체류 자격이면 반드시 신청하세요. 조건은 caf.fr 공식 안내를 확인합니다."
+      },
+      {
+        "q": "파리 유학생 비자·거주증(TS) 발급은?",
+        "a": "학생 비자(VLS-TS)로 입국 후 OFII 등록 또는 ANEF 온라인 포털로 체류증 유효화 절차를 완료합니다. 거주증(carte de séjour) 갱신은 거주지 préfecture·sous-préfecture 또는 ANEF 공식 포털로 신청합니다."
+      },
+      {
+        "q": "파리 한인교회는?",
+        "a": "파리·일드프랑스 지역에 한인교회가 복수 운영됩니다. 교단별 홈페이지(예장·기장·감리회·구세군 등)의 재외 한인교회 디렉토리 또는 재외동포청·대사관 공지를 참고하세요."
+      },
+      {
+        "q": "주 프랑스 대한민국 대사관·영사 연락처는?",
+        "a": "주 프랑스 대한민국 대사관은 파리 16구에 있습니다. 재외국민등록·여권·공증·각종 영사 민원은 대사관 공식 홈페이지 안내와 영사콜센터(+82-2-3210-0404)를 이용하세요."
+      },
+      {
+        "q": "한국 운전면허로 파리에서 운전할 수 있나요?",
+        "a": "단기 체류 중에는 국제운전면허증(IDP) + 한국 면허 지참이 보편적이고, 장기 거주자는 préfecture 안내에 따라 한국 면허를 프랑스 면허로 교환 신청합니다. 한-프 간 상호인정 조건·필요 서류를 공식 안내로 확인하세요."
+      },
+      {
+        "q": "파리 공립학교·국제 섹션은?",
+        "a": "거주지 시청(Mairie d'arrondissement)에서 공립학교 등록을 신청합니다. 국제학교·국제 섹션(section internationale) 또는 유럽학교(École européenne de Paris-La Défense) 등은 입학 조건이 복잡하니 미리 확인하세요."
+      },
+      {
+        "q": "파리 치안·조심할 점은?",
+        "a": "지하철·관광지(에펠탑·루브르·몽마르트) 소매치기, 특정 역 심야 이동 주의가 자주 안내됩니다. 긴급 통합 신고는 112, 경찰 17, 구급 15, 소방 18입니다."
+      },
+      {
+        "q": "파리 사계절 날씨는?",
+        "a": "해양성 기후로 연중 비교적 온화하지만 흐린 날이 많습니다. 겨울(12-2월)은 비·바람 중심, 여름(6-8월)은 짧은 폭염 가능. 지상층·오래된 아파트는 겨울 난방·여름 더위 대책을 미리 확인하세요."
+      },
+      {
+        "q": "한국어 가능 의료는?",
+        "a": "파리 지역 일부 사립·국제 진료소에서 한국어 또는 영어 지원이 가능합니다. Doctolib(온라인 예약 플랫폼)에서 영어·한국어 가능 의료진 필터로 검색하는 가정이 많습니다."
+      },
+      {
+        "q": "통신·인터넷은?",
+        "a": "Orange·SFR·Bouygues·Free 4개 통신사와 저가 MVNO가 있습니다. 외국인은 체류증·주소 증빙(RIB·공공요금 영수증 등)으로 개통합니다."
+      },
+      {
+        "q": "파리에서 한국으로 송금·환전은?",
+        "a": "프랑스 시중은행 송금은 수수료가 비쌀 수 있어 Wise·Revolut 등 디지털 서비스를 병행하는 가정이 많습니다. 환율·수수료·거래 한도는 수시 변경되니 비교 후 결정하세요."
+      }
+    ],
+    "verifiedAt": "2026-10-17",
+    "verifyNote": "Public facts only; consular/official sources. No fabricated businesses or prices."
+  },
+  "berlin": {
+    "nameKo": "베를린",
+    "nameEn": "Berlin",
+    "country": "DE",
+    "regionEn": "Berlin",
+    "regionKo": "베를린",
+    "lat": 52.52,
+    "lng": 13.405,
+    "keywords": "베를린 한인, 베를린 유학생, 재독 한인, 베를린 샤를로텐부르크, 베를린 한인교회, Berlin Korean, HebronGuide Berlin, 헤브론가이드 베를린",
+    "areaServed": [
+      "Berlin",
+      "Charlottenburg",
+      "Mitte",
+      "Prenzlauer Berg"
+    ],
+    "localBusinessName": "HebronGuide Berlin Korean Community",
+    "localBusinessDesc": "베를린 유학생·IT 종사자·예술가·가족 이주자를 위한 생활 가이드",
+    "cityDescKo": "베를린 한인 유학생·예술가·IT 종사자·장기 체류자를 위한 생활 가이드 — HebronGuide",
+    "touristCenterName": "HebronGuide Berlin — 베를린 한인 정착 가이드",
+    "touristCenterDesc": "베를린 재외동포·유학생·예술가·IT 종사자를 위한 공식 정보 큐레이션",
+    "faqs": [
+      {
+        "q": "베를린 한인 공동체 특징은?",
+        "a": "유학생·예술가·IT 종사자·장기 거주자가 섞여 있는 분산형 공동체입니다. Charlottenburg(샤를로텐부르크)에 한인 식당·식료품점이 전통적으로 모여 있고, Mitte·Prenzlauer Berg에도 아시아 커뮤니티가 확장되고 있습니다."
+      },
+      {
+        "q": "한국 식재료는 어디서 구하나요?",
+        "a": "Charlottenburg·Steglitz·Mitte 등지의 아시아·한인 식료품점, Vinh-Loi·Go Asia 같은 아시아 대형 마트, 코스트코 포함 대형 체인에서 조달할 수 있습니다."
+      },
+      {
+        "q": "베를린 유학생 비자·거주허가는?",
+        "a": "학생 비자로 입국 후 거주지 Bürgeramt에서 주민등록(Anmeldung), 외국인청(Ausländerbehörde / LEA)에서 거주허가(Aufenthaltserlaubnis)를 신청합니다. 예약 대기가 길 수 있어 입국 즉시 예약을 잡는 것이 안전합니다."
+      },
+      {
+        "q": "베를린 월세 수준은?",
+        "a": "최근 몇 년 사이 임대료가 많이 오른 도시로 알려져 있고, 선호 지역은 공실 경쟁이 매우 심합니다. SCHUFA·고용증명·보증금(최대 3개월) 등 사전 서류 준비가 중요합니다."
+      },
+      {
+        "q": "학생이 선호하는 거주 지역은?",
+        "a": "예산·학교 접근성에 따라 Charlottenburg·Mitte·Prenzlauer Berg·Neukölln·Friedrichshain 등을 고릅니다. Studentenwerk Berlin 기숙사도 선택지입니다."
+      },
+      {
+        "q": "베를린 한인교회는?",
+        "a": "베를린·브란덴부르크 지역에 한인교회가 복수 운영됩니다. 교단별 홈페이지(예장·기장·감리회·구세군 등)의 재외 한인교회 디렉토리 또는 재외동포청·대사관 공지를 참고하세요."
+      },
+      {
+        "q": "주 독일 대한민국 대사관·베를린 영사 민원은?",
+        "a": "주 독일 대한민국 대사관은 베를린 Mitte 지역에 있습니다. 재외국민등록·여권·공증 등 영사 민원은 대사관 공식 홈페이지와 영사콜센터(+82-2-3210-0404)를 이용하세요."
+      },
+      {
+        "q": "한국 운전면허로 베를린에서 운전할 수 있나요?",
+        "a": "단기는 국제운전면허증(IDP) + 한국 면허 지참이 보편적이고, 거주 6개월 초과 시 독일 면허로 전환이 필요합니다. 한-독 간 전환 조건·필요 서류는 거주지 Führerscheinstelle 안내로 확인하세요."
+      },
+      {
+        "q": "베를린 공립학교·국제학교는?",
+        "a": "거주지 Bezirk(구청) 교육 담당 창구에서 학적 이관을 신청합니다. 국제학교(JFK School·Berlin International School·Berlin Metropolitan School 등)는 입학 조건이 매우 다르니 미리 확인하세요."
+      },
+      {
+        "q": "베를린 치안은?",
+        "a": "유럽 대도시 중 비교적 안전한 편이지만 특정 지하철역·심야 유흥가·주요 역(Alexanderplatz·Zoo·Kottbusser Tor 등) 주변 소매치기·분쟁이 종종 안내됩니다. 긴급은 112(소방·구급)·110(경찰)."
+      },
+      {
+        "q": "베를린 사계절 날씨는?",
+        "a": "겨울(12-2월)은 길고 어두우며 영하 날씨가 잦고, 여름(6-8월)은 짧고 비교적 따뜻합니다. 겨울 조명·실내 보온, 여름 폭염 대비(에어컨 없는 아파트가 흔함)를 미리 생각하세요."
+      },
+      {
+        "q": "한국어 가능 의료는?",
+        "a": "한국어 전담 의료진은 제한적이지만 영어 가능 의원·대학 병원(Charité)이 외국인에게 자주 선택됩니다. Doctolib·Jameda 등 온라인 예약으로 영어·한국어 가능 의료진을 검색할 수 있습니다."
+      },
+      {
+        "q": "통신·인터넷은?",
+        "a": "Deutsche Telekom·Vodafone·O2 3대 통신사와 다수 MVNO(Aldi Talk·Congstar 등)가 있습니다. 외국인은 Anmeldung 완료 뒤 계약이 수월합니다."
+      },
+      {
+        "q": "베를린에서 한국으로 송금·환전은?",
+        "a": "시중은행 국제 송금 외에 Wise·Revolut 등 디지털 서비스가 널리 쓰입니다. 환율·수수료·거래 한도는 수시 변경되니 비교 후 결정하세요."
+      }
+    ],
+    "verifiedAt": "2026-10-17",
+    "verifyNote": "Public facts only; consular/official sources. No fabricated businesses or prices."
   }
 }
