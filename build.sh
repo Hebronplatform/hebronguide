@@ -236,6 +236,8 @@ cp hebronguide/public/open.html                     public/open.html            
 cp hebronguide/public/arrive.html                   public/arrive.html                     2>/dev/null || true
 # 환대의 지도 — 지구본으로 보는 Hebron 환대 네트워크 (2026-10-15, MapLibre + OpenFreeMap, 무료)
 cp hebronguide/public/map.html                      public/map.html                        2>/dev/null || true
+# 환대의 라운지 — 전 세계 한인 커뮤니티 사이트 10곳 큐레이션 (2026-10-16)
+cp hebronguide/public/lounge.html                   public/lounge.html                     2>/dev/null || true
 cp hebronguide/public/events.json                   public/events.json                     2>/dev/null || true
 # 자가 점검 요약 — 상황판이 읽는다 (공개돼도 안전한 숫자만 들어 있다)
 cp hebronguide/public/audit.json                    public/audit.json                      2>/dev/null || true
