@@ -236,8 +236,9 @@ cp hebronguide/public/open.html                     public/open.html            
 cp hebronguide/public/arrive.html                   public/arrive.html                     2>/dev/null || true
 # 환대의 지도 — 지구본으로 보는 Hebron 환대 네트워크 (2026-10-15, MapLibre + OpenFreeMap, 무료)
 cp hebronguide/public/map.html                      public/map.html                        2>/dev/null || true
-# 환대의 라운지 — 전 세계 한인 커뮤니티 사이트 10곳 큐레이션 (2026-10-16)
+# 환대의 라운지 — 글로벌 환대 레지스트리 (2026-10-16 초판·2026-10-17 JSON 분리·수시 확장 아키텍처)
 cp hebronguide/public/lounge.html                   public/lounge.html                     2>/dev/null || true
+cp hebronguide/public/lounge-sites.json             public/lounge-sites.json               2>/dev/null || true
 # Seattle+ 파일럿 — 10개 사이트 융합·한국/미국 혁신 UX·독보적 상위 버전 (2026-10-16)
 cp hebronguide/public/seattle-plus.html             public/seattle-plus.html               2>/dev/null || true
 cp hebronguide/public/events.json                   public/events.json                     2>/dev/null || true
