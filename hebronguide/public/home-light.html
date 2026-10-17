@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5"/>
+<title>HebronGuide · 환대의 분광 — 글로벌 한인 디아스포라 플랫폼</title>
+<meta name="description" content="낯선 이의 발걸음에 식탁이 차려지는 자리. HebronGuide는 전 세계 한인 디아스포라를 위한 환대 플랫폼입니다. 지도·라운지·도시별 정착 가이드."/>
+<meta name="keywords" content="HebronGuide, 환대, 한인 디아스포라, 정착 가이드, 환대의 식탁, 분광, 숨은 빛, 글로벌 한인"/>
+<meta property="og:title" content="HebronGuide · 환대의 분광"/>
+<meta property="og:description" content="낯선 이의 발걸음에 식탁이 차려지는 자리 — 전 세계 한인 디아스포라를 위한 환대 플랫폼"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://hebronguide.com/home-light.html"/>
+<link rel="icon" type="image/png" href="/icon-192.png"/>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #E8E2D4; --bg-whisper: #F2EDE0; --bg-mist: #D8D3C5; --bg-shadow: #C9C2B2;
+    --text: #2A2520; --text-muted: rgba(42,37,32,.62); --text-faint: rgba(42,37,32,.4);
+    --line: rgba(42,37,32,.1); --line-strong: rgba(42,37,32,.2);
+    --origin: #2E7D5B;
+    --spectrum-01: #F4B59A; --spectrum-02: #D9A054; --spectrum-03: #7B8E52;
+    --spectrum-04: #4A6B8C; --spectrum-05: #7B5D8E; --spectrum-06: #A84735;
+    --spectrum-07: #4A7A7E;
+  }
+  [data-mode="night"] {
+    --bg: #0d1117; --bg-whisper: #161b26; --bg-mist: #1F2733; --bg-shadow: #2A3341;
+    --text: #ECFDF5; --text-muted: rgba(236,253,245,.62); --text-faint: rgba(236,253,245,.4);
+    --line: rgba(255,255,255,.1); --line-strong: rgba(255,255,255,.18);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--text); }
+  body {
+    font-family: 'Pretendard Variable', 'Noto Sans KR', -apple-system, sans-serif;
+    line-height: 1.75; word-break: keep-all;
+    transition: background 1.4s ease, color 1.4s ease;
+    min-height: 100vh; position: relative; overflow-x: hidden;
+  }
+  .serif { font-family: 'Noto Serif KR', serif; letter-spacing: -.3px; }
+  a { color: inherit; }
+
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background: radial-gradient(ellipse at 15% 10%, rgba(46,125,91,.08), transparent 55%),
+                radial-gradient(ellipse at 85% 20%, rgba(244,181,154,.07), transparent 55%),
+                radial-gradient(ellipse at 60% 85%, rgba(74,107,140,.06), transparent 55%);
+    pointer-events: none; opacity: .5;
+    transition: opacity 2s ease; z-index: 0;
+  }
+  body.revealing::before { opacity: 1; }
+
+  .trace {
+    position: fixed; width: 180px; height: 180px; border-radius: 50%;
+    opacity: 0; pointer-events: none;
+    transition: opacity 2s ease; z-index: 1; mix-blend-mode: multiply;
+  }
+  [data-mode="night"] .trace { mix-blend-mode: screen; }
+
+  /* ─── NAV ─── */
+  nav.top {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line); padding: 12px 20px;
+  }
+  nav.top .inner {
+    max-width: 1240px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  nav.top .brand {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: var(--text); font-weight: 500; font-size: 1rem; text-decoration: none;
+  }
+  nav.top .brand .pulse {
+    display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--origin), var(--spectrum-01));
+    animation: pulseSpectrum 3.5s ease-in-out infinite;
+  }
+  @keyframes pulseSpectrum {
+    0%, 100% { background: linear-gradient(135deg, var(--origin), var(--spectrum-01)); }
+    33%      { background: linear-gradient(135deg, var(--origin), var(--spectrum-04)); }
+    66%      { background: linear-gradient(135deg, var(--origin), var(--spectrum-05)); }
+  }
+  nav.top .brand .name { font-family: 'Noto Serif KR', serif; letter-spacing: -.3px; }
+  nav.top .links { display: flex; gap: 20px; align-items: center; }
+  nav.top .links a {
+    color: var(--text-muted); text-decoration: none; font-size: .88rem;
+    transition: color .2s ease;
+  }
+  nav.top .links a:hover { color: var(--text); }
+  .mode-toggle {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 5px 10px 5px 7px; border-radius: 99px;
+    background: var(--bg-mist); border: 1px solid var(--line);
+    cursor: pointer; font-family: inherit; color: var(--text);
+    font-size: .76rem;
+  }
+  .mode-toggle:hover { background: var(--bg-shadow); }
+  @media (max-width: 760px) {
+    nav.top .links { display: none; }
+  }
+
+  /* ─── Hero ─── */
+  header.hero {
+    position: relative; text-align: center;
+    padding: 90px 20px 50px; max-width: 920px; margin: 0 auto; z-index: 2;
+  }
+  .deungrong-prism {
+    width: 130px; height: 170px;
+    margin: 0 auto 32px; position: relative;
+    animation: swayLantern 5.5s ease-in-out infinite;
+    transform-origin: top center;
+  }
+  @keyframes swayLantern {
+    0%, 100% { transform: rotate(-2deg); }
+    50%      { transform: rotate(2deg); }
+  }
+
+  .hero h1 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(2.2rem, 6vw, 3.2rem);
+    font-weight: 500; line-height: 1.25; margin-bottom: 18px;
+    letter-spacing: -.6px;
+  }
+  .hero h1 .shift {
+    background: linear-gradient(135deg,
+      var(--origin) 0%, var(--spectrum-01) 15%, var(--spectrum-02) 30%,
+      var(--spectrum-03) 45%, var(--spectrum-04) 60%, var(--spectrum-05) 75%,
+      var(--spectrum-06) 88%, var(--spectrum-07) 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%; animation: shiftSpectrum 10s ease infinite;
+  }
+  @keyframes shiftSpectrum {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+  }
+  .hero .tagline {
+    font-family: 'Noto Serif KR', serif;
+    color: var(--text-muted); font-size: 1.08rem;
+    margin: 24px auto 0; max-width: 620px; line-height: 1.75;
+  }
+  .hero .quick {
+    display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 32px;
+  }
+  .hero .quick a {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 11px 22px; border-radius: 99px; text-decoration: none;
+    font-size: .92rem; font-weight: 500; transition: all .2s ease;
+  }
+  .hero .quick a.primary {
+    background: var(--text); color: var(--bg);
+    box-shadow: 0 6px 20px color-mix(in srgb, var(--text) 20%, transparent);
+  }
+  .hero .quick a.primary:hover { transform: translateY(-1px); }
+  .hero .quick a.ghost {
+    background: transparent; color: var(--text);
+    border: 1px solid var(--line-strong);
+  }
+  .hero .quick a.ghost:hover { background: var(--bg-whisper); }
+
+  /* ─── 섹션 공통 ─── */
+  section { max-width: 1240px; margin: 0 auto; padding: 50px 20px; position: relative; z-index: 2; }
+  .section-h { text-align: center; margin-bottom: 32px; }
+  .section-h .no {
+    font-family: 'Noto Serif KR', serif;
+    color: var(--text-faint); font-size: .9rem;
+    letter-spacing: 6px; display: block; margin-bottom: 10px;
+  }
+  .section-h h2 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(1.4rem, 3.8vw, 1.8rem);
+    font-weight: 500; margin-bottom: 10px; letter-spacing: -.3px;
+  }
+  .section-h p { color: var(--text-muted); font-size: .95rem; max-width: 640px; margin: 0 auto; }
+
+  /* ─── 시애틀 창립지 ─── */
+  .origin-card {
+    max-width: 860px; margin: 10px auto;
+    padding: 36px 32px; border-radius: 24px; position: relative;
+    background: linear-gradient(135deg,
+      color-mix(in srgb, var(--origin) 7%, var(--bg-whisper)) 0%,
+      var(--bg-whisper) 100%);
+    border: 1px solid color-mix(in srgb, var(--origin) 25%, var(--line));
+    overflow: hidden; text-align: center;
+  }
+  .origin-card::before {
+    content: ''; position: absolute;
+    top: -40px; right: -40px; width: 220px; height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--origin) 25%, transparent) 0%, transparent 70%);
+  }
+  .origin-card .label {
+    display: inline-block; color: var(--origin);
+    font-size: .76rem; letter-spacing: 4px;
+    border: 1px solid color-mix(in srgb, var(--origin) 35%, transparent);
+    border-radius: 99px; padding: 4px 14px; margin-bottom: 16px;
+  }
+  .origin-card h2 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(1.3rem, 3.5vw, 1.6rem); font-weight: 500;
+    margin-bottom: 10px; line-height: 1.5;
+  }
+  .origin-card h2 .emerald {
+    color: var(--origin);
+    text-shadow: 0 0 20px color-mix(in srgb, var(--origin) 30%, transparent);
+  }
+  .origin-card p { color: var(--text-muted); font-size: .96rem; line-height: 1.8; max-width: 580px; margin: 10px auto 0; }
+
+  /* ─── 3-way 입구 (지도·라운지·Seattle+·분광) ─── */
+  .entries { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .entry {
+    display: block; text-decoration: none;
+    background: var(--bg-whisper); border: 1px solid var(--line);
+    border-radius: 20px; padding: 28px 24px;
+    transition: all .3s ease; position: relative; overflow: hidden;
+  }
+  .entry::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 100%, var(--sp-color), transparent 70%);
+    opacity: 0; transition: opacity .4s ease;
+  }
+  .entry:hover { transform: translateY(-4px); border-color: var(--sp-color);
+    box-shadow: 0 20px 40px color-mix(in srgb, var(--sp-color) 15%, transparent); }
+  .entry:hover::before { opacity: .12; }
+  .entry .orb {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--sp-color) 90%, white), var(--sp-color));
+    box-shadow: 0 0 24px color-mix(in srgb, var(--sp-color) 50%, transparent);
+    margin-bottom: 16px;
+    transition: transform .4s ease;
+  }
+  .entry:hover .orb { transform: scale(1.15); }
+  .entry h3 {
+    font-family: 'Noto Serif KR', serif;
+    color: var(--text); font-size: 1.2rem; font-weight: 500; margin-bottom: 6px;
+    letter-spacing: -.2px;
+  }
+  .entry .desc { color: var(--text-muted); font-size: .88rem; line-height: 1.65; margin-bottom: 10px; }
+  .entry .arrow { color: var(--sp-color); font-size: .86rem; font-weight: 500; }
+
+  /* ─── 도시 그리드 ─── */
+  .cities-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+  }
+  .city-chip {
+    display: block; text-decoration: none;
+    background: var(--bg-whisper); border: 1px solid var(--line);
+    border-radius: 12px; padding: 14px 16px; text-align: center;
+    color: var(--text); font-size: .9rem; font-weight: 500;
+    transition: all .2s ease;
+  }
+  .city-chip:hover {
+    background: var(--bg); border-color: var(--text-muted);
+    transform: translateY(-2px);
+  }
+  .city-chip small { display: block; color: var(--text-faint); font-size: .72rem; margin-top: 3px; font-weight: 400; }
+
+  /* ─── 광고 CTA ─── */
+  .ad-cta {
+    max-width: 860px; margin: 10px auto;
+    padding: 30px 32px; border-radius: 20px;
+    background: linear-gradient(135deg, var(--spectrum-02) 0%, var(--spectrum-06) 100%);
+    color: #fff; text-align: center; position: relative; overflow: hidden;
+  }
+  .ad-cta h3 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(1.2rem, 3.2vw, 1.5rem); font-weight: 500; margin-bottom: 8px;
+  }
+  .ad-cta p { color: rgba(255,255,255,.9); font-size: .95rem; line-height: 1.65; margin-bottom: 20px; max-width: 540px; margin-left: auto; margin-right: auto; }
+  .ad-cta a {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 26px; border-radius: 99px;
+    background: #fff; color: var(--spectrum-06);
+    text-decoration: none; font-weight: 600; font-size: .95rem;
+    transition: all .2s ease;
+  }
+  .ad-cta a:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,.15); }
+
+  /* ─── 선언문 ─── */
+  .pledge {
+    text-align: center; max-width: 720px; margin: 60px auto 30px;
+    padding: 36px 24px;
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  }
+  .pledge .motto {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(1.3rem, 3.5vw, 1.6rem);
+    line-height: 1.5; margin-bottom: 20px; letter-spacing: -.3px;
+  }
+  .pledge .motto b {
+    background: linear-gradient(135deg, var(--origin), var(--spectrum-01), var(--spectrum-04), var(--spectrum-05));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; font-weight: 500;
+  }
+  .pledge p { color: var(--text-muted); font-size: .95rem; line-height: 1.8; margin-bottom: 12px; }
+
+  /* ─── 푸터 ─── */
+  footer {
+    text-align: center; padding: 40px 20px; color: var(--text-faint);
+    font-size: .82rem; border-top: 1px solid var(--line);
+  }
+  footer a { color: var(--text-muted); text-decoration: none; margin: 0 10px; }
+  footer a:hover { color: var(--text); }
+  footer .copy { margin-top: 14px; font-size: .76rem; color: var(--text-faint); }
+
+  @media (max-width: 640px) {
+    header.hero { padding: 60px 18px 36px; }
+    .deungrong-prism { width: 110px; height: 146px; }
+    .origin-card { padding: 26px 22px; }
+    .ad-cta { padding: 24px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="inner">
+    <a href="/" class="brand">
+      <span class="pulse"></span>
+      <span class="name">HebronGuide</span>
+    </a>
+    <div class="links">
+      <a href="/map.html">지도</a>
+      <a href="/lounge.html">라운지</a>
+      <a href="/seattle-plus.html">Seattle+</a>
+      <a href="/light.html">분광</a>
+      <a href="/about.html">소개</a>
+      <button class="mode-toggle" id="modeToggle" aria-label="디자인 모드 전환">
+        <svg id="modeIcon" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        </svg>
+        <span id="modeLabel">숨은 빛</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <svg class="deungrong-prism" viewBox="0 0 120 160" aria-hidden="true">
+    <defs>
+      <radialGradient id="hanjiGlow" cx="50%" cy="40%" r="50%">
+        <stop offset="0%" stop-color="#E8F5EC" stop-opacity=".95"/>
+        <stop offset="40%" stop-color="#2E7D5B" stop-opacity=".7"/>
+        <stop offset="100%" stop-color="#A84735" stop-opacity=".3"/>
+      </radialGradient>
+      <linearGradient id="prismStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#2E7D5B"/>
+        <stop offset="33%" stop-color="#D9A054"/>
+        <stop offset="66%" stop-color="#7B5D8E"/>
+        <stop offset="100%" stop-color="#4A6B8C"/>
+      </linearGradient>
+    </defs>
+    <circle cx="60" cy="12" r="4" fill="#A84735"/>
+    <line x1="60" y1="16" x2="60" y2="28" stroke="#A84735" stroke-width="1.5"/>
+    <path d="M30 32 L90 32 L108 56 L108 104 L90 128 L30 128 L12 104 L12 56 Z"
+          fill="url(#hanjiGlow)" stroke="url(#prismStroke)" stroke-width="2"/>
+    <path d="M12 56 L108 56 M12 80 L108 80 M12 104 L108 104 M60 32 L60 128 M38 32 L38 128 M82 32 L82 128"
+          stroke="#2E7D5B" stroke-width=".8" opacity=".35"/>
+    <g opacity=".75">
+      <line x1="18" y1="128" x2="12" y2="155" stroke="#F4B59A" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="35" y1="128" x2="30" y2="155" stroke="#D9A054" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="52" y1="128" x2="50" y2="156" stroke="#7B8E52" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="68" y1="128" x2="70" y2="156" stroke="#4A6B8C" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="85" y1="128" x2="90" y2="155" stroke="#7B5D8E" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="100" y1="128" x2="107" y2="153" stroke="#A84735" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="105" y1="110" x2="118" y2="130" stroke="#4A7A7E" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+  </svg>
+
+  <h1>혼자가 아닙니다<br><span class="shift">환대의 식탁</span>이 당신을 기다립니다</h1>
+  <p class="tagline">
+    낯선 이의 발걸음에 식탁이 차려지는 자리.<br>
+    전 세계 한인 디아스포라를 위한 환대 플랫폼 — HebronGuide.
+  </p>
+  <div class="quick">
+    <a href="/map.html" class="primary">환대의 지도 열기 →</a>
+    <a href="/light.html" class="ghost">환대의 분광</a>
+    <a href="/arrive.html" class="ghost">방금 도착?</a>
+  </div>
+</header>
+
+<!-- ─── 시애틀 창립지 ─── -->
+<section>
+  <div class="origin-card">
+    <div class="label">THE ORIGIN · 창립의 자리</div>
+    <h2><span class="emerald">시애틀</span>에서 등불이 처음 켜졌습니다</h2>
+    <p>
+      HebronGuide의 환대 식탁은 2026년 시애틀에서 처음 차려졌습니다.
+      상록수와 안개와 Puget Sound의 쪽빛이 만나는 이 자리에서
+      <b style="color:var(--origin);font-weight:500;">에메랄드 빛</b>이 켜지고, 세계로 번졌습니다.
+    </p>
+  </div>
+</section>
+
+<!-- ─── 4가지 입구 ─── -->
+<section>
+  <div class="section-h">
+    <span class="no">01</span>
+    <h2>어디에서 시작할까요?</h2>
+    <p>당신의 상황에 맞는 자리를 고르세요.</p>
+  </div>
+  <div class="entries">
+    <a href="/map.html" class="entry" style="--sp-color:#4A6B8C;">
+      <div class="orb"></div>
+      <h3>환대의 지도</h3>
+      <p class="desc">전 세계 81개 도시의 환대 네트워크 — 지구본으로 한눈에.</p>
+      <span class="arrow">지도 열기 →</span>
+    </a>
+    <a href="/lounge.html" class="entry" style="--sp-color:#D9A054;">
+      <div class="orb"></div>
+      <h3>환대의 라운지</h3>
+      <p class="desc">전 세계 한인 커뮤니티·공식 조직 큐레이션 — 수시 확장되는 레지스트리.</p>
+      <span class="arrow">라운지 열기 →</span>
+    </a>
+    <a href="/seattle-plus.html" class="entry" style="--sp-color:#2E7D5B;">
+      <div class="orb"></div>
+      <h3>Seattle+ 파일럿</h3>
+      <p class="desc">시애틀 메트로 상위 버전 — 7일 체크리스트·동네 비교·환대 식탁 신청.</p>
+      <span class="arrow">파일럿 보기 →</span>
+    </a>
+    <a href="/light.html" class="entry" style="--sp-color:#7B5D8E;">
+      <div class="orb"></div>
+      <h3>환대의 분광</h3>
+      <p class="desc">하나의 빛, 많은 색 — HebronGuide 디자인의 새 지평.</p>
+      <span class="arrow">분광 체험 →</span>
+    </a>
+  </div>
+</section>
+
+<!-- ─── 도시 그리드 ─── -->
+<section>
+  <div class="section-h">
+    <span class="no">02</span>
+    <h2>도시별 정착 가이드</h2>
+    <p>라이브로 운영 중인 도시 가이드 — FAQ 14문항·공식 영사·학군·치안·통역 서비스.</p>
+  </div>
+  <div class="cities-grid">
+    <a href="/seattle/" class="city-chip" style="color:var(--origin);">시애틀 <small>CREATED HERE</small></a>
+    <a href="/tokyo/" class="city-chip">도쿄 <small>Tokyo</small></a>
+    <a href="/la/" class="city-chip">로스앤젤레스 <small>LA</small></a>
+    <a href="/newyork/" class="city-chip">뉴욕 <small>New York</small></a>
+    <a href="/newjersey/" class="city-chip">뉴저지 <small>New Jersey</small></a>
+    <a href="/toronto/" class="city-chip">토론토 <small>Toronto</small></a>
+    <a href="/vancouver/" class="city-chip">밴쿠버 <small>Vancouver</small></a>
+    <a href="/atlanta/" class="city-chip">애틀랜타 <small>Atlanta</small></a>
+    <a href="/dallas/" class="city-chip">달라스 <small>Dallas</small></a>
+    <a href="/houston/" class="city-chip">휴스턴 <small>Houston</small></a>
+    <a href="/sf/" class="city-chip">샌프란시스코 <small>SF</small></a>
+    <a href="/chicago/" class="city-chip">시카고 <small>Chicago</small></a>
+    <a href="/dc/" class="city-chip">워싱턴 DC <small>DC</small></a>
+    <a href="/boston/" class="city-chip">보스턴 <small>Boston</small></a>
+    <a href="/sandiego/" class="city-chip">샌디에고 <small>San Diego</small></a>
+    <a href="/orlando/" class="city-chip">올랜도 <small>Orlando</small></a>
+    <a href="/portland/" class="city-chip">포틀랜드 <small>Portland</small></a>
+    <a href="/honolulu/" class="city-chip">호놀룰루 <small>Honolulu</small></a>
+    <a href="/london/" class="city-chip">런던 <small>London</small></a>
+    <a href="/sydney/" class="city-chip">시드니 <small>Sydney</small></a>
+    <a href="/osaka/" class="city-chip">오사카 <small>Osaka</small></a>
+    <a href="/saopaulo/" class="city-chip">상파울루 <small>São Paulo</small></a>
+  </div>
+  <p style="text-align:center;margin-top:18px;color:var(--text-faint);font-size:.82rem;">
+    더 많은 도시가 추가되고 있습니다. <a href="/city-request.html" style="color:var(--text-muted);border-bottom:1px dashed var(--line-strong);">도시 등록 요청하기 →</a>
+  </p>
+</section>
+
+<!-- ─── 광고 CTA (수익) ─── -->
+<section>
+  <div class="ad-cta">
+    <h3>이 도시에 광고하기 — 커피 한 잔으로</h3>
+    <p>월 $6.99로 한 달간 '이 도시 소식'에 노출됩니다. 먼저 도착한 한인에게 당신의 가게·교회·사업이 보입니다. 등재는 언제나 무료.</p>
+    <a href="/ad-request.html">광고 신청하기 →</a>
+  </div>
+</section>
+
+<!-- ─── 선언문 ─── -->
+<div class="pledge">
+  <p class="motto"><b>빛은 하나입니다.<br>그러나 환대의 색은 많습니다.</b></p>
+  <p>
+    HebronGuide는 혼자 모든 것을 담지 않습니다.
+    먼저 길을 낸 커뮤니티·단체·사람들을 큐레이션하며,
+    가장 가까운 식탁으로 안내하는 네트워크 허브입니다.
+  </p>
+</div>
+
+<footer>
+  <nav>
+    <a href="/">홈</a>·
+    <a href="/map.html">지도</a>·
+    <a href="/lounge.html">라운지</a>·
+    <a href="/seattle-plus.html">Seattle+</a>·
+    <a href="/light.html">분광</a>·
+    <a href="/about.html">소개</a>·
+    <a href="/philosophy.html">철학</a>·
+    <a href="/ad-request.html">광고 신청</a>
+  </nav>
+  <div class="copy">
+    HebronGuide · 전 세계 한인 디아스포라를 위한 환대 플랫폼 · 시애틀에서 시작 · 운영: Hebron Platform LLC
+  </div>
+</footer>
+
+<script>
+const html = document.documentElement;
+const modeToggle = document.getElementById('modeToggle');
+const modeIcon = document.getElementById('modeIcon');
+const modeLabel = document.getElementById('modeLabel');
+
+const SUN = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
+const MOON = '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>';
+
+function setMode(mode) {
+  if (mode === 'night') {
+    html.setAttribute('data-mode', 'night');
+    modeIcon.innerHTML = MOON;
+    modeLabel.textContent = '밤의 식탁';
+  } else {
+    html.removeAttribute('data-mode');
+    modeIcon.innerHTML = SUN;
+    modeLabel.textContent = '숨은 빛';
+  }
+  try { localStorage.setItem('hg_light_mode', mode); } catch {}
+}
+
+try {
+  const saved = localStorage.getItem('hg_light_mode');
+  if (saved === 'night') setMode('night');
+} catch {}
+
+modeToggle.addEventListener('click', () => {
+  const current = html.getAttribute('data-mode');
+  setMode(current === 'night' ? 'day' : 'night');
+});
+
+let revealed = false;
+window.addEventListener('scroll', () => {
+  if (!revealed && window.scrollY > 60) {
+    document.body.classList.add('revealing');
+    revealed = true;
+  }
+}, {passive: true});
+
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.querySelectorAll('.deungrong-prism, .brand .pulse, .entry .orb').forEach(el => {
+    el.style.animation = 'none';
+  });
+}
+</script>
+
+</body>
+</html>

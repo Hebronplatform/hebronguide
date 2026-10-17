@@ -243,6 +243,8 @@ cp hebronguide/public/lounge-sites.json             public/lounge-sites.json    
 cp hebronguide/public/seattle-plus.html             public/seattle-plus.html               2>/dev/null || true
 # Light — 환대의 분광 × 숨겨진 빛 (2026-10-17 신규, Or Haganuz 신학 + chromatic UI 융합, 다크 토글 유지)
 cp hebronguide/public/light.html                    public/light.html                      2>/dev/null || true
+# Home Light — 메인 홈의 분광 디자인 버전 (2026-10-17 Phase 2 올인, 반응 좋으면 / 로 승격)
+cp hebronguide/public/home-light.html               public/home-light.html                 2>/dev/null || true
 cp hebronguide/public/events.json                   public/events.json                     2>/dev/null || true
 # 자가 점검 요약 — 상황판이 읽는다 (공개돼도 안전한 숫자만 들어 있다)
 cp hebronguide/public/audit.json                    public/audit.json                      2>/dev/null || true
