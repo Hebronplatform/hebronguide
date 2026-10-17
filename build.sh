@@ -239,8 +239,10 @@ cp hebronguide/public/map.html                      public/map.html             
 # 환대의 라운지 — 글로벌 환대 레지스트리 (2026-10-16 초판·2026-10-17 JSON 분리·수시 확장 아키텍처)
 cp hebronguide/public/lounge.html                   public/lounge.html                     2>/dev/null || true
 cp hebronguide/public/lounge-sites.json             public/lounge-sites.json               2>/dev/null || true
-# Seattle+ 파일럿 — 10개 사이트 융합·한국/미국 혁신 UX·독보적 상위 버전 (2026-10-16)
+# Seattle+ 파일럿 — 글로벌 플랫폼 융합·한국/미국 혁신 UX·독보적 상위 버전 (2026-10-16, 2026-10-17 라벨 열람형 수정)
 cp hebronguide/public/seattle-plus.html             public/seattle-plus.html               2>/dev/null || true
+# Light — 환대의 분광 × 숨겨진 빛 (2026-10-17 신규, Or Haganuz 신학 + chromatic UI 융합, 다크 토글 유지)
+cp hebronguide/public/light.html                    public/light.html                      2>/dev/null || true
 cp hebronguide/public/events.json                   public/events.json                     2>/dev/null || true
 # 자가 점검 요약 — 상황판이 읽는다 (공개돼도 안전한 숫자만 들어 있다)
 cp hebronguide/public/audit.json                    public/audit.json                      2>/dev/null || true
