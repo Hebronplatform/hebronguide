@@ -19,7 +19,24 @@
   :root{
     --bg:#0d1117;--bg2:#161b26;--bg3:#1F2733;--bg4:#2A3341;--line:rgba(255,255,255,.1);--line2:rgba(255,255,255,.18);
     --text:#ECFDF5;--muted:rgba(236,253,245,.62);--muted2:rgba(236,253,245,.4);
-    --accent:#C9A227;--accent2:#F5C76E;--accent3:#A47A1B;--mint:#6EE7B7;--rose:#FDA4AF;--sky:#60A5FA;
+
+    /* 환대의 분광 — light.html과 통일. 시애틀은 창립의 자리 origin 에메랄드. */
+    --origin:      #2E7D5B;  /* 에메랄드 · 시애틀 창립의 자리 */
+    --spectrum-01: #F4B59A;  /* 복숭아 · 서울 */
+    --spectrum-02: #D9A054;  /* 호박 · LA */
+    --spectrum-03: #7B8E52;  /* 올리브 · 뉴욕 */
+    --spectrum-04: #4A6B8C;  /* 쪽빛 · 토론토 */
+    --spectrum-05: #7B5D8E;  /* 자수정 · 상파울루 */
+    --spectrum-06: #A84735;  /* 홍 · 밴쿠버 */
+    --spectrum-07: #4A7A7E;  /* 벽옥 · 시드니 */
+
+    /* 분광 매핑 — Seattle+는 origin 에메랄드를 메인으로 (창립의 자리) */
+    --accent:  var(--origin);        /* 시애틀 origin 에메랄드가 중심 */
+    --accent2: var(--spectrum-01);   /* 복숭아 하이라이트 */
+    --accent3: var(--spectrum-02);   /* 호박 보조 */
+    --mint:    var(--origin);
+    --rose:    var(--spectrum-01);
+    --sky:     var(--spectrum-04);
     --radius:16px;--radius-lg:24px;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
@@ -47,14 +64,14 @@
   .hero{text-align:center;padding:70px 20px 50px;max-width:820px;margin:0 auto;position:relative;}
   .hero::before{content:'';position:absolute;top:30px;left:50%;transform:translateX(-50%);
                 width:420px;height:420px;max-width:90vw;max-height:50vh;
-                background:radial-gradient(circle, rgba(201,162,39,.14) 0%, transparent 70%);
+                background:radial-gradient(circle, rgba(217,160,84,.14) 0%, transparent 70%);
                 pointer-events:none;z-index:-1;}
   .hero .lamp{width:52px;height:52px;margin:0 auto 24px;border-radius:50%;
-              background:radial-gradient(circle, #F5C76E 0%, #C9A227 50%, transparent 72%);
-              box-shadow:0 0 40px rgba(201,162,39,.55);animation:breathe 3.2s ease-in-out infinite;}
+              background:radial-gradient(circle, #F4B59A 0%, #D9A054 50%, transparent 72%);
+              box-shadow:0 0 40px rgba(217,160,84,.55);animation:breathe 3.2s ease-in-out infinite;}
   @keyframes breathe{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.6;transform:scale(1.1);}}
   .hero .pilot{display:inline-block;color:var(--accent2);font-size:.78rem;letter-spacing:3px;
-               border:1px solid rgba(201,162,39,.4);border-radius:99px;padding:5px 14px;margin-bottom:18px;
+               border:1px solid rgba(217,160,84,.4);border-radius:99px;padding:5px 14px;margin-bottom:18px;
                text-transform:uppercase;}
   .hero h1{font-size:clamp(1.9rem,5.2vw,2.6rem);font-weight:500;line-height:1.3;margin-bottom:14px;}
   .hero h1 b{color:var(--accent2);font-weight:500;}
@@ -64,10 +81,10 @@
   .hero p.lead{color:var(--muted);font-size:1.02rem;margin-top:24px;line-height:1.75;max-width:620px;margin-left:auto;margin-right:auto;}
   .hero .quick{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:30px;}
   .hero .quick a{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;
-                 background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.35);
+                 background:rgba(217,160,84,.1);border:1px solid rgba(217,160,84,.35);
                  border-radius:99px;color:var(--accent2);text-decoration:none;font-size:.9rem;}
   .hero .quick a.primary{background:var(--accent);color:#0d1117;border-color:transparent;
-                         box-shadow:0 6px 20px rgba(201,162,39,.3);}
+                         box-shadow:0 6px 20px rgba(217,160,84,.3);}
   .hero .quick a:hover{transform:translateY(-1px);}
 
   /* 섹션 공통 */
@@ -107,11 +124,11 @@
                      width:0;transition:width .3s ease;}
 
   /* 2. 환대의 저녁 식탁 */
-  .table-card{background:linear-gradient(135deg, rgba(201,162,39,.08), rgba(13,17,23,.4));
-              border:1px solid rgba(201,162,39,.25);border-radius:var(--radius-lg);
+  .table-card{background:linear-gradient(135deg, rgba(217,160,84,.08), rgba(13,17,23,.4));
+              border:1px solid rgba(217,160,84,.25);border-radius:var(--radius-lg);
               padding:30px;max-width:720px;margin:0 auto;position:relative;overflow:hidden;}
   .table-card::before{content:'';position:absolute;top:-20px;right:-20px;width:140px;height:140px;
-    border-radius:50%;background:radial-gradient(circle, rgba(201,162,39,.1) 0%, transparent 70%);}
+    border-radius:50%;background:radial-gradient(circle, rgba(217,160,84,.1) 0%, transparent 70%);}
   .table-card h3{font-family:'Noto Serif KR',serif;font-size:1.3rem;font-weight:500;margin-bottom:8px;
                  color:var(--accent2);}
   .table-card p.sub{color:var(--muted);font-size:.95rem;line-height:1.75;margin-bottom:20px;}
@@ -134,7 +151,7 @@
   .compare td.name{font-weight:500;color:var(--text);}
   .compare td.name small{display:block;color:var(--muted2);font-size:.72rem;font-weight:400;margin-top:2px;}
   .compare .tag{display:inline-block;padding:2px 8px;border-radius:99px;font-size:.72rem;}
-  .compare .tag.gold{background:rgba(201,162,39,.15);color:var(--accent2);}
+  .compare .tag.gold{background:rgba(217,160,84,.15);color:var(--accent2);}
   .compare .tag.mint{background:rgba(110,231,183,.12);color:var(--mint);}
   .compare .tag.sky{background:rgba(96,165,250,.12);color:var(--sky);}
   .compare .tag.rose{background:rgba(253,164,175,.12);color:var(--rose);}
@@ -144,9 +161,9 @@
   .qa-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;}
   .qa{background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);padding:20px;
       transition:all .2s;}
-  .qa:hover{border-color:rgba(201,162,39,.3);transform:translateY(-2px);}
+  .qa:hover{border-color:rgba(217,160,84,.3);transform:translateY(-2px);}
   .qa .cat{display:inline-block;color:var(--accent2);font-size:.72rem;letter-spacing:.3px;
-           border:1px solid rgba(201,162,39,.3);border-radius:99px;padding:2px 10px;margin-bottom:10px;}
+           border:1px solid rgba(217,160,84,.3);border-radius:99px;padding:2px 10px;margin-bottom:10px;}
   .qa h4{font-size:.98rem;font-weight:500;margin-bottom:8px;color:var(--text);line-height:1.5;}
   .qa p{color:var(--muted);font-size:.86rem;line-height:1.65;}
   .qa .src{color:var(--muted2);font-size:.74rem;margin-top:12px;padding-top:10px;
@@ -154,9 +171,9 @@
 
   .qa-ask{text-align:center;margin-top:24px;}
   .qa-ask a{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;
-            background:transparent;color:var(--accent2);border:1px solid rgba(201,162,39,.5);
+            background:transparent;color:var(--accent2);border:1px solid rgba(217,160,84,.5);
             border-radius:99px;text-decoration:none;font-size:.95rem;}
-  .qa-ask a:hover{background:rgba(201,162,39,.08);}
+  .qa-ask a:hover{background:rgba(217,160,84,.08);}
 
   /* 5. 지역 뉴스 큐레이션 */
   .news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;}
@@ -177,8 +194,8 @@
   .journey{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;}
   .journey a.step{display:block;background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);
                   padding:22px 20px;text-decoration:none;transition:all .2s;}
-  .journey a.step:hover{border-color:rgba(201,162,39,.4);transform:translateY(-2px);}
-  .journey .ico{width:36px;height:36px;border-radius:10px;background:rgba(201,162,39,.1);
+  .journey a.step:hover{border-color:rgba(217,160,84,.4);transform:translateY(-2px);}
+  .journey .ico{width:36px;height:36px;border-radius:10px;background:rgba(217,160,84,.1);
                 display:flex;align-items:center;justify-content:center;margin-bottom:12px;color:var(--accent2);}
   .journey h4{color:var(--text);font-size:1rem;font-weight:500;margin-bottom:6px;}
   .journey p{color:var(--muted);font-size:.86rem;line-height:1.6;}
@@ -199,7 +216,7 @@
   .feedback h3{font-size:1.02rem;font-weight:500;margin-bottom:10px;}
   .feedback p{color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:14px;}
   .feedback a.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;
-                  background:transparent;color:var(--accent2);border:1px solid rgba(201,162,39,.4);
+                  background:transparent;color:var(--accent2);border:1px solid rgba(217,160,84,.4);
                   border-radius:99px;text-decoration:none;font-size:.9rem;}
 
   /* 푸터 */

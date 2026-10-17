@@ -22,8 +22,22 @@
   :root{
     --bg:#0d1117;--bg2:#161b26;--bg3:#1F2733;--line:rgba(255,255,255,.1);
     --text:#ECFDF5;--muted:rgba(236,253,245,.62);--muted2:rgba(236,253,245,.4);
-    --accent:#C9A227;--accent2:#F5C76E;--mint:#6EE7B7;
-    --ember:#FFB300; /* 환대의 등불 */
+
+    /* 환대의 분광 — 시애틀을 원점으로 세계로 번지는 색 (light.html과 통일) */
+    --origin:      #2E7D5B;  /* 에메랄드 · 시애틀 창립의 자리 */
+    --spectrum-01: #F4B59A;  /* 복숭아 · 서울 */
+    --spectrum-02: #D9A054;  /* 호박 · 로스앤젤레스 */
+    --spectrum-03: #7B8E52;  /* 올리브 · 뉴욕 */
+    --spectrum-04: #4A6B8C;  /* 쪽빛 · 토론토 */
+    --spectrum-05: #7B5D8E;  /* 자수정 · 상파울루 */
+    --spectrum-06: #A84735;  /* 홍 · 밴쿠버 */
+    --spectrum-07: #4A7A7E;  /* 벽옥 · 시드니 */
+
+    /* 분광 매핑으로 호환성 유지 — 기존 CSS 수정 없이 자동 승계 */
+    --accent:  var(--spectrum-02);   /* 호박 (등불의 중심 색) */
+    --accent2: var(--spectrum-01);   /* 복숭아 (하이라이트) */
+    --mint:    var(--origin);        /* 에메랄드 (origin 신호) */
+    --ember:   var(--spectrum-02);   /* 환대의 등불 — 분광 호박으로 */
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html,body{height:100%;}
@@ -43,7 +57,7 @@
   .top a.home:hover{color:var(--accent2);background:rgba(255,255,255,0.04);}
   .top h1{display:flex;align-items:center;gap:10px;font-size:.98rem;font-weight:500;letter-spacing:.3px;}
   .top h1 .lamp{width:9px;height:9px;border-radius:50%;background:var(--accent);
-                box-shadow:0 0 12px var(--accent),0 0 24px rgba(201,162,39,.4);
+                box-shadow:0 0 12px var(--accent),0 0 24px rgba(217,160,84,.4);
                 animation:breathe 3s ease-in-out infinite;}
   @keyframes breathe{0%,100%{opacity:1;}50%{opacity:.5;}}
 
@@ -112,7 +126,7 @@
          border-radius:99px;font-size:.88rem;font-weight:500;text-decoration:none;
          transition:all .15s ease;white-space:nowrap;}
   .cta a.primary{background:var(--accent);color:#0d1117;
-                 box-shadow:0 6px 20px rgba(201,162,39,.35);}
+                 box-shadow:0 6px 20px rgba(217,160,84,.35);}
   .cta a.primary:hover{background:var(--accent2);transform:translateY(-1px);}
   .cta a.secondary{background:rgba(13,17,23,.88);color:var(--muted);border:1px solid var(--line);}
   .cta a.secondary:hover{color:var(--accent2);}
@@ -252,7 +266,7 @@ async function loadCities() {
       '<p>식탁을 펼치지 못했습니다.</p>' +
       '<p style="color:rgba(236,253,245,.5);font-size:.84rem;margin-top:12px;">' +
       '잠시 뒤 다시 열어 주세요.</p>' +
-      '<a href="/" style="display:inline-block;margin-top:16px;color:#F5C76E;text-decoration:none;">홈으로 돌아가기 →</a>' +
+      '<a href="/" style="display:inline-block;margin-top:16px;color:#F4B59A;text-decoration:none;">홈으로 돌아가기 →</a>' +
       '</div>';
   }
 }
@@ -270,8 +284,8 @@ function renderCities(cities) {
       // 불이 켜진 도시 — 금빛 등불 + 호흡 애니메이션
       el.innerHTML = `
         <div style="position:relative;width:16px;height:16px;">
-          <div style="position:absolute;inset:-6px;border-radius:50%;background:radial-gradient(circle, rgba(201,162,39,.45) 0%, transparent 60%);animation:lampBreathe 3.5s ease-in-out infinite;"></div>
-          <div style="position:absolute;inset:0;border-radius:50%;background:#F5C76E;box-shadow:0 0 10px #C9A227,0 0 20px rgba(201,162,39,.6);border:1px solid rgba(255,255,255,.5);"></div>
+          <div style="position:absolute;inset:-6px;border-radius:50%;background:radial-gradient(circle, rgba(217,160,84,.45) 0%, transparent 60%);animation:lampBreathe 3.5s ease-in-out infinite;"></div>
+          <div style="position:absolute;inset:0;border-radius:50%;background:#F4B59A;box-shadow:0 0 10px #D9A054,0 0 20px rgba(217,160,84,.6);border:1px solid rgba(255,255,255,.5);"></div>
         </div>`;
       el.style.cursor = 'pointer';
     } else {
