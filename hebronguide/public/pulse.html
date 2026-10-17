@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5"/>
+<title>환대의 맥박 · 이번 달 질문 — HebronGuide</title>
+<meta name="description" content="세계 각 도시 한인 커뮤니티가 이번 달 가장 많이 물은 10가지 — 공공 사실 기반으로 모은 디아스포라의 맥박."/>
+<meta name="keywords" content="HebronGuide, 환대의 맥박, 디아스포라 리서치, 한인 커뮤니티 질문, 공개 대시보드"/>
+<meta property="og:title" content="환대의 맥박 · 이번 달 질문 — HebronGuide"/>
+<meta property="og:description" content="세계 각 도시 한인 커뮤니티가 이번 달 가장 많이 물은 10가지."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://hebronguide.com/pulse.html"/>
+<link rel="icon" type="image/png" href="/icon-192.png"/>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg:            #E8E2D4;
+    --bg-whisper:    #F2EDE0;
+    --bg-mist:       #D8D3C5;
+    --bg-shadow:     #C9C2B2;
+    --text:          #2A2520;
+    --text-muted:    rgba(42,37,32,.62);
+    --text-faint:    rgba(42,37,32,.4);
+    --line:          rgba(42,37,32,.1);
+    --line-strong:   rgba(42,37,32,.2);
+
+    --origin:      #2E7D5B;
+    --spectrum-01: #F4B59A;
+    --spectrum-02: #D9A054;
+    --spectrum-03: #7B8E52;
+    --spectrum-04: #4A6B8C;
+    --spectrum-05: #7B5D8E;
+    --spectrum-06: #A84735;
+    --spectrum-07: #4A7A7E;
+    --spectrum-08: #B8785C;
+    --spectrum-09: #5E7A5E;
+  }
+  [data-mode="night"] {
+    --bg:            #0d1117;
+    --bg-whisper:    #161b26;
+    --bg-mist:       #1F2733;
+    --bg-shadow:     #2A3341;
+    --text:          #ECFDF5;
+    --text-muted:    rgba(236,253,245,.62);
+    --text-faint:    rgba(236,253,245,.4);
+    --line:          rgba(255,255,255,.1);
+    --line-strong:   rgba(255,255,255,.18);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--text); }
+  body {
+    font-family: 'Pretendard Variable', 'Noto Sans KR', -apple-system, sans-serif;
+    line-height: 1.75; word-break: keep-all; padding-bottom: 80px;
+    transition: background 1.4s ease, color 1.4s ease;
+    min-height: 100vh; position: relative; overflow-x: hidden;
+  }
+  .serif { font-family: 'Noto Serif KR', serif; letter-spacing: -.3px; }
+  a { color: inherit; }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background: radial-gradient(ellipse at 20% 10%, rgba(244,181,154,.08), transparent 60%),
+                radial-gradient(ellipse at 80% 30%, rgba(74,107,140,.06), transparent 60%),
+                radial-gradient(ellipse at 50% 90%, rgba(123,93,142,.06), transparent 60%);
+    pointer-events: none; opacity: .5; z-index: 0;
+  }
+
+  nav.top {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line); padding: 14px 20px;
+  }
+  nav.top .inner {
+    max-width: 1180px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  nav.top a.home {
+    display: inline-flex; align-items: center; gap: 7px;
+    color: var(--text-muted); text-decoration: none; font-size: .9rem;
+  }
+  nav.top a.home:hover { color: var(--text); }
+  nav.top .brand { font-size: .88rem; color: var(--text); font-weight: 500; letter-spacing: .3px; }
+  nav.top .brand .pulse {
+    display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--origin), var(--spectrum-01));
+    margin-right: 7px; vertical-align: middle;
+    animation: pulseSpectrum 3.5s ease-in-out infinite;
+  }
+  @keyframes pulseSpectrum {
+    0%, 100% { background: linear-gradient(135deg, var(--origin), var(--spectrum-01)); }
+    33%      { background: linear-gradient(135deg, var(--origin), var(--spectrum-04)); }
+    66%      { background: linear-gradient(135deg, var(--origin), var(--spectrum-05)); }
+  }
+
+  .mode-toggle {
+    background: transparent; border: 1px solid var(--line-strong);
+    color: var(--text-muted); padding: 6px 12px; border-radius: 999px;
+    font-size: .78rem; cursor: pointer; letter-spacing: .5px;
+    transition: all .3s ease;
+  }
+  .mode-toggle:hover { color: var(--text); border-color: var(--text); }
+
+  main { max-width: 1180px; margin: 0 auto; padding: 50px 20px; position: relative; z-index: 2; }
+
+  /* ────────── Hero ────────── */
+  .hero { text-align: center; padding: 60px 0 50px; border-bottom: 1px solid var(--line); margin-bottom: 50px; }
+  .hero .eyebrow {
+    display: inline-block;
+    font-size: .72rem; letter-spacing: 3px; color: var(--text-muted);
+    padding: 6px 14px; border: 1px solid var(--line-strong); border-radius: 999px;
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-size: clamp(1.9rem, 4.5vw, 2.8rem); font-weight: 400;
+    letter-spacing: -1px; margin-bottom: 18px; line-height: 1.3;
+  }
+  .hero h1 em {
+    font-style: normal; font-weight: 500;
+    background: linear-gradient(135deg, var(--origin) 0%, var(--spectrum-01) 50%, var(--spectrum-05) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero p.lead {
+    color: var(--text-muted); max-width: 680px; margin: 0 auto 24px;
+    font-size: 1.02rem; line-height: 1.8;
+  }
+  .hero .meta {
+    display: inline-flex; gap: 20px; flex-wrap: wrap; justify-content: center;
+    font-size: .78rem; color: var(--text-faint); letter-spacing: .5px;
+  }
+  .hero .meta span { display: inline-flex; align-items: center; gap: 6px; }
+  .hero .meta .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--origin);
+  }
+
+  /* ────────── Section headers ────────── */
+  section { margin-bottom: 60px; }
+  .section-head { margin-bottom: 28px; }
+  .section-head .label {
+    display: block; font-size: .72rem; letter-spacing: 3px; color: var(--text-faint);
+    margin-bottom: 10px;
+  }
+  .section-head h2 {
+    font-size: 1.5rem; font-weight: 400; letter-spacing: -.5px;
+  }
+  .section-head p {
+    color: var(--text-muted); font-size: .95rem; margin-top: 8px; max-width: 720px;
+  }
+
+  /* ────────── Top 10 질문 ────────── */
+  .top10 { display: grid; gap: 14px; }
+  .q-card {
+    display: grid; grid-template-columns: 44px 1fr auto; gap: 18px; align-items: center;
+    padding: 18px 20px;
+    background: var(--bg-whisper); border: 1px solid var(--line);
+    border-radius: 14px;
+    transition: all .3s ease;
+  }
+  .q-card:hover {
+    border-color: var(--text-muted);
+    transform: translateX(2px);
+  }
+  .q-card .rank {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.6rem; color: var(--text-faint);
+    text-align: center; line-height: 1;
+  }
+  .q-card .body { }
+  .q-card .q-text {
+    font-size: 1rem; color: var(--text); margin-bottom: 6px;
+    font-weight: 500; line-height: 1.5;
+  }
+  .q-card .q-meta {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    font-size: .78rem; color: var(--text-muted);
+  }
+  .q-card .q-meta .cat {
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .q-card .q-meta .cat::before {
+    content: ''; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--cat-color, var(--spectrum-01));
+  }
+  .q-card .sig {
+    width: 60px; text-align: right;
+    font-size: .82rem; color: var(--text-muted);
+    letter-spacing: .5px;
+  }
+  .q-card .sig strong {
+    display: block; font-size: 1.1rem; color: var(--text); font-weight: 500;
+  }
+
+  .q-card[data-cat="행정비자"]   { --cat-color: var(--spectrum-01); }
+  .q-card[data-cat="학군교육"]   { --cat-color: var(--spectrum-02); }
+  .q-card[data-cat="세금재정"]   { --cat-color: var(--spectrum-03); }
+  .q-card[data-cat="의료보험"]   { --cat-color: var(--spectrum-04); }
+  .q-card[data-cat="감정심리"]   { --cat-color: var(--spectrum-05); }
+  .q-card[data-cat="운전교통"]   { --cat-color: var(--spectrum-06); }
+  .q-card[data-cat="교회커뮤니티"]{ --cat-color: var(--spectrum-07); }
+  .q-card[data-cat="주거부동산"] { --cat-color: var(--origin); }
+  .q-card[data-cat="취업사업"]   { --cat-color: var(--spectrum-08); }
+  .q-card[data-cat="기타생활"]   { --cat-color: var(--spectrum-09); }
+
+  /* ────────── 카테고리 분포 ────────── */
+  .cat-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .cat-row {
+    display: grid; grid-template-columns: 130px 1fr 50px; align-items: center; gap: 14px;
+  }
+  .cat-row .name {
+    font-size: .9rem; color: var(--text);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .cat-row .name::before {
+    content: ''; width: 10px; height: 10px; border-radius: 50%;
+    background: var(--cat-color, var(--spectrum-01));
+    flex-shrink: 0;
+  }
+  .cat-row .bar {
+    height: 24px; background: var(--bg-mist); border-radius: 6px; overflow: hidden;
+    position: relative;
+  }
+  .cat-row .bar-fill {
+    height: 100%; background: var(--cat-color, var(--spectrum-01));
+    border-radius: 6px;
+    transition: width 1.2s cubic-bezier(.4,.2,.2,1);
+    opacity: .85;
+  }
+  .cat-row .pct { font-size: .85rem; color: var(--text-muted); text-align: right; font-variant-numeric: tabular-nums; }
+
+  .cat-row[data-cat="행정비자"]   { --cat-color: var(--spectrum-01); }
+  .cat-row[data-cat="학군교육"]   { --cat-color: var(--spectrum-02); }
+  .cat-row[data-cat="세금재정"]   { --cat-color: var(--spectrum-03); }
+  .cat-row[data-cat="의료보험"]   { --cat-color: var(--spectrum-04); }
+  .cat-row[data-cat="감정심리"]   { --cat-color: var(--spectrum-05); }
+  .cat-row[data-cat="운전교통"]   { --cat-color: var(--spectrum-06); }
+  .cat-row[data-cat="교회커뮤니티"]{ --cat-color: var(--spectrum-07); }
+  .cat-row[data-cat="주거부동산"] { --cat-color: var(--origin); }
+  .cat-row[data-cat="취업사업"]   { --cat-color: var(--spectrum-08); }
+  .cat-row[data-cat="기타생활"]   { --cat-color: var(--spectrum-09); }
+
+  /* ────────── 지역 신호 ────────── */
+  .region-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .region-card {
+    padding: 18px 20px;
+    background: var(--bg-whisper); border: 1px solid var(--line); border-radius: 14px;
+  }
+  .region-card .city {
+    font-size: 1rem; font-weight: 500; color: var(--text); margin-bottom: 4px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .region-card .city::before {
+    content: ''; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--cat-color, var(--spectrum-01));
+  }
+  .region-card .top-q {
+    font-size: .88rem; color: var(--text-muted); margin: 6px 0;
+    line-height: 1.5;
+  }
+  .region-card .signal {
+    font-size: .76rem; color: var(--text-faint); letter-spacing: .3px;
+    margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line);
+  }
+
+  .region-card[data-city="seattle"]   { --cat-color: var(--origin); }
+  .region-card[data-city="la"]        { --cat-color: var(--spectrum-02); }
+  .region-card[data-city="nyc"]       { --cat-color: var(--spectrum-03); }
+  .region-card[data-city="toronto"]   { --cat-color: var(--spectrum-04); }
+  .region-card[data-city="sydney"]    { --cat-color: var(--spectrum-07); }
+  .region-card[data-city="vancouver"] { --cat-color: var(--spectrum-06); }
+
+  /* ────────── 변화 ────────── */
+  .change-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+  .change-card {
+    padding: 18px 20px; background: var(--bg-whisper); border: 1px solid var(--line); border-radius: 14px;
+  }
+  .change-card .tag {
+    display: inline-block; font-size: .72rem; letter-spacing: 1.5px;
+    padding: 3px 10px; border-radius: 999px; margin-bottom: 10px;
+  }
+  .change-card.rise   .tag { background: color-mix(in srgb, var(--spectrum-06) 15%, transparent); color: var(--spectrum-06); }
+  .change-card.new    .tag { background: color-mix(in srgb, var(--spectrum-04) 15%, transparent); color: var(--spectrum-04); }
+  .change-card.ease   .tag { background: color-mix(in srgb, var(--origin) 15%, transparent); color: var(--origin); }
+  .change-card .q { font-size: .95rem; color: var(--text); line-height: 1.5; }
+
+  /* ────────── 데이터 소스 ────────── */
+  .sources {
+    padding: 24px; background: var(--bg-mist); border-radius: 14px;
+    border: 1px solid var(--line);
+  }
+  .sources h3 { font-size: 1rem; font-weight: 500; margin-bottom: 12px; }
+  .sources ul { list-style: none; display: grid; gap: 8px; }
+  .sources li {
+    font-size: .88rem; color: var(--text-muted);
+    padding-left: 16px; position: relative;
+  }
+  .sources li::before {
+    content: ''; width: 5px; height: 5px; border-radius: 50%;
+    background: var(--text-faint);
+    position: absolute; left: 2px; top: 11px;
+  }
+  .sources .caveat {
+    margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--line);
+    font-size: .82rem; color: var(--text-faint); line-height: 1.65;
+  }
+
+  /* ────────── CTA ────────── */
+  .cta-wrap {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px; margin-top: 30px;
+  }
+  .cta-card {
+    display: block; padding: 22px; text-decoration: none;
+    background: var(--bg-whisper); border: 1px solid var(--line); border-radius: 14px;
+    color: var(--text); transition: all .3s ease;
+  }
+  .cta-card:hover {
+    border-color: var(--text); transform: translateY(-2px);
+    box-shadow: 0 10px 30px color-mix(in srgb, var(--text) 8%, transparent);
+  }
+  .cta-card .title { font-size: 1.05rem; font-weight: 500; margin-bottom: 6px; }
+  .cta-card .desc  { font-size: .85rem; color: var(--text-muted); line-height: 1.5; }
+  .cta-card .arrow { display: inline-block; margin-top: 10px; font-size: .85rem; color: var(--text-muted); }
+
+  footer {
+    text-align: center; padding: 40px 20px; color: var(--text-faint); font-size: .82rem;
+    border-top: 1px solid var(--line); margin-top: 60px;
+  }
+  footer a { color: var(--text-muted); text-decoration: none; }
+  footer a:hover { color: var(--text); }
+
+  @media (max-width: 640px) {
+    .q-card { grid-template-columns: 36px 1fr; gap: 12px; padding: 14px 16px; }
+    .q-card .sig { grid-column: 2; text-align: left; padding-top: 4px; }
+    .cat-row { grid-template-columns: 100px 1fr 40px; gap: 10px; }
+    .cat-row .name { font-size: .82rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="inner">
+    <a href="/" class="home" aria-label="HebronGuide 홈으로">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/>
+      </svg>
+      <span>HebronGuide</span>
+    </a>
+    <div class="brand"><span class="pulse" aria-hidden="true"></span>환대의 맥박</div>
+    <button class="mode-toggle" id="modeToggle" aria-label="낮/밤 모드 전환">낮</button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ────── Hero ────── -->
+  <section class="hero">
+    <span class="eyebrow">PUBLIC RESEARCH · 공개 리서치</span>
+    <h1>이번 달, 세계 각 도시의 한인이<br/><em>가장 많이 물은 10가지</em></h1>
+    <p class="lead">
+      HebronGuide는 "미국 사는 한국인"·MissyUSA·캐나다 한국일보·호주나라 같은 공개 커뮤니티에서
+      이번 달 가장 자주 반복된 질문들을 공공 사실 기반으로 모아 매월 공개합니다.
+      우리의 답이 아니라, 당신 곁의 사람들이 지금 무엇을 묻고 있는지를 먼저 봅니다.
+    </p>
+    <div class="meta">
+      <span><span class="dot" aria-hidden="true"></span>2026년 10월</span>
+      <span>샘플 수집 10건 · 1호</span>
+      <span>다음 호: 11월 15일</span>
+    </div>
+  </section>
+
+  <!-- ────── Top 10 질문 ────── -->
+  <section>
+    <div class="section-head">
+      <span class="label">01 · TOP 10</span>
+      <h2>이번 달 가장 많이 반복된 10가지</h2>
+      <p>신호(S)는 긴급도(1-5)와 반복 빈도를 함께 반영한 지수입니다. 숫자가 아니라 사람의 호흡을 재는 척도입니다.</p>
+    </div>
+
+    <div class="top10">
+
+      <div class="q-card" data-cat="세금재정">
+        <div class="rank">01</div>
+        <div class="body">
+          <div class="q-text">FBAR 신고 — 올해도 10월이 되자 급증했습니다</div>
+          <div class="q-meta">
+            <span class="cat">세금재정</span>
+            <span>· 전국 · 영주권</span>
+          </div>
+        </div>
+        <div class="sig"><strong>S 5.0</strong>긴급</div>
+      </div>
+
+      <div class="q-card" data-cat="행정비자">
+        <div class="rank">02</div>
+        <div class="body">
+          <div class="q-text">H-1B 추첨에서 떨어졌을 때 선택지는 — 유학생들의 가을 질문</div>
+          <div class="q-meta">
+            <span class="cat">행정비자</span>
+            <span>· 시애틀 · 유학생</span>
+          </div>
+        </div>
+        <div class="sig"><strong>S 4.0</strong>높음</div>
+      </div>
+
+      <div class="q-card" data-cat="감정심리">
+        <div class="rank">03</div>
+        <div class="body">
+          <div class="q-text">아이가 학교 적응을 힘들어 할 때 — 조용히 묻는 어머니들의 질문</div>
+          <div class="q-meta">
+            <span class="cat">감정심리</span>
+            <span>· LA · 가족</span>
+          </div>
+        </div>
+        <div class="sig"><strong>S 4.0</strong>높음</div>
+      </div>
+
+      <div class="q-card" data-cat="행정비자">
+        <div class="rank">04</div>
+        <div class="body">
+          <div class="q-text">호주 영주권 PR 189 — 시드니에서 반복되는 서류 체크</div>
+          <div class="q-meta">
+            <span class="cat">행정비자</span>
+            <span>· 시드니 · 유학생</span>
+          </div>
+        </div>
+        <div class="sig"><strong>S 4.0</strong>높음</div>
+      </div>
+
+      <div class="q-card" data-cat="운전교통">
+        <div class="rank">05</div>
+        <div class="body">
+          <div class="q-text">워싱턴주 운전면허 교환에 필요한 서류 — 주재원 가족 반복 질문</div>
+          <div class="q-meta">
+            <span class="cat">운전교통</span>
+            <span>· 시애틀 · 주재원</span>
+          </div>
+        </div>
+        <div class="sig"><strong>S 3.0</strong>보통</div>
+      </div>
+
+      <div class="q-card" data-cat="학군교육">
+        <div class="rank">06</div>
+        <div class="body">
+          <div class="q-text">초등학교 ESL 입학 절차 — 세리토스 학군에서 반복</div>
+          <div class="q-meta">
+            <span class="cat">학군교육</span>
+            <span>· LA · 가족</span>
+          </div>
+        </div>
+        <div class="sig"><strong>S 3.0</strong>보통</div>
+      </div>
+
+      <div class="q-card" data-cat="주거부동산">
+        <div class="rank">07</div>
+        <div class="body">
+          <div class="q-text">글렌뷰 vs 노스브룩 — 시카고 가족 이주 자리 고르기</div>
+          <div class="q-meta">
+            <span class="cat">주거부동산</span>
+            <span>· 시카고 · 가족</span>
+          </div>
+        </div>
+        <div class="sig"><strong>S 3.0</strong>보통</div>
+      </div>
+
+      <div class="q-card" data-cat="취업사업">
+        <div class="rank">08</div>
+        <div class="body">
+          <div class="q-text">LinkedIn 프로필을 영어로 어떻게 — 유학생 취업 질문</div>
+          <div class="q-meta">
+            <span class="cat">취업사업</span>
+            <span>· 전국 · 유학생</span>
+          </div>
+        </div>
+        <div class="sig"><strong>S 3.0</strong>보통</div>
+      </div>
+
+      <div class="q-card" data-cat="교회커뮤니티">
+        <div class="rank">09</div>
+        <div class="body">
+          <div class="q-text">우리 지역 한인 교회 추천 — 꾸준히 반복되는 가족 질문</div>
+          <div class="q-meta">
+            <span class="cat">교회커뮤니티</span>
+            <span>· 전국 · 가족</span>
+          </div>
+        </div>
+        <div class="sig"><strong>S 2.0</strong>낮음</div>
+      </div>
+
+      <div class="q-card" data-cat="의료보험">
+        <div class="rank">10</div>
+        <div class="body">
+          <div class="q-text">한국어 가능 치과 — 뉴욕 가족 반복 질문</div>
+          <div class="q-meta">
+            <span class="cat">의료보험</span>
+            <span>· 뉴욕 · 가족</span>
+          </div>
+        </div>
+        <div class="sig"><strong>S 2.0</strong>낮음</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ────── 카테고리 분포 ────── -->
+  <section>
+    <div class="section-head">
+      <span class="label">02 · 10대 카테고리 분포</span>
+      <h2>어떤 질문이 가장 자주 올라오는가</h2>
+      <p>이번 달 수집된 질문을 10개 카테고리로 분류했습니다. 한 질문이 두 카테고리에 걸칠 땐 더 가까운 쪽으로 분류합니다.</p>
+    </div>
+
+    <div class="cat-grid">
+      <div class="cat-row" data-cat="행정비자"><div class="name">행정·비자</div><div class="bar"><div class="bar-fill" style="width:20%"></div></div><div class="pct">20%</div></div>
+      <div class="cat-row" data-cat="세금재정"><div class="name">세금·재정</div><div class="bar"><div class="bar-fill" style="width:10%"></div></div><div class="pct">10%</div></div>
+      <div class="cat-row" data-cat="학군교육"><div class="name">학군·교육</div><div class="bar"><div class="bar-fill" style="width:10%"></div></div><div class="pct">10%</div></div>
+      <div class="cat-row" data-cat="의료보험"><div class="name">의료·보험</div><div class="bar"><div class="bar-fill" style="width:10%"></div></div><div class="pct">10%</div></div>
+      <div class="cat-row" data-cat="감정심리"><div class="name">감정·심리</div><div class="bar"><div class="bar-fill" style="width:10%"></div></div><div class="pct">10%</div></div>
+      <div class="cat-row" data-cat="운전교통"><div class="name">운전·교통</div><div class="bar"><div class="bar-fill" style="width:10%"></div></div><div class="pct">10%</div></div>
+      <div class="cat-row" data-cat="교회커뮤니티"><div class="name">교회·커뮤니티</div><div class="bar"><div class="bar-fill" style="width:10%"></div></div><div class="pct">10%</div></div>
+      <div class="cat-row" data-cat="주거부동산"><div class="name">주거·부동산</div><div class="bar"><div class="bar-fill" style="width:10%"></div></div><div class="pct">10%</div></div>
+      <div class="cat-row" data-cat="취업사업"><div class="name">취업·사업</div><div class="bar"><div class="bar-fill" style="width:10%"></div></div><div class="pct">10%</div></div>
+      <div class="cat-row" data-cat="기타생활"><div class="name">기타 생활</div><div class="bar"><div class="bar-fill" style="width:0%"></div></div><div class="pct">0%</div></div>
+    </div>
+  </section>
+
+  <!-- ────── 지역별 신호 ────── -->
+  <section>
+    <div class="section-head">
+      <span class="label">03 · 지역별 신호</span>
+      <h2>각 도시의 이번 달 1번 질문</h2>
+      <p>도시마다 반복되는 질문의 결이 다릅니다. 각 지역이 지금 무엇을 가장 많이 묻고 있는지 한눈에.</p>
+    </div>
+
+    <div class="region-grid">
+      <div class="region-card" data-city="seattle">
+        <div class="city">시애틀 · 창립의 자리</div>
+        <div class="top-q">워싱턴주 운전면허 교환 서류</div>
+        <div class="signal">주재원 가족 반복 · S 3.0</div>
+      </div>
+      <div class="region-card" data-city="la">
+        <div class="city">로스앤젤레스</div>
+        <div class="top-q">세리토스 학군 초등 ESL 입학</div>
+        <div class="signal">가족 반복 · S 3.0</div>
+      </div>
+      <div class="region-card" data-city="nyc">
+        <div class="city">뉴욕</div>
+        <div class="top-q">한국어 가능 치과를 찾는 조용한 질문</div>
+        <div class="signal">가족 반복 · S 2.0</div>
+      </div>
+      <div class="region-card" data-city="sydney">
+        <div class="city">시드니</div>
+        <div class="top-q">호주 영주권 PR 189 서류 체크</div>
+        <div class="signal">유학생 반복 · S 4.0</div>
+      </div>
+      <div class="region-card" data-city="vancouver">
+        <div class="city">밴쿠버</div>
+        <div class="top-q">(이번 달 수집 샘플 부족)</div>
+        <div class="signal">11월 보강 예정</div>
+      </div>
+      <div class="region-card" data-city="toronto">
+        <div class="city">토론토</div>
+        <div class="top-q">(이번 달 수집 샘플 부족)</div>
+        <div class="signal">11월 보강 예정</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── 변화 ────── -->
+  <section>
+    <div class="section-head">
+      <span class="label">04 · 지난 달 대비 변화</span>
+      <h2>이번 달 새로 떠오르거나 가라앉은 것</h2>
+      <p>신호는 숫자이기 전에 호흡입니다. 어떤 질문이 급해지고, 어떤 질문이 가라앉았는지 함께 봅니다.</p>
+    </div>
+
+    <div class="change-grid">
+      <div class="change-card rise">
+        <span class="tag">RISING · 상승</span>
+        <div class="q">FBAR 신고 질문이 10월 들어 급증했습니다. 매년 반복되는 가을 신호입니다.</div>
+      </div>
+      <div class="change-card new">
+        <span class="tag">NEW · 신규</span>
+        <div class="q">LinkedIn 프로필 영어 작성 질문이 유학생 가을 취업 시즌과 함께 새로 올라왔습니다.</div>
+      </div>
+      <div class="change-card ease">
+        <span class="tag">EASED · 가라앉음</span>
+        <div class="q">여름 내내 반복되던 학기 초 ESL 입학 질문의 긴급도는 점차 가라앉고 있습니다.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── 데이터 소스·방법론 ────── -->
+  <section>
+    <div class="section-head">
+      <span class="label">05 · 데이터 소스 · 방법론</span>
+      <h2>어떻게 모았는가 — 투명한 공개</h2>
+    </div>
+
+    <div class="sources">
+      <h3>이번 달 수집 소스</h3>
+      <ul>
+        <li>Facebook "미국 사는 한국인" · 공개 그룹 · 10월 1-16일 피드</li>
+        <li>Facebook "시애틀 사는 한국인" · 공개 그룹</li>
+        <li>MissyUSA · 공개 웹포럼 · 생활·교육 게시판</li>
+        <li>호주나라 · 공개 커뮤니티 게시판</li>
+        <li>HebronGuide 자체 CSV 트래커 (<code>docs/community-research-tracker-template.csv</code>)</li>
+      </ul>
+      <div class="caveat">
+        수집 원칙 — 공개 글만 봅니다. 개인 식별 정보, 사적 메시지, 비공개 그룹은 포함하지 않습니다.
+        질문은 요지를 보존하되, 올린 사람이 특정되지 않도록 다시 쓰고 요약합니다.
+        1호는 샘플 10건으로 트렌드 윤곽을 보여드리는 수준입니다 — 2호(11월)부터는 월 100건 이상을 목표로 합니다.
+        수치가 완결된 숫자가 아니라 커뮤니티의 호흡을 재는 척도임을 기억해 주시기 바랍니다.
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── CTA ────── -->
+  <section>
+    <div class="section-head">
+      <span class="label">06 · 이어 가기</span>
+      <h2>이번 달 질문을 품고 다음 자리로</h2>
+    </div>
+
+    <div class="cta-wrap">
+      <a href="/map.html" class="cta-card">
+        <div class="title">환대의 지도</div>
+        <div class="desc">세계 각 도시의 환대 등불을 지구본에서 한눈에.</div>
+        <div class="arrow">열어 보기 →</div>
+      </a>
+      <a href="/lounge.html" class="cta-card">
+        <div class="title">환대의 라운지</div>
+        <div class="desc">신뢰할 수 있는 한인 공동체·언론 레지스트리.</div>
+        <div class="arrow">열어 보기 →</div>
+      </a>
+      <a href="/seattle-plus.html" class="cta-card">
+        <div class="title">Seattle+ 7일 체크리스트</div>
+        <div class="desc">시애틀·벨뷰·린우드 정착을 하루 10분씩.</div>
+        <div class="arrow">열어 보기 →</div>
+      </a>
+      <a href="/ad-request.html" class="cta-card">
+        <div class="title">광고 신청 · 월 $6.99</div>
+        <div class="desc">각 도시 질문의 답이 되는 지역 가게를 알립니다.</div>
+        <div class="arrow">신청하기 →</div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div>HebronGuide · Hebron Platform LLC · 시애틀에서</div>
+  <div style="margin-top:8px"><a href="/">홈</a> · <a href="/map.html">지도</a> · <a href="/lounge.html">라운지</a> · <a href="/light.html">분광</a> · <a href="/pulse.html">맥박</a></div>
+</footer>
+
+<script>
+  (function(){
+    var toggle = document.getElementById('modeToggle');
+    var saved = null;
+    try { saved = localStorage.getItem('hg-mode'); } catch(e){}
+    if (saved === 'night') { document.documentElement.setAttribute('data-mode','night'); toggle.textContent = '밤'; }
+    toggle.addEventListener('click', function(){
+      var cur = document.documentElement.getAttribute('data-mode');
+      if (cur === 'night') {
+        document.documentElement.removeAttribute('data-mode');
+        toggle.textContent = '낮';
+        try { localStorage.setItem('hg-mode','day'); } catch(e){}
+      } else {
+        document.documentElement.setAttribute('data-mode','night');
+        toggle.textContent = '밤';
+        try { localStorage.setItem('hg-mode','night'); } catch(e){}
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

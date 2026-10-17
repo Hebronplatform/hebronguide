@@ -247,6 +247,8 @@ cp hebronguide/public/light.html                    public/light.html           
 cp hebronguide/public/home-light.html               public/home-light.html                 2>/dev/null || true
 # From — 커뮤니티별 전용 랜딩 (2026-10-17, URL 파라미터로 커뮤니티명 치환, UTM 추적)
 cp hebronguide/public/from.html                     public/from.html                       2>/dev/null || true
+# Pulse — 환대의 맥박 (2026-10-17 신규 · 공개 리서치 대시보드 · 월별 Top 10 질문·카테고리 분포·지역 신호)
+cp hebronguide/public/pulse.html                    public/pulse.html                      2>/dev/null || true
 cp hebronguide/public/events.json                   public/events.json                     2>/dev/null || true
 # 자가 점검 요약 — 상황판이 읽는다 (공개돼도 안전한 숫자만 들어 있다)
 cp hebronguide/public/audit.json                    public/audit.json                      2>/dev/null || true
