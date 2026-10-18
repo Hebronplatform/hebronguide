@@ -449,5 +449,12 @@ node seo-inject.js
 echo "--- Injecting city-specific content (FAQ · keywords · areaServed) ---"
 node city-content-inject.js
 
+# 9-c. 도시별 특화 랜딩 생성 (/{slug}-plus.html)
+# 템플릿(city-plus-template.html) × 데이터(city-plus-data.json) × FAQ(city-content.json)
+# → 10개 도시 특화 랜딩 자동 생성 (seoul·busan·incheon·bundang·jeju·mexicocity·monterrey·guadalajara·paris·berlin)
+# seattle-plus.html은 수제 유지(스크립트에서 건너뜀).
+echo "--- Generating city-plus landings ---"
+node hebronguide/generate-city-plus.cjs || echo "  ⚠️ city-plus 생성 건너뜀 (빌드 계속)"
+
 echo "=== Deploy Complete — cities auto-synced to cities.json ==="
 ls public/

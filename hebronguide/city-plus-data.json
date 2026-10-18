@@ -1,0 +1,298 @@
+{
+  "_doc": "도시별 특화 랜딩 데이터. generate-city-plus.js가 city-plus-template.html과 조합해 /{slug}-plus.html을 생성한다. city-content.json은 FAQ·메타만 담고, 이 파일은 특화 랜딩 전용 필드만 담는다.",
+  "_schema": {
+    "color": "환대의 분광 색 매핑 (origin|spectrum-01~07)",
+    "tagline": "Hero 아래 한 문장 서사",
+    "originNote": "이 도시의 환대 성격 짧은 설명",
+    "checklist": "7일 체크리스트 항목 7개 (제목 + 설명)",
+    "neighborhoods": "생활권 비교 3-4개 (이름 + 프로필)",
+    "officialResources": "공식 자원 링크 3-5개 (label + url + 설명)",
+    "faqPicks": "city-content.json에서 뽑을 FAQ 인덱스 6개"
+  },
+
+  "seoul": {
+    "color": "spectrum-01",
+    "tagline": "역이민·귀국·주재원 복귀를 위한 서울 환대의 자리",
+    "originNote": "서울은 돌아온 사람들이 다시 사는 자리입니다. 어릴 적 떠난 자리와 지금의 서울 사이, 그 간극을 걸어오는 발걸음을 위한 안내입니다.",
+    "checklist": [
+      { "title": "거주지 전입신고", "desc": "입국 후 14일 이내 거주지 관할 동 주민센터 또는 정부24에서 신고합니다." },
+      { "title": "재외국민용 주민등록", "desc": "거주지 구청 민원실에서 신청. 재외국민등록이 안 돼 있으면 함께 처리됩니다." },
+      { "title": "해외 면허 교환", "desc": "도로교통공단 운전면허시험장 (강남·서부 등). 상호인정 국가 조건은 driver.korea.go.kr에서 확인." },
+      { "title": "자녀 학적 이관", "desc": "거주지 교육지원청 또는 서울특별시교육청 다문화·귀국 학생 담당 창구. 해외 성적 번역·공증 지참." },
+      { "title": "건강보험·국민연금", "desc": "국민건강보험공단(1577-1000)·국민연금공단(1355) 상담. 거주 180일 지역가입자 자동 편입." },
+      { "title": "은행 계좌·금융 재정비", "desc": "신분증·거주지 증빙 지참. 외환 송금·국세청 해외금융계좌 신고 요건 확인." },
+      { "title": "통신·인터넷 개통", "desc": "SKT·KT·LG U+ 또는 알뜰폰. 외국인등록증·여권·주민등록증 중 가능한 서류로 개통." }
+    ],
+    "neighborhoods": [
+      { "name": "강남·분당 생활권", "profile": "자녀 영어 환경·국제학교·주재원 네트워크. 상대적으로 높은 임대료." },
+      { "name": "용산·마포·한남", "profile": "국제학교·외국인 커뮤니티·대사관 밀집. 서울 중심 접근성." },
+      { "name": "서초·반포·동작", "profile": "교육·녹지·업무 균형. 가족 단위 안정적 생활권." },
+      { "name": "성수·광진·송파", "profile": "신흥 상업·IT 창업·젊은 세대. 상대적으로 저렴한 신축 단지." }
+    ],
+    "officialResources": [
+      { "label": "서울특별시", "url": "https://www.seoul.go.kr", "desc": "시정·민원 통합" },
+      { "label": "서울특별시교육청", "url": "https://www.sen.go.kr", "desc": "자녀 학적 이관 안내" },
+      { "label": "재외동포청", "url": "https://www.oka.go.kr", "desc": "역이민·귀국자 지원" },
+      { "label": "정부24", "url": "https://www.gov.kr", "desc": "전입신고·주민등록 등 통합 민원" },
+      { "label": "안전운전 통합민원", "url": "https://www.safedriving.or.kr", "desc": "면허 교환·갱신" }
+    ],
+    "faqPicks": [0, 1, 3, 4, 5, 7]
+  },
+
+  "busan": {
+    "color": "spectrum-02",
+    "tagline": "역이민·은퇴·바다를 보며 다시 사는 자리",
+    "originNote": "부산은 바다와 가까워지려는 사람들의 자리입니다. 서울보다 넉넉하고 바닷바람이 긴 하루를 만듭니다.",
+    "checklist": [
+      { "title": "거주지 전입신고", "desc": "거주지 관할 동 주민센터 또는 정부24." },
+      { "title": "재외국민용 주민등록", "desc": "거주지 구청 민원실에서 신청." },
+      { "title": "해외 면허 교환", "desc": "도로교통공단 부산 운전면허시험장 (사상·남부 등)." },
+      { "title": "자녀 학적 이관", "desc": "부산광역시교육청 또는 거주지 교육지원청. 해외 성적 번역·공증 지참." },
+      { "title": "건강보험·국민연금", "desc": "국민건강보험공단(1577-1000)·국민연금공단(1355) 상담." },
+      { "title": "은행 계좌·금융 재정비", "desc": "신분증·거주지 증빙 지참. 해외금융계좌 신고 요건 확인." },
+      { "title": "통신·인터넷 개통", "desc": "SKT·KT·LG U+·알뜰폰. 신축 단지는 기가 결합 상품 활발." }
+    ],
+    "neighborhoods": [
+      { "name": "해운대·수영·광안리", "profile": "바다 조망·신시가지·국제 환경. 임대료 지역 상위." },
+      { "name": "동래·연제·금정", "profile": "교통·학군·전통 생활권. 가격 균형." },
+      { "name": "서면·연산·부전", "profile": "상업·의료 집중 중심지." },
+      { "name": "영도·남포·중구", "profile": "역사·관광·바닷가. 재생사업 활발." }
+    ],
+    "officialResources": [
+      { "label": "부산광역시", "url": "https://www.busan.go.kr", "desc": "시정·민원 통합" },
+      { "label": "부산광역시교육청", "url": "https://www.pen.go.kr", "desc": "자녀 학적 이관" },
+      { "label": "재외동포청", "url": "https://www.oka.go.kr", "desc": "역이민·귀국자 지원" },
+      { "label": "정부24", "url": "https://www.gov.kr", "desc": "전입신고·주민등록" }
+    ],
+    "faqPicks": [0, 1, 2, 3, 4, 7]
+  },
+
+  "incheon": {
+    "color": "spectrum-04",
+    "tagline": "공항·국제도시·바다 — 세계와 가장 가까운 자리",
+    "originNote": "인천은 세계를 오가는 자리입니다. 공항과 바다, 송도 국제도시가 글로벌 가족의 하루를 받쳐 줍니다.",
+    "checklist": [
+      { "title": "거주지 전입신고", "desc": "거주지 관할 동 주민센터 또는 정부24." },
+      { "title": "재외국민용 주민등록", "desc": "거주지 구청 민원실에서 신청." },
+      { "title": "해외 면허 교환", "desc": "도로교통공단 인천 운전면허시험장." },
+      { "title": "자녀 학적 이관 / 국제학교", "desc": "인천광역시교육청 (남부·동부·북부·강화). 송도 Chadwick 등 국제학교는 공식 홈페이지 입학 안내 확인." },
+      { "title": "건강보험·국민연금", "desc": "국민건강보험공단(1577-1000)·국민연금공단(1355) 상담." },
+      { "title": "은행 계좌·금융 재정비", "desc": "신분증·거주지 증빙 지참." },
+      { "title": "통신·인터넷 개통", "desc": "SKT·KT·LG U+·알뜰폰. 송도·영종 신축 아파트 기가 결합 상품." }
+    ],
+    "neighborhoods": [
+      { "name": "송도 국제도시", "profile": "국제학교·고층 아파트·공원. 외국 거주 경험 가정 선호." },
+      { "name": "영종·운서", "profile": "공항 접근성·자연 환경. 공항 종사자 가족." },
+      { "name": "연수·구월·주안", "profile": "전통 생활권·균형 가격·교통." },
+      { "name": "부평·계양", "profile": "서울 접근성·주거·상업." }
+    ],
+    "officialResources": [
+      { "label": "인천광역시", "url": "https://www.incheon.go.kr", "desc": "시정·민원 통합" },
+      { "label": "인천광역시교육청", "url": "https://www.ice.go.kr", "desc": "학적 이관·국제학교" },
+      { "label": "재외동포청", "url": "https://www.oka.go.kr", "desc": "재외동포 지원" },
+      { "label": "정부24", "url": "https://www.gov.kr", "desc": "통합 민원" }
+    ],
+    "faqPicks": [0, 1, 2, 3, 5, 7]
+  },
+
+  "bundang": {
+    "color": "origin",
+    "tagline": "미국·캐나다 귀국 가족이 가장 많이 선택하는 자리",
+    "originNote": "분당·수지·판교는 돌아온 가족이 가장 자연스럽게 자리 잡는 곳입니다. 영어 환경과 서울 접근성, 녹지가 한자리에 모여 있습니다.",
+    "checklist": [
+      { "title": "거주지 전입신고", "desc": "성남시·용인시 관할 동 주민센터 또는 정부24." },
+      { "title": "재외국민용 주민등록", "desc": "성남시청·용인시청 민원실." },
+      { "title": "해외 면허 교환 (미국 상호인정)", "desc": "도로교통공단 성남·용인 운전면허시험장. 한-미 상호인정 조건은 driver.korea.go.kr." },
+      { "title": "자녀 학적 이관 / 국제학교", "desc": "경기도교육청·성남교육지원청·용인교육지원청. 지역 국제학교 입학 조건 각 학교 홈페이지." },
+      { "title": "건강보험·국민연금", "desc": "국민건강보험공단(1577-1000)·국민연금공단(1355)." },
+      { "title": "은행 계좌·해외금융계좌 신고", "desc": "국세청 해외금융계좌 신고 요건(50만 달러 초과) 확인." },
+      { "title": "통신·인터넷 개통", "desc": "SKT·KT·LG U+·알뜰폰. 신축 대단지 기가 결합 상품." }
+    ],
+    "neighborhoods": [
+      { "name": "정자·서현·수내 (분당 중심)", "profile": "분당 중심 상업·학군. 역세권 중심 아파트." },
+      { "name": "수지 (죽전·풍덕천·상현)", "profile": "가족 단지·녹지. 미주 귀국 가정 다수." },
+      { "name": "판교 (서판교·신분당)", "profile": "IT 테크노밸리·신축 단지. 재취업 가정." },
+      { "name": "용인 처인·동백", "profile": "가격 균형·국제학교 접근. 교외 환경." }
+    ],
+    "officialResources": [
+      { "label": "성남시", "url": "https://www.seongnam.go.kr", "desc": "분당·판교 관할" },
+      { "label": "용인시", "url": "https://www.yongin.go.kr", "desc": "수지·죽전 관할" },
+      { "label": "경기도교육청", "url": "https://www.goe.go.kr", "desc": "학적 이관" },
+      { "label": "재외동포청", "url": "https://www.oka.go.kr", "desc": "역이민·귀국자 지원" },
+      { "label": "국세청 해외금융계좌 신고", "url": "https://www.nts.go.kr", "desc": "미주 귀국자 신고 요건" }
+    ],
+    "faqPicks": [0, 2, 3, 6, 7, 11]
+  },
+
+  "jeju": {
+    "color": "spectrum-07",
+    "tagline": "자녀의 영어와 가족의 숨을 함께 두는 섬",
+    "originNote": "제주는 바람과 바다가 하루를 재편하는 자리입니다. 영어교육도시의 국제학교와 조용한 자연이 한자리에 모여 있습니다.",
+    "checklist": [
+      { "title": "거주지 전입신고", "desc": "제주시·서귀포시 관할 읍면동 주민센터 또는 정부24." },
+      { "title": "재외국민용 주민등록", "desc": "제주시청·서귀포시청 민원실." },
+      { "title": "해외 면허 교환", "desc": "도로교통공단 제주 운전면허시험장." },
+      { "title": "자녀 학적 이관 / 국제학교", "desc": "제주특별자치도교육청 (제주시·서귀포시 교육지원청). NLCS Jeju·BHA·KIS·SJA 등 국제학교는 교육도시 공식 홈페이지." },
+      { "title": "건강보험·국민연금", "desc": "국민건강보험공단(1577-1000)·국민연금공단(1355)." },
+      { "title": "은행 계좌·금융 재정비", "desc": "신분증·거주지 증빙 지참." },
+      { "title": "통신·인터넷 개통", "desc": "SKT·KT·LG U+·알뜰폰. 일부 외곽 지역은 입주 전 커버리지 확인 권장." }
+    ],
+    "neighborhoods": [
+      { "name": "서귀포 대정 (영어교육도시)", "profile": "국제학교 가족 전용 생활권. NLCS·BHA·KIS·SJA 접근성." },
+      { "name": "제주시 연동·노형·아라", "profile": "공항·업무 접근성·중심 상업." },
+      { "name": "애월·구좌·조천", "profile": "자연·휴식형 라이프. 바닷가 단독주택." },
+      { "name": "서귀포 중문·법환", "profile": "리조트·호텔·관광지. 중남부 생활권." }
+    ],
+    "officialResources": [
+      { "label": "제주특별자치도", "url": "https://www.jeju.go.kr", "desc": "도정·민원 통합" },
+      { "label": "제주특별자치도교육청", "url": "https://www.jje.go.kr", "desc": "학적 이관·국제학교 안내" },
+      { "label": "제주영어교육도시 JDC", "url": "https://www.jdcenter.com", "desc": "영어교육도시 개발 공사" },
+      { "label": "재외동포청", "url": "https://www.oka.go.kr", "desc": "재외동포 지원" }
+    ],
+    "faqPicks": [0, 1, 2, 3, 7, 9]
+  },
+
+  "mexicocity": {
+    "color": "spectrum-05",
+    "tagline": "Zona Rosa에서 Polanco까지 — 멕시코의 한인 중심",
+    "originNote": "멕시코시티는 한국 외교와 사업의 라틴 아메리카 중심지입니다. Zona Rosa의 전통적 한인타운과 Polanco·Santa Fe의 신흥 가족 생활권이 공존합니다.",
+    "checklist": [
+      { "title": "주소 등록 (comprobante)", "desc": "임대차 계약·공공요금 영수증을 주소 증빙으로 보관. 많은 행정에 필수." },
+      { "title": "체류 비자·CURP 등록", "desc": "INM(국립이민청)에서 거주 비자. CURP는 세무·학교·보험 전반에 사용." },
+      { "title": "운전면허 (licencia)", "desc": "장기 거주자는 SEMOVI(CDMX 교통국)에서 licencia 신청. 단기는 IDP+한국 면허." },
+      { "title": "자녀 학교", "desc": "거주지 Alcaldía 공립학교 또는 Polanco·Santa Fe·Interlomas 국제학교 (미국·독일·프랑스·일본 커리큘럼)." },
+      { "title": "의료보험·사립 병원", "desc": "회사 또는 개인 사립 의료보험(GNP·AXA·MetLife 등)과 지정 병원 네트워크 확인." },
+      { "title": "은행 계좌 (RFC·CURP 지참)", "desc": "BBVA·Banorte·Santander·HSBC·Citibanamex 등. 세무번호 RFC 발급은 SAT에서." },
+      { "title": "통신·인터넷", "desc": "Telcel·AT&T·Movistar. 외국인은 여권·주소 증빙 지참." }
+    ],
+    "neighborhoods": [
+      { "name": "Zona Rosa / Cuauhtémoc", "profile": "전통 한인타운. 식당·상점·마트 밀집." },
+      { "name": "Polanco / Lomas", "profile": "주재원 선호 지역. 치안·국제학교 접근성." },
+      { "name": "Santa Fe", "profile": "서부 신흥 업무·거주 지역. 다국적 기업 사무실 밀집." },
+      { "name": "Interlomas / Herradura", "profile": "교외 가족 단지. 조용한 환경." }
+    ],
+    "officialResources": [
+      { "label": "주 멕시코 대한민국 대사관", "url": "https://overseas.mofa.go.kr/mx-ko/index.do", "desc": "영사·재외국민 민원" },
+      { "label": "영사콜센터", "url": "tel:+82-2-3210-0404", "desc": "24시간 영사 상담" },
+      { "label": "SEMOVI (운전면허)", "url": "https://www.semovi.cdmx.gob.mx", "desc": "CDMX 교통국" },
+      { "label": "SAT (세무청·RFC)", "url": "https://www.sat.gob.mx", "desc": "세무등록·RFC" },
+      { "label": "INM (이민청)", "url": "https://www.inm.gob.mx", "desc": "비자·거주허가" }
+    ],
+    "faqPicks": [0, 1, 3, 5, 6, 7]
+  },
+
+  "monterrey": {
+    "color": "spectrum-02",
+    "tagline": "KIA·현대·협력사 — 북부 멕시코 한국 기업의 자리",
+    "originNote": "몬테레이는 한국 완성차 공장과 협력사가 중심이 된 북부 멕시코의 한인 생활권입니다. 산페드로 가르사가르시아의 치안·교육 수준이 가족 단위에게 안정감을 줍니다.",
+    "checklist": [
+      { "title": "주소 등록 (comprobante)", "desc": "임대차 계약·공공요금 영수증을 주소 증빙으로 보관." },
+      { "title": "체류 비자·CURP 등록", "desc": "INM 국립이민청. CURP는 전반적 행정에 사용." },
+      { "title": "운전면허", "desc": "누에보 레온 주 Movilidad에서 licencia 신청. 단기는 IDP+한국 면허." },
+      { "title": "자녀 학교", "desc": "ASFM·Instituto Irlandés·Prepa Tec 등 사립·국제학교. 입학 조건·대기 기간 미리 확인." },
+      { "title": "의료보험·사립 병원", "desc": "Hospital Zambrano Hellion·San José Tec·Christus Muguerza 등 자주 선택. 회사 보험 네트워크 먼저 확인." },
+      { "title": "은행 계좌 (RFC 지참)", "desc": "BBVA·Banorte·Santander·HSBC 등. RFC 발급은 SAT." },
+      { "title": "통신·인터넷", "desc": "Telcel·Movistar·AT&T. 산페드로는 광통신 커버리지 양호." }
+    ],
+    "neighborhoods": [
+      { "name": "San Pedro Garza García", "profile": "치안·교육·주재원 가족 1순위." },
+      { "name": "Valle Oriente / Cumbres", "profile": "신축 단지·가족 단위." },
+      { "name": "Apodaca / Pesquería", "profile": "공장 통근 생활권." },
+      { "name": "Guadalupe", "profile": "가격 접근성·통근 편의." }
+    ],
+    "officialResources": [
+      { "label": "주 멕시코 대한민국 대사관", "url": "https://overseas.mofa.go.kr/mx-ko/index.do", "desc": "영사 민원" },
+      { "label": "영사콜센터", "url": "tel:+82-2-3210-0404", "desc": "24시간 영사 상담" },
+      { "label": "Movilidad Nuevo León", "url": "https://www.nl.gob.mx", "desc": "운전면허·교통" },
+      { "label": "SAT", "url": "https://www.sat.gob.mx", "desc": "RFC·세무" },
+      { "label": "KOTRA 멕시코", "url": "https://www.kotra.or.kr", "desc": "한국 기업 지원" }
+    ],
+    "faqPicks": [0, 1, 3, 4, 5, 6]
+  },
+
+  "guadalajara": {
+    "color": "spectrum-03",
+    "tagline": "멕시코의 실리콘밸리 — IT 가족의 자리",
+    "originNote": "과달라하라는 멕시코 제2 도시이자 라틴 아메리카 IT 허브입니다. 반도체·전자·소프트웨어 기업에 소속된 한국인 가족이 자리 잡는 곳입니다.",
+    "checklist": [
+      { "title": "주소 등록 (comprobante)", "desc": "임대차·공공요금 영수증 주소 증빙 보관." },
+      { "title": "체류 비자·CURP 등록", "desc": "INM. CURP는 전반적 행정에 사용." },
+      { "title": "운전면허", "desc": "할리스코 주 교통 당국. 단기는 IDP+한국 면허." },
+      { "title": "자녀 학교", "desc": "ASFG·Instituto Thomas Jefferson·Colegio Americano 등 국제·사립." },
+      { "title": "의료보험·사립 병원", "desc": "Hospital Puerta de Hierro·San Javier 등 외국인 자주 선택." },
+      { "title": "은행 계좌 (RFC 지참)", "desc": "BBVA·Banorte·Santander·HSBC 등." },
+      { "title": "통신·인터넷", "desc": "Telcel·AT&T·Movistar. 사포판 중심지 광통신 양호." }
+    ],
+    "neighborhoods": [
+      { "name": "Zapopan Providencia", "profile": "교육·치안·중산층 밀집." },
+      { "name": "Puerta de Hierro / Valle Real", "profile": "주재원 가족 선호." },
+      { "name": "Andares / Zapopan 북부", "profile": "신축 상업·주거 복합." },
+      { "name": "Tlaquepaque", "profile": "전통·공예 지역. 생활권 외곽." }
+    ],
+    "officialResources": [
+      { "label": "주 멕시코 대한민국 대사관", "url": "https://overseas.mofa.go.kr/mx-ko/index.do", "desc": "영사 민원" },
+      { "label": "영사콜센터", "url": "tel:+82-2-3210-0404", "desc": "24시간 상담" },
+      { "label": "SAT", "url": "https://www.sat.gob.mx", "desc": "RFC·세무" },
+      { "label": "KOTRA 멕시코", "url": "https://www.kotra.or.kr", "desc": "한국 기업 지원" }
+    ],
+    "faqPicks": [0, 1, 3, 4, 5, 7]
+  },
+
+  "paris": {
+    "color": "spectrum-01",
+    "tagline": "Opéra에서 Latin Quarter까지 — 유학·주재·예술가의 자리",
+    "originNote": "파리는 유학과 사업과 예술이 교차하는 자리입니다. Opéra의 한국 거리와 유학생 숙소, 가족 거주의 외곽 생활권이 한 지도 안에 모여 있습니다.",
+    "checklist": [
+      { "title": "거주지 등록 (OFII 또는 ANEF)", "desc": "학생 비자(VLS-TS)로 입국 후 OFII 등록 또는 ANEF 온라인 유효화. 모든 체류 후속 절차의 베이스." },
+      { "title": "주거보조금 CAF (APL) 신청", "desc": "학생·장기 체류자는 caf.fr에서 APL 신청. 자격 조건 공식 확인." },
+      { "title": "운전면허 교환", "desc": "거주지 préfecture 또는 ANEF 포털. 한-프 상호인정 조건·필요 서류 공식 안내 확인." },
+      { "title": "자녀 학교", "desc": "거주지 Mairie d'arrondissement 공립학교 등록. 국제 섹션·유럽학교는 입학 조건 복잡." },
+      { "title": "건강보험 (CPAM) 가입", "desc": "ameli.fr에서 Sécurité sociale 등록. 대학생은 학교 신청·장기 체류자는 PUMa 자격." },
+      { "title": "은행 계좌 (RIB)", "desc": "BNP Paribas·Société Générale·Crédit Mutuel·LCL·BoursoBank 등. RIB는 각종 계약·보조금에 필수." },
+      { "title": "통신·인터넷", "desc": "Orange·SFR·Bouygues·Free 또는 MVNO. 체류증·RIB·주소 증빙 지참." }
+    ],
+    "neighborhoods": [
+      { "name": "1·2구 Opéra / Pyramides", "profile": "한국 거리 중심. 식당·마트·사업가 거점." },
+      { "name": "5·6구 Latin Quarter", "profile": "소르본 등 대학가. 유학생 밀집." },
+      { "name": "13·15구 아시아 커뮤니티", "profile": "아시아 수퍼마켓·중저가 주거." },
+      { "name": "교외 Boulogne·Issy·Suresnes", "profile": "가족 거주·국제학교 접근." }
+    ],
+    "officialResources": [
+      { "label": "주 프랑스 대한민국 대사관", "url": "https://overseas.mofa.go.kr/fr-ko/index.do", "desc": "영사·재외국민 민원" },
+      { "label": "영사콜센터", "url": "tel:+82-2-3210-0404", "desc": "24시간 영사 상담" },
+      { "label": "ANEF (체류증 포털)", "url": "https://administration-etrangers-en-france.interieur.gouv.fr", "desc": "체류증 발급·갱신" },
+      { "label": "CAF 주거보조금", "url": "https://www.caf.fr", "desc": "APL 주거 보조금 신청" },
+      { "label": "Ameli 건강보험", "url": "https://www.ameli.fr", "desc": "Sécurité sociale 등록" }
+    ],
+    "faqPicks": [0, 2, 3, 4, 6, 7]
+  },
+
+  "berlin": {
+    "color": "spectrum-04",
+    "tagline": "Charlottenburg에서 Mitte까지 — 유학·예술가·IT의 자리",
+    "originNote": "베를린은 유학과 예술과 IT가 섞여 사는 도시입니다. Charlottenburg의 전통적 한인 생활권과 Mitte·Prenzlauer Berg의 신흥 아시아 커뮤니티가 공존합니다.",
+    "checklist": [
+      { "title": "주민등록 (Anmeldung)", "desc": "거주지 Bürgeramt. 입국 후 2주 이내 예약·방문. 모든 행정의 베이스." },
+      { "title": "거주허가 (Aufenthaltserlaubnis)", "desc": "외국인청(LEA / Ausländerbehörde)에서 신청. 예약 대기 길 수 있어 입국 즉시 예약 권장." },
+      { "title": "운전면허 전환", "desc": "거주 6개월 초과 시 Führerscheinstelle에서 독일 면허로 전환. 한-독 상호인정 조건 공식 확인." },
+      { "title": "자녀 학교", "desc": "거주지 Bezirk 교육 담당 창구. 국제학교(JFK School·BIS·BMS 등) 공식 홈페이지 입학 조건." },
+      { "title": "건강보험 (gesetzlich/privat)", "desc": "공보험(TK·AOK·Barmer 등) 또는 사보험. 학생·근로자는 공보험 가입이 보통." },
+      { "title": "은행 계좌 (Girokonto)", "desc": "Deutsche Bank·Commerzbank·Sparkasse·N26·DKB 등. Anmeldung 완료 후 가입이 수월." },
+      { "title": "통신·인터넷", "desc": "Deutsche Telekom·Vodafone·O2 또는 MVNO(Aldi Talk·Congstar). Anmeldung 완료 후 계약." }
+    ],
+    "neighborhoods": [
+      { "name": "Charlottenburg", "profile": "전통적 한인 생활권·식당·식료품점 밀집." },
+      { "name": "Mitte", "profile": "중심·대사관·국제학교 접근성." },
+      { "name": "Prenzlauer Berg", "profile": "가족·젊은 세대·카페·녹지." },
+      { "name": "Neukölln / Friedrichshain", "profile": "유학생·예술가 선호. 상대적 저렴한 임대." }
+    ],
+    "officialResources": [
+      { "label": "주 독일 대한민국 대사관", "url": "https://overseas.mofa.go.kr/de-ko/index.do", "desc": "영사·재외국민 민원" },
+      { "label": "영사콜센터", "url": "tel:+82-2-3210-0404", "desc": "24시간 상담" },
+      { "label": "Bürgeramt 예약", "url": "https://service.berlin.de", "desc": "Anmeldung·주민등록" },
+      { "label": "LEA 외국인청", "url": "https://www.berlin.de/einwanderung", "desc": "거주허가 신청" },
+      { "label": "ameli·공보험 비교", "url": "https://www.krankenkassen.de", "desc": "공보험 비교" }
+    ],
+    "faqPicks": [0, 2, 3, 4, 6, 7]
+  }
+}
