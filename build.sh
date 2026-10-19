@@ -249,6 +249,10 @@ cp hebronguide/public/home-light.html               public/home-light.html      
 cp hebronguide/public/from.html                     public/from.html                       2>/dev/null || true
 # Pulse — 환대의 맥박 (2026-10-17 신규 · 공개 리서치 대시보드 · 월별 Top 10 질문·카테고리 분포·지역 신호)
 cp hebronguide/public/pulse.html                    public/pulse.html                      2>/dev/null || true
+# A안 Phase 2.5 (2026-10-19) — UpGlo 응용: 커리어·자원봉사·후원 참여 레이어
+cp hebronguide/public/career-ready.html             public/career-ready.html               2>/dev/null || true
+cp hebronguide/public/volunteer.html                public/volunteer.html                  2>/dev/null || true
+cp hebronguide/public/donate.html                   public/donate.html                     2>/dev/null || true
 cp hebronguide/public/events.json                   public/events.json                     2>/dev/null || true
 # 자가 점검 요약 — 상황판이 읽는다 (공개돼도 안전한 숫자만 들어 있다)
 cp hebronguide/public/audit.json                    public/audit.json                      2>/dev/null || true
@@ -455,6 +459,12 @@ node city-content-inject.js
 # seattle-plus.html은 수제 유지(스크립트에서 건너뜀).
 echo "--- Generating city-plus landings ---"
 node hebronguide/generate-city-plus.cjs || echo "  ⚠️ city-plus 생성 건너뜀 (빌드 계속)"
+
+# 9-d. 파트너 스포트라이트 생성 (/spotlight/{slug}.html)
+# UpGlo "Partner Spotlight" 응용 — 라운지 파트너를 블로그 형식으로 소개
+# 역방향 트래픽 유발·역이민자 신뢰 신호
+echo "--- Generating partner spotlights ---"
+node hebronguide/generate-spotlight.cjs || echo "  ⚠️ spotlight 생성 건너뜀 (빌드 계속)"
 
 echo "=== Deploy Complete — cities auto-synced to cities.json ==="
 ls public/

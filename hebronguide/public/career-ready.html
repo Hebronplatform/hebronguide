@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5"/>
+<title>환대의 커리어 · Career Ready — HebronGuide</title>
+<meta name="description" content="재외 한인·유학생·주재원·귀국자를 위한 커리어 재진입 리소스 — 이력서·연봉 협상·커리어 공백·LinkedIn 영어 전환까지."/>
+<meta name="keywords" content="HebronGuide, 환대의 커리어, Career Ready, 한인 재취업, 재외 한인 구직, LinkedIn 영어, 미국 이력서, 커리어 공백, 연봉 협상"/>
+<meta property="og:title" content="환대의 커리어 · Career Ready — HebronGuide"/>
+<meta property="og:description" content="재외 한인의 커리어 재진입을 위한 실용 리소스 모음"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://hebronguide.com/career-ready.html"/>
+<link rel="icon" type="image/png" href="/icon-192.png"/>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#E8E2D4;--bg-whisper:#F2EDE0;--bg-mist:#D8D3C5;
+    --text:#2A2520;--text-muted:rgba(42,37,32,.62);--text-faint:rgba(42,37,32,.4);
+    --line:rgba(42,37,32,.1);--line-strong:rgba(42,37,32,.2);
+    --origin:#2E7D5B;--spectrum-01:#F4B59A;--spectrum-02:#D9A054;--spectrum-03:#7B8E52;
+    --spectrum-04:#4A6B8C;--spectrum-05:#7B5D8E;--spectrum-06:#A84735;--spectrum-07:#4A7A7E;
+  }
+  [data-mode="night"]{
+    --bg:#0d1117;--bg-whisper:#161b26;--bg-mist:#1F2733;
+    --text:#ECFDF5;--text-muted:rgba(236,253,245,.62);--text-faint:rgba(236,253,245,.4);
+    --line:rgba(255,255,255,.1);--line-strong:rgba(255,255,255,.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:var(--bg);color:var(--text);}
+  body{font-family:'Pretendard Variable','Noto Sans KR',-apple-system,sans-serif;
+       line-height:1.75;word-break:keep-all;padding-bottom:80px;transition:background 1.2s ease, color 1.2s ease;}
+  .serif{font-family:'Noto Serif KR',serif;letter-spacing:-.3px;}
+  a{color:inherit;}
+
+  nav.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--bg) 85%, transparent);
+          backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:14px 20px;}
+  nav.top .inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+  nav.top a.home{display:inline-flex;align-items:center;gap:7px;color:var(--text-muted);text-decoration:none;font-size:.9rem;}
+  nav.top a.home:hover{color:var(--text);}
+  nav.top .brand{font-size:.88rem;font-weight:500;letter-spacing:.3px;}
+  nav.top .brand .dot{display:inline-block;width:7px;height:7px;border-radius:50%;
+                      background:linear-gradient(135deg, var(--spectrum-03), var(--spectrum-02));
+                      margin-right:7px;vertical-align:middle;}
+  .mode-toggle{background:transparent;border:1px solid var(--line-strong);color:var(--text-muted);
+               padding:6px 12px;border-radius:999px;font-size:.78rem;cursor:pointer;letter-spacing:.5px;}
+  .mode-toggle:hover{color:var(--text);}
+
+  main{max-width:1180px;margin:0 auto;padding:50px 20px;}
+  .hero{text-align:center;padding:50px 0 40px;border-bottom:1px solid var(--line);margin-bottom:50px;}
+  .hero .eyebrow{display:inline-block;font-size:.72rem;letter-spacing:3px;color:var(--text-muted);
+                 padding:6px 14px;border:1px solid var(--line-strong);border-radius:999px;margin-bottom:24px;}
+  .hero h1{font-size:clamp(1.9rem,4.5vw,2.6rem);font-weight:400;letter-spacing:-1px;margin-bottom:18px;line-height:1.35;}
+  .hero h1 em{font-style:normal;font-weight:500;
+              background:linear-gradient(135deg, var(--spectrum-03) 0%, var(--spectrum-02) 50%, var(--spectrum-01) 100%);
+              -webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero p.lead{color:var(--text-muted);max-width:680px;margin:0 auto;font-size:1rem;line-height:1.8;}
+
+  section{margin-bottom:60px;}
+  .section-head{margin-bottom:28px;}
+  .section-head .label{display:block;font-size:.72rem;letter-spacing:3px;color:var(--text-faint);margin-bottom:10px;}
+  .section-head h2{font-size:1.5rem;font-weight:400;letter-spacing:-.5px;}
+  .section-head p{color:var(--text-muted);font-size:.95rem;margin-top:8px;max-width:720px;}
+
+  .guides{display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:16px;}
+  .guide{padding:24px;background:var(--bg-whisper);border:1px solid var(--line);border-radius:16px;
+         transition:all .3s ease;border-left:3px solid var(--accent, var(--spectrum-02));}
+  .guide:hover{transform:translateY(-2px);box-shadow:0 10px 30px color-mix(in srgb, var(--text) 7%, transparent);}
+  .guide[data-color="peach"]  {--accent:var(--spectrum-01);}
+  .guide[data-color="amber"]  {--accent:var(--spectrum-02);}
+  .guide[data-color="olive"]  {--accent:var(--spectrum-03);}
+  .guide[data-color="indigo"] {--accent:var(--spectrum-04);}
+  .guide[data-color="amethyst"]{--accent:var(--spectrum-05);}
+  .guide[data-color="red"]    {--accent:var(--spectrum-06);}
+  .guide[data-color="jasper"] {--accent:var(--spectrum-07);}
+  .guide[data-color="origin"] {--accent:var(--origin);}
+  .guide .tag{display:inline-block;font-size:.72rem;letter-spacing:1.5px;color:var(--accent);
+              padding:3px 10px;border:1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+              border-radius:999px;margin-bottom:12px;}
+  .guide h3{font-size:1.1rem;font-weight:500;margin-bottom:10px;color:var(--text);line-height:1.4;}
+  .guide ol{color:var(--text-muted);font-size:.9rem;line-height:1.75;padding-left:20px;margin-top:10px;}
+  .guide ol li{margin-bottom:6px;}
+  .guide .note{display:block;margin-top:14px;padding-top:14px;border-top:1px dashed var(--line);
+               font-size:.82rem;color:var(--text-faint);line-height:1.6;}
+
+  .signal-box{background:var(--bg-mist);border-radius:16px;padding:28px;border:1px solid var(--line);}
+  .signal-box h3{font-size:1.1rem;font-weight:500;margin-bottom:10px;}
+  .signal-box p{color:var(--text-muted);font-size:.92rem;margin-bottom:14px;}
+  .signal-box ul{list-style:none;display:grid;gap:10px;}
+  .signal-box li{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;}
+  .signal-box li::before{content:'';flex-shrink:0;width:7px;height:7px;border-radius:50%;
+                         background:var(--spectrum-02);margin-top:9px;}
+
+  .cta-wrap{display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:14px;}
+  .cta{display:block;padding:22px;background:var(--bg-whisper);border:1px solid var(--line);
+       border-radius:14px;text-decoration:none;color:var(--text);transition:all .3s ease;}
+  .cta:hover{border-color:var(--text);transform:translateY(-2px);}
+  .cta .title{font-size:1.02rem;font-weight:500;margin-bottom:6px;}
+  .cta .desc{font-size:.85rem;color:var(--text-muted);line-height:1.5;}
+  .cta .arrow{display:inline-block;margin-top:10px;font-size:.85rem;color:var(--text-muted);}
+
+  footer{text-align:center;padding:40px 20px;color:var(--text-faint);font-size:.82rem;
+         border-top:1px solid var(--line);margin-top:60px;}
+  footer a{color:var(--text-muted);text-decoration:none;}
+  footer a:hover{color:var(--text);}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="inner">
+    <a href="/" class="home">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/>
+      </svg>
+      <span>HebronGuide</span>
+    </a>
+    <div class="brand"><span class="dot"></span>환대의 커리어</div>
+    <button class="mode-toggle" id="modeToggle">낮</button>
+  </div>
+</nav>
+
+<main>
+
+  <section class="hero">
+    <span class="eyebrow">CAREER READY · 재진입을 위한 자리</span>
+    <h1>경력의 공백은<br/><em>이야기의 공백이 아닙니다</em></h1>
+    <p class="lead">
+      재외에서 돌아왔든, 유학 뒤 처음 취업하든, 주재원 가족에서 다시 커리어로 걸음을 옮기든 —
+      이력서·연봉 협상·네트워킹의 길목에서 자주 반복되는 질문을 공공 사실 기반으로 모았습니다.
+      HebronGuide는 당신의 다음 자리로 가는 길에 놓인 작은 등불이 되고자 합니다.
+    </p>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="label">01 · RESUME · 이력서</span>
+      <h2>미국·한국 이력서의 가장 큰 차이</h2>
+      <p>같은 사람이 두 가지 이력서를 다르게 써야 하는 이유 — 두 문화의 신뢰 신호가 다르기 때문입니다.</p>
+    </div>
+    <div class="guides">
+      <div class="guide" data-color="peach">
+        <span class="tag">미국형</span>
+        <h3>Achievement-first — 결과로 말하기</h3>
+        <ol>
+          <li>Summary·Headline으로 시작 (2-3줄)</li>
+          <li>직무는 "책임"이 아니라 "결과" 중심 (숫자·비율·규모)</li>
+          <li>Reverse chronological, 1-2 페이지 권장</li>
+          <li>사진·성별·결혼 여부·주민번호 금지</li>
+          <li>ATS(Applicant Tracking System) 통과 포맷 (단순 폰트·단일 컬럼)</li>
+        </ol>
+        <span class="note">LinkedIn은 이력서의 쌍둥이가 아니라 "포트폴리오". Summary·Experience 모두 1인칭이 아닌 3인칭 톤.</span>
+      </div>
+      <div class="guide" data-color="indigo">
+        <span class="tag">한국형</span>
+        <h3>Credential-first — 신뢰 자격으로 말하기</h3>
+        <ol>
+          <li>인적사항·학력·경력 순서 (한국 포맷)</li>
+          <li>자기소개서 별도 (지원 동기·입사 포부·강약점)</li>
+          <li>직무경험기술서는 "역량 KSA" 중심</li>
+          <li>자격증·어학·수상 명시</li>
+          <li>글로벌 기업·외국계는 미국형과 한국형 혼합</li>
+        </ol>
+        <span class="note">자기소개서는 "스토리텔링 + 지원 직무의 적합성 증명". 사실 나열이 아닌 서사의 자리.</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="label">02 · GAP · 커리어 공백</span>
+      <h2>경력 공백을 설명하는 세 가지 방식</h2>
+      <p>공백은 숨겨야 할 자리가 아니라, 어떻게 말하느냐의 자리입니다. 뽑는 사람이 가장 걱정하는 건 공백 자체가 아니라 설명의 부재입니다.</p>
+    </div>
+    <div class="guides">
+      <div class="guide" data-color="olive">
+        <span class="tag">가족·돌봄</span>
+        <h3>Family Transition — 명확한 사실 + 복귀 준비</h3>
+        <ol>
+          <li>기간·사유를 한 줄로 명시 ("Family relocation, 2023-2025")</li>
+          <li>그 기간의 성장·학습을 1-2개 적시 (언어·자격·프로젝트)</li>
+          <li>복귀 준비 상태를 적극 신호 (최근 수료·커뮤니티 참여)</li>
+        </ol>
+        <span class="note">주재원 가족·유학 가족·육아는 흔한 사례. 숨기지 말고 "성숙의 자리"로 재프레임.</span>
+      </div>
+      <div class="guide" data-color="amber">
+        <span class="tag">학업·재교육</span>
+        <h3>Reskilling — 공백을 투자로 재해석</h3>
+        <ol>
+          <li>학위·수료증·자격증 중심으로 공백 설명</li>
+          <li>Coursera·edX·Google Certificate·국비지원 과정 모두 유효</li>
+          <li>프로젝트·포트폴리오로 결과물 보여주기 (GitHub·behance·블로그)</li>
+        </ol>
+        <span class="note">AI·클라우드·데이터 재교육은 글로벌로 수요가 높음. 수료 → 1-2개 공개 프로젝트 → 지원 흐름.</span>
+      </div>
+      <div class="guide" data-color="amethyst">
+        <span class="tag">창업·프리랜서</span>
+        <h3>Independent Work — 공백 아닌 "자기 운영 기간"</h3>
+        <ol>
+          <li>"Self-employed · Freelance" 섹션으로 명시</li>
+          <li>실제 수주한 프로젝트·클라이언트 1-3개 (NDA 범위 안에서)</li>
+          <li>결과 지표 (매출·클라이언트 수·완성도) 간단히</li>
+        </ol>
+        <span class="note">법인·사업자 등록 없이도 "자기 운영 기간"으로 명시 가능. 공백 아닌 경험으로 전환.</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="label">03 · LINKEDIN · 링크드인 영어 전환</span>
+      <h2>프로필을 영어로 다시 쓸 때 조심할 다섯 가지</h2>
+      <p>번역이 아닙니다. 재서사입니다. 한국어 프로필을 그대로 번역하면 뽑는 사람에게 "비영어권 사람의 영어 이력서"로 읽혀 손해입니다.</p>
+    </div>
+    <div class="signal-box">
+      <h3>영어 LinkedIn 재서사 다섯 가지</h3>
+      <p>이 다섯 가지는 재서사의 뼈대입니다. 번역 도구에 의존하지 말고, 한 문장씩 영어 원어민 커리어 코치·같은 산업 선배의 피드백을 받으세요.</p>
+      <ul>
+        <li><b>Headline은 직책이 아니라 가치</b> — "Software Engineer at X" 대신 "Backend engineer helping fintech teams ship reliable systems"</li>
+        <li><b>About은 1인칭 서사, 3-4 문단</b> — 왜 이 분야인가 · 지금 하는 일 · 다음에 하고 싶은 일 · 어떻게 연결 가능한지</li>
+        <li><b>Experience는 Bullet로 — 결과 중심</b> — 각 bullet은 Action verb + 측정 가능한 결과 ("Reduced latency by 40%" 등)</li>
+        <li><b>Skills·Endorsement는 활용 가능한 Top 10에 집중</b> — 50개 나열보다 10개 전문성이 신뢰 신호</li>
+        <li><b>Recommendations 3-5개 받기</b> — 추천사는 가장 강력한 사회적 신호. 과거 상사·동료·클라이언트에게 요청</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="label">04 · NEGOTIATION · 연봉 협상</span>
+      <h2>처음 받은 오퍼에서 10-20% 더 받는 법</h2>
+      <p>협상은 공격이 아니라 **대화**입니다. 재외 한인·귀국자가 가장 많이 손해보는 자리이기도 합니다.</p>
+    </div>
+    <div class="guides">
+      <div class="guide" data-color="red">
+        <span class="tag">기본</span>
+        <h3>Market Research — 숫자 없이는 협상 없음</h3>
+        <ol>
+          <li>Levels.fyi, Glassdoor, Payscale, Blind (익명 커뮤니티) 세 곳 교차</li>
+          <li>같은 직급·회사·지역의 Base + Bonus + Equity 전체 패키지 범위</li>
+          <li>자기 번호 밴드 결정 (Floor · Target · Ceiling 3개)</li>
+        </ol>
+      </div>
+      <div class="guide" data-color="jasper">
+        <span class="tag">실행</span>
+        <h3>Negotiation Script — 두 번만 요청하기</h3>
+        <ol>
+          <li>첫 오퍼 받으면 "Thank you. Can I take 24-48 hours to review?"</li>
+          <li>이메일 재협상: 숫자 + 한 줄 근거 (시장 데이터·다른 오퍼·동급 경력)</li>
+          <li>두 번 요청 뒤에는 사인. 세 번은 신뢰 손상</li>
+        </ol>
+      </div>
+      <div class="guide" data-color="origin">
+        <span class="tag">주의</span>
+        <h3>Red Flag — 협상이 안 되는 자리의 신호</h3>
+        <ol>
+          <li>"This is our final offer" 즉시 말하는 리크루터</li>
+          <li>Signing bonus·주식·휴가일 등 **non-salary 요소도 거부**하면 재검토</li>
+          <li>Base보다 Equity·Bonus 비중이 과도하면 유동성 리스크</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="label">05 · 다음 자리</span>
+      <h2>HebronGuide 안의 커리어 길목</h2>
+    </div>
+    <div class="cta-wrap">
+      <a href="/pulse.html" class="cta">
+        <div class="title">환대의 맥박</div>
+        <div class="desc">이번 달 커리어 질문 Top 10 공개 리서치</div>
+        <div class="arrow">열어 보기 →</div>
+      </a>
+      <a href="/lounge.html" class="cta">
+        <div class="title">환대의 라운지</div>
+        <div class="desc">한인 커뮤니티·언론 레지스트리</div>
+        <div class="arrow">열어 보기 →</div>
+      </a>
+      <a href="/volunteer.html" class="cta">
+        <div class="title">환대의 자원봉사</div>
+        <div class="desc">멘토·통번역·호스트 — 받은 환대를 돌려주는 자리</div>
+        <div class="arrow">열어 보기 →</div>
+      </a>
+      <a href="/ad-request.html" class="cta">
+        <div class="title">광고 신청 · 월 $6.99</div>
+        <div class="desc">한인 세무사·변호사·헤드헌터 노출</div>
+        <div class="arrow">신청하기 →</div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div>HebronGuide · Hebron Platform LLC · 시애틀에서</div>
+  <div style="margin-top:8px">
+    <a href="/">홈</a> · <a href="/map.html">지도</a> · <a href="/lounge.html">라운지</a> ·
+    <a href="/pulse.html">맥박</a> · <a href="/light.html">분광</a> · <a href="/career-ready.html">커리어</a>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var t=document.getElementById('modeToggle');
+    var s=null; try{s=localStorage.getItem('hg-mode');}catch(e){}
+    if(s==='night'){document.documentElement.setAttribute('data-mode','night');t.textContent='밤';}
+    t.addEventListener('click',function(){
+      var c=document.documentElement.getAttribute('data-mode');
+      if(c==='night'){document.documentElement.removeAttribute('data-mode');t.textContent='낮';try{localStorage.setItem('hg-mode','day');}catch(e){}}
+      else{document.documentElement.setAttribute('data-mode','night');t.textContent='밤';try{localStorage.setItem('hg-mode','night');}catch(e){}}
+    });
+  })();
+</script>
+
+</body>
+</html>
