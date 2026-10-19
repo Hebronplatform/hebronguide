@@ -142,4 +142,38 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- ══ Phase 2 공개 랜딩 (2026-10) — 분광 디자인·공개 리서치·참여 레이어 ══ -->
+  <url><loc>https://www.hebronguide.com/light.html</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.hebronguide.com/home-light.html</loc><lastmod>2026-10-19</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.hebronguide.com/map.html</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.hebronguide.com/lounge.html</loc><lastmod>2026-10-17</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.hebronguide.com/pulse.html</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.hebronguide.com/seattle-plus.html</loc><lastmod>2026-10-17</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://www.hebronguide.com/from.html</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.hebronguide.com/career-ready.html</loc><lastmod>2026-10-19</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.hebronguide.com/volunteer.html</loc><lastmod>2026-10-19</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.hebronguide.com/donate.html</loc><lastmod>2026-10-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- ══ 도시별 특화 랜딩 (/{slug}-plus.html) — 11개 (seattle 포함) ══ -->
+  <url><loc>https://www.hebronguide.com/seoul-plus.html</loc><lastmod>2026-10-19</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.hebronguide.com/busan-plus.html</loc><lastmod>2026-10-19</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.hebronguide.com/incheon-plus.html</loc><lastmod>2026-10-19</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.hebronguide.com/bundang-plus.html</loc><lastmod>2026-10-19</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.hebronguide.com/jeju-plus.html</loc><lastmod>2026-10-19</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.hebronguide.com/mexicocity-plus.html</loc><lastmod>2026-10-19</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.hebronguide.com/monterrey-plus.html</loc><lastmod>2026-10-19</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.hebronguide.com/guadalajara-plus.html</loc><lastmod>2026-10-19</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.hebronguide.com/paris-plus.html</loc><lastmod>2026-10-19</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.hebronguide.com/berlin-plus.html</loc><lastmod>2026-10-19</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+
+  <!-- ══ Partner Spotlight (/spotlight/{slug}.html) — 8개 ══ -->
+  <url><loc>https://www.hebronguide.com/spotlight/koreadaily.html</loc><lastmod>2026-10-19</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.hebronguide.com/spotlight/missyusa.html</loc><lastmod>2026-10-19</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.hebronguide.com/spotlight/seakorean.html</loc><lastmod>2026-10-19</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.hebronguide.com/spotlight/vanchosun.html</loc><lastmod>2026-10-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.hebronguide.com/spotlight/atlantak.html</loc><lastmod>2026-10-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.hebronguide.com/spotlight/hojunara.html</loc><lastmod>2026-10-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.hebronguide.com/spotlight/eknews.html</loc><lastmod>2026-10-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.hebronguide.com/spotlight/mindan.html</loc><lastmod>2026-10-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
