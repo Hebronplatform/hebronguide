@@ -47,7 +47,7 @@ HebronGuide는 수집한 디아스포라 정착 데이터를 기반으로 **"Heb
 ### 이용 안내
 
 - **URL**: hebronguide.com
-- **이용료**: 무료 (지역 업소·교회 광고는 월 $6.99)
+- **이용료**: 무료 (지역 업소·교회 광고는 월 $9.99)
 - **문의**: hebronplatform@gmail.com
 - **운영**: Hebron Platform LLC (미국 워싱턴주)
 
@@ -60,7 +60,7 @@ HebronGuide는 수집한 디아스포라 정착 데이터를 기반으로 **"Heb
 "시애틀은 상록수와 안개와 Puget Sound가 만나는 자리입니다. 거기서 처음 켜진 등불이 세계 각 도시로 번져 각기 다른 색의 환대가 된다는 서사가 Hebron 디자인의 뿌리입니다. 서울의 복숭아빛, 뉴욕의 올리브 그늘, 토론토의 쪽빛, 상파울루의 자수정 — 모두 한 빛의 분광입니다."
 
 **Q. 수익 모델은?**
-"광고는 월 $6.99입니다. '커피 한 잔 값'으로 각 지역 소식에 노출되도록 설계했습니다. 사용자 데이터를 요구하지 않습니다. 중기적으로는 교회 홈페이지 제작(NanuriWeb)과 Hebron AI 유료 티어가 보완 수익이 될 것입니다."
+"광고는 월 $9.99입니다. '커피 한 잔과 비스켓 값'으로 각 지역 소식에 노출되도록 설계했습니다. 사용자 데이터를 요구하지 않습니다. 중기적으로는 교회 홈페이지 제작(NanuriWeb)과 Hebron AI 유료 티어가 보완 수익이 될 것입니다."
 
 ---
 
@@ -108,7 +108,7 @@ HebronGuide plans to develop **Hebron AI**, a diaspora-specialized chatbot that 
 ### Service Details
 
 - **URL**: hebronguide.com
-- **Cost**: Free (local ads from $6.99/month)
+- **Cost**: Free (local ads from $9.99/month)
 - **Contact**: hebronplatform@gmail.com
 - **Operator**: Hebron Platform LLC (Washington State, USA)
 
@@ -121,7 +121,7 @@ HebronGuide plans to develop **Hebron AI**, a diaspora-specialized chatbot that 
 "Seattle is where evergreens, mist, and the Puget Sound meet. From this place a lantern was first lit, and it spread to cities worldwide, becoming different colors of hospitality. Seoul peach, New York olive shade, Toronto indigo, São Paulo amethyst — all are the spectrum of one light."
 
 **On revenue model**:
-"Our ads are $6.99 a month — the price of a coffee. We don't ask for user data. In the mid-term, our complementary revenue will come from church website creation (NanuriWeb) and Hebron AI premium tiers."
+"Our ads are $9.99 a month — a coffee and a biscuit. We don't ask for user data. In the mid-term, our complementary revenue will come from church website creation (NanuriWeb) and Hebron AI premium tiers."
 
 ---
 
@@ -175,7 +175,7 @@ HebronGuide(hebronguide.com)를 공식 론칭하여 보도자료를 보내드립
 [1-2줄 요약]
 - 20여 개 도시 정착 FAQ·환대 지도·커뮤니티 큐레이션
 - 한국·미국 UX 융합·전례 없는 분광 디자인
-- 모든 콘텐츠 무료, 지역 광고 월 $6.99
+- 모든 콘텐츠 무료, 지역 광고 월 $9.99
 
 관련 자료가 필요하시면 바로 보내 드리겠습니다.
 hebronguide.com에서 바로 체험 가능합니다.
