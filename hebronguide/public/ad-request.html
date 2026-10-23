@@ -1,44 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Advertise — HebronGuide</title>
-<meta name="description" content="Reach people who just arrived in your city. 막 도착한 사람에게 보입니다."/>
-<meta property="og:title" content="Advertise — HebronGuide"/>
-<meta property="og:description" content="Reach people who just arrived in your city."/>
-<meta property="og:locale" content="en_US"/>
-<meta property="og:locale:alternate" content="ko_KR"/>
+<title>등재 · 광고 신청 — HebronGuide</title>
+<meta name="description" content="HebronGuide 디렉토리 무료 등재 · 「이 도시 소식」 월 $9.99 광고. 교회·업소·공식 조직은 등재부터, 가게·행사·세일은 광고로."/>
+<meta property="og:title" content="등재 · 광고 신청 — HebronGuide"/>
+<meta property="og:description" content="등재는 무료 · 광고는 월 $9.99 · 두 가지가 다릅니다"/>
+<meta property="og:locale" content="ko_KR"/>
+<meta property="og:locale:alternate" content="en_US"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
-  :root{--bg:#0d1117;--bg2:#161b26;--line:rgba(255,255,255,.1);--line2:rgba(255,255,255,.18);
-        --gold:#C9A227;--gold2:#F5C76E;--mint:#6EE7B7;--text:#ECFDF5;
-        --muted:rgba(236,253,245,.62);--muted2:rgba(236,253,245,.4);}
+  :root{
+    --bg:#0d1117;--bg2:#161b26;--bg3:#1F2733;
+    --line:rgba(255,255,255,.1);--line2:rgba(255,255,255,.18);
+    --text:#ECFDF5;--muted:rgba(236,253,245,.62);--muted2:rgba(236,253,245,.4);
+    --origin:#2E7D5B;--spectrum-01:#F4B59A;--spectrum-02:#D9A054;--spectrum-04:#4A6B8C;
+    --gold:#D9A054;--gold2:#F4B59A;--mint:#6EE7B7;
+  }
   *{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);
-       line-height:1.8;padding-bottom:70px;word-break:keep-all;}
-  .wrap{max-width:560px;margin:0 auto;padding:0 20px;}
+       line-height:1.75;padding-bottom:70px;word-break:keep-all;}
+  .serif{font-family:'Noto Serif KR',serif;letter-spacing:-.3px;}
+  .wrap{max-width:620px;margin:0 auto;padding:0 20px;}
 
   .top{border-bottom:1px solid var(--line);}
   .top a{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;
          font-size:.88rem;padding:15px 20px;min-height:44px;}
   .top a:hover{color:var(--gold2);}
 
-  header{padding:44px 0 20px;text-align:center;}
-  h1{font-size:clamp(1.5rem,5vw,2rem);font-weight:500;line-height:1.4;}
-  .sub{color:var(--muted);font-weight:300;margin-top:12px;font-size:.97rem;}
+  header{padding:50px 0 24px;text-align:center;}
+  h1{font-size:clamp(1.6rem,5vw,2.1rem);font-weight:500;line-height:1.35;}
+  h1 em{font-style:normal;font-weight:500;
+        background:linear-gradient(135deg, var(--origin), var(--gold));
+        -webkit-background-clip:text;background-clip:text;color:transparent;}
+  .sub{color:var(--muted);font-weight:300;margin-top:12px;font-size:.97rem;max-width:480px;margin-left:auto;margin-right:auto;}
 
+  /* ────── 두 큰 선택 카드 (핵심 UX) ────── */
+  .choice-head{margin:30px 0 14px;text-align:center;}
+  .choice-head .label{display:inline-block;font-size:.72rem;letter-spacing:3px;color:var(--muted2);
+                      padding:5px 14px;border:1px solid var(--line);border-radius:999px;}
+  .choice-head h2{font-size:1.3rem;font-weight:400;margin-top:14px;letter-spacing:-.5px;}
+  .choice-head p{color:var(--muted);font-size:.9rem;margin-top:6px;}
+
+  .choices{display:grid;gap:14px;margin:18px 0 28px;}
+  .choice{position:relative;background:var(--bg2);border:1.5px solid var(--line);border-radius:18px;
+          padding:22px 22px 20px;cursor:pointer;transition:all .2s ease;overflow:hidden;}
+  .choice::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent);}
+  .choice:hover{border-color:var(--line2);transform:translateY(-1px);}
+  .choice.active{border-color:var(--accent);background:color-mix(in srgb, var(--accent) 8%, var(--bg2));}
+  .choice .check{position:absolute;top:16px;right:16px;width:22px;height:22px;border:2px solid var(--line2);
+                 border-radius:50%;transition:all .2s;}
+  .choice.active .check{border-color:var(--accent);background:var(--accent);
+                        box-shadow:inset 0 0 0 3px var(--bg2);}
+  .choice .tag{display:inline-block;font-size:.72rem;letter-spacing:1.5px;color:var(--accent);
+               padding:3px 10px;border:1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+               border-radius:99px;margin-bottom:10px;}
+  .choice h3{font-size:1.1rem;font-weight:500;margin-bottom:4px;color:var(--text);}
+  .choice .price{color:var(--accent);font-weight:600;font-size:1.08rem;margin-left:6px;}
+  .choice p{color:var(--muted);font-size:.9rem;line-height:1.65;margin-top:8px;}
+  .choice ul{list-style:none;margin-top:10px;}
+  .choice li{color:var(--muted);font-size:.84rem;line-height:1.7;padding-left:16px;position:relative;}
+  .choice li::before{content:'·';position:absolute;left:4px;color:var(--accent);}
+
+  .choice[data-type="list"]  {--accent:var(--origin);}
+  .choice[data-type="ad"]    {--accent:var(--gold);}
+  .choice[data-type="ask"]   {--accent:var(--spectrum-04);}
+
+  /* ────── 양식 ────── */
   .card{background:var(--bg2);border:1px solid var(--line);border-radius:20px;padding:24px 22px;margin:16px 0;}
-
-  .rows{display:grid;gap:10px;}
-  .row{display:flex;align-items:baseline;justify-content:space-between;gap:14px;
-       padding:13px 0;border-bottom:1px solid var(--line);}
-  .row:last-child{border-bottom:0;}
-  .row b{font-weight:500;font-size:1rem;}
-  .row span{color:var(--gold2);font-weight:700;white-space:nowrap;}
-  .row small{display:block;color:var(--muted2);font-size:.82rem;font-weight:300;margin-top:2px;}
+  .card .section-h{font-size:.72rem;letter-spacing:2.5px;color:var(--muted2);margin-bottom:14px;}
 
   label{display:block;font-size:.88rem;color:var(--muted);margin:16px 0 7px;font-weight:300;}
   input,select,textarea{width:100%;background:#0b0f16;border:1px solid var(--line);border-radius:12px;
@@ -46,21 +79,41 @@
   textarea{min-height:88px;resize:vertical;}
   input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:transparent;}
 
-  .go{width:100%;background:var(--gold);color:#0d1117;border:0;border-radius:99px;
-      padding:15px;font-family:inherit;font-size:1.02rem;font-weight:700;cursor:pointer;margin-top:22px;min-height:48px;}
+  .go{width:100%;background:var(--mode-color, var(--gold));color:#0d1117;border:0;border-radius:99px;
+      padding:15px;font-family:inherit;font-size:1.02rem;font-weight:700;cursor:pointer;margin-top:22px;min-height:48px;
+      transition:background .2s;}
   .go:disabled{background:var(--line2);color:var(--muted2);cursor:not-allowed;}
   .err{color:#FCA5A5;font-size:.88rem;margin-top:12px;line-height:1.7;}
-  .hide{display:none;}
+  .hide{display:none !important;}
 
   .note{border-top:1px dashed var(--line);margin-top:20px;padding-top:16px;
         color:var(--muted);font-size:.86rem;font-weight:300;line-height:1.9;}
   .note b{color:var(--mint);font-weight:500;}
+
+  /* 광고 선택 시에만 보이는 결제 안내 */
+  .pay-info{background:color-mix(in srgb, var(--gold) 10%, var(--bg3));
+            border:1px solid color-mix(in srgb, var(--gold) 25%, transparent);
+            border-radius:14px;padding:18px 20px;margin:20px 0 0;}
+  .pay-info h4{color:var(--gold2);font-size:.95rem;font-weight:500;margin-bottom:8px;}
+  .pay-info ul{margin:10px 0 4px 18px;line-height:1.75;color:var(--muted);font-size:.88rem;}
+  .pay-info ul li{margin-bottom:3px;}
+  .pay-info ul li b{color:var(--text);font-weight:500;}
+  .pay-info .fine{color:var(--muted2);font-size:.84rem;margin-top:10px;line-height:1.7;}
 
   .done{text-align:center;padding:26px 0;}
   .mark{width:56px;height:56px;border-radius:50%;background:rgba(110,231,183,.12);
         border:1px solid rgba(110,231,183,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
   .foot{color:var(--muted2);font-size:.82rem;text-align:center;margin-top:22px;line-height:1.9;font-weight:300;}
   .foot a{color:var(--muted);}
+
+  /* 하단 추가 안내 — 홈페이지 제작 외부 링크 */
+  .outside{margin-top:18px;background:var(--bg2);border:1px solid var(--line);border-radius:16px;
+           padding:18px 20px;display:flex;align-items:center;justify-content:space-between;
+           text-decoration:none;color:inherit;gap:14px;}
+  .outside:hover{border-color:var(--line2);}
+  .outside .l b{display:block;font-size:.98rem;font-weight:500;}
+  .outside .l small{color:var(--muted);font-size:.84rem;font-weight:300;}
+  .outside .r{color:var(--spectrum-04);font-size:.86rem;font-weight:500;}
 </style>
 </head>
 <body>
@@ -72,81 +125,124 @@
 <div class="wrap">
 
   <header>
-    <h1 id="hd">광고 신청</h1>
-    <p class="sub" id="hs">막 도착한 사람에게 보입니다.</p>
+    <h1 id="hd" class="serif">등재와 광고는 <em>다릅니다</em></h1>
+    <p class="sub" id="hs">먼저 어떤 자리를 원하시는지 하나 골라 주세요. 등재는 무료, 광고는 월 $9.99입니다.</p>
   </header>
 
-  <!-- 값 — 설명 없이 숫자만 -->
-  <section class="card" id="s0">
-    <div class="rows">
-      <div class="row">
-        <b>도시 목록에 등재<small>교회 · 업소 · 기관</small></b>
-        <span>무료</span>
-      </div>
-      <div class="row">
-        <b>「이 도시 소식」에 노출<small>한 달 · 커피 한 잔과 비스켓</small></b>
-        <span>$9.99</span>
-      </div>
-      <a href="https://nanuriweb.com" target="_blank" rel="noopener" class="row" style="display:flex;text-decoration:none;color:inherit;cursor:pointer;">
-        <b>홈페이지 제작<small>NanuriWeb.com →</small></b>
-        <span style="color:var(--accent,#c8a96e);">문의 →</span>
-      </a>
-    </div>
-    <div class="note">
-      <b>순서는 돈이 정하지 않습니다.</b> 확인한 곳이 먼저입니다.<br>
-      등재는 언제나 무료입니다. 내려 달라 하시면 바로 내립니다.
-    </div>
+  <!-- ━━━━━━━━ 1 · 두 큰 선택 카드 ━━━━━━━━ -->
+  <div class="choice-head">
+    <span class="label">01 · WHICH ONE</span>
+    <h2 class="serif">어떤 자리를 원하시나요?</h2>
+    <p>클릭하시면 아래 양식이 그 자리에 맞춰 바뀝니다.</p>
+  </div>
 
-    <div class="note" style="margin-top:14px;border-top:1px solid rgba(255,255,255,0.06);padding-top:14px;">
-      <b>$9.99 결제 방법</b><br>
-      <span style="opacity:0.85;">신청하시면 24시간 안에 아래 세 가지 중 편하신 방법을 이메일로 안내드립니다.</span>
-      <ul style="margin:10px 0 4px 18px;padding:0;line-height:1.7;opacity:0.85;">
-        <li><b>Zelle</b> · 수수료 없음 · hebronplatform@gmail.com</li>
-        <li><b>Venmo</b> · 수수료 없음 · 신청 후 수신인 안내</li>
-        <li><b>카드 결제 링크</b> · Stripe/PayPal · 수수료 약 $0.50</li>
+  <div class="choices">
+
+    <div class="choice" data-type="list" tabindex="0" role="button" aria-pressed="false">
+      <div class="check" aria-hidden="true"></div>
+      <span class="tag">LISTING · 등재</span>
+      <h3>HebronGuide 디렉토리에 등재<span class="price">무료</span></h3>
+      <p>교회·업소·공식 조직을 각 도시 디렉토리에 영구 등재합니다. HebronGuide가 사실을 교차 확인한 뒤 공개합니다.</p>
+      <ul>
+        <li>이름 · 주소 · 전화 · 홈페이지 (공공 사실만)</li>
+        <li>교회·공식 조직·공공 비영리에게 가장 맞습니다</li>
+        <li>소개 문구·광고 카피는 넣지 않습니다</li>
+        <li>영구 노출 · 요청하시면 바로 내립니다</li>
       </ul>
-      <span style="opacity:0.75;font-size:0.92em;">결제 확인 뒤 24시간 안에 「이 도시 소식」에 노출됩니다. 영수증·확인서는 요청하시면 이메일로 보내드립니다.</span>
     </div>
-  </section>
 
-  <!-- 신청 — 네 칸 -->
-  <section class="card" id="s1">
+    <div class="choice" data-type="ad" tabindex="0" role="button" aria-pressed="false">
+      <div class="check" aria-hidden="true"></div>
+      <span class="tag">ADVERTISE · 광고</span>
+      <h3>「이 도시 소식」에 노출<span class="price">월 $9.99</span></h3>
+      <p>커피 한 잔과 비스켓 값으로 한 달. 당신이 쓴 소개 문구와 링크가 그대로 노출됩니다.</p>
+      <ul>
+        <li>가게 세일 · 사역 소식 · 행사 안내 · 신상 홍보</li>
+        <li>소개 문구 자유 · 링크·이미지 포함 가능</li>
+        <li>결제 확인 뒤 24시간 안 노출</li>
+        <li>결제 중단 시 자동 하차</li>
+      </ul>
+    </div>
+
+    <div class="choice" data-type="ask" tabindex="0" role="button" aria-pressed="false">
+      <div class="check" aria-hidden="true"></div>
+      <span class="tag">NOT SURE · 상담</span>
+      <h3>잘 모르겠어요 — 짧게 상담하고 결정<span class="price">무료</span></h3>
+      <p>어느 쪽이 맞는지 모르시면 상담부터. 48시간 안에 짧게 메일 드립니다.</p>
+    </div>
+
+  </div>
+
+  <!-- ━━━━━━━━ 2 · 양식 ━━━━━━━━ -->
+  <section class="card hide" id="formCard">
+    <div class="section-h" id="formTitle">02 · 신청</div>
+
     <label for="f1">이름 또는 상호</label>
-    <input id="f1" autocomplete="organization" placeholder="헤브론식당 · 김헤브론"/>
+    <input id="f1" autocomplete="organization" placeholder="헤브론식당 · 멤피스한인침례교회"/>
 
     <label for="f2">도시</label>
-    <input id="f2" placeholder="시애틀"/>
+    <input id="f2" placeholder="시애틀 · 멤피스 · 서울 분당"/>
 
-    <label for="f3">연락처</label>
-    <input id="f3" placeholder="카카오톡 ID · 전화번호 · 이메일"/>
+    <label for="f3">연락처 (전화 또는 이메일)</label>
+    <input id="f3" placeholder="예: pastor@kbcm.org 또는 (901) 240-8834"/>
 
-    <label for="f4">무엇을 하시나요?</label>
-    <select id="f4">
-      <option value="등재">도시 목록에 등재 (무료)</option>
-      <option value="소식">「이 도시 소식」 노출 ($9.99/월 · 커피 한 잔과 비스켓)</option>
-      <option value="모르겠음">아직 모르겠습니다</option>
-    </select>
+    <!-- 등재용 추가 필드 -->
+    <div id="listFields" class="hide">
+      <label for="fAddr">주소 (등재용)</label>
+      <input id="fAddr" placeholder="9650 E. Shelby Dr, Collierville TN 38017"/>
+      <label for="fSite">공식 홈페이지 (있으시면)</label>
+      <input id="fSite" placeholder="https://kbcm.org"/>
+    </div>
+
+    <!-- 광고용 추가 필드 -->
+    <div id="adFields" class="hide">
+      <label for="fCopy">소개 문구 (「이 도시 소식」에 그대로 노출됩니다)</label>
+      <textarea id="fCopy" placeholder="예: 멤피스 콜리어빌 한인 침례교회. 주일 11시 예배. 처음 오신 분 환영. 함께 식사하세요."></textarea>
+      <label for="fLink">유도 링크 (예약·주문·상세)</label>
+      <input id="fLink" placeholder="https://kbcm.org 또는 전화번호"/>
+    </div>
 
     <label for="f5">하실 말씀 <span style="color:var(--muted2)">— 없으셔도 됩니다</span></label>
-    <textarea id="f5" placeholder="가게 소개, 궁금한 것, 무엇이든"></textarea>
+    <textarea id="f5" placeholder="궁금한 것, 특별 요청, 무엇이든"></textarea>
+
+    <!-- 광고 선택 시에만 보이는 결제 안내 -->
+    <div class="pay-info hide" id="payInfo">
+      <h4>$9.99 결제 방법 — 신청 뒤 안내</h4>
+      <p style="color:var(--muted);font-size:.88rem;">보내시면 24시간 안에 아래 세 가지 중 편한 방법을 이메일로 안내드립니다.</p>
+      <ul>
+        <li><b>Zelle</b> · 수수료 없음 · hebronplatform@gmail.com</li>
+        <li><b>Venmo</b> · 수수료 없음 · 신청 뒤 수신인 안내</li>
+        <li><b>카드 결제 링크</b> · Stripe/PayPal · 수수료 약 $0.50</li>
+      </ul>
+      <div class="fine">결제 확인 뒤 24시간 안 노출. 영수증·확인서는 요청 시 이메일로 보내드립니다.</div>
+    </div>
 
     <button class="go" id="go" type="button">보내기</button>
     <div class="err hide" id="er"></div>
 
     <div class="note">
-      <b>48시간 안에</b> 연락드립니다.<br>
-      <b>연락처는 공개되지 않습니다.</b>
+      <b>48시간 안에</b> 연락드립니다. <b>연락처는 공개되지 않습니다.</b><br>
+      순서는 돈이 정하지 않습니다. 사실을 확인한 곳이 먼저입니다.
     </div>
   </section>
 
-  <!-- 끝 -->
+  <!-- 신청 완료 -->
   <section class="card hide" id="s2">
     <div class="done">
       <div class="mark"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#6EE7B7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6 6L20 6"/></svg></div>
       <div style="font-size:1.1rem;font-weight:500;margin-bottom:8px;">받았습니다</div>
-      <p class="sub" style="margin-top:0;">48시간 안에 연락드리겠습니다.</p>
+      <p class="sub" style="margin-top:0;" id="doneSub">48시간 안에 연락드리겠습니다.</p>
     </div>
   </section>
+
+  <!-- 외부 — 홈페이지 제작 -->
+  <a href="https://nanuriweb.com" target="_blank" rel="noopener" class="outside">
+    <div class="l">
+      <b>홈페이지 제작이 필요하시면</b>
+      <small>NanuriWeb — Hebron 자매 서비스</small>
+    </div>
+    <div class="r">문의 →</div>
+  </a>
 
   <p class="foot">
     <a href="/hospitality-board.html">게시판</a> &nbsp;·&nbsp;
@@ -156,50 +252,153 @@
 </div>
 
 <script>
-document.getElementById('go').onclick = async function(){
-  var btn = this, er = document.getElementById('er');
-  var name = document.getElementById('f1').value.trim();
-  var city = document.getElementById('f2').value.trim();
-  var cont = document.getElementById('f3').value.trim();
-  var what = document.getElementById('f4').value;
-  var msg  = document.getElementById('f5').value.trim();
-  er.classList.add('hide');
-  if(!name || !city || !cont){
-    er.textContent = '이름 · 도시 · 연락처, 셋만 채워 주시면 됩니다.';
-    er.classList.remove('hide'); return;
-  }
-  btn.disabled = true; btn.textContent = '보내는 중…';
-  var isMail = cont.indexOf('@') > -1;
-  try{
-    var r = await fetch('/api/submit-form', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({
-        type: 'ad',
-        name: name,
-        city: city,
-        email: isMail ? cont : '',
-        phone: isMail ? '' : cont,
-        subject: '[광고] ' + name + ' · ' + city + ' · ' + what,
-        body: ['이름: ' + name, '도시: ' + city, '연락처: ' + cont,
-               '무엇: ' + what, '', (msg || '(없음)')].join('\n')
-      })
+(function(){
+  var choices = document.querySelectorAll('.choice');
+  var formCard = document.getElementById('formCard');
+  var formTitle = document.getElementById('formTitle');
+  var listFields = document.getElementById('listFields');
+  var adFields = document.getElementById('adFields');
+  var payInfo = document.getElementById('payInfo');
+  var goBtn = document.getElementById('go');
+  var selectedType = null;
+
+  function pick(type){
+    selectedType = type;
+    choices.forEach(function(c){
+      var on = c.dataset.type === type;
+      c.classList.toggle('active', on);
+      c.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
-    var j = await r.json().catch(function(){ return {}; });
-    if(!r.ok) throw new Error(j.error || ('보내지 못했습니다 (' + r.status + ')'));
-    document.getElementById('s0').classList.add('hide');
-    document.getElementById('s1').classList.add('hide');
-    document.getElementById('s2').classList.remove('hide');
-    document.getElementById('hd').textContent = '고맙습니다';
-    document.getElementById('hs').textContent = '';
-    window.scrollTo({top:0,behavior:'smooth'});
-  }catch(e){
-    // 안 보내졌는데 보냈다고 하지 않는다
-    er.textContent = (e.message || '보내지 못했습니다') +
-      ' · hebronplatform@gmail.com 으로 보내 주셔도 됩니다.';
-    er.classList.remove('hide');
-    btn.disabled = false; btn.textContent = '보내기';
+    formCard.classList.remove('hide');
+
+    if (type === 'list'){
+      formTitle.textContent = '02 · 등재 신청 (무료)';
+      listFields.classList.remove('hide');
+      adFields.classList.add('hide');
+      payInfo.classList.add('hide');
+      goBtn.textContent = '등재 신청 보내기';
+      goBtn.style.setProperty('--mode-color', 'var(--origin)');
+    } else if (type === 'ad'){
+      formTitle.textContent = '02 · 광고 신청 (월 $9.99)';
+      listFields.classList.add('hide');
+      adFields.classList.remove('hide');
+      payInfo.classList.remove('hide');
+      goBtn.textContent = '광고 신청 보내기';
+      goBtn.style.setProperty('--mode-color', 'var(--gold)');
+    } else {
+      formTitle.textContent = '02 · 상담 요청 (무료)';
+      listFields.classList.add('hide');
+      adFields.classList.add('hide');
+      payInfo.classList.add('hide');
+      goBtn.textContent = '상담 보내기';
+      goBtn.style.setProperty('--mode-color', 'var(--spectrum-04)');
+    }
+
+    // 스크롤
+    setTimeout(function(){
+      formCard.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 60);
   }
-};
+
+  choices.forEach(function(c){
+    c.addEventListener('click', function(){ pick(c.dataset.type); });
+    c.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); pick(c.dataset.type); }
+    });
+  });
+
+  // URL 해시로 자동 선택 (?type=ad 또는 #ad)
+  var hash = (location.hash || '').replace(/^#/, '');
+  var qs = new URLSearchParams(location.search);
+  var auto = qs.get('type') || (['list','ad','ask'].indexOf(hash) >= 0 ? hash : '');
+  if (auto) pick(auto);
+
+  goBtn.onclick = async function(){
+    var btn = this, er = document.getElementById('er');
+    var name = document.getElementById('f1').value.trim();
+    var city = document.getElementById('f2').value.trim();
+    var cont = document.getElementById('f3').value.trim();
+    var msg  = document.getElementById('f5').value.trim();
+    var addr = document.getElementById('fAddr').value.trim();
+    var site = document.getElementById('fSite').value.trim();
+    var copy = document.getElementById('fCopy').value.trim();
+    var link = document.getElementById('fLink').value.trim();
+
+    er.classList.add('hide');
+    if (!selectedType) {
+      er.textContent = '먼저 위에서 "등재 · 광고 · 상담" 중 하나를 골라 주세요.';
+      er.classList.remove('hide');
+      document.querySelector('.choices').scrollIntoView({behavior:'smooth', block:'center'});
+      return;
+    }
+    if (!name || !city || !cont){
+      er.textContent = '이름 · 도시 · 연락처, 셋만 채워 주시면 됩니다.';
+      er.classList.remove('hide'); return;
+    }
+
+    btn.disabled = true; btn.textContent = '보내는 중…';
+    var isMail = cont.indexOf('@') > -1;
+
+    var typeLabel = selectedType === 'list' ? '등재 (무료)'
+                 : selectedType === 'ad'   ? '광고 (월 $9.99)'
+                 : '상담 (무료)';
+    var subject = (selectedType === 'list' ? '[등재] ' :
+                   selectedType === 'ad'   ? '[광고] ' : '[상담] ') +
+                  name + ' · ' + city;
+
+    var bodyLines = [
+      '유형: ' + typeLabel,
+      '이름/상호: ' + name,
+      '도시: ' + city,
+      '연락처: ' + cont
+    ];
+    if (selectedType === 'list'){
+      if (addr) bodyLines.push('주소: ' + addr);
+      if (site) bodyLines.push('홈페이지: ' + site);
+    }
+    if (selectedType === 'ad'){
+      if (copy) bodyLines.push('', '소개 문구:', copy);
+      if (link) bodyLines.push('', '유도 링크: ' + link);
+    }
+    if (msg) bodyLines.push('', '추가:', msg);
+
+    try{
+      var r = await fetch('/api/submit-form', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({
+          type: selectedType,
+          name: name,
+          city: city,
+          email: isMail ? cont : '',
+          phone: isMail ? '' : cont,
+          subject: subject,
+          body: bodyLines.join('\n')
+        })
+      });
+      var j = await r.json().catch(function(){ return {}; });
+      if (!r.ok) throw new Error(j.error || ('보내지 못했습니다 (' + r.status + ')'));
+
+      document.querySelector('.choice-head').classList.add('hide');
+      document.querySelector('.choices').classList.add('hide');
+      formCard.classList.add('hide');
+      document.getElementById('s2').classList.remove('hide');
+      document.getElementById('hd').textContent = '고맙습니다';
+      document.getElementById('hs').textContent = '';
+      document.getElementById('doneSub').textContent =
+        selectedType === 'ad'
+          ? '48시간 안에 결제 안내와 함께 연락드리겠습니다.'
+          : '48시간 안에 연락드리겠습니다.';
+      window.scrollTo({top:0, behavior:'smooth'});
+    } catch(e){
+      er.textContent = (e.message || '보내지 못했습니다') +
+        ' · hebronplatform@gmail.com 으로 보내 주셔도 됩니다.';
+      er.classList.remove('hide');
+      btn.disabled = false; btn.textContent =
+        selectedType === 'list' ? '등재 신청 보내기' :
+        selectedType === 'ad'   ? '광고 신청 보내기' : '상담 보내기';
+    }
+  };
+})();
 </script>
 </body>
 </html>
