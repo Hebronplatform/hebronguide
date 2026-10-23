@@ -249,6 +249,8 @@ cp hebronguide/public/home-light.html               public/home-light.html      
 cp hebronguide/public/from.html                     public/from.html                       2>/dev/null || true
 # Pulse — 환대의 맥박 (2026-10-17 신규 · 공개 리서치 대시보드 · 월별 Top 10 질문·카테고리 분포·지역 신호)
 cp hebronguide/public/pulse.html                    public/pulse.html                      2>/dev/null || true
+# 광고 홍보 팝업 공통 JS (2026-10-22, 10초 뒤 또는 50% 스크롤 시 등장 · 7일 안 보기 localStorage)
+cp hebronguide/public/hg-ad-popup.js                public/hg-ad-popup.js                  2>/dev/null || true
 # A안 Phase 2.5 (2026-10-19) — UpGlo 응용: 커리어·자원봉사·후원 참여 레이어
 cp hebronguide/public/career-ready.html             public/career-ready.html               2>/dev/null || true
 cp hebronguide/public/volunteer.html                public/volunteer.html                  2>/dev/null || true
