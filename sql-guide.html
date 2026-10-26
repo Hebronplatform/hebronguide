@@ -289,7 +289,7 @@ update public.churches set active = false  -- 185th St. Ct. E · 이름 소실 �
   where id = &#x27;9ab1efaa-fc5b-4c08-a8a8-058655fc261b&#x27;;
 
 -- ── ④ 시애틀지구촌교회 등재 ────────────────────────────────────────────
--- 지금 교회 목록에 없다. 주소(번지수)는 넣지 않는다 — 본부가 자택이기 때문.
+-- 지금 교회 목록에 없다. 예배 장소(Silver Lake Baptist Church) 주소만 적고, 자택·목장 가정 주소는 넣지 않는다.
 insert into public.churches
   (name, name_en, city_slug, phone, website, denomination, service_time,
    tier, hcmi, active, status, source, description)
@@ -300,13 +300,13 @@ select
   &#x27;425-350-0191&#x27;,
   &#x27;https://www.ijiguchon.org&#x27;,
   &#x27;SBC&#x27;,
-  &#x27;주일 오전 11시 (태평양시) · 온라인 www.ijiguchon.org&#x27;,
+  &#x27;주일 오후 1:30 (태평양시) · 12918 35th Ave SE, Everett, WA 98208 · 온라인 www.ijiguchon.org&#x27;,
   1,
   true,
   true,
   &#x27;approved&#x27;,
   &#x27;hebronguide&#x27;,
-  &#x27;시애틀 지역 한인 가정교회 — 가정에서 모이는 교회입니다. 목장은 린우드(Lynnwood)와 머킬티오(Mukilteo)의 가정에서 모이고(목장마다 요일이 다릅니다), 주일 오전 11시(태평양시)에 한 교회로 함께 예배드립니다. 온라인으로는 어디서나 함께합니다. 유아부터 12학년까지 새 세대 사역이 있습니다. 교인이 아니어도, 참가비 없이 오실 수 있습니다. 2002년 개척, 김성수 대표목사, SBC. GMN(글로벌 미니스트리 네트워크) 소속이며 국제가정교회사역원 회원교회입니다.&#x27;
+  &#x27;시애틀 광역권 에버렛의 한인 가정교회입니다. 주일 오후 1시 30분(태평양시)에 12918 35th Ave SE, Everett, WA 98208 (Silver Lake Baptist Church)에서 함께 예배드리고, 주중에는 가까운 가정에서 목장으로 모입니다(목장마다 요일이 다릅니다). 온라인으로는 어디서나 함께합니다. 유아부터 12학년까지 새 세대 사역이 예배와 같은 시간에 있습니다. 토요가족기도회는 토요일 오전 6시, 영어 톡타임은 주일 오후 3시입니다. 교인이 아니어도, 참가비 없이 오실 수 있습니다. 2002년 개척, 김성수 담임목사, SBC. GMN(글로벌 미니스트리 네트워크) 소속이며 국제가정교회사역원 회원교회입니다.&#x27;
 where not exists (
   select 1 from public.churches where name = &#x27;시애틀지구촌교회&#x27;
 );  -- 두 번 실행해도 중복되지 않습니다
