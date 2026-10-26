@@ -455,6 +455,7 @@ HebronGuide는 부분이 전체에 얽혀 있다 — **Vite 빌드 · 서비스�
 | 도시별 영혼 점검 | `_hebron_codex/02_guide/CITY_THEOLOGY_MATRIX.md` |
 | **27개 도시 한인 미디어 디렉터리** | `docs/KOREAN_MEDIA_DIRECTORY.md` |
 | 문서 위생 자체 | `DOC_HYGIENE.md` |
+| **디자인 방향 — 밝고 맑은 환대** (밝은 화면 기본 · 색 토큰·대비 · 글꼴 교체 원칙 · 환대 여덟 습관 · 옮기는 순서) | `DESIGN_DIRECTION.md` |
 | **파트너 철학·서약·수익나눔 원칙** | `HEBRON_PARTNER_CODEX.md` |
 | 4차 줌 네트워크 전략·스크립트 | `PASTOR_NETWORK_PLAYBOOK.md` |
 | **시애틀 세 교회 — 6개월 첫 걸음** (행2:42-47 · 3교회 · 성장목표 없음 · 소프트웨어 최소) | `SEATTLE_PILOT_3CHURCHES.md` |
@@ -962,6 +963,7 @@ HebronGuide는 정치적 좌파도 우파도 아니다.
 
 > **정본**: [`../../HEBRON_DESIGN_SYSTEM.md`](../../HEBRON_DESIGN_SYSTEM.md) (Hebron Master Design System v1.0)
 > **상위 지침**: [`../../CLAUDE.md`](../../CLAUDE.md)
+> **HebronGuide 방향 정본**: [`docs/DESIGN_DIRECTION.md`](docs/DESIGN_DIRECTION.md) — 밝고 맑은 환대 · 밝은 화면 기본 · 색 토큰과 대비 · 환대가 스며드는 여덟 가지 습관 · 옮기는 순서 (2026-10-26 폴 김 목사 결정)
 
 All UI must follow the Hebron Master Design System.
 Do not introduce arbitrary fonts.
@@ -1054,7 +1056,7 @@ HebronGuide는 처음 그 도시에 도착한 사람이 여는 첫 문입니다.
 
 `HebronGuide.tsx`의 도시 데이터·안내 문구에는 아직 이모지가 섞여 있습니다. **일괄 찾아바꾸기를 하지 않습니다**(단일 공유 번들이라 회귀 위험이 큽니다 — 위 "회귀 방지" 절). 새 UI에는 넣지 않고, 그 화면을 고칠 때 그 자리에서 텍스트 라벨·SVG로 바꿉니다.
 
-**6. 다크 모드 전용** — 밝은 테마는 지원하지 않습니다. 필요해지면 semantic light token으로 **추가**합니다(교체가 아니라 추가).
+**6. 밝은 화면이 기본 (2026-10-26 방향 전환)** — 이전 원칙 "다크 모드 전용"을 바꿉니다. 지금 홈은 밝고 정착·교회 안내창·랜딩은 어둡습니다. 새 화면은 밝게 만들고, 기존 어두운 화면은 [`docs/DESIGN_DIRECTION.md`](docs/DESIGN_DIRECTION.md) "옮기는 순서"대로 하나씩 옮깁니다. 위 2·3번의 어두운 값은 지우지 않고 보존합니다(교체가 아니라 추가).
 
 ---
 
