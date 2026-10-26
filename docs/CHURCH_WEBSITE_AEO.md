@@ -2,6 +2,11 @@
 
 **정립: 2026-08-11 | 대상: ijiguchon.org (시애틀지구촌교회) · 모든 협력 교회**
 
+> 🔴 **2026-10-26 시애틀지구촌교회 사실이 바뀌었습니다 — 본문 예시의 시간·장소·직함은 옛 정보입니다.** 원리(무엇을 적고 무엇을 숨기는가)는 그대로 유효합니다.
+> 지금 사실: **주일 오후 1:30(태평양시) · 12918 35th Ave SE, Everett, WA 98208 (Silver Lake Baptist Church) · 김성수 담임목사 · 토요가족기도회 토 오전 6:00 · 영어 톡타임 주일 오후 3:00 · 새 세대 사역은 예배와 같은 시간 · 목장은 주중 가까운 가정에서**
+> 바뀐 원칙 하나: 예배를 공개된 교회 건물에서 드리므로 **예배 장소 주소는 공개**합니다. 자택(사무실)과 목장 가정의 번지수는 계속 비공개입니다.
+> 기준(정본)은 [`../seattle-gmc.html`](../seattle-gmc.html) · [`../llms.txt`](../llms.txt) · [`../church-kit.html`](../church-kit.html).
+
 > 원리: [`HEBRON_MARKETING_DOCTRINE.md`](HEBRON_MARKETING_DOCTRINE.md) · [`THREE_SITES_AEO.md`](THREE_SITES_AEO.md)
 > 이 문서는 **교회 홈페이지 담당자에게 그대로 전달**하는 실행 문서입니다.
 
