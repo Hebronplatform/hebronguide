@@ -456,6 +456,7 @@ HebronGuide는 부분이 전체에 얽혀 있다 — **Vite 빌드 · 서비스�
 | **27개 도시 한인 미디어 디렉터리** | `docs/KOREAN_MEDIA_DIRECTORY.md` |
 | 문서 위생 자체 | `DOC_HYGIENE.md` |
 | **디자인 방향 — 밝고 맑은 환대** (밝은 화면 기본 · 색 토큰·대비 · 글꼴 교체 원칙 · 환대 여덟 습관 · 옮기는 순서) | `DESIGN_DIRECTION.md` |
+| **적극 마케팅 출발 준비** (출발 전에 막을 것 5 · 팬십 장치 · SNS 8채널 순서와 주 3회 리듬 · 첫 90일 · 하나뿐인 지표) | `MARKETING_LAUNCH_READINESS.md` |
 | **파트너 철학·서약·수익나눔 원칙** | `HEBRON_PARTNER_CODEX.md` |
 | 4차 줌 네트워크 전략·스크립트 | `PASTOR_NETWORK_PLAYBOOK.md` |
 | **시애틀 세 교회 — 6개월 첫 걸음** (행2:42-47 · 3교회 · 성장목표 없음 · 소프트웨어 최소) | `SEATTLE_PILOT_3CHURCHES.md` |
