@@ -16500,11 +16500,12 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "시애틀지구촌교회" : "Global Mission Church of Greater Seattle",
         nameEn: "Global Mission Church of Greater Seattle",
         desc: ko
-          ? "\u2728 대표목사: 김성수 목사\n\ud83d\udd50 주일 오전 11시 (태평양시) · 온라인으로 어디서나 함께\n\ud83c\udfe0 가정에서 모이는 교회 · 린우드·머킬티오 가정에서 모입니다\n\ud83c\udf31 새 세대 사역 (유아~12학년)\n\ud83d\udcde 425-350-0191\n\ud83d\udd17 ijiguchon.org"
-          : "\u2728 Lead Pastor: Sung Soo Kim\n\ud83d\udd50 Sundays 11:00 AM (Pacific) · Join online from anywhere\n\ud83c\udfe0 A church that meets in homes · House churches in Lynnwood & Mukilteo\n\ud83c\udf31 Next generation ministry (infants–12th grade)\n\ud83d\udcde 425-350-0191\n\ud83d\udd17 ijiguchon.org",
-        tags: ko ? ["린우드", "시애틀", "헤브론파트너"] : ["Lynnwood", "Seattle", "HebronPartner"],
+          ? "대표목사: 김성수 목사\n주일예배: 오후 1:30 (태평양시) · 온라인 함께\n장소: 12918 35th Ave SE, Everett, WA 98208\n모임: 토요가족기도모임 토 6:00am · 영어 톡타임 주일 3:00pm (예배 후)\n새 세대 사역: 유아~12학년\nijiguchon.org"
+          : "Lead Pastor: Sung Soo Kim\nSunday Worship: 1:30 PM (Pacific) · Online available\nLocation: 12918 35th Ave SE, Everett, WA 98208\nGatherings: Saturday Family Prayer Sat 6:00 AM · English Talk Time Sun 3:00 PM (after worship)\nNext Generation Ministry: infants-12th grade\nijiguchon.org",
+        tags: ko ? ["에버렛", "시애틀", "헤브론파트너"] : ["Everett", "Seattle", "HebronPartner"],
         website: "https://ijiguchon.org",
         email: "info@ijiguchon.org",
+        phone: "425-350-0191",
       },
       {
         emoji: "⭐", tier: 1,
