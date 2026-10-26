@@ -14028,6 +14028,142 @@ function HomeScreen({ onNavigate, onSearch }: { onNavigate?: (tab: number, subTa
 /* ─────────────────────────────────────────
    TAB 2: 정착 SCREEN
 ───────────────────────────────────────── */
+/* 헤브론 우물가 — 정착에 꼭 필요한 공식 소식만. 원문에서 직접 확인한 것만 싣고(checked),
+   until이 지나면 자동으로 내려간다. 사건·정치 보도는 싣지 않는다(미디어 분별 원칙). */
+type WellItem = { titleKo: string; titleEn: string; bodyKo: string; bodyEn: string; source: string; url: string; checked: string; until?: string };
+type WellLink = { labelKo: string; labelEn: string; descKo: string; descEn: string; url: string };
+const HEBRON_WELL: Record<string, { alerts: WellItem[]; events: WellItem[]; links: WellLink[] }> = {
+  seattle: {
+    alerts: [
+      {
+        titleKo: "경찰을 사칭해 '가짜 영장' 보석금을 요구하는 전화",
+        titleEn: "Callers posing as law enforcement demand money for fake warrants",
+        bodyKo: "킹카운티 보안관실 직원이라며 \"배심원 소환에 나오지 않아 체포영장이 나왔다, 지금 전화로 보석금을 내라\"고 요구하고 가짜 영장을 이메일로 보낸 사례가 있었습니다. 경찰은 전화·문자·이메일로 돈을 요구하지 않습니다. 의심되면 끊고 911이나 경찰 비긴급 번호로 직접 확인하세요. 이미 돈을 냈더라도 부끄러워할 일이 아니니 신고하세요.",
+        bodyEn: "A caller claiming to be a King County deputy said a man had missed jury duty, that warrants were issued, and demanded a bond payment, then emailed fake warrants. Law enforcement will never call, text, or email you asking for money. Hang up and call 911 or the non-emergency line to check. If you already paid, there is no shame in reporting it.",
+        source: "Seattle Police Department",
+        url: "https://spdblotter.seattle.gov/2026/10/22/psa-scammers-are-posing-as-law-enforcement-and-demanding-money-for-fake-warrants/",
+        checked: "2026-10-26", until: "2026-12-31",
+      },
+      {
+        titleKo: "연금 인상분(COLA)을 '활성화'하라는 연락은 사기",
+        titleEn: "Anyone asking you to 'activate' your COLA is a scammer",
+        bodyKo: "사회보장 연금 인상분은 자동으로 적용되어 따로 신청하거나 활성화할 필요가 없습니다. \"인상분을 받으려면 전화하라\", \"수수료를 내라\"는 연락에 응하지 마세요. 내 통지서는 ssa.gov/myaccount에서 직접 확인하고, 의심 연락은 oig.ssa.gov에 신고하세요.",
+        bodyEn: "The Social Security cost-of-living adjustment is automatic and never needs activation. Do not respond to calls or letters asking you to call a number or pay a fee to get it. Check your notice at ssa.gov/myaccount and report suspicious contact at oig.ssa.gov.",
+        source: "SSA Office of the Inspector General",
+        url: "https://oig.ssa.gov/scam-alerts/2025-07-17-inspector-general-warns-of-newest-imposter-scam-tactic/",
+        checked: "2026-10-26", until: "2027-01-31",
+      },
+    ],
+    events: [
+      {
+        titleKo: "메디케어 공개 가입 설명회 (영어 · 무료)",
+        titleEn: "Medicare Open Enrollment Presentation (English, free)",
+        bodyKo: "11월 1일(일) 오후 1:00~2:30 · KCLS 벨뷰 도서관 1번 방 (1111 110th Ave NE, Bellevue). 워싱턴주 보험청의 무료 상담 서비스(SHIBA) 자원봉사자가 설명합니다. 등록 안내가 페이지에 엇갈리게 적혀 있으니 도서관(425-450-1765)에 확인하세요. 메디케어 공개 가입 기간은 매년 10월 15일~12월 7일입니다.",
+        bodyEn: "Sun, Nov 1, 1:00–2:30 PM · KCLS Bellevue Library, Room 1 (1111 110th Ave NE, Bellevue). Presented by a SHIBA volunteer (WA Office of the Insurance Commissioner). The page lists registration inconsistently, so call 425-450-1765 to confirm. Medicare open enrollment runs Oct 15–Dec 7 each year.",
+        source: "King County Library System",
+        url: "https://kcls.bibliocommons.com/events/6acfe61b9d27a0004550f52b",
+        checked: "2026-10-26", until: "2026-11-01",
+      },
+      {
+        titleKo: "메디케어 공개 가입 워크숍 (온라인 · 영어 · 무료)",
+        titleEn: "Medicare Open Enrollment Workshop (online, English, free)",
+        bodyKo: "11월 4일(수) 오후 1:00~3:00 · Zoom. 노스시애틀칼리지 평생교육원 주최, SHIBA 자원봉사자 진행. 등록은 아래 공식 페이지에서 합니다.",
+        bodyEn: "Wed, Nov 4, 1:00–3:00 PM · Zoom. Hosted by North Seattle College Continuing Education, led by a SHIBA volunteer. Register on the official page below.",
+        source: "North Seattle College",
+        url: "https://conted.northseattle.edu/node/96711",
+        checked: "2026-10-26", until: "2026-11-04",
+      },
+      {
+        titleKo: "시민권 시험 준비 수업 (영어 · 무료)",
+        titleEn: "Citizenship Class (English, free)",
+        bodyKo: "월요일 오후 2:00~4:00 · 시애틀 공공도서관 센트럴 도서관 4층 3번 방. 등록이 필요합니다. 수업 날짜는 바뀔 수 있으니 도서관 행사 달력에서 확인하세요.",
+        bodyEn: "Mondays 2:00–4:00 PM · Seattle Central Library, Level 4, Room 3. Registration required. Dates may change, so check the library event calendar.",
+        source: "The Seattle Public Library",
+        url: "https://www.spl.org/event-calendar",
+        checked: "2026-10-26", until: "2026-11-30",
+      },
+    ],
+    links: [
+      { labelKo: "주시애틀 대한민국 총영사관", labelEn: "Korean Consulate General in Seattle", descKo: "공지 · 순회영사 · (206) 441-1011", descEn: "Notices · Mobile consular service · (206) 441-1011", url: "https://overseas.mofa.go.kr/us-seattle-ko" },
+      { labelKo: "USCIS 알림", labelEn: "USCIS Alerts", descKo: "이민 신청 절차가 바뀔 때", descEn: "When immigration procedures change", url: "https://www.uscis.gov/newsroom/alerts" },
+      { labelKo: "워싱턴주 면허국 (DOL)", labelEn: "WA Department of Licensing", descKo: "운전면허 · 차량 등록", descEn: "Driver license · Vehicle registration", url: "https://www.dol.wa.gov/" },
+      { labelKo: "사회보장국 감찰관실", labelEn: "SSA Inspector General", descKo: "사회보장 관련 사기 신고", descEn: "Report Social Security scams", url: "https://oig.ssa.gov" },
+      { labelKo: "FBI 인터넷범죄신고센터 (IC3)", labelEn: "FBI Internet Crime Complaint Center", descKo: "온라인 사기 신고", descEn: "Report online fraud", url: "https://www.ic3.gov/" },
+      { labelKo: "시애틀 경찰 소식", labelEn: "Seattle Police Blotter", descKo: "사기 경보 · 안전 안내", descEn: "Scam alerts · Safety notices", url: "https://spdblotter.seattle.gov/" },
+      { labelKo: "시애틀 공공도서관 행사", labelEn: "Seattle Public Library Events", descKo: "시민권 · 영어 · 무료 강좌", descEn: "Citizenship · ESL · Free classes", url: "https://www.spl.org/event-calendar" },
+      { labelKo: "킹카운티 도서관 행사", labelEn: "KCLS Events", descKo: "메디케어 · 영어 · 무료 강좌", descEn: "Medicare · ESL · Free classes", url: "https://kcls.bibliocommons.com/v2/events" },
+    ],
+  },
+};
+
+function HebronWellSection({ citySlug, lang }: { citySlug: string; lang: string }) {
+  const well = HEBRON_WELL[citySlug];
+  if (!well) return null;
+  const ko = lang === "ko";
+  const today = new Date().toLocaleDateString("en-CA");
+  const live = (it: WellItem) => !it.until || it.until >= today;
+  const alerts = well.alerts.filter(live);
+  const events = well.events.filter(live);
+  const text1 = "#ECFDF5", text2 = "rgba(236,253,245,0.75)", text3 = "rgba(236,253,245,0.55)";
+  const font = "'Noto Sans KR',sans-serif";
+  const LinkIcon = () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true" focusable="false">
+      <path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1" /><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1" />
+    </svg>
+  );
+  const Badge = ({ label, color }: { label: string; color: string }) => (
+    <span style={{ display: "inline-block", fontFamily: font, fontWeight: 700, fontSize: 12, color, border: `1px solid ${color}`, borderRadius: 999, padding: "2px 10px" }}>{label}</span>
+  );
+  const Card = ({ it, badge, color }: { it: WellItem; badge: string; color: string }) => (
+    <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 10 }}>
+      <div style={{ marginBottom: 8 }}><Badge label={badge} color={color} /></div>
+      <div style={{ fontFamily: font, fontWeight: 700, fontSize: 15, color: text1, lineHeight: 1.45, marginBottom: 6 }}>{ko ? it.titleKo : it.titleEn}</div>
+      <div style={{ fontFamily: font, fontSize: 13, color: text2, lineHeight: 1.7 }}>{ko ? it.bodyKo : it.bodyEn}</div>
+      <a href={it.url} target="_blank" rel="noopener noreferrer"
+        style={{ display: "inline-flex", alignItems: "center", gap: 6, minHeight: 44, color: "#6EE7B7", fontFamily: font, fontWeight: 700, fontSize: 13, textDecoration: "none" }}>
+        <LinkIcon />{ko ? `출처: ${it.source}` : `Source: ${it.source}`}
+      </a>
+      <div style={{ fontFamily: font, fontSize: 12, color: text3 }}>{ko ? `확인 ${it.checked}` : `Checked ${it.checked}`}</div>
+    </div>
+  );
+  const Heading = ({ ko: k, en }: { ko: string; en: string }) => (
+    <div style={{ fontFamily: font, fontWeight: 700, fontSize: 14, color: text1, margin: "18px 0 10px" }}>{ko ? k : en}</div>
+  );
+  return (
+    <div style={{ paddingTop: 12, paddingBottom: 24 }}>
+      <div style={{ fontFamily: font, fontWeight: 800, fontSize: 18, color: text1 }}>{ko ? "헤브론 우물가" : "Hebron Well"}</div>
+      <div style={{ fontFamily: font, fontSize: 13, color: text2, lineHeight: 1.6, marginTop: 4 }}>
+        {ko ? "처음 오신 분이 이번 주에 알아야 할 공식 소식만 모았습니다. 모든 소식은 원문을 직접 확인했습니다."
+            : "Official notices a newcomer should know this week. Every item was checked against its original source."}
+      </div>
+
+      <Heading ko="사기 경보" en="Scam alerts" />
+      {alerts.length === 0
+        ? <div style={{ fontFamily: font, fontSize: 13, color: text3 }}>{ko ? "지금 올라온 경보가 없습니다." : "No current alerts."}</div>
+        : alerts.map((it, i) => <Card key={`a${i}`} it={it} badge={ko ? "사기 경보" : "Scam alert"} color="#F87171" />)}
+
+      <Heading ko="무료 행사 · 강좌" en="Free events & classes" />
+      {events.length === 0
+        ? <div style={{ fontFamily: font, fontSize: 13, color: text3 }}>{ko ? "이번 주에 확인된 행사가 없습니다." : "No confirmed events this week."}</div>
+        : events.map((it, i) => <Card key={`e${i}`} it={it} badge={ko ? "무료" : "Free"} color="#6EE7B7" />)}
+
+      <Heading ko="공식 기관 바로가기" en="Official offices" />
+      <div style={{ display: "grid", gap: 8 }}>
+        {well.links.map((l, i) => (
+          <a key={i} href={l.url} target="_blank" rel="noopener noreferrer"
+            style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, minHeight: 44, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, padding: "10px 14px", textDecoration: "none" }}>
+            <span>
+              <span style={{ display: "block", fontFamily: font, fontWeight: 700, fontSize: 14, color: text1 }}>{ko ? l.labelKo : l.labelEn}</span>
+              <span style={{ display: "block", fontFamily: font, fontSize: 12, color: text3, marginTop: 2 }}>{ko ? l.descKo : l.descEn}</span>
+            </span>
+            <span style={{ color: "#6EE7B7", flexShrink: 0 }}><LinkIcon /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSub?: number }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
@@ -14035,9 +14171,12 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
   const [sub, setSub] = useState(initialSub);
   useLayoutEffect(() => { setSub(initialSub); }, [initialSub]);
   const [showRegularItems, setShowRegularItems] = useState(false);
-  const tabs = lang === "ko"
-    ? ["1주차", "1개월", "3개월", "행정", "재정", "주택", "전체", "🛂 비자·이민"]
-    : ["Week 1", "Month 1", "Month 3", "Admin", "Finance", "Housing", "All", "🛂 Visa/Immigration"];
+  const tabs = [
+    ...(lang === "ko"
+      ? ["1주차", "1개월", "3개월", "행정", "재정", "주택", "전체", "🛂 비자·이민"]
+      : ["Week 1", "Month 1", "Month 3", "Admin", "Finance", "Housing", "All", "🛂 Visa/Immigration"]),
+    ...(HEBRON_WELL[citySlug] ? [lang === "ko" ? "헤브론 우물가" : "Hebron Well"] : []),
+  ];
 
   const city = useCityConfig();
   const isSeattle = citySlug === "seattle";
@@ -15562,6 +15701,9 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             : isBR ? `${cityNameEn} temporary residence · VIPER permanent · work pathways`
             : isMX ? `${cityNameEn} Residente Temporal · permanent · work pathways`
             : `${cityNameEn} F-1 · H-1B · green card · citizenship` },
+    { emoji: "🏛", titleKo: "헤브론 우물가", titleEn: "Hebron Well",
+      descKo: `${cityNameKo} 사기 경보 · 무료 행사 · 공식 기관 — 원문 확인한 소식만`,
+      descEn: `${cityNameEn} scam alerts · free events · official offices — verified at the source` },
   ];
   const sh = settleHeaders[sub] ?? settleHeaders[0];
 
@@ -15652,6 +15794,8 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
           } lang={lang} accentColor="#F2994A" />
         )}
         <div className="px-4 md:px-6 lg:px-8">
+
+        {sub === 8 && <HebronWellSection citySlug={citySlug} lang={lang} />}
 
         {/* ── 한국 이주 가이드 탭 (index 7, KR) — 4트랙 ── */}
         {sub === 7 && isKR && (
@@ -16210,7 +16354,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             })}
           </div>
 
-        ) : sub === 7 ? null /* 비자·이민 탭은 위 {sub===7 && ...} 에서 처리 */ : sub === 5 ? (
+        ) : (sub === 7 || sub === 8) ? null /* 비자·이민(7)·헤브론 우물가(8)는 위에서 처리 */ : sub === 5 ? (
         /* 주택 탭 — 동네 비교 · 부동산 · 카운티별 가격 · 헤브론 홈 */
           <>
             {/* 헤브론 홈 카드 (헤브론 연결 서비스 진입점) */}
