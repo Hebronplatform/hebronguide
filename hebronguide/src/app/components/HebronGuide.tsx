@@ -16578,8 +16578,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "예수마을교회" : "Jesus Village Church LA",
         nameEn: "Jesus Village Church LA",
         desc: ko
-          ? "✨ 담임: 정인호\n📍 Los Angeles, CA\n📞 (213) 364-0515"
-          : "✨ Lead Pastor: Inho Jung\n📍 Los Angeles, CA\n📞 (213) 364-0515",
+          ? "✨ 담임: 정인호\n📍 Los Angeles, CA"
+          : "✨ Lead Pastor: Inho Jung\n📍 Los Angeles, CA",
         tags: ko ? ["LA", "로스앤젤레스", "헤브론파트너"] : ["LA", "Los Angeles", "HebronPartner"],
         phone: "2133640515", email: "lajvc08@daum.net",
       },
@@ -16671,8 +16671,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "화이트락한인교회" : "White Rock Korean Church",
         nameEn: "White Rock Korean Church",
         desc: ko
-          ? "✨ 담임: 임흥빈 목사\n📍 White Rock, BC (밴쿠버 근교)\n📞 604-537-8789"
-          : "✨ Lead Pastor: Heungbin Im\n📍 White Rock, BC (Greater Vancouver)\n📞 604-537-8789",
+          ? "✨ 담임: 임흥빈 목사\n📍 White Rock, BC (밴쿠버 근교)"
+          : "✨ Lead Pastor: Heungbin Im\n📍 White Rock, BC (Greater Vancouver)",
         tags: ko ? ["화이트락", "밴쿠버", "헤브론파트너"] : ["White Rock", "Vancouver", "HebronPartner"],
         phone: "6045378789", email: "whiterockkmc@gmail.com",
       },
@@ -16723,8 +16723,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "프린스조지한인교회" : "Prince George Korean Church",
         nameEn: "Prince George Korean Church", hebronPartner: true,
         desc: ko
-          ? "✨ 담임: 오일권 목사 (Daniel Oh)\n📍 Prince George, BC, Canada\n🏠 새가족모임 운영 · 한인봉사센터 연계. BC 북부 한인 이주민을 따뜻하게 환영합니다.\n🕐 주일예배 10:30am\n☎ 604-727-0259\n✉️ pgkchurch@gmail.com\n🔗 pgkchurch.ca"
-          : "✨ Lead Pastor: Daniel Oh\n📍 Prince George, BC, Canada\n🏠 New members' group & Korean community service center. Warmly welcomes Korean diaspora in northern BC.\n🕐 Sunday Service 10:30am\n☎ 604-727-0259\n✉️ pgkchurch@gmail.com\n🔗 pgkchurch.ca",
+          ? "✨ 담임: 오일권 목사 (Daniel Oh)\n📍 Prince George, BC, Canada\n🏠 새가족모임 운영 · 한인봉사센터 연계. BC 북부 한인 이주민을 따뜻하게 환영합니다.\n🕐 주일예배 10:30am\n✉️ pgkchurch@gmail.com\n🔗 pgkchurch.ca"
+          : "✨ Lead Pastor: Daniel Oh\n📍 Prince George, BC, Canada\n🏠 New members' group & Korean community service center. Warmly welcomes Korean diaspora in northern BC.\n🕐 Sunday Service 10:30am\n✉️ pgkchurch@gmail.com\n🔗 pgkchurch.ca",
         tags: ko ? ["프린스조지", "BC북부", "한인봉사센터", "새가족모임"] : ["Prince George", "Northern BC", "Community Center", "New Members"],
         phone: "6047270259",
         email: "pgkchurch@gmail.com",
@@ -16747,8 +16747,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "피스토스교회" : "Pistos Church — Oakland",
         nameEn: "Pistos Church",
         desc: ko
-          ? "✨ 담임: 조영구 목사\n📍 12000 Campus Dr., Oakland CA 94619\n🕐 한어예배 오후 2:00 · 영어예배 오후 2:00\n🏠 평신도 사역자 훈련 · 자녀교육 중심 · 새가족 환영\n📞 (510) 858-6674\n🔗 gopistos.com"
-          : "✨ Lead Pastor: Younggu Cho\n📍 12000 Campus Dr., Oakland CA 94619\n🕐 Korean Service 2:00pm · English Service 2:00pm\n🏠 Lay Ministry Training · Next Gen Faith Education · Newcomers Welcome\n📞 (510) 858-6674\n🔗 gopistos.com",
+          ? "✨ 담임: 조영구 목사\n📍 12000 Campus Dr., Oakland CA 94619\n🕐 한어예배 오후 2:00 · 영어예배 오후 2:00\n🏠 평신도 사역자 훈련 · 자녀교육 중심 · 새가족 환영\n🔗 gopistos.com"
+          : "✨ Lead Pastor: Younggu Cho\n📍 12000 Campus Dr., Oakland CA 94619\n🕐 Korean Service 2:00pm · English Service 2:00pm\n🏠 Lay Ministry Training · Next Gen Faith Education · Newcomers Welcome\n🔗 gopistos.com",
         tags: ko ? ["오클랜드", "이스트베이", "한영예배", "헤브론파트너"] : ["Oakland", "East Bay", "Bilingual", "HebronPartner"],
         phone: "(510) 858-6674",
         website: "https://gopistos.com",
@@ -16771,8 +16771,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "에클레시아 엔크리스토 (온라인)" : "Ekklesia enchristo — Online Church",
         nameEn: "Ekklesia enchristo",
         desc: ko
-          ? "✨ 담임: 신용철 목사 (Yongchul Shin)\n📍 온라인 전용 교회 (서울)\n🏠 교회 나가기 어려운 분들을 위한 온라인 교회. 해외 이주민·복귀자 누구나 참여 가능합니다.\n🕐 예배: 토요일 오후 9:00–10:00 (Zoom)\n☎ 010-2305-0545\n✉️ iharu2157@gmail.com"
-          : "✨ Lead Pastor: Yongchul Shin\n📍 Online Church (Seoul-based)\n🏠 An online church you can join from your own room — designed for those who find it difficult to attend in person. Open to diaspora and returnees worldwide.\n🕐 Service: Saturday 9:00–10:00 PM (Zoom)\n☎ +82-10-2305-0545\n✉️ iharu2157@gmail.com",
+          ? "✨ 담임: 신용철 목사 (Yongchul Shin)\n📍 온라인 전용 교회 (서울)\n🏠 교회 나가기 어려운 분들을 위한 온라인 교회. 해외 이주민·복귀자 누구나 참여 가능합니다.\n🕐 예배: 토요일 오후 9:00–10:00 (Zoom)\n✉️ iharu2157@gmail.com"
+          : "✨ Lead Pastor: Yongchul Shin\n📍 Online Church (Seoul-based)\n🏠 An online church you can join from your own room — designed for those who find it difficult to attend in person. Open to diaspora and returnees worldwide.\n🕐 Service: Saturday 9:00–10:00 PM (Zoom)\n✉️ iharu2157@gmail.com",
         tags: ko ? ["온라인교회", "서울", "침례교", "토요예배", "해외동포환영"] : ["Online Church", "Seoul", "Baptist", "Saturday Service", "Diaspora"],
         phone: "01023050545",
         email: "iharu2157@gmail.com",
@@ -16783,8 +16783,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "예수생명교회 (남양주)" : "Jesus Life Church — Namyangju",
         nameEn: "JESUS LIFE CHURCH",
         desc: ko
-          ? "✨ 담임: 맹기원 목사\n📍 경기도 남양주시\n🏠 1:1 맞춤 성경공부와 코칭을 도와드립니다. 서울 동북부 30분 거리.\n🕐 주일예배 오전 11:00\n☎ 010-5146-0691\n✉️ core69m@gmail.com"
-          : "✨ Lead Pastor: Giweon Maeng\n📍 Namyangju, Gyeonggi\n🏠 Personalized 1-on-1 Bible study and coaching available. 30 min from northeast Seoul.\n🕐 Sunday Service 11:00am\n☎ 010-5146-0691\n✉️ core69m@gmail.com",
+          ? "✨ 담임: 맹기원 목사\n📍 경기도 남양주시\n🏠 1:1 맞춤 성경공부와 코칭을 도와드립니다. 서울 동북부 30분 거리.\n🕐 주일예배 오전 11:00\n✉️ core69m@gmail.com"
+          : "✨ Lead Pastor: Giweon Maeng\n📍 Namyangju, Gyeonggi\n🏠 Personalized 1-on-1 Bible study and coaching available. 30 min from northeast Seoul.\n🕐 Sunday Service 11:00am\n✉️ core69m@gmail.com",
         tags: ko ? ["남양주", "경기동북", "장로교", "성경공부", "Hebron협력"] : ["Namyangju", "Northeast Gyeonggi", "Presbyterian", "BibleStudy"],
         phone: "01051460691",
         email: "core69m@gmail.com",
@@ -16795,8 +16795,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "행복한교회 (의정부)" : "Haengbokan Church — Uijeongbu",
         nameEn: "Haengbokan Church",
         desc: ko
-          ? "✨ 담임: 이현권 목사\n📍 경기도 의정부시 오목로 225번길 135 트윈타워 1동 7층\n🏠 새가족부 등록 후 담임목사와 공부 후 목장가입. 서울 북부 30분 거리. 경기 북부 한인 이주민·귀환 동포를 따뜻하게 환영합니다.\n🕐 주일예배 11시\n☎ 010-3254-8020\n✉️ yhk8020@daum.net"
-          : "✨ Lead Pastor: Hyeonkwon Lee\n📍 Twin Tower Bldg 1, 7F, 135 Omokro 225beon-gil, Uijeongbu, Gyeonggi\n🏠 New members meet with the pastor before joining a small group. 30 min from northern Seoul. Warmly welcomes Korean diaspora.\n🕐 Sunday Service 11am\n☎ 010-3254-8020\n✉️ yhk8020@daum.net",
+          ? "✨ 담임: 이현권 목사\n📍 경기도 의정부시 오목로 225번길 135 트윈타워 1동 7층\n🏠 새가족부 등록 후 담임목사와 공부 후 목장가입. 서울 북부 30분 거리. 경기 북부 한인 이주민·귀환 동포를 따뜻하게 환영합니다.\n🕐 주일예배 11시\n✉️ yhk8020@daum.net"
+          : "✨ Lead Pastor: Hyeonkwon Lee\n📍 Twin Tower Bldg 1, 7F, 135 Omokro 225beon-gil, Uijeongbu, Gyeonggi\n🏠 New members meet with the pastor before joining a small group. 30 min from northern Seoul. Warmly welcomes Korean diaspora.\n🕐 Sunday Service 11am\n✉️ yhk8020@daum.net",
         tags: ko ? ["의정부", "경기북부", "장로교", "귀환동포환영"] : ["Uijeongbu", "North Gyeonggi", "Presbyterian", "Returning Diaspora"],
         phone: "01032548020",
         email: "yhk8020@daum.net",
@@ -17073,8 +17073,8 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "새로운교회" : "New Life Church",
         nameEn: "New Life Church",
         desc: ko
-          ? "✨ 담임: 안형준 목사 (Joseph Ahn)\n📍 Fairfax / Centreville, Virginia\n🏠 정착 도움·차편 제공·예배 후 식사 함께합니다.\n🕐 예배: 오후 1시\n📞 (703) 625-3979\n✉️ ahnjoseph30@gmail.com"
-          : "✨ Lead Pastor: Joseph Ahn\n📍 Fairfax / Centreville, Virginia\n🏠 Settlement help, transportation & fellowship meal after service.\n🕐 Service: 1:00 PM\n📞 (703) 625-3979\n✉️ ahnjoseph30@gmail.com",
+          ? "✨ 담임: 안형준 목사 (Joseph Ahn)\n📍 Fairfax / Centreville, Virginia\n🏠 정착 도움·차편 제공·예배 후 식사 함께합니다.\n🕐 예배: 오후 1시\n✉️ ahnjoseph30@gmail.com"
+          : "✨ Lead Pastor: Joseph Ahn\n📍 Fairfax / Centreville, Virginia\n🏠 Settlement help, transportation & fellowship meal after service.\n🕐 Service: 1:00 PM\n✉️ ahnjoseph30@gmail.com",
         tags: ko ? ["버지니아", "페어팩스", "센터빌", "정착도움", "차편"] : ["Virginia", "Fairfax", "Centreville", "Settlement"],
         phone: "7036253979",
         email: "ahnjoseph30@gmail.com",
