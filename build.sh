@@ -184,10 +184,9 @@ for city in \
     -e "s#HebronGuide Seattle</title>#HebronGuide ${EN}</title>#g" \
     -e "s#시애틀 한인 이민자·유학생·이주자를 위한#${KO} 한인 이민자·유학생·이주자를 위한#g" \
     -e "s#HebronGuide Seattle 2026#HebronGuide ${EN} 2026#g" \
-    -e "s#HebronGuide 시애틀 — 시애틀 한인 정착·생활·교회 완전 가이드#HebronGuide ${KO} — ${KO} 한인 정착·생활·교회 완전 가이드#g" \
-    -e "s#HebronGuide 시애틀 — 한인 정착·교회·맛집 가이드#HebronGuide ${KO} — 한인 정착·교회·맛집 가이드#g" \
-    -e "s#시애틀 한인 16.5만이 검증한 정착 가이드. Hebron Platform이 운영하는 신뢰할 수 있는 한인 커뮤니티 플랫폼.#${KO} 한인 커뮤니티를 위한 정착 가이드. 먼저 살아본 사람들이 확인한 신뢰할 수 있는 정보.#g" \
-    -e "s#시애틀 한인 16.5만이 검증한 정착 가이드. Hebron Platform 운영.#${KO} 한인 커뮤니티 정착 가이드. HebronGuide 운영.#g" \
+    -e "s#HebronGuide 시애틀 — 처음 오신 분을 맞이합니다#HebronGuide ${KO} — 처음 오신 분을 맞이합니다#g" \
+    -e "s#시애틀에 처음 오셨나요?#${KO}에 처음 오셨나요?#g" \
+    -e "s#시애틀 정착 정보·교회·이웃을 한곳에.#${KO} 정착 정보·교회·이웃을 한곳에.#g" \
     -e "s#시애틀 한인 가이드#${KO} 한인 가이드#g" \
     -e "s#\"HebronGuide 시애틀\"#\"HebronGuide ${KO}\"#g" \
     -e "s#hebronguide.com/seattle/#hebronguide.com/${city}/#g" \

@@ -13489,6 +13489,37 @@ function FloatingMusicPlayer() {
    VIRAL: 공유 섹션 — 카카오·문자·SNS·WhatsApp·이메일·복사
    스크린샷 디자인: 대형 노란 버튼 + 3개 보조 버튼
 ───────────────────────────────────────── */
+/* 홈의 조용한 소개 초대 — 접힌 영역을 열지 않아도 보이는 한 줄. 보상·순위 없음 */
+function IntroduceInviteRow({ lang }: { lang: string }) {
+  const ko = lang === "ko";
+  const city = useCityConfig();
+  const [copied, setCopied] = useState(false);
+  const share = () => {
+    const ctx = getShareContexts(city.nameKo, city.nameEn, city.slug, DIASPORA_IDENTITY[city.slug])[0];
+    const url = `https://hebronguide.com/${city.slug}/`;
+    const text = ko ? ctx.textKo : ctx.textEn;
+    if (navigator.share) {
+      navigator.share({ title: `HebronGuide ${ko ? city.nameKo : city.nameEn}`, text, url }).catch(() => {});
+    } else {
+      navigator.clipboard?.writeText(`${text}\n${url}`).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2500); });
+    }
+  };
+  return (
+    <div style={{ margin: "12px 16px 0", background: "var(--color-surface-warm)", borderRadius: 14, padding: "12px 14px", display: "flex", alignItems: "center", gap: 12 }}>
+      <div style={{ flex: 1, minWidth: 0, fontFamily: "'Pretendard Variable',Geist,sans-serif", fontSize: 14, lineHeight: 1.5, color: "var(--color-text-primary)", wordBreak: "keep-all" }}>
+        {ko ? "새로 오는 분이 있나요? 이 도시를 건네주세요." : "Someone arriving soon? Pass this city on."}
+      </div>
+      <button onClick={share} style={{
+        minHeight: 44, padding: "0 16px", borderRadius: 10, border: "none", cursor: "pointer", flexShrink: 0,
+        background: "var(--color-primary)", color: "var(--color-text-inverse)",
+        fontFamily: "'Pretendard Variable',Geist,sans-serif", fontWeight: 700, fontSize: 14,
+      }}>
+        {copied ? (ko ? "복사했어요" : "Copied") : (ko ? "소개하기" : "Introduce")}
+      </button>
+    </div>
+  );
+}
+
 function GrowthShareSection({ lang }: { lang: string }) {
   const ko = lang === "ko";
   const cityConfig = useCityConfig();
@@ -13497,12 +13528,9 @@ function GrowthShareSection({ lang }: { lang: string }) {
   const citySlug   = cityConfig.slug;
 
   const shareUrl   = `https://hebronguide.com/${citySlug}/`;
-  const shareTitle = ko
-    ? `${cityNameKo} 한인 정착 가이드 — HebronGuide`
-    : `${cityNameEn} Korean Settlement Guide — HebronGuide`;
-  const shareText  = ko
-    ? `${cityNameKo}에 새로 오신 한인분들께 꼭 필요한 정착 앱이에요. 교회·맛집·정착 정보 한 곳에서 무료로!`
-    : `The essential free app for Koreans arriving in ${cityNameEn}. Church, food & settlement info — free!`;
+  const shareTitle = `HebronGuide ${ko ? cityNameKo : cityNameEn}`;
+  const homeCtx    = getShareContexts(cityNameKo, cityNameEn, citySlug, DIASPORA_IDENTITY[citySlug])[0];
+  const shareText  = ko ? homeCtx.textKo : homeCtx.textEn;
 
   const [copied, setCopied] = useState(false);
 
@@ -13559,7 +13587,9 @@ function GrowthShareSection({ lang }: { lang: string }) {
           fontFamily: "'Pretendard Variable',Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 15, color: "#1a1200",
         }}>
         <Smartphone size={17} strokeWidth={2} />
-        {ko ? "카카오톡으로 공유하기" : "Share via KakaoTalk"}
+        {copied
+          ? (ko ? "소개 글을 복사했어요" : "Copied")
+          : (ko ? "이 도시를 친구에게 소개하기" : "Introduce this city to a friend")}
       </button>
 
       {/* 카카오 채널 등록 안내 */}
@@ -13963,6 +13993,8 @@ function HomeScreen({ onNavigate, onSearch }: { onNavigate?: (tab: number, subTa
 
       {/* ── Day 1 도착 체크리스트 ── */}
       <ArrivalChecklistSection lang={lang} />
+
+      <IntroduceInviteRow lang={lang} />
 
       {/* ── 홈 더 둘러보기: 보조 섹션은 기본 접힘 (단순화 2단계). 탭하면 그대로 모두 나옴 — 기능 유지 ── */}
       {!moreOpen && (
@@ -30432,41 +30464,59 @@ function getShareContexts(cityKo: string, cityEn: string, slug: string,
   const idNumEn = cc === "CA" ? "SIN" : cc === "AU" ? "TFN" : cc === "JP" ? "My Number" : cc === "KR" ? "Resident ID" : "SSN";
   const tagId   = id.en.replace(/\s+/g, "");
   return {
-    0: { emoji: "🏠", labelKo: "홈", labelEn: "Home",
-      textKo: `${cityKo} ${id.ko} 플랫폼 ${id.flag}\n정착부터 커뮤니티·법률·한국학교까지\n이민자에서 ${withRo(id.ko)} — 함께 성장해요 👇`,
-      textEn: `${cityEn} ${id.en} Platform ${id.flag}\nFrom settlement to community, legal aid & Korean schools\nGrow from newcomer to ${id.en} — together 👇`,
+    0: { emoji: "", labelKo: "홈", labelEn: "Home",
+      textKo: `${cityKo}에 처음 오셨다면, 혼자 헤매지 않으셔도 돼요.
+정착 정보부터 교회와 이웃까지, 먼저 걸어 본 사람들이 모아 두었어요.`,
+      textEn: `New to ${cityEn}? You don't have to find your way alone.
+Settling-in help, churches and neighbors, gathered by people who walked this road first.`,
       tags: `#${tagId} #${slug}한인 #HebronGuide` },
-    1: { emoji: "🛬", labelKo: "정착", labelEn: "Settlement",
-      textKo: `${cityKo} 정착 완벽 가이드 🛬\n${idNumKo}·운전면허·비자·세금·법률·한국학교까지\n새로 오신 분들께 꼭 공유해 주세요 👇`,
-      textEn: `Complete ${cityEn} ${id.en} guide 🛬\n${idNumEn}, license, visa, taxes, legal aid, Korean schools\nShare with every new arrival 👇`,
+    1: { emoji: "", labelKo: "정착", labelEn: "Settlement",
+      textKo: `${cityKo}에서 보내는 첫 일주일, 무엇부터 할지 순서대로 적어 두었어요.
+${idNumKo}·운전면허·은행·집 구하기까지. 새로 오신 분께 건네주세요.`,
+      textEn: `Your first week in ${cityEn}, step by step.
+${idNumEn}, driver's license, bank and housing. For someone who just arrived.`,
       tags: `#${slug}정착 #${tagId} #HebronGuide` },
-    2: { emoji: "⛪", labelKo: "교회", labelEn: "Church",
-      textKo: `${cityKo} 한인교회 정보 ⛪\n가정교회 중심으로 검증된 교회 정보\n믿을 수 있는 커뮤니티를 찾고 계신다면 👇`,
-      textEn: `Korean churches in ${cityEn} ⛪\nVerified church info, house church communities\nLooking for a trusted community? 👇`,
+    2: { emoji: "", labelKo: "교회", labelEn: "Church",
+      textKo: `${cityKo}에서 함께 예배드릴 교회를 찾고 계신가요?
+확인을 거친 한인 교회들을 소개해요. 처음 가는 길이 덜 낯설도록.`,
+      textEn: `Looking for a church in ${cityEn}?
+Korean churches we have checked, so the first visit feels a little less strange.`,
       tags: `#${slug}한인교회 #가정교회 #HebronGuide` },
-    3: { emoji: "🍽️", labelKo: "맛집", labelEn: "Food",
-      textKo: `${cityKo} 한인 검증 맛집 TOP 10 🍽️\n수백 곳 중 엄선한 진짜 맛집\n여기는 정말 맛있어요! 👇`,
-      textEn: `${cityEn}'s top verified Korean restaurants 🍽️\nHandpicked from hundreds of options\nThese are genuinely delicious! 👇`,
+    3: { emoji: "", labelKo: "맛집", labelEn: "Food",
+      textKo: `${cityKo}에서 고향 맛이 그리울 때.
+직접 확인한 한식당을 모아 두었어요. 함께 밥 먹고 싶은 사람에게 보내 보세요.`,
+      textEn: `Missing a taste of home in ${cityEn}?
+Korean restaurants we have checked. Send it to someone you'd like to share a meal with.`,
       tags: `#${slug}맛집 #한식 #KoreanFood #HebronGuide` },
-    4: { emoji: "🗺️", labelKo: "관광", labelEn: "Tourism",
-      textKo: `${cityKo} 관광 명소 완벽 정리 🗺️\n자연·문화·야경·액티비티 총망라\n${cityKo} 방문 계획이라면 꼭 보세요 👇`,
-      textEn: `${cityEn}'s best attractions 🗺️\nNature, culture, nightviews & activities\nMust-see before your ${cityEn} trip 👇`,
+    4: { emoji: "", labelKo: "관광", labelEn: "Tourism",
+      textKo: `${cityKo}에 오는 가족이나 친구가 있다면.
+함께 걸어 볼 만한 곳들을 정리해 두었어요.`,
+      textEn: `Family or friends coming to ${cityEn}?
+Places worth walking together.`,
       tags: `#${slug}관광 #${tagId} #HebronGuide` },
-    5: { emoji: "🆘", labelKo: "도움·긴급", labelEn: "Help & Emergency",
-      textKo: `${cityKo} 한인 긴급 연락처 모음 🆘\n병원·총영사관·법률·커뮤니티 자원\n셀폰에 저장해 두세요! 👇`,
-      textEn: `${cityEn} emergency contacts for Koreans 🆘\nHospital, consulate, legal & community resources\nSave this now! 👇`,
+    5: { emoji: "", labelKo: "도움·긴급", labelEn: "Help & Emergency",
+      textKo: `${cityKo}에서 급한 일이 생겼을 때 찾을 곳.
+병원·총영사관·법률 도움 연락처를 한곳에 모았어요.`,
+      textEn: `When something urgent happens in ${cityEn}.
+Hospitals, the consulate and legal help, all in one place.`,
       tags: `#${slug}응급 #한인정보 #HebronGuide` },
-    6: { emoji: "💼", labelKo: "취업", labelEn: "Jobs",
-      textKo: `${cityKo} 한인 취업 정보 💼\n주요 고용주·한인 업체·취업 비자 경로\n취업 준비 중이시라면 👇`,
-      textEn: `${cityEn} jobs for Koreans 💼\nMajor employers, Korean businesses & visa pathways\nFor job seekers 👇`,
-      tags: `#${slug}취업 #테크잡 #HebronGuide` },
-    7: { emoji: "🎓", labelKo: "교육", labelEn: "Education",
-      textKo: `${cityKo} 교육 정보 🎓\n공립학교·한국어학교·대학 진학\n자녀 교육 고민 중이시라면 👇`,
-      textEn: `${cityEn} education guide 🎓\nPublic schools, Korean schools & college prep\nFor parents planning ahead 👇`,
+    6: { emoji: "", labelKo: "취업", labelEn: "Jobs",
+      textKo: `${cityKo}에서 일자리를 찾는 분께.
+주요 고용주와 한인 업체, 취업 비자 길을 정리했어요.`,
+      textEn: `For anyone looking for work in ${cityEn}.
+Major employers, Korean businesses and work-visa pathways.`,
+      tags: `#${slug}취업 #HebronGuide` },
+    7: { emoji: "", labelKo: "교육", labelEn: "Education",
+      textKo: `${cityKo}에서 아이 학교를 고민하는 부모님께.
+공립학교·한국어학교·대학 진학 정보를 모았어요.`,
+      textEn: `For parents thinking about schools in ${cityEn}.
+Public schools, Korean language schools and college prep.`,
       tags: `#${slug}교육 #한인학교 #HebronGuide` },
-    8: { emoji: "💰", labelKo: "생활비", labelEn: "Cost of Living",
-      textKo: `${cityKo} 실제 생활비 정보 💰\n렌트·세금·교통·통신비 완전 가이드\n이사 전 꼭 확인하세요 👇`,
-      textEn: `Real ${cityEn} cost of living 💰\nRent, taxes, transport & phone costs guide\nCheck before you move 👇`,
+    8: { emoji: "", labelKo: "생활비", labelEn: "Cost of Living",
+      textKo: `${cityKo}에 이사를 생각하고 있다면.
+렌트·세금·교통·통신비, 실제로 드는 돈을 정리했어요.`,
+      textEn: `Thinking about moving to ${cityEn}?
+Rent, taxes, transportation and phone costs: what it really takes.`,
       tags: `#${slug}생활비 #렌트 #HebronGuide` },
   };
 }
@@ -30531,7 +30581,7 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
   const SHARE_CTX    = getShareContexts(shareCity.nameKo, shareCity.nameEn, shareCity.slug, shareIdentity);
   const ctx          = SHARE_CTX[activeNav] ?? SHARE_CTX[0];
   const bodyText     = lang === "ko" ? ctx.textKo : ctx.textEn;
-  const fullMsg      = `${bodyText}\n\n📱 HebronGuide ${shareCity.nameKo} — hebronguide.com/${shareCity.slug}\n${ctx.tags}`;
+  const fullMsg      = `${bodyText}\n\nHebronGuide ${lang === "ko" ? shareCity.nameKo : shareCity.nameEn} — hebronguide.com/${shareCity.slug}\n${ctx.tags}`;
 
   const [copied, setCopied] = useState(false);
 
@@ -30666,10 +30716,10 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
           <div>
             <div style={{ fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif",
               fontWeight:700, fontSize:17, color:"#1C1C1E", letterSpacing:"-0.3px" }}>
-              {lang === "ko" ? "공유하기" : "Share"}
+              {lang === "ko" ? "이 도시를 소개하기" : "Introduce this city"}
             </div>
-            <div style={{ fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif", fontSize:12, color:"#8E8E93", marginTop:2 }}>
-              {ctx.emoji} {lang === "ko" ? ctx.labelKo : ctx.labelEn}
+            <div style={{ fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif", fontSize:13, color:"var(--color-text-secondary)", marginTop:2 }}>
+              {lang === "ko" ? "새로 오는 분께 건네주세요" : "Pass it on to someone who's arriving"}
             </div>
           </div>
           <button onClick={onClose} style={{ border:"none",
@@ -30682,15 +30732,14 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
         <div style={{ margin:"12px 16px 0", background:"rgba(118,118,128,0.05)",
           border:"1px solid rgba(118,118,128,0.12)", borderRadius:14, padding:"12px 14px 10px" }}>
           <div style={{ fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif",
-            fontSize:12, color:"#3C3C43", lineHeight:1.65, whiteSpace:"pre-line", opacity:0.8 }}>
+            fontSize:14, color:"var(--color-text-primary)", lineHeight:1.65, whiteSpace:"pre-line" }}>
             {bodyText}
           </div>
-          <div style={{ marginTop: 8, paddingTop: 8, borderTop: "1px solid #E2E8F0", display: "flex", alignItems: "center", gap: 6 }}>
-            <div style={{ width: 20, height: 20, borderRadius: 5, background: "#1B2A4A", display: "flex", alignItems: "center", justifyContent: "center" }}><EmojiIcon emoji={"🧭"} size={10} /></div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: "#1B2A4A" }}>HebronGuide</div>
-            <div style={{ fontSize: 11, color: "#94A3B8" }}>hebronguide.com/seattle</div>
+          <div style={{ marginTop: 8, paddingTop: 8, borderTop: "1px solid #E2E8F0", display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
+            <div style={{ fontSize: 12, fontWeight: 700, color: "#1B2A4A" }}>HebronGuide</div>
+            <div style={{ fontSize: 12, color: "var(--color-text-muted)" }}>hebronguide.com/{shareCity.slug}</div>
           </div>
-          <div style={{ marginTop: 4, fontSize: 10, color: "#94A3B8" }}>{ctx.tags}</div>
+          <div style={{ marginTop: 4, fontSize: 12, color: "var(--color-text-muted)" }}>{ctx.tags}</div>
         </div>
 
         {/* ── SNS 플랫폼 그리드 (4열 아이콘형) ── */}
@@ -30713,12 +30762,12 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
                     ? <svg viewBox="0 0 24 24" width="26" height="26"><polyline points="4 12 9 17 20 7" stroke="white" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
                     : p.icon}
                 </div>
-                <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 10, color: "#1B2A4A", textAlign: "center", lineHeight: 1.2 }}>
-                  {isLast && copied ? (lang === "ko" ? "복사됨!" : "Copied!") : p.label}
+                <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "#1B2A4A", textAlign: "center", lineHeight: 1.2 }}>
+                  {isLast && copied ? (lang === "ko" ? "복사했어요" : "Copied") : p.label}
                 </div>
                 {(isInstagram || isTikTok) && (
-                  <div style={{ fontSize: 8, color: "#F59E0B", fontWeight: 700, textAlign: "center", marginTop: 1 }}>
-                    {lang === "ko" ? "복사→붙여넣기" : "copy→paste"}
+                  <div style={{ fontSize: 12, color: "var(--color-accent-text)", textAlign: "center", marginTop: 1 }}>
+                    {lang === "ko" ? "복사 후 붙여넣기" : "Copy, then paste"}
                   </div>
                 )}
               </>
