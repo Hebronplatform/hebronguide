@@ -12226,13 +12226,21 @@ function CommunitySection({ category, citySlug, lang }: { category: string; city
   };
   const label = SECTION_LABEL[category] || { ko: "정보", en: "info", emoji: "💬" };
 
-  const handleSend = () => {
-    if (!text.trim()) return;
-    const subject = encodeURIComponent(`[HebronGuide ${city.nameKo} ${label.ko}] 추가 요청`);
-    const body = encodeURIComponent(
-      `도시: ${city.nameKo} (${citySlug})\n섹션: ${label.ko}\n\n내용:\n${text.trim()}\n\n---\nhebronguide.com`
-    );
-    window.open(`mailto:hebronplatform@gmail.com?subject=${subject}&body=${body}`);
+  // 기록이 남도록 submit-form으로 보낸다(검토 대기 저장 + 관리자 메일). 실패하면 메일 앱으로.
+  const handleSend = async () => {
+    const msg = text.trim();
+    if (!msg) return;
+    const subject = `[의견·불편] ${city.nameKo} ${label.ko}`;
+    const body = `도시: ${city.nameKo} (${citySlug})\n화면: ${label.ko}\n\n${msg}`;
+    try {
+      const res = await fetch("/api/submit-form", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "feedback", subject, body, city: citySlug }),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+    } catch {
+      window.open(`mailto:hebronplatform@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+    }
     setSent(true);
     setText("");
     setTimeout(() => setSent(false), 3000);
@@ -12250,13 +12258,14 @@ function CommunitySection({ category, citySlug, lang }: { category: string; city
         <div style={{ display: "flex", alignItems: "flex-start", gap: 6, fontSize: 12, color: "rgba(236,253,245,0.45)", marginBottom: 10 }}>
           <MessageCircle size={13} strokeWidth={2} style={{ flexShrink: 0, marginTop: 2 }} />
           <span>{ko
-            ? `이 ${label.ko} 섹션에 추가했으면 하는 정보가 있으신가요?`
-            : `Anything to add to this ${label.en} section?`}</span>
+            ? `이 화면에서 불편했던 점이나, 더 있었으면 하는 정보가 있나요?`
+            : `Anything confusing here, or something you wish this ${label.en} page had?`}</span>
         </div>
         <textarea
           value={text}
           onChange={e => setText(e.target.value)}
-          placeholder={ko ? "예: 추천 교회, 맛집, 정보 등 자유롭게 적어주세요" : "e.g. Recommended church, restaurant, tip..."}
+          aria-label={ko ? "불편했던 점이나 더 있었으면 하는 정보" : "What was confusing or missing"}
+          placeholder={ko ? "예: 예배 시간이 바뀌었어요 / 버튼을 찾기 어려웠어요" : "e.g. The service time changed / I couldn't find the button"}
           rows={2}
           style={{
             width: "100%", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)",
@@ -12272,11 +12281,11 @@ function CommunitySection({ category, citySlug, lang }: { category: string; city
             background: text.trim() ? "rgba(110,231,183,0.15)" : "rgba(255,255,255,0.04)",
             border: `1px solid ${text.trim() ? "rgba(110,231,183,0.4)" : "rgba(255,255,255,0.08)"}`,
             color: text.trim() ? "#6EE7B7" : "rgba(236,253,245,0.3)",
-            borderRadius: 8, padding: "8px 16px", fontSize: 12, fontWeight: 700,
+            borderRadius: 8, padding: "0 16px", minHeight: 44, fontSize: 13, fontWeight: 700,
             cursor: text.trim() ? "pointer" : "default", fontFamily: "inherit",
           }}
         >
-          {ko ? "의견 보내기 →" : "Send Feedback →"}
+          {ko ? "보내기" : "Send"}
         </button>
       </div>
     </div>
@@ -13507,14 +13516,14 @@ function IntroduceInviteRow({ lang }: { lang: string }) {
   return (
     <div style={{ margin: "12px 16px 0", background: "var(--color-surface-warm)", borderRadius: 14, padding: "12px 14px", display: "flex", alignItems: "center", gap: 12 }}>
       <div style={{ flex: 1, minWidth: 0, fontFamily: "'Pretendard Variable',Geist,sans-serif", fontSize: 14, lineHeight: 1.5, color: "var(--color-text-primary)", wordBreak: "keep-all" }}>
-        {ko ? "새로 오는 분이 있나요? 이 도시를 건네주세요." : "Someone arriving soon? Pass this city on."}
+        {ko ? "곧 이 도시로 오는 분이 떠오르나요?" : "Thinking of someone moving here soon?"}
       </div>
       <button onClick={share} style={{
         minHeight: 44, padding: "0 16px", borderRadius: 10, border: "none", cursor: "pointer", flexShrink: 0,
         background: "var(--color-primary)", color: "var(--color-text-inverse)",
         fontFamily: "'Pretendard Variable',Geist,sans-serif", fontWeight: 700, fontSize: 14,
       }}>
-        {copied ? (ko ? "복사했어요" : "Copied") : (ko ? "소개하기" : "Introduce")}
+        {copied ? (ko ? "복사했어요" : "Copied") : (ko ? "함께 나누기" : "Share")}
       </button>
     </div>
   );
@@ -13589,7 +13598,7 @@ function GrowthShareSection({ lang }: { lang: string }) {
         <Smartphone size={17} strokeWidth={2} />
         {copied
           ? (ko ? "소개 글을 복사했어요" : "Copied")
-          : (ko ? "이 도시를 친구에게 소개하기" : "Introduce this city to a friend")}
+          : (ko ? "이 도시 함께 나누기" : "Share this city")}
       </button>
 
       {/* 카카오 채널 등록 안내 */}
@@ -16676,7 +16685,7 @@ function getCityChurches(slug: string, lang: string) {
         name: ko ? "시애틀지구촌교회" : "Global Mission Church of Greater Seattle",
         nameEn: "Global Mission Church of Greater Seattle",
         desc: ko
-          ? "대표목사: 김성수 목사\n주일예배: 오후 1:30 (태평양시) · 온라인 함께\n장소: 12918 35th Ave SE, Everett, WA 98208\n모임: 토요가족기도모임 토 6:00am · 영어 톡타임 주일 3:00pm (예배 후)\n새 세대 사역: 유아~12학년\nijiguchon.org"
+          ? "담임: 김성수 목사\n주일예배: 오후 1:30 (태평양시) · 온라인 함께\n장소: 12918 35th Ave SE, Everett, WA 98208\n모임: 토요가족기도모임 토 6:00am · 영어 톡타임 주일 3:00pm (예배 후)\n새 세대 사역: 유아~12학년\nijiguchon.org"
           : "Lead Pastor: Sung Soo Kim\nSunday Worship: 1:30 PM (Pacific) · Online available\nLocation: 12918 35th Ave SE, Everett, WA 98208\nGatherings: Saturday Family Prayer Sat 6:00 AM · English Talk Time Sun 3:00 PM (after worship)\nNext Generation Ministry: infants-12th grade\nijiguchon.org",
         tags: ko ? ["에버렛", "시애틀", "헤브론파트너"] : ["Everett", "Seattle", "HebronPartner"],
         website: "https://ijiguchon.org",
@@ -17310,12 +17319,15 @@ function useGatheringCount(citySlug: string) {
 function ChurchScreen({ onHome }: { onHome?: () => void }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
-  const [sub, setSub] = useState(0);
+  const [sub, setSub] = useState(1);
   type WelcomeChurchData = { name: string; desc: string; phone?: string; kakao?: string; website?: string; email?: string; };
   const [welcomeChurch, setWelcomeChurch] = useState<WelcomeChurchData | null>(null);
-  const tabs = lang === "ko"
-    ? ["소개", "교회 목록", "프로그램", "새가족", "파트너 네트워크"]
-    : ["About", "Churches", "Programs", "New Members", "Partner Network"];
+  // 들어오자마자 교회 목록. 화면 순서와 내부 번호(sub)를 분리해 기존 탭 내용은 그대로 둔다.
+  const tabOrder = [1, 3, 2, 4];
+  const tabLabels: Record<number, string> = lang === "ko"
+    ? { 1: "교회 찾기", 3: "처음 방문", 2: "영어·프로그램", 4: "교회 등록" }
+    : { 1: "Find a church", 3: "First visit", 2: "English & programs", 4: "Register a church" };
+  const tabs = tabOrder.map(i => tabLabels[i]);
   const accent = "#C084FC";
   const city = useCityConfig();
   const citySlug = city.slug;
@@ -17341,7 +17353,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
   // ── Supabase 교회 데이터 (CKSBCA + 파트너 등록 교회) ──
   const [sbChurches, setSbChurches] = useState<any[]>([]);
   // ── 아코디언 열림/닫힘 상태 ──
-  const [openOtherChurches, setOpenOtherChurches] = useState(false);
+  const [openOtherChurches, setOpenOtherChurches] = useState(true);
   const [openOther, setOpenOther] = useState(false);
   useEffect(() => {
     const hdrs = { apikey: publicAnonKey, Authorization: `Bearer ${publicAnonKey}` };
@@ -17440,10 +17452,10 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
     <div style={{ paddingBottom: 96 }}>
       <BackToHomeButton onHome={onHome} lang={lang} />
       <ScreenHeader emoji="⛪" titleKo="한인 교회" titleEn="Korean Churches"
-        descKo={`${useCityConfig().nameKo} — 정착 지원 · 영어수업 · 커뮤니티 네트워크`}
-        descEn={`${useCityConfig().nameEn} — Settlement support · ESL classes · Community`}
+        descKo={`${useCityConfig().nameKo} — 처음 오신 분을 기다리는 교회들`}
+        descEn={`${useCityConfig().nameEn} — Churches waiting to welcome you`}
         accentColor={accent} />
-      <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
+      <SubTabBar tabs={tabs} active={Math.max(0, tabOrder.indexOf(sub))} onChange={(i) => setSub(tabOrder[i])} accentColor={accent} />
       {gatheringCount > 0 && (
         <div className="px-4 md:px-6 lg:px-8" style={{ paddingTop: 16 }}>
           <a href="/gathering.html" style={{
@@ -17466,80 +17478,6 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
         </div>
       )}
       <div className="pt-5 px-4 md:px-6 lg:px-8">
-        {sub === 0 && (
-          <>
-            {/* ── 환대는 하나님의 마음 ── */}
-            <div style={{ background: "linear-gradient(135deg,rgba(201,162,39,0.11) 0%,rgba(0,0,0,0) 100%)", border: "1px solid rgba(201,162,39,0.3)", borderRadius: 16, padding: "20px 18px", marginBottom: 12 }}>
-              <div style={{ fontSize: 10, fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, color: "#C9A227", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 12, opacity: 0.85 }}>
-                ✦ {lang === "ko" ? "이 교회들이 기다립니다" : "These churches are waiting for you"}
-              </div>
-              <div style={{ background: "rgba(0,0,0,0.25)", borderRadius: 12, padding: "14px 16px", borderLeft: "3px solid #C9A227" }}>
-                <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 14.5, color: "#ECFDF5", marginBottom: 6 }}>
-                  {lang === "ko" ? "낯선 도시에서 처음 만나는 얼굴" : "The first face you meet in a new city"}
-                </div>
-                <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "rgba(236,253,245,0.7)", lineHeight: 1.85 }}>
-                  {lang === "ko"
-                    ? "처음 이 도시에 오셨나요?\n이미 여기서 먼저 살아온 분들이 당신을 기다리고 있습니다."
-                    : "New to this city?\nPeople who've lived here before you are already waiting to welcome you."}
-                </div>
-              </div>
-            </div>
-
-            {/* ── 환대 말씀 카드 ── */}
-            <div style={{ background: "rgba(110,231,183,0.06)", border: "1px solid rgba(110,231,183,0.2)", borderRadius: 16, padding: "18px 20px", marginBottom: 14 }}>
-              <div style={{ fontSize: 11, fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, color: "#6EE7B7", letterSpacing: "0.06em", marginBottom: 10, opacity: 0.85 }}>
-                {lang === "ko" ? "환대는 하나님의 마음입니다" : "Hospitality is the heart of God"}
-              </div>
-              <div style={{ fontSize: 13, color: "rgba(236,253,245,0.88)", lineHeight: 1.8, fontStyle: "italic", borderLeft: "3px solid rgba(110,231,183,0.4)", paddingLeft: 12, marginBottom: 8 }}>
-                {lang === "ko"
-                  ? "\"나그네 대접하기를 잊지 마십시오.\n어떤 사람들은 나그네를 대접하다가\n자기도 모르는 사이에 천사들을 대접하였습니다.\""
-                  : "\"Do not forget to show hospitality to strangers,\nfor by so doing some people have shown\nhospitality to angels without knowing it.\""}
-              </div>
-              <div style={{ fontSize: 11, color: "rgba(110,231,183,0.7)", fontWeight: 700, marginBottom: 10 }}>
-                {lang === "ko" ? "— 히브리서 13:2 (새번역)" : "— Hebrews 13:2"}
-              </div>
-              <div style={{ fontSize: 12, color: "rgba(236,253,245,0.65)", lineHeight: 1.7 }}>
-                {lang === "ko"
-                  ? "이 교회들은 처음 오신 분들을 가장 먼저 맞이합니다."
-                  : "These churches are the first to welcome those who are just arriving."}
-              </div>
-            </div>
-            {/* -- 한눈에 보는 숫자 - 전부 눌러서 바로 갈 수 있다 --
-                지어낸 숫자를 쓰지 않는다. 아래 목록에 실제로 있는 교회만 센다. */}
-            {(() => {
-              const total = allPartner.length + allOther.length;
-              const homeCount = [...allPartner, ...allOther].filter((c: any) => isHome(c)).length;
-              const goList = () => { setOpenOtherChurches(true); setSub(1); };
-              const tiles: { n: string; l: string; go: () => void }[] = [
-                { n: total > 0 ? String(total) : "\u2014",
-                  l: lang === "ko" ? "한인 교회" : "Korean Churches", go: goList },
-              ];
-              if (homeCount > 0) tiles.push({ n: String(homeCount),
-                  l: lang === "ko" ? "가정교회" : "House Churches", go: goList });
-              tiles.push({ n: lang === "ko" ? "무료" : "Free",
-                  l: lang === "ko" ? "ESL 영어수업" : "ESL Classes", go: () => setSub(2) });
-              tiles.push({ n: lang === "ko" ? "처음" : "New",
-                  l: lang === "ko" ? "새가족 안내" : "New Member Guide", go: () => setSub(3) });
-              return (
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-[10px] mb-4">
-                  {tiles.map((t, i) => (
-                    <button key={i} onClick={t.go} type="button"
-                      className="transition-all duration-200 hover:scale-[1.03]"
-                      style={{ background: "rgba(192,132,252,0.1)", borderRadius: 14, padding: "14px 16px",
-                               border: "1px solid rgba(192,132,252,0.2)", textAlign: "center",
-                               cursor: "pointer", width: "100%", minHeight: 74 }}>
-                      <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 22, color: "#ECFDF5" }}>{t.n}</div>
-                      <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "rgba(236,253,245,0.85)", marginTop: 3 }}>{t.l}</div>
-                      <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 9.5, color: "#C084FC", marginTop: 5, fontWeight: 700 }}>
-                        {lang === "ko" ? "바로 보기 \u2192" : "Open \u2192"}
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              );
-            })()}
-          </>
-        )}
         {sub === 1 && (
           <>
             {/* ══════════════════════════════════════════════
@@ -17674,7 +17612,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                     }}
                   >
                     <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 13, color: "rgba(236,253,245,0.7)", flex: 1, textAlign: "left" }}>
-                      {lang === "ko" ? `기타 등록 교회` : `Other Churches`}
+                      {lang === "ko" ? `다른 한인 교회` : `More Korean churches`}
                       <span style={{ fontWeight: 500, color: "rgba(236,253,245,0.4)", fontSize: 11, marginLeft: 6 }}>
                         ({allOther.length}{lang === "ko" ? "개" : ""})
                       </span>
@@ -30472,7 +30410,7 @@ Settling-in help, churches and neighbors, gathered by people who walked this roa
       tags: `#${tagId} #${slug}한인 #HebronGuide` },
     1: { emoji: "", labelKo: "정착", labelEn: "Settlement",
       textKo: `${cityKo}에서 보내는 첫 일주일, 무엇부터 할지 순서대로 적어 두었어요.
-${idNumKo}·운전면허·은행·집 구하기까지. 새로 오신 분께 건네주세요.`,
+${idNumKo}·운전면허·은행·집 구하기까지. 처음 오는 분께 도움이 되면 좋겠어요.`,
       textEn: `Your first week in ${cityEn}, step by step.
 ${idNumEn}, driver's license, bank and housing. For someone who just arrived.`,
       tags: `#${slug}정착 #${tagId} #HebronGuide` },
@@ -30484,7 +30422,7 @@ Korean churches we have checked, so the first visit feels a little less strange.
       tags: `#${slug}한인교회 #가정교회 #HebronGuide` },
     3: { emoji: "", labelKo: "맛집", labelEn: "Food",
       textKo: `${cityKo}에서 고향 맛이 그리울 때.
-직접 확인한 한식당을 모아 두었어요. 함께 밥 먹고 싶은 사람에게 보내 보세요.`,
+직접 확인한 한식당을 모아 두었어요. 같이 밥 먹고 싶은 사람이 떠올라서 나눠요.`,
       textEn: `Missing a taste of home in ${cityEn}?
 Korean restaurants we have checked. Send it to someone you'd like to share a meal with.`,
       tags: `#${slug}맛집 #한식 #KoreanFood #HebronGuide` },
@@ -30716,10 +30654,10 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
           <div>
             <div style={{ fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif",
               fontWeight:700, fontSize:17, color:"#1C1C1E", letterSpacing:"-0.3px" }}>
-              {lang === "ko" ? "이 도시를 소개하기" : "Introduce this city"}
+              {lang === "ko" ? "이 도시 함께 나누기" : "Share this city"}
             </div>
             <div style={{ fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif", fontSize:13, color:"var(--color-text-secondary)", marginTop:2 }}>
-              {lang === "ko" ? "새로 오는 분께 건네주세요" : "Pass it on to someone who's arriving"}
+              {lang === "ko" ? "마음이 가는 분과 나눌 수 있어요" : "With anyone you have in mind"}
             </div>
           </div>
           <button onClick={onClose} style={{ border:"none",
