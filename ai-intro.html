@@ -8,24 +8,25 @@
 <meta property="og:title" content="AI가 인용하는 소개문 만들기 — 무료">
 <meta property="og:description" content="빈칸을 채우면 어디에나 붙일 수 있는 소개문이 나옵니다. 무료.">
 <link rel="canonical" href="https://hebronguide.com/ai-intro.html">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
 <style>
   :root{--bg:#0d1117;--card:#161b26;--card2:#1b2230;--line:rgba(255,255,255,.1);
         --gold:#C9A227;--mint:#6EE7B7;--red:#f87171;--yellow:#FBBF24;
         --text:#ECFDF5;--muted:rgba(236,253,245,.56);}
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);
+  body{font-family:'Pretendard Variable',-apple-system,sans-serif;background:var(--bg);color:var(--text);
        line-height:1.8;padding-bottom:80px;}
   .wrap{max-width:700px;margin:0 auto;padding:0 20px;}
 
   header{padding:44px 20px 30px;text-align:center;border-bottom:1px solid var(--line);}
-  h1{font-size:clamp(1.35rem,4.6vw,1.75rem);font-weight:900;line-height:1.45;}
+  h1{font-size:clamp(1.35rem,4.6vw,1.75rem);font-weight:800;line-height:1.45;}
   .sub{color:var(--muted);font-size:.92rem;margin-top:12px;}
   .free{display:inline-block;margin-top:15px;font-size:.72rem;font-weight:800;letter-spacing:.1em;
         color:var(--mint);border:1px solid rgba(110,231,183,.35);background:rgba(110,231,183,.09);
         border-radius:99px;padding:5px 15px;}
 
-  h2{font-size:1.02rem;font-weight:900;margin:30px 0 12px;}
+  h2{font-size:1.02rem;font-weight:800;margin:30px 0 12px;}
   .lesson{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px 19px;margin-bottom:18px;}
   .vs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
   .vs>div{border-radius:10px;padding:11px 13px;font-size:.85rem;}
@@ -49,21 +50,21 @@
   details{margin-bottom:16px;}
   summary{cursor:pointer;font-size:.85rem;font-weight:700;color:var(--gold);padding:9px 0;list-style:none;}
   summary::-webkit-details-marker{display:none;}
-  summary::before{content:"+ ";font-weight:900;}
+  summary::before{content:"+ ";font-weight:800;}
   details[open] summary::before{content:"− ";}
   button.go{width:100%;background:linear-gradient(135deg,#C9A227,#e0b83a);color:#0d1117;border:0;
-    font-family:inherit;font-weight:900;font-size:1rem;border-radius:12px;padding:15px;cursor:pointer;}
+    font-family:inherit;font-weight:800;font-size:1rem;border-radius:12px;padding:15px;cursor:pointer;}
 
   .out{display:none;margin-top:26px;}
   .out.on{display:block;}
   .block{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px 19px;margin-bottom:14px;}
   .block-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:9px;}
-  .block-t{font-size:.85rem;font-weight:900;color:var(--gold);}
+  .block-t{font-size:.85rem;font-weight:800;color:var(--gold);}
   .block-where{font-size:.72rem;color:var(--muted);}
   .copy{flex:none;background:var(--card2);border:1px solid var(--line);color:var(--text);
     font-family:inherit;font-size:.75rem;font-weight:700;border-radius:8px;padding:6px 13px;cursor:pointer;}
   .copy.done{background:rgba(110,231,183,.16);border-color:var(--mint);color:var(--mint);}
-  pre{white-space:pre-wrap;word-break:break-word;font-family:'Noto Sans KR',monospace;
+  pre{white-space:pre-wrap;word-break:break-word;font-family:'Pretendard Variable',monospace;
       font-size:.87rem;line-height:1.75;background:#0a0e14;border-radius:10px;padding:14px 15px;}
   pre.code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.74rem;line-height:1.6;
            max-height:280px;overflow:auto;}

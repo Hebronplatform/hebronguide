@@ -5,13 +5,14 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>환대의 여정 — HebronGuide</title>
 <meta name="robots" content="noindex"/>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Noto+Serif+KR:wght@400;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
   --gold:#C9A227;--gold2:#f0c040;--mint:#6EE7B7;
   --cold:#0a1424;--warm:#1a1206;
-  --sans:'Noto Sans KR',sans-serif;--serif:'Noto Serif KR',serif;--disp:'Cinzel',serif;
+  --sans:'Pretendard Variable',sans-serif;--serif:'Noto Serif KR',serif;--disp:'Cinzel',serif;
 }
 html,body{width:100%;height:100%;overflow:hidden;background:#05070d;font-family:var(--sans);}
 .stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#05070d;}
@@ -22,7 +23,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#05070d;font-family:
   align-items:center;justify-content:center;background:rgba(5,7,13,.95);
   color:var(--gold2);font-family:var(--serif);cursor:pointer;transition:opacity .8s ease;text-align:center;padding:8vw;
 }
-#startOverlay h1{font-size:clamp(1.6rem,5vw,2.8rem);margin-bottom:16px;font-weight:900;}
+#startOverlay h1{font-size:clamp(1.6rem,5vw,2.8rem);margin-bottom:16px;font-weight:800;}
 #startOverlay .play-ring{width:84px;height:84px;border:2px solid rgba(201,162,39,.5);border-radius:50%;
   display:flex;align-items:center;justify-content:center;margin-bottom:22px;}
 #startOverlay p{font-size:clamp(.9rem,2.2vw,1.2rem);color:rgba(255,255,255,.7);font-family:var(--sans);}
@@ -56,12 +57,12 @@ html,body{width:100%;height:100%;overflow:hidden;background:#05070d;font-family:
   padding:10px 16px;font-size:clamp(.8rem,2vw,1rem);color:var(--gold2);font-weight:700;}
 
 /* 엔딩 메시지 & 애니메이션 요소 */
-.endmsg{font-family:var(--serif);font-size:clamp(1.3rem,4vw,2.4rem);font-weight:900;color:#fff;line-height:1.5;max-width:26ch;}
+.endmsg{font-family:var(--serif);font-size:clamp(1.3rem,4vw,2.4rem);font-weight:800;color:#fff;line-height:1.5;max-width:26ch;}
 .endmsg .strike{color:rgba(220,230,255,.45);text-decoration:line-through;text-decoration-color:rgba(248,113,113,.6);}
 .endmsg .from{color:var(--gold2);}
-.cta{margin-top:5vh;font-family:var(--disp);font-size:clamp(1.5rem,4.5vw,2.6rem);font-weight:900;color:var(--gold2);letter-spacing:.04em;}
+.cta{margin-top:5vh;font-family:var(--disp);font-size:clamp(1.5rem,4.5vw,2.6rem);font-weight:800;color:var(--gold2);letter-spacing:.04em;}
 .cta-sub{margin-top:1.5vh;font-size:clamp(.9rem,2.2vw,1.1rem);color:rgba(220,230,255,.65);}
-.smile{font-family:var(--serif);color:var(--gold2);font-weight:900;
+.smile{font-family:var(--serif);color:var(--gold2);font-weight:800;
   font-size:clamp(1.3rem,4vw,2.4rem);margin-top:1.5vh;opacity:0;transition:opacity 1.4s ease;}
 .scene.on .smile.show{opacity:1;}
 

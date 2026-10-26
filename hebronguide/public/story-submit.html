@@ -7,7 +7,8 @@
 <meta name="description" content="전 세계 81개+ 도시. 환대를 경험했거나 베푼 당신의 이야기를 나눠주세요. HebronGuide가 K-드라마처럼 극적으로 재구성해 전 세계에 전합니다.">
 <meta property="og:title" content="이야기를 나눠주세요 — HebronGuide Story Studio">
 <meta property="og:description" content="전 세계 81개+ 도시, 환대를 경험했거나 베푼 모든 이의 이야기를 수집합니다.">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&family=Cinzel:wght@700;900&family=Playfair+Display:ital,wght@1,500;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Noto+Serif+KR:wght@400;700&family=Cinzel:wght@700;900&family=Playfair+Display:ital,wght@1,500;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
 <style>
 :root{
   --bg:#0d1117;--surface:rgba(255,255,255,0.04);--surface2:rgba(255,255,255,0.07);
@@ -17,7 +18,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;background:var(--bg);}
-body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;}
+body{font-family:'Pretendard Variable',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;}
 
 /* 언어 전환 */
 html[lang="ko"] .en{display:none!important;}
@@ -25,10 +26,10 @@ html[lang="en"] .ko{display:none!important;}
 
 /* NAV */
 nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border);}
-.logo{color:var(--gold);font-weight:900;font-size:1rem;text-decoration:none;font-family:'Cinzel',serif;}
+.logo{color:var(--gold);font-weight:800;font-size:1rem;text-decoration:none;font-family:'Cinzel',serif;}
 .nav-right{display:flex;align-items:center;gap:10px;}
 .nav-tag{font-size:.72rem;color:var(--muted);background:rgba(255,255,255,0.06);border:1px solid var(--border2);border-radius:20px;padding:4px 12px;}
-.lang-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);color:rgba(236,253,245,.75);font-size:.7rem;font-weight:700;letter-spacing:.06em;border-radius:20px;padding:5px 13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:background .2s;}
+.lang-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);color:rgba(236,253,245,.75);font-size:.7rem;font-weight:700;letter-spacing:.06em;border-radius:20px;padding:5px 13px;cursor:pointer;font-family:'Pretendard Variable',sans-serif;transition:background .2s;}
 .lang-btn:hover{background:rgba(201,162,39,.15);border-color:rgba(201,162,39,.4);color:var(--gold);}
 
 /* HERO — 문 안, 조용히 앉아 쓰는 방 (story-invite 밤 문밖의 잔잔한 변주) */
@@ -69,7 +70,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-fil
 /* 세계 지도 도시 카운터 */
 .world-stats{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;padding:28px 24px;border-bottom:1px solid var(--border);}
 .stat-item{text-align:center;}
-.stat-num{font-family:'Cinzel',serif;font-size:1.8rem;font-weight:900;color:var(--gold);line-height:1;}
+.stat-num{font-family:'Cinzel',serif;font-size:1.8rem;font-weight:800;color:var(--gold);line-height:1;}
 .stat-label{font-size:.72rem;color:var(--muted);margin-top:4px;}
 
 /* HOW IT WORKS */
@@ -78,7 +79,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-fil
 .steps{display:flex;flex-direction:column;gap:0;}
 .step{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.05);}
 .step:last-child{border-bottom:none;}
-.step-num{min-width:34px;height:34px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.22);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:900;color:var(--gold);font-size:.85rem;flex-shrink:0;}
+.step-num{min-width:34px;height:34px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.22);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:800;color:var(--gold);font-size:.85rem;flex-shrink:0;}
 .step-title{font-size:.9rem;font-weight:800;color:#fff;margin-bottom:3px;}
 .step-desc{font-size:.81rem;color:var(--muted);line-height:1.8;}
 
@@ -104,16 +105,16 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-fil
 .sec-head{font-size:.7rem;font-weight:800;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin:28px 0 14px;padding-bottom:8px;border-bottom:1px solid rgba(201,162,39,.15);}
 .q-block{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:22px;margin-bottom:14px;}
 .q-top{display:flex;gap:12px;align-items:flex-start;margin-bottom:13px;}
-.q-num{min-width:30px;height:30px;background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.28);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:900;color:var(--gold);font-size:.82rem;flex-shrink:0;}
+.q-num{min-width:30px;height:30px;background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.28);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:800;color:var(--gold);font-size:.82rem;flex-shrink:0;}
 .q-title{font-size:.93rem;font-weight:800;color:#fff;margin-bottom:3px;}
 .q-hint{font-size:.76rem;color:var(--muted);line-height:1.75;font-style:italic;}
-textarea{width:100%;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);border-radius:11px;color:var(--text);font-family:'Noto Sans KR',sans-serif;font-size:.88rem;padding:13px 15px;resize:vertical;min-height:95px;line-height:1.85;transition:border .2s;}
+textarea{width:100%;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);border-radius:11px;color:var(--text);font-family:'Pretendard Variable',sans-serif;font-size:.88rem;padding:13px 15px;resize:vertical;min-height:95px;line-height:1.85;transition:border .2s;}
 textarea:focus{outline:none;border-color:var(--gold);}
 textarea::placeholder{color:rgba(236,253,245,.22);font-style:italic;}
-input[type=text],input[type=email]{width:100%;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);border-radius:11px;color:var(--text);font-family:'Noto Sans KR',sans-serif;font-size:.88rem;padding:12px 15px;transition:border .2s;}
+input[type=text],input[type=email]{width:100%;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);border-radius:11px;color:var(--text);font-family:'Pretendard Variable',sans-serif;font-size:.88rem;padding:12px 15px;transition:border .2s;}
 input:focus{outline:none;border-color:var(--gold);}
 input::placeholder{color:rgba(236,253,245,.22);}
-select.sel{width:100%;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);border-radius:11px;color:var(--text);font-family:'Noto Sans KR',sans-serif;font-size:.88rem;padding:12px 15px;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A227' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;cursor:pointer;transition:border .2s;}
+select.sel{width:100%;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);border-radius:11px;color:var(--text);font-family:'Pretendard Variable',sans-serif;font-size:.88rem;padding:12px 15px;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A227' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;cursor:pointer;transition:border .2s;}
 select.sel:focus{outline:none;border-color:var(--gold);}
 select.sel option{background:#0d1117;}
 
@@ -130,7 +131,7 @@ select.sel option{background:#0d1117;}
 
 /* 제출 */
 .submit-area{text-align:center;margin-top:24px;}
-.btn-submit{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0d1117;font-weight:900;font-size:1rem;border:none;border-radius:50px;padding:16px 42px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:opacity .2s;box-shadow:0 6px 28px rgba(201,162,39,.22);}
+.btn-submit{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0d1117;font-weight:800;font-size:1rem;border:none;border-radius:50px;padding:16px 42px;cursor:pointer;font-family:'Pretendard Variable',sans-serif;transition:opacity .2s;box-shadow:0 6px 28px rgba(201,162,39,.22);}
 .btn-submit:hover{opacity:.88;}
 .submit-note{font-size:.78rem;color:var(--muted);margin-top:12px;line-height:1.85;}
 
@@ -139,7 +140,7 @@ select.sel option{background:#0d1117;}
 .thanks-icon{font-size:2.6rem;margin-bottom:18px;}
 .thanks-title{font-family:'Noto Serif KR',serif;font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:12px;}
 .thanks-desc{font-size:.9rem;color:var(--muted);line-height:2.1;margin-bottom:20px;}
-.thanks-stamp{font-size:1rem;font-weight:900;color:var(--gold);}
+.thanks-stamp{font-size:1rem;font-weight:800;color:var(--gold);}
 
 /* 샘플 */
 .sample-card{background:var(--surface2);border:1px solid var(--border2);border-radius:14px;padding:18px 20px;max-width:660px;margin:0 auto 24px;}

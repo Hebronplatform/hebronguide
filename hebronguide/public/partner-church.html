@@ -13,7 +13,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:-apple-system,'Noto Sans KR','Segoe UI',sans-serif;
+body{font-family:-apple-system,'Pretendard Variable','Segoe UI',sans-serif;
      background:var(--bg);color:var(--text);line-height:1.75;}
 
 /* NAV */
@@ -21,7 +21,7 @@ nav{position:sticky;top:0;z-index:100;
     background:rgba(13,17,23,.97);backdrop-filter:blur(12px);
     display:flex;justify-content:space-between;align-items:center;
     padding:14px 24px;border-bottom:1px solid var(--border);}
-.logo{color:var(--gold);font-weight:900;font-size:1rem;text-decoration:none;letter-spacing:.02em;}
+.logo{color:var(--gold);font-weight:800;font-size:1rem;text-decoration:none;letter-spacing:.02em;}
 .nav-links{display:flex;gap:20px;align-items:center;}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:.82rem;transition:color .2s;}
 .nav-links a:hover{color:var(--gold);}
@@ -38,7 +38,7 @@ nav{position:sticky;top:0;z-index:100;
   border:1px solid rgba(201,162,39,.35);color:var(--gold);
   font-size:.72rem;font-weight:800;padding:5px 16px;border-radius:20px;
   margin-bottom:20px;letter-spacing:.06em;}
-.hero h1{font-size:clamp(1.7rem,5vw,2.8rem);font-weight:900;line-height:1.25;margin-bottom:14px;}
+.hero h1{font-size:clamp(1.7rem,5vw,2.8rem);font-weight:800;line-height:1.25;margin-bottom:14px;}
 .hero h1 em{color:var(--gold);font-style:normal;}
 .hero p{font-size:.95rem;color:var(--muted);max-width:520px;margin:0 auto 32px;}
 .verse{font-size:.8rem;color:var(--mint);opacity:.8;margin-bottom:28px;font-style:italic;}
@@ -55,7 +55,7 @@ nav{position:sticky;top:0;z-index:100;
 section{padding:60px 20px;}
 .container{max-width:1040px;margin:0 auto;}
 .sec-title{text-align:center;margin-bottom:44px;}
-.sec-title h2{font-size:1.6rem;font-weight:900;margin-bottom:8px;}
+.sec-title h2{font-size:1.6rem;font-weight:800;margin-bottom:8px;}
 .sec-title h2 em{color:var(--gold);font-style:normal;}
 .sec-title p{color:var(--muted);font-size:.9rem;}
 
@@ -68,7 +68,7 @@ section{padding:60px 20px;}
 .track-head.hub{background:linear-gradient(135deg,#1a2e0d,#1e4020);}
 .track-head.web{background:linear-gradient(135deg,#1a1a3e,#0d1b3e);}
 .track-icon{font-size:2.2rem;margin-bottom:10px;}
-.track-name{font-size:1.1rem;font-weight:900;color:var(--gold);margin-bottom:4px;}
+.track-name{font-size:1.1rem;font-weight:800;color:var(--gold);margin-bottom:4px;}
 .track-sub{font-size:.75rem;color:var(--muted);}
 .track-body{padding:20px 20px 22px;background:rgba(0,0,0,.25);}
 .track-body ul{list-style:none;margin-bottom:16px;}
@@ -96,10 +96,10 @@ section{padding:60px 20px;}
 .plan-head.m{background:linear-gradient(135deg,#1a2e1a,#1e4020);}
 .plan-head.p{background:linear-gradient(135deg,#1e1b3e,#2d1b69);}
 .plan-icon{font-size:1.9rem;margin-bottom:8px;}
-.plan-name{font-size:1.05rem;font-weight:900;margin-bottom:2px;}
+.plan-name{font-size:1.05rem;font-weight:800;margin-bottom:2px;}
 .plan-sub{font-size:.73rem;color:var(--muted);margin-bottom:12px;}
 .msr{font-size:.75rem;color:rgba(255,255,255,.3);text-decoration:line-through;margin-bottom:4px;}
-.price{font-size:2.3rem;font-weight:900;color:var(--gold);line-height:1;}
+.price{font-size:2.3rem;font-weight:800;color:var(--gold);line-height:1;}
 .price sup{font-size:.9rem;vertical-align:super;line-height:0;font-weight:500;color:var(--muted);}
 .price sub{font-size:.75rem;font-weight:400;color:var(--muted);}
 .price-note{font-size:.7rem;color:var(--muted);margin-top:4px;}
@@ -152,7 +152,7 @@ tbody tr:hover td{background:rgba(255,255,255,.02);}
   padding:22px 16px;text-align:center;}
 .snum{width:32px;height:32px;background:var(--gold);color:#0d1117;border-radius:50%;
   display:inline-flex;align-items:center;justify-content:center;
-  font-weight:900;font-size:.85rem;margin-bottom:10px;}
+  font-weight:800;font-size:.85rem;margin-bottom:10px;}
 .step h3{font-size:.88rem;font-weight:700;margin-bottom:5px;color:var(--text);}
 .step p{font-size:.78rem;color:var(--muted);}
 
@@ -226,6 +226,7 @@ footer strong{color:var(--text);}
 .form-section{display:none;}
 .form-section.active{display:block;}
 </style>
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
 </head>
 <body>
 
@@ -739,7 +740,7 @@ footer strong{color:var(--text);}
           </div>
 
           <!-- 제목 -->
-          <div style="font-size:1.15rem;font-weight:900;color:#6EE7B7;margin-bottom:6px;text-align:center;">
+          <div style="font-size:1.15rem;font-weight:800;color:#6EE7B7;margin-bottom:6px;text-align:center;">
             환대 운동에 오신 것을 환영합니다
           </div>
           <div style="font-size:.82rem;color:rgba(236,253,245,.6);margin-bottom:22px;text-align:center;line-height:1.6;">
@@ -783,7 +784,7 @@ footer strong{color:var(--text);}
             style="display:flex;align-items:center;justify-content:center;gap:10px;
             background:#FEE500;color:#3C1E1E;padding:14px 24px;border-radius:12px;
             font-weight:800;font-size:.92rem;text-decoration:none;margin-bottom:10px;
-            font-family:'Noto Sans KR',sans-serif;transition:opacity .15s;"
+            font-family:'Pretendard Variable',sans-serif;transition:opacity .15s;"
             onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
             <svg width="20" height="20" viewBox="0 0 48 48" fill="#3C1E1E"><path d="M24 4C12.95 4 4 11.82 4 21.4c0 6.12 3.84 11.49 9.6 14.62l-2.44 8.88 10.08-6.66c.89.12 1.8.18 2.76.18 11.05 0 20-7.82 20-17.4S35.05 4 24 4z"/></svg>
             카카오채널 친구추가 — 협력 소통 공간
@@ -812,7 +813,7 @@ footer strong{color:var(--text);}
 </section>
 
 <footer>
-  <p style="margin-bottom:6px;font-size:1.1rem;color:var(--gold);font-weight:900;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 3v18"/><path d="M7 8.5h10"/></svg> HebronGuide</p>
+  <p style="margin-bottom:6px;font-size:1.1rem;color:var(--gold);font-weight:800;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 3v18"/><path d="M7 8.5h10"/></svg> HebronGuide</p>
   <p style="margin-bottom:6px;"><strong>한인 이민자 정착 가이드 · 81개 도시</strong></p>
   <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg> <a href="mailto:HebronPlatform@gmail.com">HebronPlatform@gmail.com</a>
   &nbsp;|&nbsp; <a href="https://hebronguide.com" target="_blank">hebronguide.com →</a></p>
@@ -936,19 +937,19 @@ form.addEventListener('submit', async function(e) {
 
 <!-- ── 메인으로 돌아가기 ── -->
 <div style="text-align:center;padding:44px 24px 64px;border-top:1px solid rgba(255,255,255,0.07);background:#0d1117;">
-  <a href="/seattle/" style="display:inline-flex;align-items:center;gap:10px;background:rgba(201,162,39,0.12);border:1px solid rgba(201,162,39,0.35);color:#C9A227;text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:900;font-size:.95rem;font-family:'Noto Sans KR',sans-serif;letter-spacing:.01em;transition:background .2s;">
+  <a href="/seattle/" style="display:inline-flex;align-items:center;gap:10px;background:rgba(201,162,39,0.12);border:1px solid rgba(201,162,39,0.35);color:#C9A227;text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:800;font-size:.95rem;font-family:'Pretendard Variable',sans-serif;letter-spacing:.01em;transition:background .2s;">
     ← &nbsp;HebronGuide 메인으로 돌아가기
   </a>
   <div style="margin-top:20px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;align-items:center;">
-    <a href="/founding-partner.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">협력 신청</a>
+    <a href="/founding-partner.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Pretendard Variable',sans-serif;">협력 신청</a>
     <span style="color:rgba(255,255,255,0.12);">·</span>
-    <a href="/ad-request.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">광고 신청</a>
+    <a href="/ad-request.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Pretendard Variable',sans-serif;">광고 신청</a>
     <span style="color:rgba(255,255,255,0.12);">·</span>
-    <a href="/about.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">소개</a>
+    <a href="/about.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Pretendard Variable',sans-serif;">소개</a>
     <span style="color:rgba(255,255,255,0.12);">·</span>
-    <a href="/privacy.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">개인정보</a>
+    <a href="/privacy.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Pretendard Variable',sans-serif;">개인정보</a>
   </div>
-  <div style="margin-top:14px;font-size:.67rem;color:rgba(236,253,245,0.18);font-family:'Noto Sans KR',sans-serif;">© 2026 HebronGuide · hebronguide.com</div>
+  <div style="margin-top:14px;font-size:.67rem;color:rgba(236,253,245,0.18);font-family:'Pretendard Variable',sans-serif;">© 2026 HebronGuide · hebronguide.com</div>
 </div>
 <script>
 /* HebronGuide — 도시 자동 복귀 (모든 사용자가 자기 도시로) */

@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>협력교회가 되면 달라지는 10가지 | HebronGuide</title>
 <meta name="description" content="교회 등록은 언제나 무료입니다. 81개+ 도시에서 새로 온 이웃이 가장 먼저 만나는 얼굴이 됩니다.">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
 <style>
 :root{
   --bg:#0d1117; --surface:rgba(255,255,255,0.04); --surface2:rgba(255,255,255,0.07);
@@ -14,20 +15,20 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;background:var(--bg);}
-body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;}
+body{font-family:'Pretendard Variable',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;}
 
 nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-filter:blur(12px);
   display:flex;justify-content:space-between;align-items:center;
   padding:14px 20px;border-bottom:1px solid var(--border);}
 .logo{text-decoration:none;display:flex;align-items:center;gap:9px;}
 .logo-mark{flex-shrink:0;}
-.logo-word{font-family:'Cinzel',serif;font-weight:900;font-size:1rem;color:#fff;letter-spacing:.01em;}
+.logo-word{font-family:'Cinzel',serif;font-weight:800;font-size:1rem;color:#fff;letter-spacing:.01em;}
 .logo-word em{font-style:italic;font-weight:400;color:var(--gold);}
 .nav-back{color:var(--muted);text-decoration:none;font-size:.8rem;display:flex;align-items:center;gap:6px;}
 
 .hero{text-align:center;padding:52px 20px 40px;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,162,39,.14),transparent);}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:7px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.3);color:var(--gold);font-size:.7rem;font-weight:800;padding:6px 16px;border-radius:99px;margin-bottom:18px;letter-spacing:.1em;text-transform:uppercase;}
-.hero h1{font-size:clamp(1.5rem,4.5vw,2.3rem);font-weight:900;color:#fff;line-height:1.4;margin-bottom:14px;}
+.hero h1{font-size:clamp(1.5rem,4.5vw,2.3rem);font-weight:800;color:#fff;line-height:1.4;margin-bottom:14px;}
 .hero h1 .accent{color:var(--gold);}
 .hero-sub{font-size:.92rem;color:var(--muted);max-width:480px;margin:0 auto 28px;line-height:1.9;}
 
@@ -37,29 +38,29 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-fil
 .scarcity-chip{background:rgba(110,231,183,.07);border:1px solid rgba(110,231,183,.25);color:var(--mint);
   font-size:.76rem;font-weight:700;padding:8px 16px;border-radius:99px;}
 
-.section-title{font-size:1.05rem;font-weight:900;color:#fff;margin:44px 0 18px;text-align:center;}
+.section-title{font-size:1.05rem;font-weight:800;color:#fff;margin:44px 0 18px;text-align:center;}
 .section-title .n{color:var(--gold);}
 
 .benefit-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
 @media(max-width:560px){.benefit-grid{grid-template-columns:1fr;}}
 .benefit-card{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:18px 18px;}
 .benefit-num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;
-  background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.3);color:var(--gold);font-weight:900;font-size:.78rem;margin-bottom:10px;}
+  background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.3);color:var(--gold);font-weight:800;font-size:.78rem;margin-bottom:10px;}
 .benefit-title{font-size:.92rem;font-weight:800;color:#fff;margin-bottom:6px;}
 .benefit-desc{font-size:.8rem;color:var(--muted);line-height:1.7;}
 
 .closing-box{margin-top:48px;background:linear-gradient(135deg,rgba(201,162,39,.1),rgba(110,231,183,.06));
   border:1px solid rgba(201,162,39,.28);border-radius:18px;padding:28px 24px;text-align:center;}
-.closing-title{font-size:1.1rem;font-weight:900;color:#fff;margin-bottom:10px;}
+.closing-title{font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:10px;}
 .closing-title .accent{color:var(--gold);}
 .closing-desc{font-size:.85rem;color:rgba(236,253,245,.75);line-height:1.9;max-width:480px;margin:0 auto 22px;}
 .limit-list{display:inline-block;text-align:left;font-size:.82rem;color:var(--muted);line-height:2;margin-bottom:22px;}
 .limit-list li{list-style:none;padding-left:22px;position:relative;}
-.limit-list li::before{content:"";position:absolute;left:0;color:var(--mint);font-weight:900;}
+.limit-list li::before{content:"";position:absolute;left:0;color:var(--mint);font-weight:800;}
 
 .btn-cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0d1117;
-  font-weight:900;font-size:.95rem;border:none;border-radius:50px;padding:15px 34px;cursor:pointer;text-decoration:none;
-  font-family:'Noto Sans KR',sans-serif;transition:opacity .2s;}
+  font-weight:800;font-size:.95rem;border:none;border-radius:50px;padding:15px 34px;cursor:pointer;text-decoration:none;
+  font-family:'Pretendard Variable',sans-serif;transition:opacity .2s;}
 .btn-cta:hover{opacity:.88;}
 
 footer{text-align:center;padding:30px 20px;color:rgba(236,253,245,.3);font-size:.72rem;border-top:1px solid var(--border);}

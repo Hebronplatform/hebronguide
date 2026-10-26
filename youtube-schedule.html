@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>폴킴의 환대 — 2년 방송 스케줄 · HebronGuide 내부 자료</title>
   <meta name="robots" content="noindex"/>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Cinzel:wght@700;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
   <style>
   :root{
     --bg:#0a0e14;--surface:rgba(255,255,255,.05);--border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.14);
@@ -15,7 +16,7 @@
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;background:var(--bg);}
-  body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.75;overflow-x:hidden;}
+  body{font-family:'Pretendard Variable',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.75;overflow-x:hidden;}
 
   nav{position:sticky;top:0;z-index:200;background:rgba(10,14,20,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;}
   .nav-logo{font-family:'Cinzel',serif;font-weight:700;font-size:1rem;color:var(--gold);text-decoration:none;}
@@ -26,7 +27,7 @@
   /* HERO */
   .hero{padding:72px 24px 56px;text-align:center;background:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(201,162,39,.14),transparent 65%);}
   .hero-tag{display:inline-block;font-size:.68rem;font-weight:800;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.25);border-radius:99px;padding:5px 16px;margin-bottom:20px;}
-  .channel-name{font-size:clamp(2.4rem,6vw,4rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:8px;font-family:'Cinzel',serif;}
+  .channel-name{font-size:clamp(2.4rem,6vw,4rem);font-weight:800;color:#fff;line-height:1.1;margin-bottom:8px;font-family:'Cinzel',serif;}
   .channel-name em{color:var(--gold);font-style:normal;}
   .channel-sub{font-size:clamp(.95rem,2vw,1.15rem);color:var(--muted);margin-bottom:24px;letter-spacing:.04em;}
   .channel-en{font-size:.85rem;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:32px;}
@@ -37,14 +38,14 @@
   .wrap{max-width:960px;margin:0 auto;padding:0 24px;}
   .section{padding:56px 0;}
   .section-eyebrow{font-size:.68rem;font-weight:800;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;}
-  .section-title{font-size:clamp(1.4rem,3vw,2rem);font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;}
+  .section-title{font-size:clamp(1.4rem,3vw,2rem);font-weight:800;color:#fff;margin-bottom:10px;line-height:1.3;}
   .section-desc{font-size:.9rem;color:var(--muted);line-height:1.9;margin-bottom:28px;}
 
   .name-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:12px;}
   .name-card{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:22px 20px;position:relative;}
   .name-card.pick{background:rgba(201,162,39,.1);border-color:rgba(201,162,39,.5);}
-  .name-pick-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--gold);color:#0a0e14;font-size:.65rem;font-weight:900;letter-spacing:.1em;padding:3px 12px;border-radius:99px;white-space:nowrap;}
-  .name-ko{font-size:1.15rem;font-weight:900;color:#fff;margin-bottom:4px;}
+  .name-pick-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--gold);color:#0a0e14;font-size:.65rem;font-weight:800;letter-spacing:.1em;padding:3px 12px;border-radius:99px;white-space:nowrap;}
+  .name-ko{font-size:1.15rem;font-weight:800;color:#fff;margin-bottom:4px;}
   .name-en{font-size:.8rem;color:var(--muted2);margin-bottom:10px;letter-spacing:.06em;}
   .name-reason{font-size:.8rem;color:var(--muted);line-height:1.65;}
 
@@ -56,14 +57,14 @@
   .year-header{display:flex;align-items:center;gap:20px;padding:28px 32px;border-radius:20px;margin-bottom:32px;}
   .y1-header{background:linear-gradient(135deg,rgba(201,162,39,.15),rgba(201,162,39,.05));border:1px solid rgba(201,162,39,.35);}
   .y2-header{background:linear-gradient(135deg,rgba(110,231,183,.12),rgba(110,231,183,.03));border:1px solid rgba(110,231,183,.3);}
-  .year-badge{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:1.4rem;font-weight:900;flex-shrink:0;}
+  .year-badge{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:1.4rem;font-weight:800;flex-shrink:0;}
   .y1-badge{background:rgba(201,162,39,.2);color:var(--gold);}
   .y2-badge{background:rgba(110,231,183,.15);color:var(--mint);}
   .year-meta{}
   .year-period{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;}
   .y1-period{color:var(--gold);}
   .y2-period{color:var(--mint);}
-  .year-title{font-size:1.3rem;font-weight:900;color:#fff;margin-bottom:4px;}
+  .year-title{font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:4px;}
   .year-desc{font-size:.85rem;color:var(--muted);}
 
   /* MONTH GRID */
@@ -93,7 +94,7 @@
   /* STATS BAR */
   .stats-bar{display:flex;flex-wrap:wrap;gap:16px;background:rgba(255,255,255,.04);border:1px solid var(--border2);border-radius:16px;padding:24px 28px;margin-bottom:40px;}
   .stat-item{text-align:center;flex:1;min-width:80px;}
-  .stat-n{font-family:'Cinzel',serif;font-size:1.6rem;font-weight:900;color:var(--gold);}
+  .stat-n{font-family:'Cinzel',serif;font-size:1.6rem;font-weight:800;color:var(--gold);}
   .stat-l{font-size:.7rem;color:var(--muted2);margin-top:2px;}
 
   /* QUOTE */

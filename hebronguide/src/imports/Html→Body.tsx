@@ -6,7 +6,7 @@ import imgAb6AXuArRu77WpCs35MZjY6QjsaBhIhe2RoVpljlMZaACq0A8TzpqZvIdoE984QSgwOguK
 function OverlayOverlayBlur() {
   return (
     <div className="backdrop-blur-[6px] bg-[rgba(255,255,255,0.1)] content-stretch flex items-start px-[12px] py-[4px] relative rounded-[12px] shrink-0" data-name="Overlay+OverlayBlur">
-      <div className="flex flex-col font-['Manrope:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#ecfdf5] text-[10px] tracking-[1px] uppercase whitespace-nowrap">
+      <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#ecfdf5] text-[10px] tracking-[1px] uppercase whitespace-nowrap">
         <p className="leading-[15px]">WELCOME TO SEATTLE</p>
       </div>
     </div>
@@ -27,7 +27,7 @@ function Heading1() {
 function Container2() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Light',sans-serif] font-light justify-center leading-[0] relative shrink-0 text-[14px] text-[rgba(209,250,229,0.7)] tracking-[0.35px] uppercase w-full">
+      <div className="flex flex-col font-['Geist,Pretendard Variable:Light',sans-serif] font-light justify-center leading-[0] relative shrink-0 text-[14px] text-[rgba(209,250,229,0.7)] tracking-[0.35px] uppercase w-full">
         <p className="leading-[20px]">NAVIGATING THE EMERALD CITY</p>
       </div>
     </div>
@@ -47,7 +47,7 @@ function Container1() {
 function Container3() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[10px] text-[rgba(167,243,208,0.6)] tracking-[0.5px] uppercase w-full">
+      <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[10px] text-[rgba(167,243,208,0.6)] tracking-[0.5px] uppercase w-full">
         <p className="leading-[15px]">TEMPERATURE</p>
       </div>
     </div>
@@ -67,7 +67,7 @@ function Margin() {
 function Container5() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#ecfdf5] text-[24px] whitespace-nowrap">
+      <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#ecfdf5] text-[24px] whitespace-nowrap">
         <p className="leading-[32px]">58°F</p>
       </div>
     </div>
@@ -114,7 +114,7 @@ function OverlayBorderOverlayBlur() {
 function Container6() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[10px] text-[rgba(167,243,208,0.6)] tracking-[0.5px] uppercase w-full">
+      <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[10px] text-[rgba(167,243,208,0.6)] tracking-[0.5px] uppercase w-full">
         <p className="leading-[15px]">POPULATION</p>
       </div>
     </div>
@@ -135,7 +135,7 @@ function Container7() {
   return (
     <div className="relative shrink-0 w-full" data-name="Container">
       <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-start relative size-full">
-        <div className="flex flex-col font-['Manrope:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#ecfdf5] text-[24px] w-full">
+        <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#ecfdf5] text-[24px] w-full">
           <p className="leading-[32px]">737K</p>
         </div>
       </div>
@@ -160,7 +160,7 @@ function OverlayBorderOverlayBlur1() {
 function Container8() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[10px] text-[rgba(167,243,208,0.6)] tracking-[0.5px] uppercase w-full">
+      <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[10px] text-[rgba(167,243,208,0.6)] tracking-[0.5px] uppercase w-full">
         <p className="leading-[15px]">RENT AVERAGE</p>
       </div>
     </div>
@@ -181,7 +181,7 @@ function Container9() {
   return (
     <div className="relative shrink-0 w-full" data-name="Container">
       <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-start relative size-full">
-        <div className="flex flex-col font-['Manrope:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#ecfdf5] text-[24px] w-full">
+        <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#ecfdf5] text-[24px] w-full">
           <p className="leading-[32px]">$2.4K</p>
         </div>
       </div>
@@ -206,7 +206,7 @@ function OverlayBorderOverlayBlur2() {
 function Container10() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[10px] text-[rgba(167,243,208,0.6)] tracking-[0.5px] uppercase w-full">
+      <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[10px] text-[rgba(167,243,208,0.6)] tracking-[0.5px] uppercase w-full">
         <p className="leading-[15px]">K-COMMUNITY</p>
       </div>
     </div>
@@ -227,7 +227,7 @@ function Container11() {
   return (
     <div className="relative shrink-0 w-full" data-name="Container">
       <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-start relative size-full">
-        <div className="flex flex-col font-['Manrope:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#ecfdf5] text-[24px] w-full">
+        <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#ecfdf5] text-[24px] w-full">
           <p className="leading-[32px]">165K+</p>
         </div>
       </div>
@@ -285,7 +285,7 @@ function Border() {
   return (
     <div className="content-stretch flex flex-col items-start px-[9px] py-[3px] relative rounded-[12px] shrink-0" data-name="Border">
       <div aria-hidden="true" className="absolute border border-[rgba(53,102,104,0.2)] border-solid inset-0 pointer-events-none rounded-[12px]" />
-      <div className="flex flex-col font-['Manrope:Medium',sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#356668] text-[12px] whitespace-nowrap">
+      <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#356668] text-[12px] whitespace-nowrap">
         <p className="leading-[16px]">SETTLE FIRST</p>
       </div>
     </div>
@@ -334,7 +334,7 @@ function BackgroundShadow() {
 function Container15() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#414844] text-[11px] whitespace-nowrap">
+      <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#414844] text-[11px] whitespace-nowrap">
         <p className="leading-[16.5px]">Visa</p>
       </div>
     </div>
@@ -373,7 +373,7 @@ function BackgroundShadow1() {
 function Container18() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#414844] text-[11px] whitespace-nowrap">
+      <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#414844] text-[11px] whitespace-nowrap">
         <p className="leading-[16.5px]">Housing</p>
       </div>
     </div>
@@ -412,7 +412,7 @@ function BackgroundShadow2() {
 function Container21() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#414844] text-[11px] whitespace-nowrap">
+      <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#414844] text-[11px] whitespace-nowrap">
         <p className="leading-[16.5px]">Schools</p>
       </div>
     </div>
@@ -451,7 +451,7 @@ function BackgroundShadow3() {
 function Container24() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#414844] text-[11px] whitespace-nowrap">
+      <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#414844] text-[11px] whitespace-nowrap">
         <p className="leading-[16.5px]">License</p>
       </div>
     </div>
@@ -490,7 +490,7 @@ function BackgroundShadow4() {
 function Container26() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#414844] text-[11px] whitespace-nowrap">
+      <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#414844] text-[11px] whitespace-nowrap">
         <p className="leading-[16.5px]">Jobs</p>
       </div>
     </div>
@@ -529,7 +529,7 @@ function BackgroundShadow5() {
 function Container29() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#414844] text-[11px] whitespace-nowrap">
+      <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#414844] text-[11px] whitespace-nowrap">
         <p className="leading-[16.5px]">Health</p>
       </div>
     </div>
@@ -568,7 +568,7 @@ function BackgroundShadow6() {
 function Container32() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#414844] text-[11px] whitespace-nowrap">
+      <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#414844] text-[11px] whitespace-nowrap">
         <p className="leading-[16.5px]">Markets</p>
       </div>
     </div>
@@ -607,7 +607,7 @@ function BackgroundShadow7() {
 function Container35() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Container">
-      <div className="flex flex-col font-['Manrope:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#414844] text-[11px] whitespace-nowrap">
+      <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#414844] text-[11px] whitespace-nowrap">
         <p className="leading-[16.5px]">Bank</p>
       </div>
     </div>
@@ -650,7 +650,7 @@ function SettleFirstSection() {
 function Heading3() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Heading 3">
-      <div className="flex flex-col font-['Manrope:ExtraBold',sans-serif] font-extrabold justify-center leading-[0] relative shrink-0 text-[#012d1d] text-[18px] tracking-[-0.45px] w-full">
+      <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-extrabold justify-center leading-[0] relative shrink-0 text-[#012d1d] text-[18px] tracking-[-0.45px] w-full">
         <p className="leading-[28px]">시애틀 생활 팁 / LIFESTYLE TIPS</p>
       </div>
     </div>
@@ -670,7 +670,7 @@ function Ab6AXuBRrTMkeTvKlwNAlWthpPLfAozbE3J2Nn5KsqTd8BfPvMhQcg2LsdD7K6VWWimrgaY
 function Overlay() {
   return (
     <div className="bg-[rgba(185,236,238,0.5)] content-stretch flex items-start px-[12px] py-[4px] relative rounded-[12px] shrink-0" data-name="Overlay">
-      <div className="flex flex-col font-['Manrope:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#356668] text-[10px] tracking-[1px] uppercase whitespace-nowrap">
+      <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#356668] text-[10px] tracking-[1px] uppercase whitespace-nowrap">
         <p className="leading-[15px]">BEST COFFEE SPOTS</p>
       </div>
     </div>
@@ -765,7 +765,7 @@ function Border1() {
 function Heading() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Heading 1">
-      <div className="flex flex-col font-['Manrope:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#ecfdf5] text-[20px] tracking-[-0.4px] whitespace-nowrap">
+      <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#ecfdf5] text-[20px] tracking-[-0.4px] whitespace-nowrap">
         <p className="leading-[28px]">THE MISTY PATH</p>
       </div>
     </div>
@@ -843,7 +843,7 @@ function Container41() {
 function Margin5() {
   return (
     <div className="content-stretch flex flex-col items-start pt-[2px] relative shrink-0" data-name="Margin">
-      <div className="flex flex-col font-['Manrope:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#ecfdf5] text-[10px] tracking-[0.5px] uppercase whitespace-nowrap">
+      <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#ecfdf5] text-[10px] tracking-[0.5px] uppercase whitespace-nowrap">
         <p className="leading-[15px]">HOME</p>
       </div>
     </div>
@@ -876,7 +876,7 @@ function Container42() {
 function Margin6() {
   return (
     <div className="content-stretch flex flex-col items-start pt-[2px] relative shrink-0" data-name="Margin">
-      <div className="flex flex-col font-['Manrope:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[10px] text-[rgba(110,231,183,0.5)] tracking-[0.5px] uppercase whitespace-nowrap">
+      <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[10px] text-[rgba(110,231,183,0.5)] tracking-[0.5px] uppercase whitespace-nowrap">
         <p className="leading-[15px]">FORESTS</p>
       </div>
     </div>
@@ -909,7 +909,7 @@ function Container43() {
 function Margin7() {
   return (
     <div className="content-stretch flex flex-col items-start pt-[2px] relative shrink-0" data-name="Margin">
-      <div className="flex flex-col font-['Manrope:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[10px] text-[rgba(110,231,183,0.5)] tracking-[0.5px] uppercase whitespace-nowrap">
+      <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[10px] text-[rgba(110,231,183,0.5)] tracking-[0.5px] uppercase whitespace-nowrap">
         <p className="leading-[15px]">COMMUNITY</p>
       </div>
     </div>
@@ -942,7 +942,7 @@ function Container44() {
 function Margin8() {
   return (
     <div className="content-stretch flex flex-col items-start pt-[2px] relative shrink-0" data-name="Margin">
-      <div className="flex flex-col font-['Manrope:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[10px] text-[rgba(110,231,183,0.5)] tracking-[0.5px] uppercase whitespace-nowrap">
+      <div className="flex flex-col font-[Geist,Pretendard_Variable,sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[10px] text-[rgba(110,231,183,0.5)] tracking-[0.5px] uppercase whitespace-nowrap">
         <p className="leading-[15px]">PROFILE</p>
       </div>
     </div>

@@ -4,11 +4,12 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>성도와 함께하는 VIP 환대 | 헤브론 협력교회</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 html{background:#0d1117;scroll-behavior:smooth;}
-body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:#0d1117;color:#ECFDF5;line-height:1.8;min-height:100vh;padding-bottom:72px;}
+body{font-family:'Pretendard Variable',-apple-system,sans-serif;background:#0d1117;color:#ECFDF5;line-height:1.8;min-height:100vh;padding-bottom:72px;}
 
 /* ── 스티키 액션바 (항상 하단 고정) ── */
 .sticky-bar{
@@ -24,7 +25,7 @@ body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:#0d1117;colo
 .sticky-bar a, .sticky-bar button{
   flex:1;display:flex;align-items:center;justify-content:center;gap:6px;
   border-radius:12px;padding:12px 8px;
-  font-family:'Noto Sans KR',sans-serif;font-weight:800;font-size:.82rem;
+  font-family:'Pretendard Variable',sans-serif;font-weight:800;font-size:.82rem;
   text-decoration:none;cursor:pointer;border:none;
   transition:opacity .2s;
   white-space:nowrap;
@@ -40,7 +41,7 @@ body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:#0d1117;colo
 }
 .qbtn{
   display:inline-flex;align-items:center;gap:5px;
-  font-family:'Noto Sans KR',sans-serif;font-size:.76rem;font-weight:700;
+  font-family:'Pretendard Variable',sans-serif;font-size:.76rem;font-weight:700;
   border-radius:99px;padding:7px 16px;text-decoration:none;
   border:1px solid;transition:opacity .2s;
 }
@@ -68,7 +69,7 @@ body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:#0d1117;colo
 }
 .lang-btn{
   padding:6px 16px;border-radius:99px;font-size:.72rem;font-weight:800;
-  font-family:'Noto Sans KR',sans-serif;cursor:pointer;
+  font-family:'Pretendard Variable',sans-serif;cursor:pointer;
   border:1px solid rgba(255,255,255,.15);
   background:transparent;color:rgba(236,253,245,.4);
   transition:all .2s;letter-spacing:.04em;
@@ -133,7 +134,7 @@ header .lead{
   min-width:32px;height:32px;border-radius:50%;
   background:linear-gradient(135deg,#1a2535,#273444);
   border:1.5px solid rgba(110,231,183,.35);
-  color:#6EE7B7;font-weight:900;font-size:.85rem;
+  color:#6EE7B7;font-weight:800;font-size:.85rem;
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
 .step-title{font-size:.9rem;font-weight:800;color:#fff;margin-bottom:3px;}
@@ -196,7 +197,7 @@ footer strong{color:rgba(236,253,245,.4);}
   <button class="lang-btn active" id="btn-ko" onclick="setLang('ko')">한국어</button>
   <button class="lang-btn" id="btn-en" onclick="setLang('en')">English</button>
   <span style="margin-left:8px;font-size:.68rem;color:rgba(236,253,245,.2);">|</span>
-  <a onclick="window.print()" style="font-size:.72rem;color:rgba(201,162,39,.5);cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-left:8px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M7 8V4h10v4"/><rect x="4" y="8" width="16" height="8" rx="2"/><path d="M7 14h10v6H7z"/></svg></a>
+  <a onclick="window.print()" style="font-size:.72rem;color:rgba(201,162,39,.5);cursor:pointer;font-family:'Pretendard Variable',sans-serif;margin-left:8px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M7 8V4h10v4"/><rect x="4" y="8" width="16" height="8" rx="2"/><path d="M7 14h10v6H7z"/></svg></a>
 </div>
 
 <header>
@@ -479,7 +480,7 @@ footer strong{color:rgba(236,253,245,.4);}
                alt="등록 QR" width="120" height="120" loading="lazy">
         </div>
         <div style="font-size:.65rem;color:rgba(110,231,183,.6);margin-top:6px;font-weight:700;" data-ko=" QR 스캔" data-en=" Scan QR"></div>
-        <button onclick="downloadQR('register')" style="margin-top:6px;background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.25);color:rgba(110,231,183,.7);font-size:.62rem;font-weight:700;border-radius:8px;padding:4px 10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;"
+        <button onclick="downloadQR('register')" style="margin-top:6px;background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.25);color:rgba(110,231,183,.7);font-size:.62rem;font-weight:700;border-radius:8px;padding:4px 10px;cursor:pointer;font-family:'Pretendard Variable',sans-serif;"
           data-ko=" QR 저장" data-en=" Save QR"></button>
       </div>
 
@@ -491,7 +492,7 @@ footer strong{color:rgba(236,253,245,.4);}
           data-en="Free member business listing · Church info posting<br><strong style='color:#fff;'>Always free</strong>">
         </div>
         <a href="https://hebronguide.com/ad-request.html" target="_blank" rel="noopener"
-           style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0d1117;font-weight:900;font-size:.88rem;border-radius:50px;padding:12px 24px;text-decoration:none;font-family:'Noto Sans KR',sans-serif;transition:opacity .2s;"
+           style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0d1117;font-weight:800;font-size:.88rem;border-radius:50px;padding:12px 24px;text-decoration:none;font-family:'Pretendard Variable',sans-serif;transition:opacity .2s;"
            data-ko="→ 지금 등록하기"
            data-en="→ Register">
         </a>
@@ -509,7 +510,7 @@ footer strong{color:rgba(236,253,245,.4);}
                alt="HebronGuide QR" width="120" height="120" loading="lazy">
         </div>
         <div style="font-size:.65rem;color:rgba(201,162,39,.6);margin-top:6px;font-weight:700;" data-ko=" QR 스캔" data-en=" Scan QR"></div>
-        <button onclick="downloadQR('main')" style="margin-top:6px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.25);color:rgba(201,162,39,.7);font-size:.62rem;font-weight:700;border-radius:8px;padding:4px 10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;"
+        <button onclick="downloadQR('main')" style="margin-top:6px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.25);color:rgba(201,162,39,.7);font-size:.62rem;font-weight:700;border-radius:8px;padding:4px 10px;cursor:pointer;font-family:'Pretendard Variable',sans-serif;"
           data-ko=" QR 저장" data-en=" Save QR"></button>
       </div>
 
@@ -520,7 +521,7 @@ footer strong{color:rgba(236,253,245,.4);}
           data-en="80+ cities worldwide · Korean immigrant settlement guide<br>A guide members can show others directly">
         </div>
         <a href="https://hebronguide.com" target="_blank" rel="noopener"
-           style="display:inline-flex;align-items:center;gap:7px;background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.3);color:#C9A227;font-weight:700;font-size:.82rem;border-radius:20px;padding:8px 18px;text-decoration:none;font-family:'Noto Sans KR',sans-serif;"
+           style="display:inline-flex;align-items:center;gap:7px;background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.3);color:#C9A227;font-weight:700;font-size:.82rem;border-radius:20px;padding:8px 18px;text-decoration:none;font-family:'Pretendard Variable',sans-serif;"
            data-ko="→ HebronGuide.com 바로가기"
            data-en="→ Visit HebronGuide.com">
         </a>

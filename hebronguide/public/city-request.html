@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>도시 신청 — HebronGuide를 우리 도시에 | HebronGuide</title>
 <meta name="description" content="우리 가족이 사는 도시에, 우리 교회가 있는 도시에 HebronGuide가 오기를 원하세요? 신청해 주세요. 입소문으로 흐르는 환대입니다.">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
 <style>
 :root{
   --bg:#0d1117;--surface:rgba(255,255,255,0.04);--surface2:rgba(255,255,255,0.07);
@@ -16,20 +17,20 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;background:var(--bg);}
-body{font-family:'Noto Sans KR',-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;}
+body{font-family:'Pretendard Variable',-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;}
 input:-webkit-autofill,input:-webkit-autofill:focus,select:-webkit-autofill{-webkit-box-shadow:0 0 0 1000px #1a2030 inset !important;-webkit-text-fill-color:var(--text) !important;}
 option,optgroup{background:var(--bg);color:var(--text);}
 
 /* NAV */
 nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border);}
-.logo{color:var(--gold);font-weight:900;font-size:1rem;text-decoration:none;letter-spacing:.02em;font-family:'Cinzel',serif;}
+.logo{color:var(--gold);font-weight:800;font-size:1rem;text-decoration:none;letter-spacing:.02em;font-family:'Cinzel',serif;}
 .nav-back{color:var(--muted);text-decoration:none;font-size:.8rem;display:flex;align-items:center;gap:6px;transition:color .2s;}
 .nav-back:hover{color:var(--gold);}
 
 /* HERO */
 .hero{text-align:center;padding:56px 24px 36px;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,162,39,.1),transparent);}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.3);color:var(--mint);font-size:.72rem;font-weight:800;padding:5px 16px;border-radius:20px;margin-bottom:16px;letter-spacing:.06em;}
-h1{font-family:'Noto Sans KR',sans-serif;font-size:clamp(1.6rem,4vw,2.3rem);font-weight:900;color:#fff;line-height:1.35;margin-bottom:10px;}
+h1{font-family:'Pretendard Variable',sans-serif;font-size:clamp(1.6rem,4vw,2.3rem);font-weight:800;color:#fff;line-height:1.35;margin-bottom:10px;}
 h1 .brand{font-family:'Cinzel',serif;font-size:.52em;color:var(--gold);display:block;letter-spacing:.08em;margin-bottom:6px;font-weight:700;}
 .hero-sub{font-size:.9rem;color:var(--muted);margin-bottom:20px;line-height:2;}
 
@@ -45,12 +46,12 @@ h1 .brand{font-family:'Cinzel',serif;font-size:.52em;color:var(--gold);display:b
 
 /* 폼 카드 */
 .form-card{background:var(--surface);border:1px solid var(--border2);border-radius:18px;padding:28px 24px;}
-.form-title{font-size:1rem;font-weight:900;color:#fff;margin-bottom:4px;}
+.form-title{font-size:1rem;font-weight:800;color:#fff;margin-bottom:4px;}
 .form-sub{font-size:.8rem;color:var(--muted);margin-bottom:22px;line-height:1.8;}
 
 /* 역할 라디오 */
 .role-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
-.role-btn{display:flex;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:10px 14px;cursor:pointer;transition:all .2s;font-size:.83rem;color:var(--muted);font-family:'Noto Sans KR',sans-serif;}
+.role-btn{display:flex;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:10px 14px;cursor:pointer;transition:all .2s;font-size:.83rem;color:var(--muted);font-family:'Pretendard Variable',sans-serif;}
 .role-btn input{accent-color:var(--gold);width:15px;height:15px;flex-shrink:0;}
 .role-btn:has(input:checked){border-color:var(--gold);background:rgba(201,162,39,.08);color:#fff;}
 
@@ -59,7 +60,7 @@ h1 .brand{font-family:'Cinzel',serif;font-size:.52em;color:var(--gold);display:b
 label{display:block;font-size:.8rem;font-weight:700;color:rgba(236,253,245,0.7);margin-bottom:5px;}
 label .req{color:var(--gold);margin-left:2px;}
 label .opt{color:rgba(236,253,245,.3);font-weight:400;margin-left:4px;font-size:.74rem;}
-input,textarea,select{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:10px 14px;font-size:.88rem;color:var(--text);font-family:'Noto Sans KR',sans-serif;outline:none;transition:border-color .2s;-webkit-appearance:none;}
+input,textarea,select{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:10px 14px;font-size:.88rem;color:var(--text);font-family:'Pretendard Variable',sans-serif;outline:none;transition:border-color .2s;-webkit-appearance:none;}
 input:focus,textarea:focus,select:focus{border-color:var(--gold);}
 select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='%23666'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;}
 textarea{min-height:80px;resize:vertical;line-height:1.7;}
@@ -77,14 +78,14 @@ textarea{min-height:80px;resize:vertical;line-height:1.7;}
 .agree-item label{font-size:.8rem;color:rgba(236,253,245,.78);cursor:pointer;line-height:1.6;}
 
 /* 버튼 */
-.btn-submit{width:100%;background:linear-gradient(135deg,var(--gold),#d4a020);color:#0d1117;border:none;padding:14px;border-radius:12px;font-size:.95rem;font-weight:900;cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-top:20px;transition:all .2s;box-shadow:0 4px 16px rgba(201,162,39,.3);}
+.btn-submit{width:100%;background:linear-gradient(135deg,var(--gold),#d4a020);color:#0d1117;border:none;padding:14px;border-radius:12px;font-size:.95rem;font-weight:800;cursor:pointer;font-family:'Pretendard Variable',sans-serif;margin-top:20px;transition:all .2s;box-shadow:0 4px 16px rgba(201,162,39,.3);}
 .btn-submit:hover{box-shadow:0 6px 24px rgba(201,162,39,.45);transform:translateY(-1px);}
 
 /* 성공 */
 .success{display:none;text-align:center;padding:40px 20px;}
 .success.show{display:block;}
 .success-icon{font-size:3.5rem;margin-bottom:14px;}
-.success h2{font-size:1.4rem;font-weight:900;color:#fff;margin-bottom:10px;}
+.success h2{font-size:1.4rem;font-weight:800;color:#fff;margin-bottom:10px;}
 .success p{color:var(--muted);font-size:.88rem;line-height:2;}
 .success .share-nudge{margin-top:24px;background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.25);border-radius:14px;padding:18px 20px;}
 .success .share-nudge p{color:rgba(236,253,245,.8);font-size:.85rem;margin-bottom:14px;}
@@ -93,7 +94,7 @@ textarea{min-height:80px;resize:vertical;line-height:1.7;}
 .sns-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
 .sns-btn{display:flex;flex-direction:column;align-items:center;gap:5px;background:none;border:none;cursor:pointer;}
 .sns-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;}
-.sns-label{font-size:.64rem;color:var(--muted);font-family:'Noto Sans KR',sans-serif;}
+.sns-label{font-size:.64rem;color:var(--muted);font-family:'Pretendard Variable',sans-serif;}
 
 /* 통계 */
 .city-count{display:inline-flex;align-items:center;gap:8px;background:rgba(110,231,183,.08);border:1px solid rgba(110,231,183,.2);border-radius:20px;padding:6px 18px;font-size:.8rem;color:var(--mint);margin-bottom:28px;font-weight:700;}
@@ -295,19 +296,19 @@ textarea{min-height:80px;resize:vertical;line-height:1.7;}
 
 <!-- 메인으로 돌아가기 -->
 <div class="back-footer">
-  <a href="/seattle/" style="display:inline-flex;align-items:center;gap:10px;background:rgba(201,162,39,0.12);border:1px solid rgba(201,162,39,0.35);color:#C9A227;text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:900;font-size:.95rem;font-family:'Noto Sans KR',sans-serif;">
+  <a href="/seattle/" style="display:inline-flex;align-items:center;gap:10px;background:rgba(201,162,39,0.12);border:1px solid rgba(201,162,39,0.35);color:#C9A227;text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:800;font-size:.95rem;font-family:'Pretendard Variable',sans-serif;">
     ← &nbsp;HebronGuide 메인으로 돌아가기
   </a>
   <div style="margin-top:20px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;align-items:center;">
-    <a href="/founding-partner.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">협력 신청</a>
+    <a href="/founding-partner.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Pretendard Variable',sans-serif;">협력 신청</a>
     <span style="color:rgba(255,255,255,0.12);">·</span>
-    <a href="/ad-request.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">광고 신청</a>
+    <a href="/ad-request.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Pretendard Variable',sans-serif;">광고 신청</a>
     <span style="color:rgba(255,255,255,0.12);">·</span>
-    <a href="/about.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">소개</a>
+    <a href="/about.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Pretendard Variable',sans-serif;">소개</a>
     <span style="color:rgba(255,255,255,0.12);">·</span>
-    <a href="/privacy.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Noto Sans KR',sans-serif;">개인정보</a>
+    <a href="/privacy.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Pretendard Variable',sans-serif;">개인정보</a>
   </div>
-  <div style="margin-top:14px;font-size:.67rem;color:rgba(236,253,245,0.18);font-family:'Noto Sans KR',sans-serif;">© 2026 HebronGuide · hebronguide.com</div>
+  <div style="margin-top:14px;font-size:.67rem;color:rgba(236,253,245,0.18);font-family:'Pretendard Variable',sans-serif;">© 2026 HebronGuide · hebronguide.com</div>
 </div>
 
 <script>

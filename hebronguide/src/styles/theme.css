@@ -82,8 +82,8 @@
 
   /* Typography */
   --hebron-font-display: 'Cinzel', 'Georgia', serif;
-  --hebron-font-body:    'Noto Sans KR', -apple-system, 'Segoe UI', sans-serif;
-  --hebron-font-ui:      'Manrope', -apple-system, sans-serif;
+  --hebron-font-body:    'Pretendard Variable', -apple-system, 'Segoe UI', sans-serif;
+  --hebron-font-ui:      'Geist', 'Pretendard Variable', -apple-system, sans-serif;
 
   /* Radius */
   --hebron-radius-xs:   6px;
@@ -103,6 +103,28 @@
   --hebron-transition-fast:   0.15s ease;
   --hebron-transition-normal: 0.25s ease;
   --hebron-transition-slow:   0.40s ease;
+}
+
+/* ── 밝은 화면 semantic tokens (정본: docs/DESIGN_DIRECTION.md) ──
+   밝은 화면이 기본. 위 어두운 --hebron-* 값은 보존(교체가 아니라 추가). */
+:root {
+  --color-background:     #F7F8FB;
+  --color-surface:        #FFFFFF;
+  --color-surface-warm:   #F6EED5;
+  --color-text-primary:   #1B2A4A;
+  --color-text-secondary: #4A5A75;
+  --color-text-muted:     #64748B;
+  --color-text-inverse:   #FFFFFF;
+  --color-border:         #E5E9F0;
+  --color-primary:        #1B2A4A;
+  --color-accent:         #F2994A;
+  --color-accent-text:    #B45309;
+  --color-accent-on:      #1B2A4A;
+  --color-brand-gold:     #C9A227;
+  --color-success:        #0F766E;
+  --color-info:           #0369A1;
+  --color-error:          #B91C1C;
+  --color-focus:          #0369A1;
 }
 
 /* ── shadcn/ui 다크 테마 → Hebron 브랜드 색상 매핑 ── */
@@ -200,6 +222,7 @@
 
   html {
     font-size: var(--font-size);
+    font-family: 'Geist', 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
   h1 {

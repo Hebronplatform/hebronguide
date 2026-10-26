@@ -4,7 +4,8 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>HebronGuide 홈페이지 미리보기 (변경 제안)</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Cinzel:wght@700;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
   <style>
   :root{
     --bg:#0a0e14;--bg2:#0d1117;--surface:rgba(255,255,255,.05);--surface2:rgba(255,255,255,.08);
@@ -13,7 +14,7 @@
     --text:#ECFDF5;--muted:rgba(236,253,245,.6);--muted2:rgba(236,253,245,.38);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.75;overflow-x:hidden;}
+  body{font-family:'Pretendard Variable',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.75;overflow-x:hidden;}
 
   /* ── 미리보기 안내 배너 ── */
   .preview-banner{background:linear-gradient(90deg,#7c3aed,#2563eb);padding:12px 24px;text-align:center;font-size:.82rem;font-weight:700;color:#fff;letter-spacing:.03em;position:sticky;top:0;z-index:999;}
@@ -30,7 +31,7 @@
   .change-label.same::before{background:var(--muted2);}
 
   nav{background:rgba(10,14,20,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;}
-  .nav-logo{color:var(--gold);font-family:'Cinzel',serif;font-weight:900;font-size:1.05rem;text-decoration:none;}
+  .nav-logo{color:var(--gold);font-family:'Cinzel',serif;font-weight:800;font-size:1.05rem;text-decoration:none;}
   .nav-links{display:flex;gap:20px;align-items:center;}
   .nav-links a{color:var(--muted);text-decoration:none;font-size:.82rem;}
   .nav-cta{background:var(--gold);color:#0d1117 !important;font-weight:800;font-size:.8rem;border-radius:20px;padding:6px 16px;}
@@ -39,21 +40,21 @@
   .hero{position:relative;text-align:center;padding:88px 24px 72px;overflow:hidden;}
   .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(201,162,39,.12) 0%,transparent 65%);pointer-events:none;}
   .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.28);color:var(--gold);font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;border-radius:99px;padding:6px 18px;margin-bottom:28px;}
-  .hero-headline{font-size:clamp(2.2rem,6vw,4.5rem);font-weight:900;color:#ffffff;line-height:1.15;margin-bottom:8px;}
+  .hero-headline{font-size:clamp(2.2rem,6vw,4.5rem);font-weight:800;color:#ffffff;line-height:1.15;margin-bottom:8px;}
   .hero-headline .accent{color:var(--gold);}
   .hero-sub-big{font-size:clamp(1rem,2.2vw,1.4rem);color:rgba(236,253,245,.8);font-weight:300;margin:16px 0 28px;line-height:1.8;max-width:680px;margin-left:auto;margin-right:auto;}
   .hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:56px;}
-  .btn-hero{background:linear-gradient(135deg,#C9A227,#f0c040);color:#0a0e14;font-weight:900;font-size:1rem;border-radius:50px;padding:16px 36px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
+  .btn-hero{background:linear-gradient(135deg,#C9A227,#f0c040);color:#0a0e14;font-weight:800;font-size:1rem;border-radius:50px;padding:16px 36px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
   .btn-outline{background:transparent;border:1px solid var(--border2);color:var(--text);font-weight:600;font-size:.9rem;border-radius:50px;padding:15px 30px;text-decoration:none;}
   .hero-stats{display:inline-grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border2);border:1px solid var(--border2);border-radius:16px;overflow:hidden;max-width:600px;width:100%;}
   .stat{background:var(--bg2);padding:20px 12px;text-align:center;}
-  .stat-n{font-family:'Cinzel',serif;font-size:1.8rem;font-weight:900;color:var(--gold);line-height:1;}
+  .stat-n{font-family:'Cinzel',serif;font-size:1.8rem;font-weight:800;color:var(--gold);line-height:1;}
   .stat-l{font-size:.7rem;color:var(--muted);margin-top:4px;}
 
   /* ━━━ THREE PATHS (새로 추가) ━━━ */
   .paths-section{padding:80px 24px;max-width:1000px;margin:0 auto;}
   .paths-label{font-size:.7rem;font-weight:800;color:var(--mint);letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px;text-align:center;}
-  .paths-title{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:900;color:#fff;text-align:center;margin-bottom:12px;line-height:1.3;}
+  .paths-title{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;color:#fff;text-align:center;margin-bottom:12px;line-height:1.3;}
   .paths-desc{text-align:center;color:var(--muted);font-size:.95rem;line-height:1.9;max-width:540px;margin:0 auto 48px;}
   .paths-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
   @media(max-width:700px){.paths-grid{grid-template-columns:1fr;}}
@@ -69,7 +70,7 @@
   .for-newcomer .path-who{color:var(--gold);}
   .for-pastor .path-who{color:var(--mint);}
   .for-neighbor .path-who{color:#818CF8;}
-  .path-title{font-size:1.25rem;font-weight:900;color:#fff;margin-bottom:12px;line-height:1.3;}
+  .path-title{font-size:1.25rem;font-weight:800;color:#fff;margin-bottom:12px;line-height:1.3;}
   .path-body{font-size:.88rem;color:var(--muted);line-height:1.85;margin-bottom:24px;}
   .path-cta{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:800;text-decoration:none;border-radius:50px;padding:10px 20px;}
   .for-newcomer .path-cta{background:rgba(201,162,39,.15);color:var(--gold);}
@@ -81,7 +82,7 @@
   /* ━━━ CORE TRUTH (그대로 유지) ━━━ */
   .core-truth{padding:88px 24px;text-align:center;}
   .core-truth-inner{max-width:800px;margin:0 auto;}
-  .core-truth h2{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;color:#fff;line-height:1.3;margin-bottom:20px;}
+  .core-truth h2{font-size:clamp(1.8rem,4vw,3rem);font-weight:800;color:#fff;line-height:1.3;margin-bottom:20px;}
   .core-truth h2 em{color:var(--gold);font-style:normal;display:block;}
   .core-truth-desc{font-size:clamp(1rem,2vw,1.2rem);color:var(--muted);line-height:2;max-width:620px;margin:0 auto 40px;}
   .verses{display:flex;flex-direction:column;gap:14px;max-width:580px;margin:0 auto;}
@@ -95,7 +96,7 @@
 
   /* footer */
   footer{padding:48px 24px 32px;text-align:center;background:rgba(0,0,0,.3);}
-  .footer-logo{font-family:'Cinzel',serif;color:var(--gold);font-weight:900;font-size:1rem;margin-bottom:14px;}
+  .footer-logo{font-family:'Cinzel',serif;color:var(--gold);font-weight:800;font-size:1rem;margin-bottom:14px;}
   .footer-soul{font-size:.82rem;color:rgba(201,162,39,.55);font-style:italic;margin-top:10px;line-height:1.8;}
   </style>
 </head>

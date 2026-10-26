@@ -9,21 +9,22 @@
 <meta property="og:description" content="전 세계 81개 도시 한인 이주자에게 첫 번째로 연결되는 교회가 되세요.">
 <meta property="og:image" content="https://hebronguide.com/icon-512.png">
 <meta property="og:url" content="https://hebronguide.com/church-join.html">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:#0d1117;color:#e6edf3;min-height:100vh;display:flex;flex-direction:column}
+body{font-family:'Pretendard Variable',-apple-system,sans-serif;background:#0d1117;color:#e6edf3;min-height:100vh;display:flex;flex-direction:column}
 
 /* 헤더 */
 .header{background:rgba(13,17,23,.97);border-bottom:1px solid rgba(255,255,255,.1);padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
-.logo{color:#C9A227;font-weight:900;font-size:1rem;text-decoration:none}
+.logo{color:#C9A227;font-weight:800;font-size:1rem;text-decoration:none}
 .back{color:#8b949e;font-size:.82rem;text-decoration:none}
 .back:hover{color:#6EE7B7}
 
 /* 히어로 */
 .hero{text-align:center;padding:32px 20px 24px;background:linear-gradient(135deg,rgba(201,162,39,.1),rgba(110,231,183,.05))}
 .hero-badge{display:inline-block;background:rgba(201,162,39,.15);border:1px solid rgba(201,162,39,.3);color:#C9A227;border-radius:20px;padding:4px 14px;font-size:.75rem;font-weight:800;margin-bottom:12px}
-.hero h1{font-size:1.6rem;font-weight:900;margin-bottom:8px}
+.hero h1{font-size:1.6rem;font-weight:800;margin-bottom:8px}
 .hero p{color:#8b949e;font-size:.85rem;line-height:1.6}
 
 /* 진행 단계 */
@@ -46,14 +47,14 @@ body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:#0d1117;colo
 label{display:block;font-size:.8rem;font-weight:700;color:rgba(230,237,243,.7);margin-bottom:6px}
 label .req{color:#C9A227;margin-left:2px}
 label .opt{color:rgba(230,237,243,.3);font-weight:400;font-size:.72rem;margin-left:4px}
-input,select,textarea{width:100%;background:#0d1117;border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:11px 14px;font-size:.9rem;color:#e6edf3;font-family:'Noto Sans KR',sans-serif;outline:none;transition:.2s;-webkit-appearance:none}
+input,select,textarea{width:100%;background:#0d1117;border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:11px 14px;font-size:.9rem;color:#e6edf3;font-family:'Pretendard Variable',sans-serif;outline:none;transition:.2s;-webkit-appearance:none}
 input:focus,select:focus,textarea:focus{border-color:#C9A227;background:#111827}
 select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='%23C9A227'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;cursor:pointer}
 select option,select optgroup{background:#0d1117;color:#e6edf3}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 
 /* 버튼 */
-.btn-submit{width:100%;background:linear-gradient(135deg,#C9A227,#e8b53a);color:#000;font-weight:900;border:none;padding:14px;border-radius:12px;font-size:1rem;cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-top:16px;transition:.2s;box-shadow:0 4px 16px rgba(201,162,39,.3)}
+.btn-submit{width:100%;background:linear-gradient(135deg,#C9A227,#e8b53a);color:#000;font-weight:800;border:none;padding:14px;border-radius:12px;font-size:1rem;cursor:pointer;font-family:'Pretendard Variable',sans-serif;margin-top:16px;transition:.2s;box-shadow:0 4px 16px rgba(201,162,39,.3)}
 .btn-submit:hover{box-shadow:0 6px 24px rgba(201,162,39,.45);transform:translateY(-1px)}
 .btn-submit:disabled{opacity:.6;cursor:not-allowed;transform:none}
 
@@ -70,7 +71,7 @@ select option,select optgroup{background:#0d1117;color:#e6edf3}
 #success{display:none;text-align:center;padding:40px 20px}
 #success.show{display:block}
 .success-icon{font-size:4rem;margin-bottom:16px}
-.success-title{font-size:1.4rem;font-weight:900;margin-bottom:8px}
+.success-title{font-size:1.4rem;font-weight:800;margin-bottom:8px}
 .success-sub{color:#8b949e;font-size:.88rem;line-height:1.8;margin-bottom:20px}
 .success-card{background:#161b22;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px;margin:0 auto 20px;max-width:360px;text-align:left}
 .success-row{display:flex;align-items:flex-start;gap:10px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06)}
@@ -266,7 +267,7 @@ select option,select optgroup{background:#0d1117;color:#e6edf3}
       </div>
 
       <div style="display:flex;gap:10px">
-        <button onclick="goStep1()" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8b949e;padding:13px;border-radius:12px;cursor:pointer;font-size:.9rem;font-family:'Noto Sans KR',sans-serif">← 이전</button>
+        <button onclick="goStep1()" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8b949e;padding:13px;border-radius:12px;cursor:pointer;font-size:.9rem;font-family:'Pretendard Variable',sans-serif">← 이전</button>
         <button class="btn-submit" style="flex:2;margin-top:0" onclick="submitChurch()" id="submitBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 2v5"/><path d="M9.5 4.5h5"/><path d="M6 22V11l6-4 6 4v11"/><path d="M10 22v-5h4v5"/></svg> 등록 신청하기</button>
       </div>
 

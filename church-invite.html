@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>HebronGuide — 파트너 교회 초대 카드</title>
   <meta name="robots" content="noindex"/>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Cinzel:wght@700;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
   :root{
@@ -14,7 +15,7 @@
     --text:#ECFDF5;--muted:rgba(236,253,245,.6);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+  body{font-family:'Pretendard Variable',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
 
   /* NAV */
   nav{background:rgba(10,14,20,.97);border-bottom:1px solid var(--border);height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:100;}
@@ -50,10 +51,10 @@
     background:radial-gradient(circle,rgba(201,162,39,.18) 0%,transparent 65%);
     pointer-events:none;
   }
-  .card-logo{font-family:'Cinzel',serif;font-weight:900;font-size:1.4rem;color:#fff;margin-bottom:4px;}
+  .card-logo{font-family:'Cinzel',serif;font-weight:800;font-size:1.4rem;color:#fff;margin-bottom:4px;}
   .card-logo em{color:#C9A227;font-style:normal;}
   .card-tagline{font-size:.72rem;color:rgba(255,255,255,.5);letter-spacing:.06em;}
-  .card-headline{margin-top:20px;font-size:1.05rem;font-weight:900;color:#fff;line-height:1.5;}
+  .card-headline{margin-top:20px;font-size:1.05rem;font-weight:800;color:#fff;line-height:1.5;}
   .card-headline em{color:#C9A227;font-style:normal;}
   .card-sub{margin-top:8px;font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.7;}
 
@@ -80,26 +81,26 @@
   .card-bottom-text{font-size:.72rem;font-weight:800;color:#0a0e14;}
   .card-bottom-url{font-size:.7rem;color:rgba(10,14,20,.65);font-family:'Cinzel',serif;}
 
-  .print-btn{margin-top:16px;width:100%;max-width:400px;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0a0e14;font-weight:900;font-size:.9rem;border:none;border-radius:10px;padding:14px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;}
+  .print-btn{margin-top:16px;width:100%;max-width:400px;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0a0e14;font-weight:800;font-size:.9rem;border:none;border-radius:10px;padding:14px;cursor:pointer;font-family:'Pretendard Variable',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;}
   .print-btn:hover{opacity:.9;}
 
   /* ── SEND FORM ── */
   .form-col{}
   .send-form{background:rgba(255,255,255,.04);border:1px solid var(--border2);border-radius:18px;padding:28px 24px;}
-  .send-form h2{font-size:1.1rem;font-weight:900;color:#fff;margin-bottom:6px;}
+  .send-form h2{font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:6px;}
   .send-form p{font-size:.83rem;color:var(--muted);line-height:1.7;margin-bottom:24px;}
   .field{margin-bottom:16px;}
   .field label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);margin-bottom:6px;}
   .field input, .field select, .field textarea{
     width:100%;background:rgba(255,255,255,.06);border:1px solid var(--border2);
-    border-radius:10px;color:var(--text);font-size:.88rem;font-family:'Noto Sans KR',sans-serif;
+    border-radius:10px;color:var(--text);font-size:.88rem;font-family:'Pretendard Variable',sans-serif;
     padding:11px 14px;outline:none;transition:border-color .2s;
   }
   .field input:focus, .field select:focus, .field textarea:focus{border-color:var(--gold);}
   .field input::placeholder, .field textarea::placeholder{color:rgba(255,255,255,.25);}
   .field textarea{resize:vertical;min-height:90px;}
   .field select option{background:#1a2035;color:#fff;}
-  .send-btn{width:100%;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0a0e14;font-weight:900;font-size:.95rem;border:none;border-radius:10px;padding:15px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;margin-top:8px;}
+  .send-btn{width:100%;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0a0e14;font-weight:800;font-size:.95rem;border:none;border-radius:10px;padding:15px;cursor:pointer;font-family:'Pretendard Variable',sans-serif;margin-top:8px;}
   .send-btn:hover{opacity:.9;}
   .send-btn:disabled{opacity:.5;cursor:not-allowed;}
   .send-result{margin-top:14px;padding:14px 16px;border-radius:10px;font-size:.85rem;display:none;}

@@ -188,10 +188,10 @@ function UpdateBanner() {
     >
       <span style={{ fontSize: 18, lineHeight: 1 }}>🌿</span>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ fontFamily: 'Manrope,sans-serif', fontWeight: 800, fontSize: 12, color: '#ECFDF5' }}>
+        <div style={{ fontFamily: 'Geist,Pretendard Variable,sans-serif', fontWeight: 800, fontSize: 12, color: '#ECFDF5' }}>
           새로운 정보가 도착했어요
         </div>
-        <div style={{ fontFamily: 'Manrope,sans-serif', fontSize: 10, color: 'rgba(236,253,245,0.6)', marginTop: 2, lineHeight: 1.4 }}>
+        <div style={{ fontFamily: 'Geist,Pretendard Variable,sans-serif', fontSize: 10, color: 'rgba(236,253,245,0.6)', marginTop: 2, lineHeight: 1.4 }}>
           잠시만 새로 고치면 최신 안내를 보실 수 있어요
         </div>
       </div>
@@ -202,7 +202,7 @@ function UpdateBanner() {
           background: 'transparent',
           border: 'none',
           padding: '6px 8px',
-          fontFamily: 'Manrope,sans-serif',
+          fontFamily: 'Geist,Pretendard Variable,sans-serif',
           fontSize: 11,
           color: 'rgba(236,253,245,0.45)',
           cursor: 'pointer',
@@ -218,7 +218,7 @@ function UpdateBanner() {
           border: 'none',
           borderRadius: 10,
           padding: '7px 13px',
-          fontFamily: 'Manrope,sans-serif',
+          fontFamily: 'Geist,Pretendard Variable,sans-serif',
           fontWeight: 800,
           fontSize: 11,
           color: '#0b1326',

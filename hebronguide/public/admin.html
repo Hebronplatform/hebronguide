@@ -28,7 +28,7 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: -apple-system, 'Noto Sans KR', 'Segoe UI', sans-serif;
+      font-family: -apple-system, 'Pretendard Variable', 'Segoe UI', sans-serif;
       font-size: 14px;
       line-height: 1.5;
       min-height: 100vh;
@@ -461,7 +461,7 @@
 
     /* 누른 뒤 — 색이 남는다. 어느 교회를 이미 확인했는지 한눈에 보인다. */
     .btn-live.done  { background: rgba(110,231,183,.16); border-color: rgba(110,231,183,.5); color: var(--mint); font-weight: 700 }
-    .btn-live.done::after { content: " ✓"; font-weight: 900 }
+    .btn-live.done::after { content: " ✓"; font-weight:800 }
 
     /* 누르는 순간 잠깐 눌린 느낌 */
     .btn-sm:active { transform: translateY(1px) }
@@ -671,6 +671,7 @@
   .bulkbar .hint{font-size:.72rem;color:var(--muted);}
   .bulkbar .sp{margin-left:auto;}
   </style>
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
 </head>
 <body>
 
@@ -1796,7 +1797,7 @@
         <!-- 헤더 -->
         <div style="background:linear-gradient(135deg,rgba(110,231,183,.1),rgba(201,162,39,.08));
           border:1px solid rgba(110,231,183,.25);border-radius:14px;padding:18px 20px;margin-bottom:16px;">
-          <div style="font-size:1rem;font-weight:900;color:var(--mint);margin-bottom:4px;">
+          <div style="font-size:1rem;font-weight:800;color:var(--mint);margin-bottom:4px;">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5a13 13 0 0 1 0 17 13 13 0 0 1 0-17z"/></svg> Hebron Global Diaspora Planner
           </div>
           <div style="font-size:.78rem;color:var(--muted);line-height:1.7;">
@@ -1809,7 +1810,7 @@
               `<button onclick="plannerAsk('${q.replace(/'/g,"\\'")}')
                 style="background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.25);
                 border-radius:20px;padding:4px 12px;font-size:.72rem;color:var(--mint);cursor:pointer;
-                font-family:'Noto Sans KR',sans-serif;transition:all .15s;"
+                font-family:'Pretendard Variable',sans-serif;transition:all .15s;"
                 onmouseover="this.style.background='rgba(110,231,183,.2)'"
                 onmouseout="this.style.background='rgba(110,231,183,.1)'">${q}</button>`
             ).join('')}
@@ -1831,14 +1832,14 @@
             placeholder="예: 중남미 한인 디아스포라 전략 도시 5개 추천해줘"
             onkeydown="if(event.key==='Enter')plannerSend()"
             style="flex:1;background:#1a2535;border:1px solid var(--border2);border-radius:10px;
-            padding:10px 14px;font-size:.85rem;color:var(--text);font-family:'Noto Sans KR',sans-serif;
+            padding:10px 14px;font-size:.85rem;color:var(--text);font-family:'Pretendard Variable',sans-serif;
             outline:none;"
             onfocus="this.style.borderColor='var(--mint)'"
             onblur="this.style.borderColor='var(--border2)'" />
           <button onclick="plannerSend()" id="planner-btn"
             style="background:var(--mint);color:#0d1117;border:none;border-radius:10px;
             padding:10px 18px;font-size:.85rem;font-weight:800;cursor:pointer;
-            font-family:'Noto Sans KR',sans-serif;white-space:nowrap;transition:opacity .15s;">
+            font-family:'Pretendard Variable',sans-serif;white-space:nowrap;transition:opacity .15s;">
             전송 →
           </button>
           <button onclick="plannerHistory=[];renderPlanner()" title="대화 초기화"
@@ -1907,7 +1908,7 @@
         .replace(/\n\n/g, '</p><p style="margin-top:10px;">')
         .replace(/\n/g, '<br>')
         .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-        .replace(/^#{1,3} (.+)/gm, '<div style="font-weight:900;color:var(--mint);margin:8px 0 4px;">$1</div>')
+        .replace(/^#{1,3} (.+)/gm, '<div style="font-weight:800;color:var(--mint);margin:8px 0 4px;">$1</div>')
 
       chat.innerHTML += `
         <div style="display:flex;gap:8px;align-items:flex-start;">
