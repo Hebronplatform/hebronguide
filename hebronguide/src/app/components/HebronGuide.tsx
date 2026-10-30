@@ -13658,8 +13658,7 @@ function GrowthShareSection({ lang }: { lang: string }) {
         </div>
       </button>
 
-      {/* 이 도시 소식 (광고·소식) — 큐레이션과 분리, 동시 최대 3개 */}
-      <CityNewsSection lang={ko ? "ko" : "en"} />
+      {/* 이 도시 소식(유료 광고 자리)은 2026-10-30 뺐다 — 광고를 받지 않는다 (PLATFORM_BLUEPRINT_v1 ⑪-3) */}
 
     </div>
   );
@@ -31009,8 +31008,8 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
             })}
           </div>
 
-          {/* 파트너 비즈니스 — 광고·파트너 신청 문의 */}
-          <a href="/ad-request.html" target="_blank" rel="noopener noreferrer"
+          {/* 무료 등재 신청 — 광고는 받지 않는다 */}
+          <a href="/ad-request.html#list" target="_blank" rel="noopener noreferrer"
             onClick={() => setShowMore(false)}
             style={{
               display: "flex", alignItems: "center", gap: 10,
@@ -31023,10 +31022,10 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
             <div style={{ width: 36, height: 36, borderRadius: 10, background: "rgba(201, 162, 39, 0.15)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}><Handshake size={15} strokeWidth={2} /></div>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: 11.5, fontWeight: 800, color: "#92400E", letterSpacing: "0.1px", marginBottom: 2, fontFamily: "Geist,Pretendard Variable, sans-serif" }}>
-                {lang === "ko" ? "파트너 신청 (비즈니스·교회·광고)" : "Partner Application (Business·Church·Ad)"}
+                {lang === "ko" ? "무료 등재 신청 (교회·업소)" : "List for free (Church · Business)"}
               </div>
               <div style={{ fontSize: 10.5, color: "#C9A227", fontWeight: 700, fontFamily: "Geist,Pretendard Variable, sans-serif" }}>
-                {lang === "ko" ? "사업체·교회·광고·홍보 신청 →" : "Business·Church·Ad·Promo →"}
+                {lang === "ko" ? "사실을 확인한 뒤 무료로 올립니다 →" : "Verified, then listed for free →"}
               </div>
             </div>
             <div style={{ fontSize: 16, color: "#C9A227", fontWeight: 700 }}>›</div>
