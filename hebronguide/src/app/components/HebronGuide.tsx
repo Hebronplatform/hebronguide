@@ -23871,6 +23871,83 @@ const CITY_CONSULATE: Record<string, { ko: string; en: string; phone: string; ur
 };
 
 /* ─────────────────────────────────────────
+   나라별 긴급 번호 — 서울·도쿄·런던에서 911은 걸리지 않는다
+   출처: Wikipedia "List of emergency telephone numbers" 대조 (2026-10-30)
+   목록에 없는 도시는 미국(911)으로 본다 — 새 나라 도시를 추가하면 CITY_COUNTRY에도 넣을 것
+───────────────────────────────────────── */
+type CountryCode = "US" | "CA" | "MX" | "BR" | "CO" | "GB" | "FR" | "DE" | "AU" | "NZ" | "SG" | "TH" | "VN" | "AE" | "JP" | "KR";
+const CITY_COUNTRY: Record<string, CountryCode> = {
+  toronto: "CA", vancouver: "CA", calgary: "CA", edmonton: "CA", ottawa: "CA", winnipeg: "CA", princgeorge: "CA",
+  mexicocity: "MX", guadalajara: "MX", monterrey: "MX",
+  saopaulo: "BR", bogota: "CO",
+  london: "GB", paris: "FR", berlin: "DE", frankfurt: "DE",
+  sydney: "AU", melbourne: "AU", brisbane: "AU", perth: "AU", auckland: "NZ",
+  singapore: "SG", bangkok: "TH", hochiminh: "VN", dubai: "AE",
+  tokyo: "JP", osaka: "JP",
+  seoul: "KR", busan: "KR", ansan: "KR", incheon: "KR", jeju: "KR", daegu: "KR", gwangju: "KR",
+  daejeon: "KR", changwon: "KR", cheonan: "KR", bundang: "KR",
+};
+function cityCountry(slug: string): CountryCode { return CITY_COUNTRY[slug] ?? "US"; }
+
+type EmLine = { number: string; ko: string; en: string; descKo: string; descEn: string };
+const ALL_IN_ONE = (n: string, extraKo = "", extraEn = ""): EmLine =>
+  ({ number: n, ko: "경찰·소방·구급 (생명 긴급)", en: "Police · Fire · Ambulance", descKo: `생명·화재·범죄 — 즉시 전화${extraKo}`, descEn: `Life-threatening, fire, crime${extraEn}` });
+const COUNTRY_EMERGENCY: Record<CountryCode, { police: string; medical: string; fire: string; lines: EmLine[] }> = {
+  US: { police: "911", medical: "911", fire: "911", lines: [ALL_IN_ONE("911", ". 한국어 통역 요청 가능", ". Korean interpreter available")] },
+  CA: { police: "911", medical: "911", fire: "911", lines: [ALL_IN_ONE("911", ". 한국어 통역 요청 가능", ". Korean interpreter available")] },
+  MX: { police: "911", medical: "911", fire: "911", lines: [ALL_IN_ONE("911")] },
+  CO: { police: "123", medical: "123", fire: "123", lines: [ALL_IN_ONE("123")] },
+  GB: { police: "999", medical: "999", fire: "999", lines: [ALL_IN_ONE("999", " (휴대폰은 112도 됨)", " (112 also works from mobiles)")] },
+  FR: { police: "17", medical: "15", fire: "18", lines: [
+    ALL_IN_ONE("112", " (유럽 공통 번호)", " (EU-wide number)"),
+    { number: "15", ko: "구급 (SAMU)", en: "Ambulance (SAMU)", descKo: "응급 의료", descEn: "Medical emergency" },
+    { number: "17", ko: "경찰", en: "Police", descKo: "범죄·사고 신고", descEn: "Crime & incidents" },
+  ] },
+  DE: { police: "110", medical: "112", fire: "112", lines: [
+    { number: "112", ko: "소방·구급", en: "Fire · Ambulance", descKo: "화재·응급 의료 — 즉시 전화", descEn: "Fire & medical emergency" },
+    { number: "110", ko: "경찰", en: "Police", descKo: "범죄·사고 신고", descEn: "Crime & incidents" },
+  ] },
+  AU: { police: "000", medical: "000", fire: "000", lines: [ALL_IN_ONE("000", " (휴대폰은 112도 됨)", " (112 also works from mobiles)")] },
+  NZ: { police: "111", medical: "111", fire: "111", lines: [ALL_IN_ONE("111")] },
+  SG: { police: "999", medical: "995", fire: "995", lines: [
+    { number: "995", ko: "구급·소방", en: "Ambulance · Fire", descKo: "응급 의료·화재 — 즉시 전화", descEn: "Medical emergency & fire" },
+    { number: "999", ko: "경찰", en: "Police", descKo: "범죄·사고 신고", descEn: "Crime & incidents" },
+  ] },
+  TH: { police: "191", medical: "1669", fire: "199", lines: [
+    { number: "1669", ko: "구급", en: "Ambulance", descKo: "응급 의료 — 즉시 전화", descEn: "Medical emergency" },
+    { number: "191", ko: "경찰", en: "Police", descKo: "범죄·사고 신고", descEn: "Crime & incidents" },
+    { number: "199", ko: "소방", en: "Fire", descKo: "화재 신고", descEn: "Fire" },
+  ] },
+  VN: { police: "113", medical: "115", fire: "114", lines: [
+    { number: "115", ko: "구급", en: "Ambulance", descKo: "응급 의료 — 즉시 전화", descEn: "Medical emergency" },
+    { number: "113", ko: "경찰", en: "Police", descKo: "범죄·사고 신고", descEn: "Crime & incidents" },
+    { number: "114", ko: "소방", en: "Fire", descKo: "화재 신고", descEn: "Fire" },
+  ] },
+  AE: { police: "999", medical: "998", fire: "997", lines: [
+    { number: "998", ko: "구급", en: "Ambulance", descKo: "응급 의료 — 즉시 전화", descEn: "Medical emergency" },
+    { number: "999", ko: "경찰", en: "Police", descKo: "범죄·사고 신고", descEn: "Crime & incidents" },
+    { number: "997", ko: "소방", en: "Fire", descKo: "화재 신고", descEn: "Fire" },
+  ] },
+  BR: { police: "190", medical: "192", fire: "193", lines: [
+    { number: "192", ko: "구급 (SAMU)", en: "Ambulance (SAMU)", descKo: "응급 의료 — 즉시 전화", descEn: "Medical emergency" },
+    { number: "190", ko: "경찰", en: "Police", descKo: "범죄·사고 신고", descEn: "Crime & incidents" },
+    { number: "193", ko: "소방", en: "Fire", descKo: "화재 신고", descEn: "Fire" },
+  ] },
+  JP: { police: "110", medical: "119", fire: "119", lines: [
+    { number: "119", ko: "구급·소방", en: "Ambulance · Fire", descKo: "응급 의료·화재 — 즉시 전화", descEn: "Medical emergency & fire" },
+    { number: "110", ko: "경찰", en: "Police", descKo: "범죄·사고 신고", descEn: "Crime & incidents" },
+  ] },
+  KR: { police: "112", medical: "119", fire: "119", lines: [
+    { number: "119", ko: "구급·소방", en: "Ambulance · Fire", descKo: "응급 의료·화재 — 즉시 전화", descEn: "Medical emergency & fire" },
+    { number: "112", ko: "경찰", en: "Police", descKo: "범죄·사고 신고", descEn: "Crime & incidents" },
+  ] },
+};
+/** 배너에 쓰는 번호 묶음 — "911" / "119 · 112" */
+function emergencyNumbers(slug: string): string {
+  return COUNTRY_EMERGENCY[cityCountry(slug)].lines.map(l => l.number).join(" · ");
+}
+
+/* ─────────────────────────────────────────
    도시별 긴급 연락처 데이터
    출처: 각 도시 공식 응급 / 경찰 / 가스회사 정보
 ───────────────────────────────────────── */
@@ -24066,17 +24143,19 @@ function getCityEmergencyData(slug: string, lang: string) {
       safetyTipsEn: "• Avoid solo travel in unfamiliar areas at night\n• Use only Uber/DiDi — no street taxis\n• Tap water not safe — always drink bottled\n• Check security at expat compounds/gated communities\n• Extreme summer heat (42°C) — stay hydrated\n• Use private hospitals (Christus Muguerza) for medical care",
     },
   };
-  // 폴백: 시애틀 데이터 누출 금지 → 도시 무관 범용(북미 911 기준). 미등록 도시는 대부분 미국·캐나다.
+  // 폴백: 시애틀 데이터 누출 금지 → 도시 무관 범용. 번호는 그 도시가 속한 나라 기준(COUNTRY_EMERGENCY).
+  const n = COUNTRY_EMERGENCY[cityCountry(slug)];
+  const all = emergencyNumbers(slug);
   return D[slug] ?? {
     erName: ko ? "가까운 병원 응급실" : "Nearest Hospital ER",
-    erPhone: "911",
-    erAddr: ko ? "📍 응급 시 911. Google Maps에서 'emergency room near me' 검색" : "📍 Call 911. Search 'emergency room near me' on Google Maps",
-    policeNE: ko ? "911 (긴급) · 비긴급은 지역 경찰서 검색" : "911 (emergency) · search local police for non-emergency",
-    gasName: ko ? "가스 누출 — 즉시 대피 후 911" : "Gas Leak — Evacuate & call 911",
-    gasPhone: "911",
+    erPhone: n.medical,
+    erAddr: ko ? `📍 응급 시 ${n.medical}. 지도 앱에서 '응급실'(emergency room) 검색` : `📍 Call ${n.medical}. Search 'emergency room near me' on your map app`,
+    policeNE: ko ? `${n.police} (긴급) · 비긴급은 지역 경찰서 검색` : `${n.police} (emergency) · search local police for non-emergency`,
+    gasName: ko ? `가스 누출 — 즉시 대피 후 ${n.fire}` : `Gas Leak — Evacuate & call ${n.fire}`,
+    gasPhone: n.fire,
     consulatePhone: CITY_CONSULATE[slug]?.phone ?? "(202) 939-5600",
-    safetyTips: ko ? "• 모든 긴급상황: 911\n• 낯선 지역 야간 단독 이동 주의\n• 앱 기반 차량(Uber/Lyft) 이용\n• 여권·비자 사본 별도 보관\n• 가까운 병원·경찰서 위치 미리 확인" : "",
-    safetyTipsEn: "• All emergencies: 911\n• Avoid unfamiliar areas alone at night\n• Use app-based rides (Uber/Lyft)\n• Keep copies of passport & visa\n• Locate nearest hospital & police in advance",
+    safetyTips: ko ? `• 긴급상황: ${all}\n• 낯선 지역 야간 단독 이동 주의\n• 앱으로 부르는 차량 이용\n• 여권·비자 사본 별도 보관\n• 가까운 병원·경찰서 위치 미리 확인` : "",
+    safetyTipsEn: `• Emergencies: ${all}\n• Avoid unfamiliar areas alone at night\n• Use app-based rides\n• Keep copies of passport & visa\n• Locate nearest hospital & police in advance`,
   };
 }
 
@@ -24087,6 +24166,13 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
   const isSeattle = city.slug === "seattle";
   const consulate = CITY_CONSULATE[city.slug] ?? CITY_CONSULATE.seattle;
   const em = getCityEmergencyData(city.slug, lang);
+  // 나라별 긴급 번호. 988·독극물·통역·가정폭력·AAA는 미국(988은 캐나다도) 번호라 다른 나라에서는 숨긴다.
+  const country = cityCountry(city.slug);
+  const emLines = COUNTRY_EMERGENCY[country].lines;
+  const emAll = emergencyNumbers(city.slug);
+  const isUS = country === "US";
+  const show988 = country === "US" || country === "CA";
+  const showConsulate = country !== "KR";
   const [sub, setSub] = useState(initialSub);
   // QuickMenu 진입 시 서브탭 바 숨김 → "다른 도움 찾기" 버튼으로 열기
   const [showAllTabs, setShowAllTabs] = useState(!fromQuickMenu);
@@ -24135,7 +24221,9 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
     { emoji: "🧠", name: "NAMI National", desc: "📞 1-800-950-6264 | Mental health information, support & education | 🔗 nami.org", tags: ["Mental Health", "National", "Free"] },
   ];
   // 도시에 맞는 의료 항목 결합
-  const medicalItems = isSeattle ? [...medicalSeattle, ...medicalUniversal.slice(1)] : medicalUniversal;
+  // 통역 라인·NAMI는 미국 번호, 988은 미국·캐나다 번호 → 그 밖의 나라에서는 검색 안내만 남긴다
+  const medicalForCountry = medicalUniversal.filter((_, i) => i === 0 || isUS || (i === 2 && show988));
+  const medicalItems = isSeattle ? [...medicalSeattle, ...medicalUniversal.slice(1)] : medicalForCountry;
 
   const defaultCommunityLinks = [
     // 영사관: 전 도시 공통 (도시별 주소·전화 자동 적용)
@@ -24362,7 +24450,7 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
 
   // sub-tab별 동적 헤더 — 클릭한 메뉴(병원·도움·법률 등)에 맞춰 타이틀이 바뀌도록
   const helpHeaders = [
-    { emoji: "🆘", titleKo: "긴급연락 + 안전", titleEn: "Emergency & Safety", descKo: `${city.nameKo} — 911 · 한국 영사관 · 24시간 위기 핫라인`, descEn: `${city.nameEn} — 911 · Korean Consulate · 24/7 crisis lines` },
+    { emoji: "🆘", titleKo: "긴급연락 + 안전", titleEn: "Emergency & Safety", descKo: `${city.nameKo} — ${emAll}${showConsulate ? " · 한국 영사관" : ""}${show988 ? " · 24시간 위기 핫라인" : ""}`, descEn: `${city.nameEn} — ${emAll}${showConsulate ? " · Korean Consulate" : ""}${show988 ? " · 24/7 crisis lines" : ""}` },
     { emoji: "🏥", titleKo: "의료·병원 안내", titleEn: "Medical & Hospital Guide", descKo: `${city.nameKo} — 의료기관 · 정신건강 · 응급 진료`, descEn: `${city.nameEn} — Clinics · Mental health · ER access` },
     { emoji: "🤝", titleKo: "커뮤니티", titleEn: "Community", descKo: `${city.nameKo} — 한인회 · 커뮤니티 · 미디어`, descEn: `${city.nameEn} — Associations · Community · Media` },
     { emoji: "🔗", titleKo: "유용한 링크", titleEn: "Useful Links", descKo: `${city.nameKo} — 보험 · 취업 · 학교 · 무료 법률`, descEn: `${city.nameEn} — Insurance · Jobs · Schools · Free legal` },
@@ -24389,22 +24477,24 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
           <div style={{ margin: "16px 16px 0", background: "#FEF2F2", border: "1px solid rgba(248,113,113,0.3)", borderRadius: 16, overflow: "hidden" }}>
             <div style={{ padding: "16px 18px", background: "rgba(239,68,68,0.12)", borderBottom: "1px solid rgba(248,113,113,0.15)" }}>
               <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 13, color: "#B91C1C" }}>
-                🚨 {lang === "ko" ? "생명이 위험한 긴급 상황 → 즉시 911 전화" : "Life-threatening emergency → Call 911 immediately"}
+                {lang === "ko" ? `생명이 위험한 긴급 상황 → 즉시 ${emAll} 전화` : `Life-threatening emergency → Call ${emAll} immediately`}
               </div>
             </div>
-            {/* 생명 긴급 */}
-            <EmergencyRow emoji="🚨" title={lang === "ko" ? "경찰·소방·구급 (생명 긴급)" : "Police · Fire · Ambulance"} number="911" desc={lang === "ko" ? "생명·화재·범죄 — 즉시 전화. 한국어 통역 요청 가능" : "Life-threatening, fire, crime. Korean interpreter available"} />
+            {/* 생명 긴급 — 그 나라 번호 */}
+            {emLines.map(l => (
+              <EmergencyRow key={l.number} emoji="🚨" title={lang === "ko" ? l.ko : l.en} number={l.number} desc={lang === "ko" ? l.descKo : l.descEn} />
+            ))}
             <EmergencyRow emoji="🏥" title={em.erName} number={em.erPhone} desc={em.erAddr} />
-            <EmergencyRow emoji="☁️" title={lang === "ko" ? "독·약물 중독" : "Poison Control"} number="800-222-1222" desc={lang === "ko" ? "약물·화학물질 중독 24시간 — 즉시 전화" : "Drug & chemical poisoning — call immediately"} />
-            <EmergencyRow emoji="☎️" title={lang === "ko" ? "정신건강 위기 (988)" : "Mental Health Crisis (988)"} number="988" desc={lang === "ko" ? "자살 예방·정신건강 위기 24시간. 한국어 통역 가능" : "Suicide prevention & mental health crisis 24/7. Korean interpreter"} />
-            {/* 한인 긴급 */}
-            <EmergencyRow emoji="🇰🇷" title={lang === "ko" ? "한국 영사관 긴급" : "Korean Consulate Emergency"} number={em.consulatePhone} desc={lang === "ko" ? "여권 분실·억류·사고·사망 — 24시간 긴급 직통" : "Lost passport, detention, accident, death — 24hr direct line"} />
-            <EmergencyRow emoji="🗣️" title={lang === "ko" ? "한국어 통역 (Language Line)" : "Korean Interpreter (Language Line)"} number="800-752-6096" desc={lang === "ko" ? "병원·경찰서·법원에서 한국어 통역 연결 — 24시간" : "Korean interpreter for hospital, police, court — 24hrs"} />
+            {isUS && <EmergencyRow emoji="☁️" title={lang === "ko" ? "독·약물 중독" : "Poison Control"} number="800-222-1222" desc={lang === "ko" ? "약물·화학물질 중독 24시간 — 즉시 전화" : "Drug & chemical poisoning — call immediately"} />}
+            {show988 && <EmergencyRow emoji="☎️" title={lang === "ko" ? "정신건강 위기 (988)" : "Mental Health Crisis (988)"} number="988" desc={lang === "ko" ? "자살 예방·정신건강 위기 24시간. 한국어 통역 가능" : "Suicide prevention & mental health crisis 24/7. Korean interpreter"} />}
+            {/* 한인 긴급 — 한국 안의 도시에는 영사관이 없다 */}
+            {showConsulate && <EmergencyRow emoji="🇰🇷" title={lang === "ko" ? "한국 영사관 긴급" : "Korean Consulate Emergency"} number={em.consulatePhone} desc={lang === "ko" ? "여권 분실·억류·사고·사망 — 24시간 긴급 직통" : "Lost passport, detention, accident, death — 24hr direct line"} />}
+            {isUS && <EmergencyRow emoji="🗣️" title={lang === "ko" ? "한국어 통역 (Language Line)" : "Korean Interpreter (Language Line)"} number="800-752-6096" desc={lang === "ko" ? "병원·경찰서·법원에서 한국어 통역 연결 — 24시간" : "Korean interpreter for hospital, police, court — 24hrs"} />}
             {/* 생활 긴급 */}
             <EmergencyRow emoji="🚓" title={lang === "ko" ? "경찰 비긴급 신고" : "Police Non-Emergency"} number={em.policeNE} desc={lang === "ko" ? "긴급하지 않은 사건 신고 (도난·분실·소음 등)" : "Non-urgent incidents (theft, lost property, noise etc.)"} />
             <EmergencyRow emoji="🔥" title={em.gasName} number={em.gasPhone} desc={lang === "ko" ? "가스 냄새 즉시 신고. 건물 즉시 대피 후 전화" : "Smell gas? Evacuate immediately then call"} />
-            <EmergencyRow emoji="👩‍👧" title={lang === "ko" ? "가정폭력 핫라인" : "Domestic Violence Hotline"} number="800-799-7233" desc={lang === "ko" ? "가정폭력·학대 24시간 무료 — 한국어 통역 가능" : "Domestic violence & abuse 24/7 free — Korean interpreter"} />
-            <EmergencyRow emoji="🚗" title={lang === "ko" ? "도로 긴급 — AAA" : "Roadside Emergency — AAA"} number="800-222-4357" desc={lang === "ko" ? "차량 고장·견인·잠금. AAA 회원 $60/년 권장" : "Breakdown, towing, lockout. AAA membership $60/yr recommended"} />
+            {isUS && <EmergencyRow emoji="👩‍👧" title={lang === "ko" ? "가정폭력 핫라인" : "Domestic Violence Hotline"} number="800-799-7233" desc={lang === "ko" ? "가정폭력·학대 24시간 무료 — 한국어 통역 가능" : "Domestic violence & abuse 24/7 free — Korean interpreter"} />}
+            {isUS && <EmergencyRow emoji="🚗" title={lang === "ko" ? "도로 긴급 — AAA" : "Roadside Emergency — AAA"} number="800-222-4357" desc={lang === "ko" ? "차량 고장·견인·잠금. AAA 회원 $60/년 권장" : "Breakdown, towing, lockout. AAA membership $60/yr recommended"} />}
           </div>
           {/* 안전 팁 — 도시별 */}
           <div style={{ margin: "16px 16px 0", background: "rgba(248,113,113,0.07)", border: "1px solid rgba(248,113,113,0.18)", borderRadius: 14, padding: "14px 16px" }}>
@@ -24433,8 +24523,8 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}><EmojiIcon emoji={"⚠"} size={13} /> {lang === "ko" ? "의료 정보 안내" : "Medical Info Note"}</div>
             <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, lineHeight: 1.7, color: "var(--color-text-secondary)" }}>
               {lang === "ko"
-                ? "전화번호·주소는 변경될 수 있습니다. 방문 전 반드시 공식 웹사이트 또는 전화로 확인하세요. 응급 상황 → 911"
-                : "Phone numbers & addresses may change. Always verify via official website or phone before visiting. Emergency → 911"}
+                ? `전화번호·주소는 변경될 수 있습니다. 방문 전 반드시 공식 웹사이트 또는 전화로 확인하세요. 응급 상황 → ${emAll}`
+                : `Phone numbers & addresses may change. Always verify via official website or phone before visiting. Emergency → ${emAll}`}
             </div>
           </div>
         </div>
