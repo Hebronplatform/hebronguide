@@ -19,7 +19,7 @@
 <style>
   :root{
     --bg:#E8E2D4;--bg-whisper:#F2EDE0;--bg-mist:#D8D3C5;
-    --text:#2A2520;--text-muted:rgba(42,37,32,.62);--text-faint:rgba(42,37,32,.4);
+    --text:#2A2520;--text-muted:rgba(42,37,32,.74);--text-faint:rgba(42,37,32,.66);   /* 2026-11-02: 밝은 바탕 대비 4.5 */
     --line:rgba(42,37,32,.1);--line-strong:rgba(42,37,32,.2);
     --origin:#2E7D5B;--spectrum-01:#F4B59A;--spectrum-02:#D9A054;--spectrum-03:#7B8E52;
     --spectrum-04:#4A6B8C;--spectrum-05:#7B5D8E;--spectrum-06:#A84735;--spectrum-07:#4A7A7E;
@@ -48,7 +48,7 @@
 
   main{max-width:1180px;margin:0 auto;padding:50px 20px;}
   .hero{text-align:center;padding:50px 0 40px;border-bottom:1px solid var(--line);margin-bottom:50px;}
-  .hero .eyebrow{display:inline-block;font-size:.72rem;letter-spacing:3px;color:var(--text-muted);
+  .hero .eyebrow{display:inline-block;font-size:.78rem;letter-spacing:3px;color:var(--text-muted);
                  padding:6px 14px;border:1px solid var(--line-strong);border-radius:999px;margin-bottom:24px;}
   .hero h1{font-size:clamp(1.9rem,4.5vw,2.6rem);font-weight:400;letter-spacing:-1px;margin-bottom:18px;line-height:1.35;}
   .hero h1 em{font-style:normal;font-weight:500;
@@ -58,7 +58,7 @@
 
   section{margin-bottom:50px;}
   .section-head{margin-bottom:28px;}
-  .section-head .label{display:block;font-size:.72rem;letter-spacing:3px;color:var(--text-faint);margin-bottom:10px;}
+  .section-head .label{display:block;font-size:.78rem;letter-spacing:3px;color:var(--text-faint);margin-bottom:10px;}
   .section-head h2{font-size:1.5rem;font-weight:400;letter-spacing:-.5px;}
   .section-head p{color:var(--text-muted);font-size:.95rem;margin-top:8px;max-width:720px;}
 
@@ -72,11 +72,12 @@
   .role[data-color="writer"]    {--accent:var(--spectrum-05);}
   .role[data-color="connector"] {--accent:var(--origin);}
   .role:hover{transform:translateY(-2px);box-shadow:0 10px 30px color-mix(in srgb, var(--text) 7%, transparent);}
-  .role .tag{display:inline-block;font-size:.72rem;letter-spacing:1.5px;color:var(--accent);
+  .role .tag{display:inline-block;font-size:.78rem;letter-spacing:1.5px;color:var(--accent);
              padding:3px 10px;border:1px solid color-mix(in srgb, var(--accent) 40%, transparent);
              border-radius:999px;margin-bottom:12px;}
   .role h3{font-size:1.1rem;font-weight:500;margin-bottom:10px;line-height:1.4;}
   .role p{color:var(--text-muted);font-size:.9rem;line-height:1.65;margin-bottom:12px;}
+  :root:not([data-mode="night"]) .role .tag{color:color-mix(in srgb, var(--accent) 42%, #2A2520);}
   .role .time{font-size:.8rem;color:var(--text-faint);letter-spacing:.3px;}
 
   .form-wrap{max-width:620px;margin:0 auto;background:var(--bg-whisper);border:1px solid var(--line);
@@ -106,7 +107,7 @@
   .honest-note{background:color-mix(in srgb, var(--origin) 8%, var(--bg-mist));
                border:1px solid color-mix(in srgb, var(--origin) 25%, transparent);
                border-radius:14px;padding:22px 24px;margin-bottom:40px;}
-  .honest-note .tag{display:inline-block;font-size:.72rem;letter-spacing:2px;color:var(--origin);margin-bottom:8px;}
+  .honest-note .tag{display:inline-block;font-size:.78rem;letter-spacing:2px;color:var(--origin);margin-bottom:8px;}
   .honest-note p{color:var(--text-muted);font-size:.92rem;line-height:1.75;}
 
   footer{text-align:center;padding:40px 20px;color:var(--text-faint);font-size:.82rem;
@@ -147,7 +148,7 @@
       <p>
         HebronGuide는 지금 막 시작된 자리입니다. 자원봉사자 등록이 쌓이는 중이고, 모든 신청은 대표(김성수)가 직접 읽습니다.
         긴급한 매칭 요청은 영사콜센터(+82-2-3210-0404)·현지 교회·공식 영사관을 먼저 활용하세요.
-        우리는 **몇 사람이 등록했는지 숫자로 자랑하지 않습니다**. 한 사람의 등록이 한 사람의 식탁이 되는 자리입니다.
+        우리는 <b>몇 사람이 등록했는지 숫자로 자랑하지 않습니다</b>. 한 사람의 등록이 한 사람의 식탁이 되는 자리입니다.
       </p>
     </div>
   </section>

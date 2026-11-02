@@ -19,7 +19,7 @@
 <style>
   :root{
     --bg:#E8E2D4;--bg-whisper:#F2EDE0;--bg-mist:#D8D3C5;
-    --text:#2A2520;--text-muted:rgba(42,37,32,.62);--text-faint:rgba(42,37,32,.4);
+    --text:#2A2520;--text-muted:rgba(42,37,32,.74);--text-faint:rgba(42,37,32,.66);   /* 2026-11-02: 밝은 바탕 대비 4.5 */
     --line:rgba(42,37,32,.1);--line-strong:rgba(42,37,32,.2);
     --origin:#2E7D5B;--spectrum-01:#F4B59A;--spectrum-02:#D9A054;--spectrum-03:#7B8E52;
     --spectrum-04:#4A6B8C;--spectrum-05:#7B5D8E;--spectrum-06:#A84735;--spectrum-07:#4A7A7E;
@@ -51,7 +51,7 @@
 
   main{max-width:1180px;margin:0 auto;padding:50px 20px;}
   .hero{text-align:center;padding:50px 0 40px;border-bottom:1px solid var(--line);margin-bottom:50px;}
-  .hero .eyebrow{display:inline-block;font-size:.72rem;letter-spacing:3px;color:var(--text-muted);
+  .hero .eyebrow{display:inline-block;font-size:.78rem;letter-spacing:3px;color:var(--text-muted);
                  padding:6px 14px;border:1px solid var(--line-strong);border-radius:999px;margin-bottom:24px;}
   .hero h1{font-size:clamp(1.9rem,4.5vw,2.6rem);font-weight:400;letter-spacing:-1px;margin-bottom:18px;line-height:1.35;}
   .hero h1 em{font-style:normal;font-weight:500;
@@ -61,7 +61,7 @@
 
   section{margin-bottom:60px;}
   .section-head{margin-bottom:28px;}
-  .section-head .label{display:block;font-size:.72rem;letter-spacing:3px;color:var(--text-faint);margin-bottom:10px;}
+  .section-head .label{display:block;font-size:.78rem;letter-spacing:3px;color:var(--text-faint);margin-bottom:10px;}
   .section-head h2{font-size:1.5rem;font-weight:400;letter-spacing:-.5px;}
   .section-head p{color:var(--text-muted);font-size:.95rem;margin-top:8px;max-width:720px;}
 
@@ -77,9 +77,10 @@
   .guide[data-color="red"]    {--accent:var(--spectrum-06);}
   .guide[data-color="jasper"] {--accent:var(--spectrum-07);}
   .guide[data-color="origin"] {--accent:var(--origin);}
-  .guide .tag{display:inline-block;font-size:.72rem;letter-spacing:1.5px;color:var(--accent);
+  .guide .tag{display:inline-block;font-size:.78rem;letter-spacing:1.5px;color:var(--accent);
               padding:3px 10px;border:1px solid color-mix(in srgb, var(--accent) 40%, transparent);
               border-radius:999px;margin-bottom:12px;}
+  :root:not([data-mode="night"]) .guide .tag{color:color-mix(in srgb, var(--accent) 42%, #2A2520);}   /* 밝은 화면 대비 (2026-11-02) */
   .guide h3{font-size:1.1rem;font-weight:500;margin-bottom:10px;color:var(--text);line-height:1.4;}
   .guide ol{color:var(--text-muted);font-size:.9rem;line-height:1.75;padding-left:20px;margin-top:10px;}
   .guide ol li{margin-bottom:6px;}
@@ -232,7 +233,7 @@
     <div class="section-head">
       <span class="label">04 · NEGOTIATION · 연봉 협상</span>
       <h2>처음 받은 오퍼에서 10-20% 더 받는 법</h2>
-      <p>협상은 공격이 아니라 **대화**입니다. 재외 한인·귀국자가 가장 많이 손해보는 자리이기도 합니다.</p>
+      <p>협상은 공격이 아니라 <b>대화</b>입니다. 재외 한인·귀국자가 가장 많이 손해보는 자리이기도 합니다.</p>
     </div>
     <div class="guides">
       <div class="guide" data-color="red">
@@ -258,7 +259,7 @@
         <h3>Red Flag — 협상이 안 되는 자리의 신호</h3>
         <ol>
           <li>"This is our final offer" 즉시 말하는 리크루터</li>
-          <li>Signing bonus·주식·휴가일 등 **non-salary 요소도 거부**하면 재검토</li>
+          <li>Signing bonus·주식·휴가일 등 <b>non-salary 요소도 거부</b>하면 재검토</li>
           <li>Base보다 Equity·Bonus 비중이 과도하면 유동성 리스크</li>
         </ol>
       </div>
