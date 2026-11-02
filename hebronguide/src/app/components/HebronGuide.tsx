@@ -16661,6 +16661,88 @@ function useGatheringCount(citySlug: string) {
   return count;
 }
 
+/* 새가족 신청 — 앱 안 짧은 양식 (2026-11-02, 설계도 ⑦-5)
+   HebronGuide(/api/submit-form, type "newmember")가 받아 교회에 전한다.
+   서버가 아무 주소로나 메일을 보내게 하지 않는다 — 교회로는 사람이 확인한 뒤 전한다. */
+function NewMemberMiniForm({ churchName, churchEmail }: { churchName: string; churchEmail?: string }) {
+  const { lang } = useI18n();
+  const city = useCityConfig();
+  const ko = lang === "ko";
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [cont, setCont] = useState("");
+  const [msg, setMsg] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState("");
+  const [done, setDone] = useState(false);
+  const font = "'Pretendard Variable',Geist,sans-serif";
+  const input: React.CSSProperties = { width: "100%", minHeight: 48, padding: "0 14px", borderRadius: 12, border: "1px solid var(--color-border)", fontFamily: font, fontSize: 16, color: "var(--color-text-primary)", background: "var(--color-surface)", boxSizing: "border-box" };
+
+  const send = async () => {
+    if (!name.trim() || !cont.trim()) { setErr(ko ? "이름과 연락처, 둘만 적어 주시면 됩니다." : "Just a name and one way to reach you."); return; }
+    setBusy(true); setErr("");
+    const isMail = cont.includes("@");
+    try {
+      const r = await fetch("/api/submit-form", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "newmember",
+          name: `${name.trim()} (새가족 · ${churchName})`,
+          email: isMail ? cont.trim() : "", phone: isMail ? "" : cont.trim(),
+          city: city.nameKo,
+          subject: `[새가족] ${name.trim()} → ${churchName}`,
+          body: [
+            "교회: " + churchName,
+            "이름: " + name.trim(),
+            "연락처: " + cont.trim(),
+            "도시: " + city.nameKo,
+            "하고 싶은 말: " + (msg.trim() || "(없음)"),
+            "",
+            "교회 이메일: " + (churchEmail || "(없음)"),
+            "※ 교회에 전해 주세요. (앱 사람 탭에서 보냄)",
+          ].join("\n"),
+        }),
+      });
+      const j = await r.json().catch(() => ({} as { error?: string }));
+      if (!r.ok) throw new Error(j.error || (ko ? `보내지 못했습니다 (${r.status})` : `Could not send (${r.status})`));
+      setDone(true);
+    } catch (e) {
+      // 안 보내졌는데 보냈다고 하지 않는다
+      setErr(((e as Error).message || (ko ? "보내지 못했습니다" : "Could not send")) + " · Hebronplatform@gmail.com");
+    } finally { setBusy(false); }
+  };
+
+  if (done) return (
+    <div role="status" style={{ margin: "12px 20px 0", padding: "14px 16px", borderRadius: 14, background: "rgba(5,150,105,0.08)", fontFamily: font, fontSize: 14, lineHeight: 1.6, color: "var(--color-text-primary)", textAlign: "center", wordBreak: "keep-all" }}>
+      {ko ? <>잘 받았습니다. HebronGuide가 <b>{churchName}</b>에 전해 드리겠습니다.</> : <>Received. HebronGuide will pass it on to <b>{churchName}</b>.</>}
+    </div>
+  );
+  if (!open) return (
+    <div style={{ padding: "12px 20px 0" }}>
+      <button type="button" onClick={() => setOpen(true)} style={{ width: "100%", minHeight: 52, borderRadius: 13, border: "none", cursor: "pointer", background: "var(--color-primary)", color: "var(--color-text-inverse)", fontFamily: font, fontWeight: 700, fontSize: 15 }}>
+        {ko ? "여기서 새가족 신청 남기기" : "Leave a new-member note here"}
+      </button>
+    </div>
+  );
+  return (
+    <div style={{ padding: "12px 20px 0", display: "flex", flexDirection: "column", gap: 8 }}>
+      <label htmlFor="hg-nm-name" style={{ fontFamily: font, fontSize: 14, fontWeight: 700, color: "var(--color-text-primary)" }}>{ko ? "이름" : "Name"}</label>
+      <input id="hg-nm-name" value={name} onChange={e => setName(e.target.value)} autoComplete="name" style={input} />
+      <label htmlFor="hg-nm-cont" style={{ fontFamily: font, fontSize: 14, fontWeight: 700, color: "var(--color-text-primary)" }}>{ko ? "연락처 — 하나만" : "One way to reach you"}</label>
+      <input id="hg-nm-cont" value={cont} onChange={e => setCont(e.target.value)} placeholder={ko ? "카카오톡 ID · 전화번호 · 이메일" : "KakaoTalk ID · phone · email"} style={input} />
+      <label htmlFor="hg-nm-msg" style={{ fontFamily: font, fontSize: 14, fontWeight: 700, color: "var(--color-text-primary)" }}>{ko ? "하고 싶은 말 (없어도 됩니다)" : "Anything to share (optional)"}</label>
+      <input id="hg-nm-msg" value={msg} onChange={e => setMsg(e.target.value)} style={input} />
+      <p style={{ margin: 0, fontFamily: font, fontSize: 13, color: "var(--color-text-muted)", lineHeight: 1.6 }}>
+        {ko ? "HebronGuide가 받아 교회에 전해 드립니다." : "HebronGuide receives it and passes it on to the church."}
+      </p>
+      {err && <p role="alert" style={{ margin: 0, fontFamily: font, fontSize: 13, color: "var(--color-error, #B91C1C)" }}>{err}</p>}
+      <button type="button" disabled={busy} onClick={send} style={{ width: "100%", minHeight: 52, borderRadius: 13, border: "none", cursor: busy ? "default" : "pointer", background: "var(--color-primary)", color: "var(--color-text-inverse)", fontFamily: font, fontWeight: 700, fontSize: 15, opacity: busy ? 0.5 : 1 }}>
+        {busy ? (ko ? "보내는 중…" : "Sending…") : (ko ? "보내기" : "Send")}
+      </button>
+    </div>
+  );
+}
+
 function ChurchScreen({ onHome }: { onHome?: () => void }) {
   const { lang } = useI18n();
   const { content: serverContent } = useContent();
@@ -16792,16 +16874,31 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
     ...communityChurches,
   ];
 
+  // 사람 탭 (2026-11-02, 설계도 ⑦-5) — 교회 목록 위에 사람·식탁을 먼저 둔다
+  const [connect, setConnect] = useState<{ open: boolean; need?: string }>({ open: false });
+  const closeConnect = useCallback(() => setConnect({ open: false }), []);
+  const ko = lang === "ko";
   return (
     <>
     <div style={{ paddingBottom: 96 }}>
       <BackToHomeButton onHome={onHome} lang={lang} />
-      <ScreenHeader emoji="⛪" titleKo="한인 교회" titleEn="Korean Churches"
-        descKo={`${useCityConfig().nameKo} — 처음 오신 분을 기다리는 교회들`}
-        descEn={`${useCityConfig().nameEn} — Churches waiting to welcome you`}
+      <ScreenHeader emoji="⛪" titleKo="사람 · 교회" titleEn="People · Churches"
+        descKo={`${useCityConfig().nameKo} — 처음 오신 분을 기다리는 사람과 교회`}
+        descEn={`${useCityConfig().nameEn} — People and churches waiting to welcome you`}
         accentColor={accent} />
+      <div className="px-4 md:px-6 lg:px-8" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8, padding: "4px 16px 12px" }}>
+        <HomeCard title={ko ? "한 사람 이어 받기" : "Get connected"} sub={ko ? "48시간 안에" : "Within 48 hours"}
+          onClick={() => setConnect({ open: true })} />
+        <HomeCard title={ko ? "돕고 싶어요" : "I'd like to help"} sub={ko ? "문 하나 열기" : "Open a door"}
+          onClick={() => { window.location.href = "/open.html"; }} />
+        <HomeCard title={ko ? "이번 주 식탁" : "Tables this week"}
+          sub={gatheringCount > 0 ? (ko ? `${gatheringCount}곳 · 교인 아니어도` : `${gatheringCount} tables`) : (ko ? "알아봐 드려요" : "We'll look for one")}
+          onClick={() => { if (gatheringCount > 0) window.location.href = "/gathering.html"; else setConnect({ open: true, need: "모이는 자리" }); }} />
+      </div>
+      <ConnectSheet open={connect.open} initialNeed={connect.need} onClose={closeConnect} />
       <SubTabBar tabs={tabs} active={Math.max(0, tabOrder.indexOf(sub))} onChange={(i) => setSub(tabOrder[i])} accentColor={accent} />
-      {gatheringCount > 0 && (
+      {/* 식탁 안내는 위 "이번 주 식탁" 카드로 옮겼다 (2026-11-02) */}
+      {false && gatheringCount > 0 && (
         <div className="px-4 md:px-6 lg:px-8" style={{ paddingTop: 16 }}>
           <a href="/gathering.html" style={{
             display: "block", textDecoration: "none",
@@ -17171,7 +17268,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
         onClick={() => setWelcomeChurch(null)}
       >
         <div
-          style={{ width: "100%", maxWidth: 430, background: "var(--color-surface)", borderRadius: "24px 24px 0 0", paddingBottom: "env(safe-area-inset-bottom,20px)", boxShadow: "0 -8px 48px rgba(0,0,0,0.5)" }}
+          style={{ width: "100%", maxWidth: 430, maxHeight: "92dvh", overflowY: "auto", background: "var(--color-surface)", borderRadius: "24px 24px 0 0", paddingBottom: "env(safe-area-inset-bottom,20px)", boxShadow: "0 -8px 48px rgba(0,0,0,0.5)" }}
           onClick={e => e.stopPropagation()}
         >
           {/* 핸들 */}
@@ -17204,6 +17301,8 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                 </div>
               ))}
           </div>
+
+          <NewMemberMiniForm churchName={welcomeChurch.name} churchEmail={welcomeChurch.email} />
 
           {/* 직접 연결 버튼 */}
           <div style={{ padding: "12px 20px 10px", display: "flex", flexDirection: "column", gap: 9 }}>
@@ -29126,7 +29225,6 @@ function DesktopSidebar({ activeTab, onNavigate, onSearch }: { activeTab: number
     { tab: 5,  icon: HeartPulse,    color: "#DC2626", labelKo: "도움",  labelEn: "Help" },
     { tab: 3,  icon: Utensils,      color: "#EF4444", labelKo: "맛집",  labelEn: "Food" },
     { tab: 4,  icon: Map,           color: "#06B6D4", labelKo: "탐방",  labelEn: "Explore" },
-    { tab: 9,  icon: Users,         color: "#10B981", labelKo: "사람 연결", labelEn: "People Connect" },
     { tab: 6,  icon: Briefcase,     color: "#059669", labelKo: "취업",  labelEn: "Jobs" },
     { tab: 7,  icon: GraduationCap, color: "#8B5CF6", labelKo: "교육",  labelEn: "Schools" },
     { tab: 8,  icon: DollarSign,    color: "#0EA5E9", labelKo: "생활비", labelEn: "Costs" },
@@ -29825,7 +29923,7 @@ function withRo(word: string): string {
   const code = last?.charCodeAt(0) ?? 0;
   if (code >= 0xAC00 && code <= 0xD7A3) {
     const jong = (code - 0xAC00) % 28; // 종성 인덱스
-    return word + (jong !== 0 ? "으로" : "로");
+    return word + (jong !== 0 && jong !== 8 ? "으로" : "로");   // ㄹ 받침은 "로" (서울로)
   }
   return word + "로"; // 영문·기타
 }
@@ -30206,7 +30304,7 @@ const MORE_SECTIONS = [
   { icon: Receipt,      labelKo: "세금신고",  labelEn: "Taxes",        tab: 8,  subTab: 4, color: "#F97316" },
   { icon: Scale,        labelKo: "법률상담",  labelEn: "Legal",        tab: 5,  subTab: 5, color: "#64748B" },
   { icon: BookOpen,     labelKo: "한국학교",  labelEn: "K-School",     tab: 7,  subTab: 5, color: "#BE185D" },
-  { icon: Users,        labelKo: "사람 연결", labelEn: "People Connect", tab: 9, subTab: 0, color: "#10B981" },
+  { icon: LifeBuoy,     labelKo: "도움 받기", labelEn: "Get help",    tab: 5, subTab: 0, color: "#DC2626" },
 ];
 
 /* ─────────────────────────────────────────
@@ -31138,7 +31236,7 @@ export function HebronGuide() {
     <JobsScreen onHome={() => setActiveNav(0)} />,                                     // 6
     <EducationScreen onHome={() => setActiveNav(0)} initialSub={eduInitialSub} />,     // 7
     <CostScreen key={costNavKey} onHome={() => setActiveNav(0)} initialSub={costInitialSub} />,  // 8
-    <ConnectScreen onHome={() => setActiveNav(0)} />,                                  // 9
+    <ChurchScreen onHome={() => setActiveNav(0)} />,                                   // 9 사람 연결 → 사람 탭과 같은 화면 (2026-11-02)
     <StoreScreen onHome={() => setActiveNav(0)} />,                                    // 10
     <ArrivalSimulationScreen onHome={() => setActiveNav(0)} />,                        // 11
     <BusinessDirectoryScreen onHome={() => setActiveNav(0)} />,                        // 12 🏢 한인 업소

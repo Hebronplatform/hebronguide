@@ -125,11 +125,11 @@ body{font-family:-apple-system,'Pretendard Variable','Segoe UI',sans-serif;
 
     <div id="ok">
       <div class="ok-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 3v7"/><path d="M9 6l3 4 3-4"/><path d="M7 21c0-4 2-7 5-7s5 3 5 7z"/></svg></div>
-      <h3>신청이 접수되었습니다!</h3>
-      <p>
-        <span class="ok-church" id="okChurch"></span>에<br>
-        새가족 신청이 전달되었습니다.<br><br>
-        담당자가 곧 연락드릴 것입니다.<br>
+      <h3 id="okTitle">잘 받았습니다</h3>
+      <p id="okBody">
+        HebronGuide가 받아<br>
+        <span class="ok-church" id="okChurch"></span>에 전해 드리겠습니다.<br><br>
+        교회 담당자가 연락드릴 것입니다.<br>
         처음 방문하는 날, 따뜻하게 맞이하겠습니다. <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M5 20c0-8 5-14 14-15-1 9-7 14-14 15z"/><path d="M9 16c2-3 5-5 8-6"/></svg>
       </p>
       <div style="margin-top:20px;">
@@ -209,19 +209,58 @@ document.getElementById('nmForm').addEventListener('submit', function(e) {
     ? `[HebronGuide] New Member Registration — ${fd.get('성함') || fd.get('이름') || ''}`
     : `[HebronGuide] 새가족 신청 — ${fd.get('성함') || ''} (${churchName})`;
 
-  const toEmail = churchEmail || 'HebronPlatform@gmail.com';
-
-  // mailto 전송
-  window.location.href =
-    `mailto:${toEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
-
-  // 성공 화면 표시
-  setTimeout(() => {
+  // 2026-11-02: 메일 프로그램에 넘기던 방식(mailto)을 버렸다. 메일 앱이 없으면 아무것도 안 갔는데
+  // 0.8초 뒤 「접수되었습니다」를 띄웠다. 이제 서버(/api/submit-form)가 저장하고 HebronGuide에 알린다.
+  // 교회로는 HebronGuide가 확인한 뒤 전한다 — 서버가 아무 주소로나 메일을 보내게 하지 않는다(스팸 통로 방지).
+  const nameVal = fd.get('성함') || '';
+  const phoneVal = fd.get('연락처') || '';
+  const emailVal = fd.get('이메일') || '';
+  fetch('/api/submit-form', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      type: 'newmember',
+      name: nameVal + ' (새가족 · ' + churchName + ')',
+      email: emailVal, phone: phoneVal,
+      city: fd.get('거주도시') || '',
+      subject: (isEn ? '[New member] ' : '[새가족] ') + nameVal + ' → ' + churchName,
+      body: lines.concat(['', '교회 이메일: ' + (churchEmail || '(없음)'), '※ 교회에 전해 주세요.']).join('\n')
+    })
+  })
+  .then(async (r) => {
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(j.error || ((isEn ? 'Could not send' : '보내지 못했습니다') + ' (' + r.status + ')'));
     document.getElementById('nmForm').style.display = 'none';
     const ok = document.getElementById('ok');
     ok.style.display = 'block';
     document.getElementById('okChurch').textContent = churchName;
-  }, 800);
+    if (isEn) {
+      document.getElementById('okTitle').textContent = 'Received';
+      document.getElementById('okBody').innerHTML =
+        'HebronGuide has received it and will pass it on to <b></b>.<br><br>Someone from the church will reach out.';
+      document.querySelector('#okBody b').textContent = churchName;
+    }
+    // 교회에 직접 보내고 싶은 분을 위한 작은 길 (메일 앱이 있을 때만 쓸모 있다)
+    if (churchEmail) {
+      const a = document.createElement('a');
+      a.href = 'mailto:' + churchEmail + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
+      a.textContent = isEn ? 'Or email the church directly' : '교회에 직접 메일 보내기';
+      a.style.cssText = 'display:inline-flex;align-items:center;min-height:44px;margin-top:14px;color:#C9A227;font-weight:700;text-decoration:none;';
+      ok.appendChild(a);
+    }
+  })
+  .catch((err) => {
+    // 안 보내졌는데 보냈다고 하지 않는다
+    btn.disabled = false;
+    btn.textContent = isEn ? 'Register as New Member' : '새가족 신청하기';
+    let er = document.getElementById('nmErr');
+    if (!er) {
+      er = document.createElement('p');
+      er.id = 'nmErr'; er.setAttribute('role', 'alert');
+      er.style.cssText = 'color:#f87171;font-size:.9rem;margin-top:10px;line-height:1.6;';
+      btn.insertAdjacentElement('afterend', er);
+    }
+    er.textContent = (err.message || (isEn ? 'Could not send' : '보내지 못했습니다')) + ' · Hebronplatform@gmail.com';
+  });
 });
 </script>
 
