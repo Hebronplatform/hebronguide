@@ -30289,7 +30289,8 @@ export function HebronGuide() {
 
         {/* ── 업데이트 공지 배너 ── */}
         {/* 5월의 "새 기능" 띠는 뺐다 (2026-11-02) */}
-        <BoardBanner />
+        {/* 행사 알림은 사람 탭에서만 — 홈의 버튼 하나에서 눈을 빼앗지 않게 (2026-11-02) */}
+        {(activeNav === 2 || activeNav === 9) && <BoardBanner />}
 
         {/* ── 검색 오버레이 (Apple 스타일 + 음성 입력) */}
         {showSearch && (() => {
