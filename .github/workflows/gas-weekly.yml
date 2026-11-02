@@ -2,7 +2,11 @@ name: WA gas price (weekly)
 
 # 2026-11-02 — 옛 daily-update.yml 을 대신한다 (설계도 ⑧).
 # 미국 에너지정보청(EIA)이 매주 월요일에 내는 워싱턴주 휘발유 평균값을 화요일에 읽어
-# hebronguide/public/data/live.json 에 쓴다. 시애틀 홈의 「WA 기름값」이 이 값을 보여 준다.
+# hebronguide/public/data/live.json 에 쓴다.
+#
+# ⚠️ 지금은 손으로만 돌린다 (2026-11-02 확인): 이 값을 보여 주는 LiveDataBar 가 어느 화면에도 붙어 있지 않다.
+#    읽는 곳 없는 파일 때문에 매주 배포가 일어나지 않게 일정은 꺼 두었다.
+#    화면에 다시 붙이면 아래 schedule 두 줄의 주석을 풀면 된다.
 #
 # 지키는 것
 #   · 읽지 못하면 아무것도 바꾸지 않는다 — 옛 값과 옛 날짜가 그대로 보인다(거짓 「오늘 갱신」 없음)
@@ -10,8 +14,8 @@ name: WA gas price (weekly)
 #   · 값이 바뀔 때만 커밋한다 → 그때만 배포된다. 일요일에는 돌지 않는다
 #   · 환율은 앱이 브라우저에서 직접 읽는다 — 여기서 다루지 않는다
 on:
-  schedule:
-    - cron: '0 17 * * 2'   # 매주 화요일 17:00 UTC (시애틀 오전 9~10시)
+  # schedule:
+  #   - cron: '0 17 * * 2'   # 매주 화요일 17:00 UTC (시애틀 오전 9~10시)
   workflow_dispatch:
 
 jobs:

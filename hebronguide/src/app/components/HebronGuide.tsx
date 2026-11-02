@@ -8893,7 +8893,8 @@ function useLiveData() {
 
   // live.json: GitHub Actions 매주 화요일 갱신 (WA 기름값 — EIA 주간 자료). 환율·기온은 아래에서 직접 읽는다
   useEffect(() => {
-    fetch("/data/live.json?t=" + Math.floor(Date.now() / 3_600_000))
+    // 파일은 /seattle/data/live.json 에 있다(build.sh). 예전 "/data/live.json"은 404라 늘 4.15 기본값이 떴다 (2026-11-02)
+    fetch(import.meta.env.BASE_URL + "data/live.json?t=" + Math.floor(Date.now() / 3_600_000))
       .then(r => r.json())
       .then(d => {
         setGas(d.gas_wa_regular ?? 4.15);
