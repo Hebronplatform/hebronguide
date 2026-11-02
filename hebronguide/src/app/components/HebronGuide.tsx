@@ -8456,7 +8456,7 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
               border: `1px solid ${accentColor}44`, borderRadius: 20, padding: "5px 11px", minHeight: 32 }}>
             <MapPin size={12} strokeWidth={2.2} color={accentColor} />
             <span style={{ fontFamily: "'Pretendard Variable',sans-serif", fontSize: 11,
-              fontWeight: 700, color: accentColor }}>
+              fontWeight: 700, color: inkColor(accentColor) }}>
               {lang === "ko" ? "지도에서 코스 보기" : "See the route"}
             </span>
           </a>
@@ -8496,7 +8496,7 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
               </div>
             )}
             {item.price && (
-              <div style={{ marginBottom: 6, fontSize: 11, color: accentColor, fontWeight: 700 }}>{item.price}</div>
+              <div style={{ marginBottom: 6, fontSize: 12, color: inkColor(accentColor), fontWeight: 700 }}>{item.price}</div>
             )}
             <div style={{ fontSize: 11, color: "var(--color-text-secondary)", lineHeight: 1.5, marginBottom: 6 }}>
               {item.why}
@@ -8515,7 +8515,7 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
                   style={{ display: "inline-flex", alignItems: "center", gap: 3, textDecoration: "none",
                     background: `${accentColor}18`, border: `1px solid ${accentColor}33`, borderRadius: 20, padding: "3px 8px" }}>
                   <span style={{ fontSize: 10 }}>📍</span>
-                  <span style={{ fontSize: 10, color: accentColor, fontWeight: 700 }}>Google Maps</span>
+                  <span style={{ fontSize: 12, color: inkColor(accentColor), fontWeight: 700 }}>Google Maps</span>
                 </a>
               )}
               {/* 전화 */}
@@ -8524,7 +8524,7 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
                   style={{ display: "inline-flex", alignItems: "center", gap: 3, textDecoration: "none",
                     background: `${accentColor}18`, border: `1px solid ${accentColor}33`, borderRadius: 20, padding: "3px 8px" }}>
                   <span style={{ fontSize: 10 }}>📞</span>
-                  <span style={{ fontSize: 10, color: accentColor, fontWeight: 700 }}>전화</span>
+                  <span style={{ fontSize: 12, color: inkColor(accentColor), fontWeight: 700 }}>전화</span>
                 </a>
               )}
               {/* 공식 웹사이트 */}
@@ -10558,7 +10558,7 @@ function SubTabBar({ tabs, active, onChange, accentColor = "rgba(255,255,255,0.9
     <div className="flex overflow-x-auto" style={{ scrollbarWidth: "none", borderBottom: "1px solid rgba(27,42,74,0.08)" }}>
       {tabs.map((tab, i) => (
         <button key={i} onClick={() => onChange(i)} className="flex-shrink-0 border-0 cursor-pointer hover:opacity-80"
-          style={{ padding: "10px 16px", background: "transparent", fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: i === active ? "#1B2A4A" : "rgba(27,42,74,0.5)", borderBottom: i === active ? `2px solid ${accentColor}` : "2px solid transparent", whiteSpace: "nowrap", transition: "all 0.2s ease" }}>
+          style={{ padding: "10px 16px", background: "transparent", fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: i === active ? "#1B2A4A" : "rgba(27,42,74,0.72)", borderBottom: i === active ? `2px solid ${accentColor}` : "2px solid transparent", whiteSpace: "nowrap", transition: "all 0.2s ease" }}>
           {tab}
         </button>
       ))}
@@ -10648,7 +10648,7 @@ function renderDescWithLinks(desc: string, accentColor: string) {
                 background: `${accentColor}18`, border: `1px solid ${accentColor}33`,
                 borderRadius: 20, padding: "3px 10px" }}>
               <span style={{ fontSize: 11 }}>📍</span>
-              <span style={{ fontSize: 10, color: accentColor, fontWeight: 700 }}>Google Maps</span>
+              <span style={{ fontSize: 12, color: inkColor(accentColor), fontWeight: 700 }}>Google Maps</span>
             </a>
           )}
 
@@ -10659,7 +10659,7 @@ function renderDescWithLinks(desc: string, accentColor: string) {
                 background: `${accentColor}18`, border: `1px solid ${accentColor}33`,
                 borderRadius: 20, padding: "3px 10px" }}>
               <span style={{ fontSize: 11 }}>📞</span>
-              <span style={{ fontSize: 10, color: accentColor, fontWeight: 700 }}>{phone.trim().replace(/^\(/, "").split(")")[0].trim()}</span>
+              <span style={{ fontSize: 12, color: inkColor(accentColor), fontWeight: 700 }}>{phone.trim().replace(/^\(/, "").split(")")[0].trim()}</span>
             </a>
           )}
 
@@ -10736,6 +10736,21 @@ function ContactRow({ website, email, phone, desc, accentColor }:
   );
 }
 
+/* 글자용 강조색 — 밝은 바탕에서 읽히도록 (2026-11-02, 설계도 ⑦-7)
+   도시 색·금색·주황은 배경·선으로는 좋지만 글자로는 흐리다(대비 2~3).
+   바탕 #F7F8FB 기준 대비 4.5 이상이 될 때까지 짙게 섞는다. 색의 성격은 그대로 남는다. */
+function inkColor(hex: string): string {
+  const m = /^#?([0-9a-f]{6})$/i.exec(hex || "");
+  if (!m) return hex;
+  const n = parseInt(m[1], 16);
+  let rgb = [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  const lum = (c: number[]) => c.map(v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); })
+    .reduce((a, v, i) => a + v * [0.2126, 0.7152, 0.0722][i], 0);
+  const bg = lum([247, 248, 251]);
+  for (let k = 0; k < 20 && (bg + 0.05) / (lum(rgb) + 0.05) < 4.5; k++) rgb = rgb.map(v => Math.round(v * 0.88));
+  return "#" + rgb.map(v => v.toString(16).padStart(2, "0")).join("");
+}
+
 function PlaceCard({ emoji, name, nameEn, desc, tags, accentColor = MINT, website, email, phone }: { emoji: string; name: string; nameEn?: string; desc: string; tags?: string[]; accentColor?: string; website?: string; email?: string; phone?: string }) {
   return (
     <div className="transition-all duration-200 hover:scale-[1.02] hover:border-opacity-20" style={{ background: "rgba(27,42,74,0.04)", borderRadius: 16, padding: "14px 16px", border: "1px solid rgba(27,42,74,0.07)" }}>
@@ -10749,12 +10764,12 @@ function PlaceCard({ emoji, name, nameEn, desc, tags, accentColor = MINT, websit
           {nameEn && nameEn.trim().toLowerCase() !== (name || "").trim().toLowerCase() && (
             <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 10, color: "var(--color-text-secondary)", marginTop: 1 }}>{nameEn}</div>
           )}
-          {renderDescWithLinks(desc, accentColor)}
-          <ContactRow website={website} email={email} phone={phone} desc={desc} accentColor={accentColor} />
+          {renderDescWithLinks(desc, inkColor(accentColor))}
+          <ContactRow website={website} email={email} phone={phone} desc={desc} accentColor={inkColor(accentColor)} />
           {tags && (
             <div className="flex flex-wrap gap-[5px] mt-[8px]">
               {tags.map((tag, i) => (
-                <span key={i} style={{ background: `${accentColor}18`, border: `1px solid ${accentColor}33`, color: accentColor, borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 600 }}>{tag}</span>
+                <span key={i} style={{ background: `${accentColor}18`, border: `1px solid ${accentColor}33`, color: inkColor(accentColor), borderRadius: 8, padding: "2px 8px", fontSize: 12, fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 600 }}>{tag}</span>
               ))}
             </div>
           )}
@@ -11092,7 +11107,7 @@ function CommunitySection({ category, citySlug, lang }: { category: string; city
           style={{
             background: text.trim() ? "rgba(110,231,183,0.15)" : "rgba(27,42,74,0.04)",
             border: `1px solid ${text.trim() ? "rgba(110,231,183,0.4)" : "rgba(27,42,74,0.08)"}`,
-            color: text.trim() ? "#6EE7B7" : "rgba(27,42,74,0.3)",
+            color: text.trim() ? "#047857" : "rgba(27,42,74,0.55)",
             borderRadius: 8, padding: "0 16px", minHeight: 44, fontSize: 13, fontWeight: 700,
             cursor: text.trim() ? "pointer" : "default", fontFamily: "inherit",
           }}
@@ -16334,7 +16349,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                   <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 12, color: "var(--color-success)", letterSpacing: "0.05em" }}>
                     {lang === "ko" ? "Hebron 협력교회" : "Hebron Partner Churches"}
                   </span>
-                  <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 10, color: "rgba(110,231,183,0.5)", marginLeft: "auto" }}>
+                  <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-muted)", marginLeft: "auto" }}>
                     {allPartner.length}{lang === "ko" ? "개" : " churches"}
                   </span>
                 </div>
@@ -16363,7 +16378,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                           {lang === "ko" ? (c.name || c.name_en) : (c.name_en || c.name)}
                         </div>
                         {c.name && c.name_en && c.name !== c.name_en && (
-                          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", fontFamily: "Geist,Pretendard Variable,sans-serif", marginBottom: 4 }}>
+                          <div style={{ fontSize: 12, color: "var(--color-text-muted)", fontFamily: "Geist,Pretendard Variable,sans-serif", marginBottom: 4 }}>
                             {lang === "ko" ? c.name_en : c.name}
                           </div>
                         )}
@@ -16460,7 +16475,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                         ({allOther.length}{lang === "ko" ? "개" : ""})
                       </span>
                     </span>
-                    <span style={{ color: "rgba(255,255,255,0.3)", fontSize: 12, fontFamily: "Geist,Pretendard Variable,sans-serif", marginRight: 4 }}>
+                    <span style={{ color: "var(--color-text-muted)", fontSize: 12, fontFamily: "Geist,Pretendard Variable,sans-serif", marginRight: 4 }}>
                       {openOtherChurches
                         ? (lang === "ko" ? "접기 ▲" : "Collapse ▲")
                         : (lang === "ko" ? "펼치기 ▼" : "Show ▼")}
@@ -16565,7 +16580,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                       <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 13, color: "var(--color-success)", flex: 1 }}>
                         {lang === "ko" ? `Hebron 협력교회 (${partnerChurches.length}개)` : `Hebron Partner Churches (${partnerChurches.length})`}
                       </span>
-                      <span style={{ fontSize: 10, color: "rgba(110,231,183,0.6)", fontFamily: "Geist,Pretendard Variable,sans-serif" }}>
+                      <span style={{ fontSize: 12, color: "var(--color-text-muted)", fontFamily: "Geist,Pretendard Variable,sans-serif" }}>
                         {lang === "ko" ? "항상 표시" : "Always shown"}
                       </span>
                     </div>
@@ -16591,7 +16606,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                         <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 13, color: "var(--color-text-secondary)", flex: 1, textAlign: "left" }}>
                           {lang === "ko" ? `기타 교회 (${otherChurches.length}개)` : `Other Churches (${otherChurches.length})`}
                         </span>
-                        <span style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>{openOther ? "▲" : "▼"}</span>
+                        <span style={{ color: "var(--color-text-muted)", fontSize: 12 }}>{openOther ? "▲" : "▼"}</span>
                       </button>
                       {openOther && (
                         <div style={{ padding: "0 10px 8px" }}>
