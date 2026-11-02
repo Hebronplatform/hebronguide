@@ -16226,7 +16226,20 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
     } catch { return []; }
   })();
 
+  // 실제로 열리고 있는 영어 모임 — 포스터로 확인한 것만 (2026-11-02, 시애틀지구촌교회 포스터)
+  // 다른 교회의 무료 영어 모임도 같은 기준(주최·때·곳·신청 길 확인)으로 여기에 더한다.
+  const localPrograms = citySlug === "seattle" ? [
+    { emoji: "📚", name: lang === "ko" ? "영어 톡타임 · English Talk Time" : "English Talk Time",
+      nameEn: lang === "ko" ? "시애틀지구촌교회" : "Global Mission Church of Greater Seattle",
+      desc: lang === "ko"
+        ? "매주 주일 예배 후 90분(오후 3시) · Garrett Woods 전도사와 함께. 믿음과 상관없이 누구나 함께하실 수 있습니다. 12918 35th Ave SE, Everett"
+        : "Every Sunday after service, 90 min (3 PM) · with Garrett Woods. Everyone welcome, whatever your faith. 12918 35th Ave SE, Everett",
+      tags: lang === "ko" ? ["영어", "누구나"] : ["English", "Everyone welcome"],
+      website: "https://ijiguchon.org" },
+  ] : [];
+
   const programs = [
+    ...localPrograms,
     { emoji: "📚", name: lang === "ko" ? "영어 ESL 클래스" : "ESL Classes", nameEn: "ESL", desc: lang === "ko" ? "무료 영어 수업. 대부분 교회에서 운영. 초급~중급 레벨별 반 구성" : "Free English classes at most churches. Beginner to intermediate levels", tags: ["무료", "영어"] },
     { emoji: "📋", name: lang === "ko" ? "이민자 정착 상담" : "Immigration Counseling", nameEn: "Immigration Support", desc: lang === "ko" ? "비자·운전면허·은행 계좌·학교 등록 등 정착 지원. 한인 자원봉사자 운영" : "Visa, license, banking, school enrollment support by Korean volunteers", tags: ["정착", "상담"] },
     { emoji: "🏃", name: lang === "ko" ? "청년 스포츠 리그" : "Youth Sports League", nameEn: "Sports", desc: lang === "ko" ? "교회 간 연합 농구·배구·축구 리그. 한인 2세 네트워킹 최고" : "Inter-church basketball, volleyball, soccer leagues. Best 2nd-gen networking", tags: ["스포츠", "청년"] },
@@ -29835,6 +29848,10 @@ function AppBar({ onHome, onSearch }: { onHome?: () => void; onSearch?: () => vo
             <div>
               <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 13, letterSpacing: "1.5px", color: "#1a2e6c" }}>HEBRON</span>
               <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 500, fontStyle: "italic", fontSize: 13, letterSpacing: "1.5px", color: "#C9A227" }}>GUIDE</span>
+            </div>
+            {/* 정체성 한 줄 — 장식 배지가 아니라 이름 아래 조용히 (2026-11-02 폴 김 목사) */}
+            <div style={{ marginTop: 3, textAlign: "left", whiteSpace: "nowrap", fontFamily: "'Pretendard Variable',Geist,sans-serif", fontWeight: 500, fontSize: 12, letterSpacing: "-0.1px", color: "var(--color-text-muted)" }}>
+              {lang === "ko" ? "글로벌 환대 플랫폼" : "Global Hospitality Platform"}
             </div>
           </div>
         </button>
