@@ -9504,7 +9504,8 @@ const QUICK_MENU = [
   { icon: "map",           labelKo: "관광",      labelEn: "Explore",  color: "#06B6D4", tab: 4,  subTab: 0 },
   { icon: "dollar-sign",   labelKo: "생활비",    labelEn: "Costs",    color: "#0EA5E9", tab: 8,  subTab: 0 },
   { icon: "receipt",       labelKo: "세금신고",  labelEn: "Taxes",    color: "#F97316", tab: 8,  subTab: 4 },
-  { icon: "shopping-bag",  labelKo: "헤브론 스토어", labelEn: "Store", color: "#F2994A", tab: 10, subTab: 0 },
+  // 헤브론 스토어는 숨긴다 (2026-11-02, 설계도 ⑨-6) — 파는 것이 아직 없다. 열면 이 줄을 되살린다.
+  // { icon: "shopping-bag",  labelKo: "헤브론 스토어", labelEn: "Store", color: "#F2994A", tab: 10, subTab: 0 },
 ];
 
 /* ─────────────────────────────────────────
@@ -12058,10 +12059,14 @@ function CityRequestForm({ lang }: { lang: string }) {
    헤브론 서비스 카드 — 각 탭에 자연스럽게 삽입
    서비스들은 한 곳에 모으지 않고 맥락에 맞는 탭에 분산 배치
 ───────────────────────────────────────── */
+// 헤브론 홈·스테이·라이드·커넥트·튜터 — 아직 없는 서비스라 숨긴다 (2026-11-02, 설계도 ⑨-6).
+// 새로 온 사람에게 "준비 중"을 보여 주면 없는 것을 보여 주는 셈이다. 서비스가 열리면 true로.
+const SHOW_HEBRON_SERVICE_CARDS = false;
 function HebronServiceCard({ icon, titleKo, titleEn, descKo, descEn, color, lang }: {
   icon: string; titleKo: string; titleEn: string;
   descKo: string; descEn: string; color: string; lang: string;
 }) {
+  if (!SHOW_HEBRON_SERVICE_CARDS) return null;
   const ko = lang === "ko";
   return (
     <a href={`mailto:hebronplatform@gmail.com?subject=HebronGuide ${titleEn} 관심 등록`}
@@ -14053,27 +14058,7 @@ function HomeScreen({ onNavigate, onSearch }: { onNavigate?: (tab: number, subTa
           <span style={{ fontSize: 18, color: "#C9A227", flexShrink: 0 }}>→</span>
         </div>
       </a>
-      {/* 헤브론 스토어 배너 — Coming Soon */}
-      <div style={{ margin: "12px 16px 0", background: "#fff", borderRadius: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", overflow: "hidden", display: "flex", alignItems: "stretch" }}>
-        {/* 왼쪽 골드 액센트 바 */}
-        <div style={{ width: 5, background: "linear-gradient(180deg,#F2994A,#d4a020)", flexShrink: 0 }} />
-        <div style={{ flex: 1, padding: "14px 16px", display: "flex", alignItems: "center", gap: 12 }}>
-          <span style={{ flexShrink: 0 }}><ShoppingCart size={24} strokeWidth={2} /></span>
-          <div style={{ flex: 1 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 3 }}>
-              <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 13, color: "#1B2A4A" }}>
-                {lang === "ko" ? "헤브론 스토어" : "Hebron Store"}
-              </span>
-              <span style={{ background: "#FEF3C7", border: "1px solid #F59E0B", borderRadius: 99, padding: "1px 8px", fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 9.5, color: "#D97706", letterSpacing: "0.06em" }}>
-                COMING SOON
-              </span>
-            </div>
-            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "#475569", lineHeight: 1.5 }}>
-              {lang === "ko" ? "곧 오픈 예정입니다. 기대해 주세요." : "Opening soon. Stay tuned."}
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* 헤브론 스토어 배너는 뺐다 (2026-11-02) — 없는 것을 보여 주지 않는다 */}
       </>)}
     </div>
   );
