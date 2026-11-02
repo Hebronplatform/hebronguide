@@ -23,7 +23,7 @@
  * ══════════════════════════════════════════════════════════
  */
 
-import { useState, useEffect, useLayoutEffect, useRef, useMemo, type ReactNode } from "react";
+import { useState, useEffect, useLayoutEffect, useRef, useMemo, useCallback, type ReactNode } from "react";
 
 /* ─────────────────────────────────────────
    SAFE STORAGE — Safari private mode 포함 모든 환경 호환
@@ -12651,18 +12651,15 @@ function IntroduceInviteRow({ lang }: { lang: string }) {
     }
   };
   return (
-    <div style={{ margin: "12px 16px 0", background: "var(--color-surface-warm)", borderRadius: 14, padding: "12px 14px", display: "flex", alignItems: "center", gap: 12 }}>
-      <div style={{ flex: 1, minWidth: 0, fontFamily: "'Pretendard Variable',Geist,sans-serif", fontSize: 14, lineHeight: 1.5, color: "var(--color-text-primary)", wordBreak: "keep-all" }}>
-        {ko ? "곧 이 도시로 오는 분이 떠오르나요?" : "Thinking of someone moving here soon?"}
-      </div>
+    <p style={{ margin: "14px 16px 0", display: "flex", flexWrap: "wrap", alignItems: "center", gap: 4, fontFamily: "'Pretendard Variable',Geist,sans-serif", fontSize: 14, lineHeight: 1.5, color: "var(--color-text-secondary)", wordBreak: "keep-all" }}>
+      {ko ? "곧 이 도시로 오는 분이 떠오르나요?" : "Thinking of someone moving here soon?"}
       <button onClick={share} style={{
-        minHeight: 44, padding: "0 16px", borderRadius: 10, border: "none", cursor: "pointer", flexShrink: 0,
-        background: "var(--color-primary)", color: "var(--color-text-inverse)",
-        fontFamily: "'Pretendard Variable',Geist,sans-serif", fontWeight: 700, fontSize: 14,
+        minHeight: 44, padding: "0 4px", border: "none", background: "none", cursor: "pointer",
+        color: "var(--color-primary)", fontFamily: "'Pretendard Variable',Geist,sans-serif", fontWeight: 700, fontSize: 14,
       }}>
-        {copied ? (ko ? "복사했어요" : "Copied") : (ko ? "함께 나누기" : "Share")}
+        {copied ? (ko ? "복사했어요" : "Copied") : (ko ? "함께 나누기 ›" : "Share ›")}
       </button>
-    </div>
+    </p>
   );
 }
 
@@ -12879,6 +12876,16 @@ function PWAInstallGuideBanner({ lang }: { lang: string }) {
     if (safeStorage.get("hg_pwa_dismissed")) return;
     // 모바일만
     if (!/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) return;
+    // 두 번째 방문부터 — 처음 온 사람에게 설치부터 권하지 않는다 (2026-11-02)
+    let visits = Number(safeStorage.get("hg_visit_count") || "0");
+    try {
+      if (!sessionStorage.getItem("hg_visit_counted")) {
+        visits += 1;
+        safeStorage.set("hg_visit_count", String(visits));
+        sessionStorage.setItem("hg_visit_counted", "1");
+      }
+    } catch { /* 저장소를 못 쓰면 첫 방문으로 본다 */ }
+    if (visits < 2) return;
     // 3초 후 표시
     const t = setTimeout(() => setShow(true), 3000);
     return () => clearTimeout(t);
@@ -13055,34 +13062,312 @@ function HebronFlywheelBar({ lang }: { lang: string }) {
    HOME: 창립 파트너 배너
 ───────────────────────────────────────── */
 
+/* ─────────────────────────────────────────
+   도시 홈 — 한 사람에게 이어 준다 (2026-11-02, 설계도 ⑤ 도시 홈)
+   눈에 띄는 버튼은 하나: "한 사람 이어 드릴게요". 나머지는 같은 무게의 흰 카드와 글자 링크.
+───────────────────────────────────────── */
+// 지금 실제로 사람을 이어 드릴 수 있는 도시 (arrive.html 의 READY 와 같게 유지).
+// 지키지 못할 약속은 쓰지 않는다 — 답할 사람이 생기는 대로 늘린다.
+const CONNECT_READY_CITIES = ["seattle"];
+const HOME_FONT = "'Pretendard Variable',Geist,-apple-system,sans-serif";
+
+function HomeWelcome() {
+  const { lang } = useI18n();
+  const city = useCityConfig();
+  const ko = lang === "ko";
+  const slide = CITY_HERO_SLIDES[city.slug]?.[0];
+  const ready = CONNECT_READY_CITIES.includes(city.slug);
+  return (
+    <div style={{ position: "relative", height: "clamp(200px, 30dvh, 260px)", overflow: "hidden", backgroundColor: city.color || "#1B4F72" }}>
+      {slide && (
+        <img src={slide.url} alt="" aria-hidden="true" decoding="async"
+          onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: slide.pos }} />
+      )}
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.55) 100%)" }} />
+      <div style={{ position: "absolute", left: 20, right: 20, bottom: 18, color: "#fff", fontFamily: HOME_FONT, wordBreak: "keep-all" }}>
+        <h1 style={{ margin: 0, fontSize: 24, fontWeight: 800, lineHeight: 1.3, letterSpacing: "-0.5px", textShadow: "0 1px 12px rgba(0,0,0,0.35)" }}>
+          {ko ? `${city.nameKo}에 오신 것을 환영합니다` : `Welcome to ${city.nameEn}`}
+        </h1>
+        <p style={{ margin: "6px 0 0", fontSize: 15, lineHeight: 1.5, opacity: 0.92 }}>
+          {ready
+            ? (ko ? "처음 한 주, 혼자 두지 않겠습니다." : "Your first week, you won't be alone.")
+            : (ko ? "필요한 것부터 하나씩 함께 찾겠습니다." : "We'll find what you need, one thing at a time.")}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/* 앱 안 도착 양식 — arrive.html 과 같은 곳(/api/submit-form, type "arrive")에 쌓인다. 새 서버 기능 없음. */
+const CONNECT_WHEN = [
+  { ko: "오늘", en: "Today" }, { ko: "이번 주", en: "This week" }, { ko: "이번 달", en: "This month" },
+  { ko: "곧 갑니다", en: "Coming soon" }, { ko: "여기 삽니다", en: "I live here" },
+];
+const CONNECT_NEEDS = [
+  { ko: "모이는 자리", en: "A place to gather" }, { ko: "그냥 차 한잔", en: "Just a coffee" },
+  { ko: "한 끼 집밥", en: "A home meal" }, { ko: "공항에서 만나기", en: "Airport pickup" },
+  { ko: "집 구하기", en: "Housing" }, { ko: "은행 · 서류", en: "Bank · paperwork" },
+  { ko: "병원", en: "Clinic" }, { ko: "아이 학교", en: "Kids' school" },
+  { ko: "일자리", en: "Work" }, { ko: "길 · 교통", en: "Getting around" },
+  { ko: "전화 · 통역", en: "Phone · interpreting" }, { ko: "장 보는 곳", en: "Groceries" },
+];
+
+function ConnectChip({ on, label, onClick }: { on: boolean; label: string; onClick: () => void }) {
+  return (
+    <button type="button" aria-pressed={on} onClick={onClick} style={{
+      minHeight: 44, padding: "0 14px", borderRadius: 999, cursor: "pointer",
+      border: `1px solid ${on ? "var(--color-primary)" : "var(--color-border)"}`,
+      background: on ? "#EEF1F6" : "var(--color-surface)", color: "var(--color-text-primary)",
+      fontFamily: HOME_FONT, fontSize: 14, fontWeight: on ? 700 : 500,
+    }}>{label}</button>
+  );
+}
+
+function ConnectSheet({ open, initialNeed, onClose }: { open: boolean; initialNeed?: string; onClose: () => void }) {
+  const { lang } = useI18n();
+  const city = useCityConfig();
+  const ko = lang === "ko";
+  const ready = CONNECT_READY_CITIES.includes(city.slug);
+  const [step, setStep] = useState(0);
+  const [when, setWhen] = useState("");
+  const [needs, setNeeds] = useState<string[]>([]);
+  const [etc, setEtc] = useState("");
+  const [nick, setNick] = useState("");
+  const [cont, setCont] = useState("");
+  const [vouch, setVouch] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState("");
+
+  useEffect(() => {
+    if (!open) return;
+    setStep(0); setErr(""); setBusy(false);
+    setNeeds(initialNeed ? [initialNeed] : []);
+    const esc = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", esc);
+    return () => window.removeEventListener("keydown", esc);
+  }, [open, initialNeed, onClose]);
+
+  if (!open) return null;
+  const cityName = ko ? city.nameKo : city.nameEn;
+  const toggleNeed = (n: string) => setNeeds(p => p.includes(n) ? p.filter(x => x !== n) : [...p, n]);
+
+  const send = async () => {
+    if (!nick.trim() || !cont.trim()) { setErr(ko ? "부르실 이름과 연락처, 둘만 적어 주시면 됩니다." : "Just a name and one way to reach you."); return; }
+    setBusy(true); setErr("");
+    const isMail = cont.includes("@");
+    const needText = needs.join(" · ") + (etc.trim() ? (needs.length ? " — " : "") + etc.trim() : "");
+    try {
+      const r = await fetch("/api/submit-form", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "arrive",
+          name: `${nick.trim()} (도착 · ${city.nameKo})`,
+          city: city.nameKo,
+          email: isMail ? cont.trim() : "",
+          phone: isMail ? "" : cont.trim(),
+          subject: `[도착] ${nick.trim()} · ${city.nameKo} · ${when}`,
+          body: [
+            "이름: " + nick.trim(),
+            "도시: " + city.nameKo,
+            "언제: " + when,
+            "막막한 것: " + (needText || "(안 고름)"),
+            "연락처: " + cont.trim(),
+            "아는 분: " + (vouch.trim() || "(없음)"),
+            "",
+            "※ 48시간 안에 연락드리기로 되어 있습니다. (앱 홈에서 보냄)",
+          ].join("\n"),
+        }),
+      });
+      const j = await r.json().catch(() => ({} as { error?: string }));
+      if (!r.ok) throw new Error(j.error || (ko ? `보내지 못했습니다 (${r.status})` : `Could not send (${r.status})`));
+      setStep(2);
+    } catch (e) {
+      // 안 보내졌는데 보냈다고 하지 않는다
+      setErr(((e as Error).message || (ko ? "보내지 못했습니다" : "Could not send")) + " · Hebronplatform@gmail.com");
+    } finally { setBusy(false); }
+  };
+
+  const label: React.CSSProperties = { display: "block", fontFamily: HOME_FONT, fontSize: 14, fontWeight: 700, color: "var(--color-text-primary)", margin: "16px 0 8px" };
+  const input: React.CSSProperties = { width: "100%", minHeight: 48, padding: "0 14px", borderRadius: 12, border: "1px solid var(--color-border)", fontFamily: HOME_FONT, fontSize: 16, color: "var(--color-text-primary)", background: "var(--color-surface)", boxSizing: "border-box" };
+  const soft: React.CSSProperties = { fontFamily: HOME_FONT, fontSize: 13, color: "var(--color-text-muted)", lineHeight: 1.6, margin: "8px 0 0" };
+  const primaryBtn = (disabled: boolean): React.CSSProperties => ({ width: "100%", minHeight: 52, borderRadius: 14, border: "none", cursor: disabled ? "default" : "pointer", background: "var(--color-primary)", color: "var(--color-text-inverse)", fontFamily: HOME_FONT, fontSize: 17, fontWeight: 700, opacity: disabled ? 0.45 : 1 });
+  const heading: React.CSSProperties = { margin: "2px 0 4px", fontFamily: HOME_FONT, fontSize: 21, fontWeight: 800, color: "var(--color-text-primary)" };
+
+  return (
+    <div role="dialog" aria-modal="true" aria-label={ko ? "한 사람 이어 드릴게요" : "We'll connect you with someone"}
+      style={{ position: "fixed", inset: 0, zIndex: 400, display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
+      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.35)" }} />
+      <div style={{ position: "relative", width: "100%", maxWidth: 480, maxHeight: "92dvh", overflowY: "auto", background: "var(--color-surface)", borderRadius: "22px 22px 0 0", padding: "14px 18px calc(22px + env(safe-area-inset-bottom, 0px))", wordBreak: "keep-all", boxSizing: "border-box" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <span style={{ fontFamily: HOME_FONT, fontSize: 13, fontWeight: 600, color: "var(--color-text-muted)" }}>
+            {step < 2 ? `${step + 1} / 3 · ${cityName}` : "3 / 3"}
+          </span>
+          <button type="button" onClick={onClose} aria-label={ko ? "닫기" : "Close"} style={{ width: 44, height: 44, border: "none", background: "none", cursor: "pointer", color: "var(--color-text-secondary)", display: "grid", placeItems: "center" }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+          </button>
+        </div>
+
+        {step === 0 && (<>
+          <h2 style={heading}>{ko ? "무엇이 제일 막막하세요?" : "What feels hardest right now?"}</h2>
+          <p style={{ ...soft, marginTop: 0 }}>{ko ? "여러 개 고르셔도 되고, 하나도 안 고르셔도 됩니다." : "Pick any, or none at all."}</p>
+          <span style={label}>{ko ? "언제 오셨어요?" : "When did you arrive?"}</span>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+            {CONNECT_WHEN.map(w => <ConnectChip key={w.ko} on={when === w.ko} label={ko ? w.ko : w.en} onClick={() => setWhen(when === w.ko ? "" : w.ko)} />)}
+          </div>
+          <span style={label}>{ko ? "막막한 것" : "What you need"}</span>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+            {CONNECT_NEEDS.map(n => <ConnectChip key={n.ko} on={needs.includes(n.ko)} label={ko ? n.ko : n.en} onClick={() => toggleNeed(n.ko)} />)}
+          </div>
+          <input value={etc} onChange={e => setEtc(e.target.value)} aria-label={ko ? "그 밖에 막막한 것" : "Anything else"}
+            placeholder={ko ? "그 밖에 — 한 줄로 적어 주셔도 됩니다" : "Anything else — one line is fine"} style={{ ...input, marginTop: 10 }} />
+          <div style={{ marginTop: 18 }}>
+            <button type="button" disabled={!when} onClick={() => setStep(1)} style={primaryBtn(!when)}>{ko ? "다음" : "Next"}</button>
+            {!when && <p style={{ ...soft, textAlign: "center" }}>{ko ? "언제 오셨는지만 골라 주세요." : "Just pick when you arrived."}</p>}
+          </div>
+        </>)}
+
+        {step === 1 && (<>
+          <h2 style={heading}>{ko ? "어떻게 연락드릴까요?" : "How should we reach you?"}</h2>
+          <p style={{ ...soft, marginTop: 0 }}>{ko ? "두 가지만 받습니다." : "Just two things."}</p>
+          <label style={label} htmlFor="hg-c0">{ko ? "어떻게 부를까요?" : "What should we call you?"}</label>
+          <input id="hg-c0" value={nick} onChange={e => setNick(e.target.value)} autoComplete="name" placeholder={ko ? "아무 이름이나" : "Any name is fine"} style={input} />
+          <label style={label} htmlFor="hg-c1">{ko ? "연락처 — 하나만" : "One way to reach you"}</label>
+          <input id="hg-c1" value={cont} onChange={e => setCont(e.target.value)} placeholder={ko ? "카카오톡 ID · 전화번호 · 이메일" : "KakaoTalk ID · phone · email"} style={input} />
+          <p style={soft}>{ko ? "카카오톡이 제일 빠릅니다. 현지 번호가 아직 없으셔도 됩니다." : "KakaoTalk is fastest. No local number yet is fine."}</p>
+          <label style={label} htmlFor="hg-c2">{ko ? "이 도시에 아는 분이 계신가요? (없으셔도 됩니다)" : "Know anyone here? (optional)"}</label>
+          <input id="hg-c2" value={vouch} onChange={e => setVouch(e.target.value)} placeholder={ko ? "예: 헤브론교회 김 목사님" : "e.g., Pastor Kim at Hebron Church"} style={input} />
+          <div style={{ marginTop: 16, padding: "14px 16px", borderRadius: 14, background: "var(--color-background)", fontFamily: HOME_FONT, fontSize: 14, lineHeight: 1.7, color: "var(--color-text-secondary)" }}>
+            {ko ? (<>
+              <b>48시간 안에</b> {ready ? "연락드립니다." : "찾아보고 알려 드립니다."}<br />
+              <b>신분증도 실명도 묻지 않습니다.</b> 나이 · 종교 · 국적 · 체류 신분도 묻지 않습니다.<br />
+              <b>첫 만남은 카페나 식당</b> 같은 열린 곳에서 합니다.<br />
+              <b>연락처는 이어질 때만</b> 그분께 보입니다.
+            </>) : (<>
+              <b>Within 48 hours</b> {ready ? "we'll reach out." : "we'll look and let you know."}<br />
+              <b>No ID, no real name needed.</b> We don't ask age, religion, nationality or status.<br />
+              <b>First meetings happen in open places</b> like a café.<br />
+              <b>Your contact is shared only</b> with the person you're connected to.
+            </>)}
+          </div>
+          {err && <p role="alert" style={{ ...soft, color: "var(--color-error, #B91C1C)" }}>{err}</p>}
+          <div style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 4 }}>
+            <button type="button" disabled={busy} onClick={send} style={primaryBtn(busy)}>{busy ? (ko ? "보내는 중…" : "Sending…") : (ko ? "이어 주세요" : "Connect me")}</button>
+            <button type="button" onClick={() => setStep(0)} style={{ minHeight: 44, border: "none", background: "none", cursor: "pointer", fontFamily: HOME_FONT, fontSize: 14, color: "var(--color-text-secondary)" }}>{ko ? "앞으로" : "Back"}</button>
+          </div>
+        </>)}
+
+        {step === 2 && (
+          <div style={{ textAlign: "center", padding: "12px 0 8px" }}>
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-success, #059669)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 12l6 6L20 6" /></svg>
+            <h2 style={{ ...heading, margin: "8px 0" }}>{ko ? "전해 드렸습니다" : "We've passed it on"}</h2>
+            <p style={{ ...soft, fontSize: 15 }}>
+              {ready
+                ? (ko ? <>48시간 안에 연락드리겠습니다.<br />{vouch.trim() ? "아는 분이 계시니 더 빨리 이어집니다." : "가장 먼저 손드는 분과 이어 드리겠습니다."}</>
+                      : <>We'll reach out within 48 hours.</>)
+                : (ko ? <>{city.nameKo}에는 아직 문을 열어 두신 분이 적습니다.<br />그래도 찾아보고 48시간 안에 알려 드리겠습니다.</>
+                      : <>Few people have opened their door in {city.nameEn} yet.<br />We'll still look and let you know within 48 hours.</>)}
+            </p>
+            <button type="button" onClick={onClose} style={{ ...primaryBtn(false), marginTop: 18 }}>{ko ? "닫기" : "Close"}</button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function HomeCard({ title, sub, onClick }: { title: string; sub: string; onClick: () => void }) {
+  return (
+    <button type="button" onClick={onClick} style={{
+      minHeight: 96, padding: "14px 12px", borderRadius: 14, cursor: "pointer", textAlign: "left",
+      background: "var(--color-surface)", border: "1px solid var(--color-border)",
+      display: "flex", flexDirection: "column", justifyContent: "space-between", gap: 8,
+      fontFamily: HOME_FONT, wordBreak: "keep-all", WebkitTapHighlightColor: "transparent",
+    }}>
+      <span style={{ fontSize: 15, fontWeight: 700, color: "var(--color-text-primary)" }}>{title}</span>
+      <span style={{ fontSize: 13, color: "var(--color-text-secondary)" }}>{sub}</span>
+    </button>
+  );
+}
+
 function HomeScreen({ onNavigate, onSearch }: { onNavigate?: (tab: number, subTab?: number) => void; onSearch?: () => void }) {
   const { lang } = useI18n();
   const ko = lang === "ko";
+  const city = useCityConfig();
   const [moreOpen, setMoreOpen] = useState(false);   // 홈 단순화 2단계: 보조 섹션은 기본 접힘
+  const [connect, setConnect] = useState<{ open: boolean; need?: string }>({ open: false });
+  const closeConnect = useCallback(() => setConnect({ open: false }), []);
+  const [showChecklist, setShowChecklist] = useState(false);
+  const ready = CONNECT_READY_CITIES.includes(city.slug);
+  // 첫 주 할 일 — 체크리스트는 이 기기 안에만 있다 (ArrivalChecklistSection 과 같은 열쇠)
+  const dayOne = getDayOneItems(city.slug);
+  let doneCount = 0;
+  try {
+    const c = JSON.parse(localStorage.getItem(`hg_arrival_checklist_${city.slug}`) || "{}");
+    doneCount = dayOne.filter(i => c[i.id]).length;
+  } catch { /* 저장소를 못 읽으면 0 */ }
   return (
-    <div style={{ background: "#F2F2F7", minHeight: "100vh", paddingBottom: "calc(72px + env(safe-area-inset-bottom, 0px))" }}>
-      <CompactHeroNew onSearch={onSearch} />
-      <HebronFlywheelBar lang={lang} />
-      <QuickMenuSection onNavigate={onNavigate} />
+    <div style={{ background: "var(--color-background)", minHeight: "100vh", paddingBottom: "calc(72px + env(safe-area-inset-bottom, 0px))" }}>
+      <HomeWelcome />
+      {/* 눈에 띄는 버튼은 이것 하나 */}
+      <div style={{ padding: "18px 16px 4px", background: "var(--color-surface)" }}>
+        <button type="button" onClick={() => setConnect({ open: true })} style={{
+          width: "100%", minHeight: 54, borderRadius: 14, border: "none", cursor: "pointer",
+          background: "var(--color-primary)", color: "var(--color-text-inverse)",
+          fontFamily: HOME_FONT, fontSize: 17, fontWeight: 700,
+        }}>
+          {ko ? "한 사람 이어 드릴게요" : "We'll connect you with someone"}
+        </button>
+        <p style={{ margin: "10px 0 12px", textAlign: "center", fontFamily: HOME_FONT, fontSize: 13, lineHeight: 1.5, color: "var(--color-text-muted)", wordBreak: "keep-all" }}>
+          {ko
+            ? (ready ? "48시간 안에 연락드립니다 · 신분증도 실명도 묻지 않습니다" : "48시간 안에 알려 드립니다 · 신분증도 실명도 묻지 않습니다")
+            : (ready ? "We'll reach out within 48 hours · No ID or real name needed" : "We'll get back to you within 48 hours · No ID or real name needed")}
+        </p>
+      </div>
+      <ConnectSheet open={connect.open} initialNeed={connect.need} onClose={closeConnect} />
+
+      <h2 style={{ margin: "22px 16px 10px", fontFamily: HOME_FONT, fontSize: 18, fontWeight: 700, color: "var(--color-text-primary)" }}>
+        {ko ? "이번 주" : "This week"}
+      </h2>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8, padding: "0 16px" }}>
+        <HomeCard title={ko ? "첫 주 할 일" : "Week-1 tasks"} sub={`${doneCount} / ${dayOne.length}`}
+          onClick={() => { safeStorage.set("hg_checklist_collapsed", "0"); setShowChecklist(v => !v); }} />
+        <HomeCard title={ko ? "식탁의 자리" : "A seat at a table"} sub={ko ? "알아봐 드려요" : "We'll look for one"}
+          onClick={() => setConnect({ open: true, need: "모이는 자리" })} />
+        <HomeCard title={ko ? "교회 찾기" : "Find a church"} sub={ko ? "가까운 곳부터" : "Nearby first"}
+          onClick={() => onNavigate?.(2)} />
+      </div>
+      {showChecklist && <ArrivalChecklistSection lang={lang} />}
+
+      {onSearch && (
+        <button type="button" onClick={onSearch} style={{
+          width: "calc(100% - 32px)", margin: "14px 16px 0", minHeight: 52, padding: "0 16px",
+          display: "flex", alignItems: "center", gap: 10, cursor: "pointer",
+          background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: 14,
+          fontFamily: HOME_FONT, fontSize: 15, color: "var(--color-text-muted)",
+        }}>
+          <Search size={18} strokeWidth={2} aria-hidden="true" />
+          {ko ? "교회 · 병원 · 은행 · 집 찾기" : "Churches · clinics · banks · housing"}
+        </button>
+      )}
+      {/* 큰 화면에는 아래 시트가 없다 — 바로 가기를 그대로 둔다 */}
+      <div className="hidden lg:block" style={{ marginTop: 14 }}><QuickMenuSection onNavigate={onNavigate} /></div>
       {/* 아래 탭이 넷으로 줄며 빠진 "더보기" — 같은 시트를 여기서 연다 (2026-11-02) */}
       <div className="lg:hidden">{/* 큰 화면은 옆 메뉴에 다 있다 — 안쪽 display:flex 가 클래스를 이기므로 감싼다 */}
       <button type="button" onClick={openMoreSheet} style={{
-        width: "100%", minHeight: 48, background: "#fff", border: "none",
-        borderTop: "1px solid rgba(20,33,58,0.06)", padding: "12px 20px", cursor: "pointer",
+        width: "calc(100% - 32px)", margin: "10px 16px 0", minHeight: 48, background: "none", border: "none",
+        borderBottom: "1px solid var(--color-border)", padding: "12px 0", cursor: "pointer",
         display: "flex", alignItems: "center", justifyContent: "space-between",
-        fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif",
-        fontWeight: 600, fontSize: 14, color: "#1C1C1E", WebkitTapHighlightColor: "transparent",
+        fontFamily: HOME_FONT, fontWeight: 600, fontSize: 15, color: "var(--color-text-primary)", WebkitTapHighlightColor: "transparent",
       }}>
         <span>{ko ? "생활 정보 전체 보기" : "All city guides"}</span>
-        <span style={{ fontSize: 13, fontWeight: 500, color: "#6B6B70" }}>
-          {ko ? "탐방 · 취업 · 교육 · 생활비 · 업소 ›" : "Explore · Jobs · Schools · Costs · Business ›"}
+        <span style={{ fontSize: 13, fontWeight: 500, color: "var(--color-text-muted)" }}>
+          {ko ? "공항 · 면허 · 집 · 일 · 학교 ›" : "Airport · License · Housing · Jobs ›"}
         </span>
       </button>
       </div>
 
-      {/* ── Day 1 도착 체크리스트 ── */}
-      <ArrivalChecklistSection lang={lang} />
-
+      {/* Day 1 도착 체크리스트는 "첫 주 할 일" 카드가 위에서 연다 (2026-11-02) */}
       <IntroduceInviteRow lang={lang} />
 
       {/* ── 홈 더 둘러보기: 보조 섹션은 기본 접힘 (단순화 2단계). 탭하면 그대로 모두 나옴 — 기능 유지 ── */}
@@ -29901,6 +30186,13 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
    더보기 시트 항목
 ───────────────────────────────────────── */
 const MORE_SECTIONS = [
+  /* ── 0행: 처음 할 일 — 홈 바로 가기에서 옮겨 옴 (2026-11-02) ── */
+  { icon: Plane,        labelKo: "공항·도착", labelEn: "Airport",      tab: 11, subTab: 0, color: "#F2994A" },
+  { icon: QM_ICON_MAP["home"] ?? Home, labelKo: "주택", labelEn: "Housing", tab: 1, subTab: 5, color: "#F2994A" },
+  { icon: QM_ICON_MAP["car"] ?? Map,   labelKo: "면허", labelEn: "License", tab: 1, subTab: 3, color: "#F2994A" },
+  { icon: HeartPulse,   labelKo: "병원",      labelEn: "Clinics",      tab: 5,  subTab: 1, color: "#DC2626" },
+  { icon: ShoppingCart, labelKo: "마트",      labelEn: "Groceries",    tab: 3,  subTab: 4, color: "#EF4444" },
+  { icon: Utensils,     labelKo: "맛집",      labelEn: "Food",         tab: 3,  subTab: 0, color: "#EF4444" },
   /* ── 1행: 메인 섹션 ── */
   { icon: Church,       labelKo: "교회",      labelEn: "Church",       tab: 2,  subTab: 0, color: "#7C3AED" },
   { icon: Map,          labelKo: "관광",      labelEn: "Tourism",      tab: 4,  subTab: 0, color: "#06B6D4" },
@@ -29986,15 +30278,16 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
             borderRadius: "20px 20px 0 0",
             boxShadow: "0 -4px 32px rgba(0,0,0,0.18)",
             padding: "16px 16px 12px",
+            maxHeight: "calc(100dvh - 120px)", overflowY: "auto",
           }}
         >
           {/* 핸들 */}
           <div style={{ width: 36, height: 4, borderRadius: 2, background: "#E5E7EB", margin: "0 auto 16px" }} />
 
           {/* 섹션 버튼 그리드 — 2행 */}
-          {[MORE_SECTIONS.slice(0, 6), MORE_SECTIONS.slice(6)].map((row, rowIdx) => (
-            <div key={rowIdx} style={{ display: "grid", gridTemplateColumns: `repeat(${row.length}, 1fr)`, gap: 8, marginBottom: rowIdx === 0 ? 8 : 16 }}>
-              {rowIdx === 1 && (
+          {[MORE_SECTIONS.slice(0, 6), MORE_SECTIONS.slice(6, 12), MORE_SECTIONS.slice(12)].map((row, rowIdx) => (
+            <div key={rowIdx} style={{ display: "grid", gridTemplateColumns: `repeat(${row.length}, 1fr)`, gap: 8, marginBottom: rowIdx === 2 ? 16 : 8 }}>
+              {rowIdx === 2 && (
                 /* 2행 라벨 */
                 <div style={{ gridColumn: "1 / -1", marginBottom: 2, paddingLeft: 2 }}>
                   <span style={{ fontSize: 12, fontWeight: 700, color: "var(--color-text-muted)", letterSpacing: "0.5px",
@@ -30862,11 +31155,11 @@ export function HebronGuide() {
         className="flex flex-col min-h-screen mx-auto relative w-full max-w-[430px] md:max-w-[640px] lg:max-w-[960px] lg:ml-64"
         style={{ background: "var(--color-background)" }}
       >
-        <AppInstallBanner />
+        {/* 설치 안내는 아래 PWAInstallGuideBanner 하나만 (2026-11-02) */}
         <AppBar onHome={() => setActiveNav(0)} onSearch={handleSearchToggle} />
 
         {/* ── 업데이트 공지 배너 ── */}
-        <UpdateBanner />
+        {/* 5월의 "새 기능" 띠는 뺐다 (2026-11-02) */}
         <BoardBanner />
 
         {/* ── 검색 오버레이 (Apple 스타일 + 음성 입력) */}
@@ -31179,11 +31472,9 @@ export function HebronGuide() {
         })()}
 
         {/* PWA 설치 배너 */}
-        {showBanner && (
-          <InstallBanner onInstall={handleInstall} onDismiss={handleDismiss} isIOS={isIOS} />
-        )}
+        {/* 위쪽 설치 띠는 뺐다 — 설치 안내는 PWAInstallGuideBanner 하나 (2026-11-02) */}
 
-        <main className="flex-1 overflow-y-auto" style={{ paddingBottom: 72, paddingTop: showBanner ? 72 : 0 }}>
+        <main className="flex-1 overflow-y-auto" style={{ paddingBottom: 72 }}>
           {screens[Math.min(activeNav, screens.length - 1)]}
           {/* 여정을 끊지 않는다 — 보고 나면 되돌아 나오지 않아도 된다 */}
           {activeNav !== 0 && (
