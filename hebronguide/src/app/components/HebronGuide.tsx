@@ -820,7 +820,6 @@ import {
   MapPin,
   Utensils,
   LifeBuoy,
-  Grid,
   Church,
   Map,
   Briefcase,
@@ -13998,6 +13997,21 @@ function HomeScreen({ onNavigate, onSearch }: { onNavigate?: (tab: number, subTa
       <CompactHeroNew onSearch={onSearch} />
       <HebronFlywheelBar lang={lang} />
       <QuickMenuSection onNavigate={onNavigate} />
+      {/* 아래 탭이 넷으로 줄며 빠진 "더보기" — 같은 시트를 여기서 연다 (2026-11-02) */}
+      <div className="lg:hidden">{/* 큰 화면은 옆 메뉴에 다 있다 — 안쪽 display:flex 가 클래스를 이기므로 감싼다 */}
+      <button type="button" onClick={openMoreSheet} style={{
+        width: "100%", minHeight: 48, background: "#fff", border: "none",
+        borderTop: "1px solid rgba(20,33,58,0.06)", padding: "12px 20px", cursor: "pointer",
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif",
+        fontWeight: 600, fontSize: 14, color: "#1C1C1E", WebkitTapHighlightColor: "transparent",
+      }}>
+        <span>{ko ? "생활 정보 전체 보기" : "All city guides"}</span>
+        <span style={{ fontSize: 13, fontWeight: 500, color: "#6B6B70" }}>
+          {ko ? "탐방 · 취업 · 교육 · 생활비 · 업소 ›" : "Explore · Jobs · Schools · Costs · Business ›"}
+        </span>
+      </button>
+      </div>
 
       {/* ── Day 1 도착 체크리스트 ── */}
       <ArrivalChecklistSection lang={lang} />
@@ -29773,12 +29787,13 @@ function DesktopSidebar({ activeTab, onNavigate, onSearch }: { activeTab: number
   const city = useCityConfig();
   const ko = lang === "ko";
   const SIDEBAR_ITEMS = [
+    /* 위 넷은 폰 아래 탭과 같은 이름·순서 (2026-11-02) */
     { tab: 0,  icon: Home,          color: "#FBBF24", labelKo: "홈",    labelEn: "Home" },
-    { tab: 1,  icon: Plane,         color: "#F2994A", labelKo: "정착",  labelEn: "Settle" },
-    { tab: 2,  icon: Church,        color: "#7C3AED", labelKo: "교회",  labelEn: "Church" },
+    { tab: 1,  icon: ClipboardList, color: "#F2994A", labelKo: "첫 주", labelEn: "Week 1" },
+    { tab: 2,  icon: Users,         color: "#7C3AED", labelKo: "사람",  labelEn: "People" },
+    { tab: 5,  icon: HeartPulse,    color: "#DC2626", labelKo: "도움",  labelEn: "Help" },
     { tab: 3,  icon: Utensils,      color: "#EF4444", labelKo: "맛집",  labelEn: "Food" },
     { tab: 4,  icon: Map,           color: "#06B6D4", labelKo: "탐방",  labelEn: "Explore" },
-    { tab: 5,  icon: HeartPulse,    color: "#DC2626", labelKo: "도움",  labelEn: "Help" },
     { tab: 9,  icon: Users,         color: "#10B981", labelKo: "사람 연결", labelEn: "People Connect" },
     { tab: 6,  icon: Briefcase,     color: "#059669", labelKo: "취업",  labelEn: "Jobs" },
     { tab: 7,  icon: GraduationCap, color: "#8B5CF6", labelKo: "교육",  labelEn: "Schools" },
@@ -30856,15 +30871,21 @@ const MORE_SECTIONS = [
 ];
 
 /* ─────────────────────────────────────────
-   하단 네비 5개 탭 — 모듈 레벨 (BottomNav + DesktopSidebar 공유)
+   하단 네비 4개 탭 — 홈 · 첫 주 · 사람 · 도움 (2026-11-02, 설계도 ⑨-5)
+   송곳 목표("첫 주에 혼자 밥 먹지 않게")가 탭 하나(사람)를 갖는다.
+   탐방·맛집·취업·교육·생활비·업소는 홈의 "생활 정보 전체 보기"와 검색으로 간다.
+   사람 = 지금은 교회 화면(식탁 배너 포함). 설계도 ⑦-5에서 교회+식탁+사람 연결을 합친다.
 ───────────────────────────────────────── */
 const NAV_ITEMS = [
-  { id: "home",    tab: 0,  icon: Home,       labelKo: "홈",    labelEn: "Home"    },
-  { id: "settle",  tab: 1,  icon: Users,      labelKo: "정착",  labelEn: "Settle"  },
-  { id: "explore", tab: 4,  icon: Map,        labelKo: "탐방",  labelEn: "Explore" },
-  { id: "help",    tab: 5,  icon: HeartPulse, labelKo: "도움",  labelEn: "Help"    },
-  { id: "more",    tab: -1, icon: Grid,       labelKo: "더보기", labelEn: "More"   },
+  { id: "home",   tab: 0, icon: Home,          labelKo: "홈",   labelEn: "Home"   },
+  { id: "week1",  tab: 1, icon: ClipboardList, labelKo: "첫 주", labelEn: "Week 1" },
+  { id: "people", tab: 2, icon: Users,         labelKo: "사람", labelEn: "People" },
+  { id: "help",   tab: 5, icon: HeartPulse,    labelKo: "도움", labelEn: "Help"   },
 ] as const;
+
+/* 홈의 "생활 정보 전체 보기"가 아래 시트를 연다 — 탭 칸을 하나 쓰지 않고 같은 시트를 쓴다 */
+const OPEN_MORE_EVENT = "hg:open-more";
+function openMoreSheet() { window.dispatchEvent(new Event(OPEN_MORE_EVENT)); }
 
 interface BottomNavProps {
   activeIndex: number;
@@ -30877,11 +30898,16 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
   const { lang } = useI18n();
   const [showMore, setShowMore] = useState(false);
 
-  const handleNavClick = (item: typeof NAV_ITEMS[0]) => {
-    if (item.id === "more") { setShowMore(prev => !prev); return; }
+  const handleNavClick = (item: typeof NAV_ITEMS[number]) => {
     setShowMore(false);
     onChange(item.tab);
   };
+
+  useEffect(() => {
+    const open = () => setShowMore(true);
+    window.addEventListener(OPEN_MORE_EVENT, open);
+    return () => window.removeEventListener(OPEN_MORE_EVENT, open);
+  }, []);
 
   const handleMoreSection = (tab: number, subTab?: number) => {
     onChange(tab, subTab);
@@ -30924,9 +30950,9 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
               {rowIdx === 1 && (
                 /* 2행 라벨 */
                 <div style={{ gridColumn: "1 / -1", marginBottom: 2, paddingLeft: 2 }}>
-                  <span style={{ fontSize: 10, fontWeight: 700, color: "var(--color-text-muted)", letterSpacing: "0.5px",
+                  <span style={{ fontSize: 12, fontWeight: 700, color: "var(--color-text-muted)", letterSpacing: "0.5px",
                     fontFamily: "Geist,Pretendard Variable, sans-serif" }}>
-                    {lang === "ko" ? "⚡ 빠른 접근" : "⚡ QUICK ACCESS"}
+                    {lang === "ko" ? "빠른 접근" : "QUICK ACCESS"}
                   </span>
                 </div>
               )}
@@ -31047,7 +31073,7 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
       >
         <div style={{ display: "flex", height: 56, alignItems: "stretch" }}>
           {NAV_ITEMS.map((item) => {
-            const isActive = item.tab >= 0 ? activeIndex === item.tab : showMore;
+            const isActive = activeIndex === item.tab;
             const IconComp = item.icon;
             return (
               <button
@@ -31072,8 +31098,8 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
                 <IconComp size={24} color={isActive ? ACCENT : "#8E8E93"} strokeWidth={isActive ? 2.2 : 1.5} />
                 <span style={{
                   fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif",
-                  fontWeight: isActive ? 700 : 500, fontSize: 10,
-                  color: isActive ? ACCENT : "#8E8E93",
+                  fontWeight: isActive ? 700 : 500, fontSize: 12,
+                  color: isActive ? ACCENT : "#6B6B70",
                   whiteSpace: "nowrap", letterSpacing: "-0.2px",
                 }}>
                   {lang === "ko" ? item.labelKo : item.labelEn}
