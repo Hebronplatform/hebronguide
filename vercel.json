@@ -179,7 +179,27 @@
     { "source": "/inlandempire",       "destination": "/inlandempire/index.html" },
     { "source": "/inlandempire/(.*)",  "destination": "/inlandempire/index.html" },
     { "source": "/austin",             "destination": "/austin/index.html" },
-    { "source": "/austin/(.*)",        "destination": "/austin/index.html" }
+    { "source": "/austin/(.*)",        "destination": "/austin/index.html" },
+    { "source": "/federalway",      "destination": "/federalway/index.html" },
+    { "source": "/federalway/(.*)", "destination": "/federalway/index.html" },
+    { "source": "/newjersey",       "destination": "/newjersey/index.html" },
+    { "source": "/newjersey/(.*)",  "destination": "/newjersey/index.html" },
+    { "source": "/fairfield",       "destination": "/fairfield/index.html" },
+    { "source": "/fairfield/(.*)",  "destination": "/fairfield/index.html" },
+    { "source": "/waynesville",     "destination": "/waynesville/index.html" },
+    { "source": "/waynesville/(.*)", "destination": "/waynesville/index.html" },
+    { "source": "/leesville",       "destination": "/leesville/index.html" },
+    { "source": "/leesville/(.*)",  "destination": "/leesville/index.html" },
+    { "source": "/tampa",           "destination": "/tampa/index.html" },
+    { "source": "/tampa/(.*)",      "destination": "/tampa/index.html" },
+    { "source": "/virginia",        "destination": "/virginia/index.html" },
+    { "source": "/virginia/(.*)",   "destination": "/virginia/index.html" },
+    { "source": "/neworleans",      "destination": "/neworleans/index.html" },
+    { "source": "/neworleans/(.*)", "destination": "/neworleans/index.html" },
+    { "source": "/huntsville",      "destination": "/huntsville/index.html" },
+    { "source": "/huntsville/(.*)", "destination": "/huntsville/index.html" },
+    { "source": "/memphis",         "destination": "/memphis/index.html" },
+    { "source": "/memphis/(.*)",    "destination": "/memphis/index.html" }
   ],
 
   "headers": [

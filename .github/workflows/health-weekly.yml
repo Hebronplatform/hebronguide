@@ -1,0 +1,43 @@
+name: Weekly health check
+
+# 2026-11-02 (설계도 ⑧) — 매주 월요일 사이트 전체를 점검하고, 고칠 것이 있으면 GitHub 이슈로 알린다.
+# 이슈가 열리면 저장소 주인에게 GitHub 알림 메일이 간다.
+# 같은 문제가 이어지면 새 이슈를 만들지 않고 열려 있는 이슈에 댓글을 단다.
+# 아무것도 커밋하지 않는다 — 찾아서 알리기만 한다.
+on:
+  schedule:
+    - cron: '0 16 * * 1'   # 매주 월요일 16:00 UTC (시애틀 오전 8~9시)
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Run health check
+        id: hc
+        run: |
+          set +e
+          node scripts/health-check.mjs
+          echo "failed=$?" >> "$GITHUB_OUTPUT"
+
+      - name: Open or update issue
+        if: steps.hc.outputs.failed != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh label create health-check --color D93F0B --description "주간 건강 검진" 2>/dev/null || true
+          open=$(gh issue list --label health-check --state open --json number --jq '.[0].number')
+          if [ -n "$open" ]; then
+            gh issue comment "$open" --body-file health-report.md
+          else
+            gh issue create --title "주간 건강 검진: 고칠 것이 있습니다" --label health-check --body-file health-report.md
+          fi

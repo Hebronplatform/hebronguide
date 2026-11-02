@@ -56,7 +56,8 @@ declare -A CITY_KO=(
   ["newyork"]="뉴욕"         ["newjersey"]="뉴저지"     ["nashville"]="내쉬빌"     ["boston"]="보스턴"
   ["la"]="로스앤젤레스"       ["toronto"]="토론토"       ["vancouver"]="밴쿠버"
   ["houston"]="휴스턴"       ["atlanta"]="애틀랜타"     ["kansascity"]="캔자스시티"
-  ["philadelphia"]="필라델피아" ["miami"]="마이애미"     ["mexicocity"]="멕시코시티"
+  ["philadelphia"]="필라델피아" ["miami"]="마이애미"     ["orangecounty"]="오렌지카운티"
+  ["mexicocity"]="멕시코시티"
   ["guadalajara"]="과달라하라" ["monterrey"]="몬테레이"  ["bogota"]="보고타"
   # 북미 확장 Tier A
   ["chicago"]="시카고"        ["dc"]="워싱턴 DC"         ["sandiego"]="샌디에고"
@@ -85,6 +86,9 @@ declare -A CITY_KO=(
   ["tokyo"]="도쿄"           ["osaka"]="오사카"
   # 한국 (역이민·방문 동포)
   ["seoul"]="서울"           ["busan"]="부산"
+  ["ansan"]="안산"           ["incheon"]="인천"
+  ["jeju"]="제주"            ["daegu"]="대구"
+  ["gwangju"]="광주"         ["daejeon"]="대전"
   ["changwon"]="창원"        ["cheonan"]="천안·아산"
 )
 declare -A CITY_EN=(
@@ -109,7 +113,7 @@ declare -A CITY_EN=(
   ["tampa"]="Tampa"
   ["orlando"]="Orlando"       ["maryland"]="Maryland"    ["princgeorge"]="Prince George"   ["virginia"]="Virginia"   ["neworleans"]="New Orleans"
   ["inlandempire"]="Inland Empire" ["austin"]="Austin"   ["huntsville"]="Huntsville"   ["memphis"]="Memphis"
-  ["bundang"]="분당·수지"
+  ["bundang"]="Bundang·Suji"
   # 국제 확장 Tier A
   ["sydney"]="Sydney"         ["melbourne"]="Melbourne"    ["brisbane"]="Brisbane"
   ["perth"]="Perth"           ["auckland"]="Auckland"      ["saopaulo"]="Sao Paulo"
@@ -122,10 +126,10 @@ declare -A CITY_EN=(
   ["tokyo"]="Tokyo"          ["osaka"]="Osaka"
   # 한국 (역이민·이주·정착)
   ["seoul"]="Seoul"          ["busan"]="Busan"
-  ["ansan"]="안산"           ["incheon"]="인천"
-  ["jeju"]="제주"            ["daegu"]="대구"
-  ["gwangju"]="광주"         ["daejeon"]="대전"
-  ["changwon"]="창원"        ["cheonan"]="천안·아산"
+  ["ansan"]="Ansan"          ["incheon"]="Incheon"
+  ["jeju"]="Jeju"            ["daegu"]="Daegu"
+  ["gwangju"]="Gwangju"      ["daejeon"]="Daejeon"
+  ["changwon"]="Changwon"    ["cheonan"]="Cheonan·Asan"
 )
 
 # 4. dist/ 정리 — city 서브디렉토리 잔재 제거 (assets/, data/ 제외)

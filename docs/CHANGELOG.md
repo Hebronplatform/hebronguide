@@ -5,6 +5,22 @@
 
 ---
 
+### 2026-11-02 | [정리] 화면이 바뀌지 않는 정리 + 자동 점검 되살리기 (설계도 ⑦-1)
+
+- **무엇을**:
+  - `vercel.json`: 도시 10곳(federalway·newjersey·fairfield·waynesville·leesville·tampa·virginia·neworleans·huntsville·memphis)의 주소 규칙 추가. `/federalway/church` 같은 하위 주소가 404였다.
+  - `build.sh`: CITY_KO에 7곳(orangecounty·ansan·incheon·jeju·daegu·gwangju·daejeon) 추가. 탭 제목의 도시 이름이 비어 있었다. CITY_EN의 한국 도시 9곳에 한글이 들어가 있던 것을 영어로 고쳤다.
+  - `sitemap.xml`: 빠진 도시 7곳과 처음 오신 분의 문 5곳(arrive·open·hospitality-board·faq·about) 추가.
+  - 부르는 곳이 없던 화면 조각 14개를 `99_Archive/2026-11-02_dead-components/`로, 서버 기능 `register-partner-church`를 `99_Archive/2026-11-02_api/`로 옮겼다. 서버 기능 12개 → 11개.
+  - 자동 작업: `.gitignore`가 `.github/workflows/`를 막고 있어 「매일 자동 갱신」이 한 번도 돌지 않았다. 막은 줄을 풀고 두 가지를 새로 둔다.
+    - `gas-weekly.yml`: 매주 화요일 EIA 워싱턴주 휘발유 주간값을 `live.json`에 쓴다. 못 읽으면 아무것도 바꾸지 않는다.
+    - `health-weekly.yml` + `scripts/health-check.mjs`: 매주 월요일 81개 도시·하위 주소·주요 페이지·배포 정지·서버 기능 수·죽은 링크·자가 점검을 보고, 고칠 것이 있으면 GitHub 이슈로 알린다.
+  - 옛 `daily-update.yml`(실패하면 고정값에 오늘 날짜를 찍었다)과 `annual-update.yml`(없는 파일을 고치려 했고, 사람 확인 없이 숫자를 바꿨다)은 켜지 않고 보관했다.
+- **왜**: 사이트는 "매일 갱신"이라고 했지만 기름값은 5월 3일에 멈춰 있었다($4.15, 실제 10/26 주 $5.20). 멈춘 것을 사람이 우연히 찾게 두지 않는다.
+- **교훈**: 자동은 "멈춘 것을 찾아 알리는 일"과 "출처가 고정된 숫자를 갱신하는 일"까지만 한다. 실패했을 때 옛 값과 옛 날짜를 그대로 보여 주는 것이 정직하다.
+
+---
+
 ### 2026-10-30 | [1면] "내 도시로 바로 가기" → "어느 도시로 가세요?"
 
 - **무엇을**: 1면 첫 화면의 강조 버튼을 하나로 줄였다.

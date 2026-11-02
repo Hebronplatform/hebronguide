@@ -2,7 +2,7 @@
 # Archive node_modules (절대 커밋 불필요)
 99_Archive/**/node_modules/
 99_Archive/**/__pycache__/
-.github/workflows/
+# .github/workflows/ 는 2026-11-02부터 올린다 — 무시하던 탓에 「매일 자동 갱신」이 한 번도 돌지 않았다
 
 .vercel
 .env*.local
@@ -40,3 +40,6 @@ HebronGuide_Payment_Guide.html
 
 # 개인 연락처 등 — 저장소에 올리지 않는다
 _local/
+
+# 주간 건강 검진이 CI에서 쓰는 보고서 (커밋하지 않는다)
+health-report.md

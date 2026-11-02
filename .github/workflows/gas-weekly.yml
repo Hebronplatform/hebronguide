@@ -1,0 +1,88 @@
+name: WA gas price (weekly)
+
+# 2026-11-02 — 옛 daily-update.yml 을 대신한다 (설계도 ⑧).
+# 미국 에너지정보청(EIA)이 매주 월요일에 내는 워싱턴주 휘발유 평균값을 화요일에 읽어
+# hebronguide/public/data/live.json 에 쓴다. 시애틀 홈의 「WA 기름값」이 이 값을 보여 준다.
+#
+# 지키는 것
+#   · 읽지 못하면 아무것도 바꾸지 않는다 — 옛 값과 옛 날짜가 그대로 보인다(거짓 「오늘 갱신」 없음)
+#   · 날짜는 우리가 확인한 날이 아니라 EIA 자료의 주(週) 날짜다
+#   · 값이 바뀔 때만 커밋한다 → 그때만 배포된다. 일요일에는 돌지 않는다
+#   · 환율은 앱이 브라우저에서 직접 읽는다 — 여기서 다루지 않는다
+on:
+  schedule:
+    - cron: '0 17 * * 2'   # 매주 화요일 17:00 UTC (시애틀 오전 9~10시)
+  workflow_dispatch:
+
+jobs:
+  gas:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install
+        run: pip install requests xlrd
+
+      - name: Read EIA Washington weekly gas price
+        run: |
+          python3 - <<'PYEOF'
+          import io, json, os, sys
+          import requests, xlrd
+
+          PATH = "hebronguide/public/data/live.json"
+          URL = "https://www.eia.gov/dnav/pet/hist_xls/EMM_EPMR_PTE_SWA_DPGw.xls"
+
+          with open(PATH, encoding="utf-8") as f:
+              live = json.load(f)
+
+          try:
+              r = requests.get(URL, timeout=60, headers={"User-Agent": "HebronGuide/1.0 (hebronguide.com)"})
+              r.raise_for_status()
+              book = xlrd.open_workbook(file_contents=r.content)
+              sheet = book.sheet_by_name("Data 1")
+              # 맨 아래 줄이 가장 최근 주. 빈 칸이면 위로 올라가며 찾는다
+              for i in range(sheet.nrows - 1, 2, -1):
+                  d, v = sheet.row_values(i)[:2]
+                  if isinstance(d, float) and isinstance(v, float) and v > 0:
+                      week = xlrd.xldate_as_datetime(d, book.datemode).date().isoformat()
+                      price = round(v, 2)
+                      break
+              else:
+                  raise ValueError("no value row")
+              # 말이 안 되는 값은 쓰지 않는다
+              if not (1.0 < price < 15.0):
+                  raise ValueError(f"price out of range: {price}")
+          except Exception as e:
+              print(f"EIA 읽기 실패 — 아무것도 바꾸지 않습니다: {e}")
+              sys.exit(0)
+
+          live["gas_wa_regular"] = price
+          live["updated"] = week
+          live["source"] = "U.S. EIA — Weekly Washington Regular Retail Gasoline"
+          live["source_url"] = "https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&s=EMM_EPMR_PTE_SWA_DPG&f=W"
+          live["note"] = "WA주 일반 휘발유 평균 ($/갤런) — EIA 주간 자료를 매주 화요일 자동 반영"
+          live.pop("gas_wa_premium", None)   # 출처 없는 고정값이었다
+
+          with open(PATH, "w", encoding="utf-8") as f:
+              json.dump(live, f, ensure_ascii=False, indent=2)
+              f.write("\n")
+          print(f"WA 기름값 ${price} (EIA {week} 주)")
+          PYEOF
+
+      - name: Commit if changed
+        run: |
+          git config user.name "HebronGuide Bot"
+          git config user.email "hebronplatform@users.noreply.github.com"
+          git add hebronguide/public/data/live.json
+          if git diff --staged --quiet; then
+            echo "바뀐 값 없음 — 커밋하지 않습니다"
+          else
+            git commit -m "chore(data): WA 기름값 EIA 주간 자료 반영"
+            git push
+          fi

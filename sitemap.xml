@@ -176,4 +176,20 @@
   <url><loc>https://www.hebronguide.com/spotlight/hojunara.html</loc><lastmod>2026-10-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.hebronguide.com/spotlight/eknews.html</loc><lastmod>2026-10-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.hebronguide.com/spotlight/mindan.html</loc><lastmod>2026-10-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- ══ 처음 오신 분의 문 (2026-11-02 추가) ══ -->
+  <url><loc>https://www.hebronguide.com/arrive.html</loc><lastmod>2026-11-02</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://www.hebronguide.com/open.html</loc><lastmod>2026-11-02</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.hebronguide.com/hospitality-board.html</loc><lastmod>2026-11-02</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.hebronguide.com/faq.html</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.hebronguide.com/about.html</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- ══ 빠져 있던 도시 7곳 (2026-11-02 추가) ══ -->
+  <url><loc>https://www.hebronguide.com/fairfield/</loc><lastmod>2026-11-02</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.hebronguide.com/waynesville/</loc><lastmod>2026-11-02</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.hebronguide.com/tampa/</loc><lastmod>2026-11-02</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.hebronguide.com/inlandempire/</loc><lastmod>2026-11-02</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.hebronguide.com/austin/</loc><lastmod>2026-11-02</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.hebronguide.com/princgeorge/</loc><lastmod>2026-11-02</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.hebronguide.com/bogota/</loc><lastmod>2026-11-02</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
 </urlset>
