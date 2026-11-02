@@ -857,6 +857,7 @@ import {
   Dumbbell,
   Scissors,
   Wrench,
+  Siren, Cloud, Phone, Languages, Shield, Smile, Brain, ChartColumn, Footprints, Music, Calendar, Circle, Bell, Flag,
 } from "lucide-react";
 
 
@@ -866,6 +867,10 @@ import {
    매핑이 없으면 원래 글자를 그대로 그린다 — 빈칸이 생기지 않는다.
 ───────────────────────────────────────── */
 const EMOJI_ICON: Record<string, React.ComponentType<{ size?: number; strokeWidth?: number; color?: string }>> = {
+  // 2026-11-02: 표에 없어서 날 이모지로 그려지던 것들
+  "🆘": LifeBuoy, "🚨": Siren, "☁": Cloud, "☎": Phone, "📞": Phone, "🗣": Languages, "🚓": Shield,
+  "👩‍👧": Users, "📍": MapPin, "🦷": Smile, "🧠": Brain, "📊": ChartColumn, "🏃": Footprints,
+  "🎵": Music, "📅": Calendar, "🏡": Home, "🔴": Circle, "🔔": Bell, "🇰🇷": Flag, "🇺🇸": Flag,
   "\u2615": Coffee, "\uD83C\uDFDB\uFE0F": Landmark, "\uD83C\uDFDB": Landmark,
   "\uD83E\uDD69": Beef, "\uD83C\uDF96": GraduationCap, "\uD83C\uDF93": GraduationCap,
   "\uD83C\uDFEA": Store, "\uD83C\uDFE5": Hospital, "\u2B50": Star,
@@ -908,11 +913,67 @@ const EMOJI_ICON: Record<string, React.ComponentType<{ size?: number; strokeWidt
 };
 
 /** 이모지 자리를 SVG 로 그린다. 대응표에 없으면 원래 글자를 그대로 둔다. */
+/* 글 속 이모지는 그릴 때 걸러 낸다 (2026-11-02, 설계도 ⑦-7 "이모지 걸러 내기").
+   데이터 원문은 그대로 둔다 — 단일 번들이라 일괄 치환은 회귀 위험이 크다. ©·®·™ 는 남긴다. */
+const EMOJI_RE = /(?![©®™])[\p{Extended_Pictographic}\p{Regional_Indicator}]|[\uFE0F\u200D\u20E3]/gu;
+function noEmoji<T>(v: T): T {
+  if (typeof v !== "string") return v;
+  return v.replace(EMOJI_RE, "").replace(/[ \t]{2,}/g, " ").replace(/^[ \t]+/gm, "").trim() as unknown as T;
+}
+
+/* 화면 전체에 남은 이모지를 그릴 때 걸러 낸다 (2026-11-02, 설계도 ⑦-7).
+   데이터 문자열 수백 곳을 하나씩 고치면 단일 번들 회귀 위험이 크다(CLAUDE.md "일괄 치환 금지").
+   그래서 <main> 한 곳에서, 그려진 글자 마디(text node)만 다듬는다.
+   - 데이터·입력칸(value)·placeholder 는 건드리지 않는다
+   - data-keep-emoji 를 단 곳 아래는 그대로 둔다 (원문을 보여 줘야 하는 자리용)
+   - ©·®·™ 는 남긴다. EmojiIcon 으로 이미 아이콘이 된 자리는 영향 없다 */
+const EMOJI_TEST = /(?![©®™])[\p{Extended_Pictographic}\p{Regional_Indicator}]/u;
+function useEmojiFilter(ref: { current: HTMLElement | null }) {
+  useEffect(() => {
+    const root = ref.current;
+    if (!root) return;
+    const cleanText = (n: Node) => {
+      const t = n.nodeValue || "";
+      if (!EMOJI_TEST.test(t)) return;
+      if ((n.parentElement as Element | null)?.closest("[data-keep-emoji]")) return;
+      const c = t.replace(EMOJI_RE, "").replace(/[ \t]{2,}/g, " ");
+      if (c !== t) n.nodeValue = c;
+    };
+    const clean = (node: Node) => {
+      if (node.nodeType === 3) { cleanText(node); return; }
+      if (node.nodeType !== 1) return;
+      const w = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
+      let n: Node | null;
+      while ((n = w.nextNode())) cleanText(n);
+    };
+    clean(root);
+    const mo = new MutationObserver(ms => {
+      for (const m of ms) {
+        if (m.type === "characterData") cleanText(m.target);
+        else m.addedNodes.forEach(clean);
+      }
+    });
+    mo.observe(root, { subtree: true, childList: true, characterData: true });
+    return () => mo.disconnect();
+  }, [ref]);
+}
+
 function EmojiIcon({ emoji, size = 18, strokeWidth = 1.8, color }:
   { emoji?: string; size?: number; strokeWidth?: number; color?: string }) {
   if (!emoji) return null;
   const Ico = EMOJI_ICON[emoji] || EMOJI_ICON[emoji.replace(/\uFE0F/g, "")];
-  if (!Ico) return <span style={{ fontSize: size }}>{emoji}</span>;
+  if (!Ico) {
+    // 표에 없는 이모지(216종)는 날 문자로 그리지 않고, 갈래로 가까운 아이콘을 쓴다 (2026-11-02)
+    const cp = emoji.codePointAt(0) || 0;
+    const inR = (a: number, b: number) => cp >= a && cp <= b;
+    const Fallback =
+      inR(0x1F32D, 0x1F37F) || inR(0x1F950, 0x1F96F) || inR(0x1F9C0, 0x1F9CB) || inR(0x1FAD0, 0x1FADB) ? Utensils  // 음식·음료
+      : inR(0x1F680, 0x1F6FF) || cp === 0x26F4 || cp === 0x26F5 || cp === 0x2693 ? Bus                           // 탈것
+      : inR(0x1F304, 0x1F31F) || inR(0x1F3D4, 0x1F3DF) || inR(0x1F331, 0x1F343) || cp === 0x1F30B
+        || cp === 0x26F0 || cp === 0x2600 || cp === 0x2744 ? Mountain                                              // 자연·풍경
+      : MapPin;                                                                                                    // 그 밖의 장소
+    return <Fallback size={size} strokeWidth={strokeWidth} color={color} />;
+  }
   return <Ico size={size} strokeWidth={strokeWidth} color={color} />;
 }
 
@@ -8809,7 +8870,7 @@ function StatCard({ label, value, icon }: StatCardProps) {
       <span className="uppercase tracking-[0.6px]" style={{ color: "var(--color-text-secondary)", fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 9 }}>{label}</span>
       <div className="flex items-end gap-[5px]">
         <span style={{ color: "var(--color-text-primary)", fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 22, lineHeight: 1 }}>{value}</span>
-        {icon && <span className="mb-[2px]">{icon}</span>}
+        {icon && <span className="mb-[2px]">{typeof icon === "string" ? <EmojiIcon emoji={icon} size={18} /> : icon}</span>}
       </div>
     </div>
   );
@@ -10559,7 +10620,7 @@ function SubTabBar({ tabs, active, onChange, accentColor = "rgba(255,255,255,0.9
       {tabs.map((tab, i) => (
         <button key={i} onClick={() => onChange(i)} className="flex-shrink-0 border-0 cursor-pointer hover:opacity-80"
           style={{ padding: "10px 16px", background: "transparent", fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: i === active ? "#1B2A4A" : "rgba(27,42,74,0.72)", borderBottom: i === active ? `2px solid ${accentColor}` : "2px solid transparent", whiteSpace: "nowrap", transition: "all 0.2s ease" }}>
-          {tab}
+          {noEmoji(tab)}
         </button>
       ))}
     </div>
@@ -10633,8 +10694,8 @@ function renderDescWithLinks(desc: string, accentColor: string) {
   return (
     <div>
       {cleanDesc && (
-        <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, lineHeight: 1.6, color: "var(--color-text-secondary)", marginTop: 5, whiteSpace: "pre-wrap" }}>
-          {cleanDesc}
+        <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 13, lineHeight: 1.6, color: "var(--color-text-secondary)", marginTop: 5, whiteSpace: "pre-wrap" }}>
+          {noEmoji(cleanDesc).replace(/^\s*\|\s*|\s*\|\s*$/g, "")}
         </div>
       )}
       {/* 링크 버튼 행 */}
@@ -10647,7 +10708,7 @@ function renderDescWithLinks(desc: string, accentColor: string) {
               style={{ display: "inline-flex", alignItems: "center", gap: 4, textDecoration: "none",
                 background: `${accentColor}18`, border: `1px solid ${accentColor}33`,
                 borderRadius: 20, padding: "3px 10px" }}>
-              <span style={{ fontSize: 11 }}>📍</span>
+              <MapPin size={13} strokeWidth={2} aria-hidden="true" />
               <span style={{ fontSize: 12, color: inkColor(accentColor), fontWeight: 700 }}>Google Maps</span>
             </a>
           )}
@@ -10658,7 +10719,7 @@ function renderDescWithLinks(desc: string, accentColor: string) {
               style={{ display: "inline-flex", alignItems: "center", gap: 4, textDecoration: "none",
                 background: `${accentColor}18`, border: `1px solid ${accentColor}33`,
                 borderRadius: 20, padding: "3px 10px" }}>
-              <span style={{ fontSize: 11 }}>📞</span>
+              <Phone size={13} strokeWidth={2} aria-hidden="true" />
               <span style={{ fontSize: 12, color: inkColor(accentColor), fontWeight: 700 }}>{phone.trim().replace(/^\(/, "").split(")")[0].trim()}</span>
             </a>
           )}
@@ -10759,17 +10820,17 @@ function PlaceCard({ emoji, name, nameEn, desc, tags, accentColor = MINT, websit
           <EmojiIcon emoji={emoji} size={20} strokeWidth={1.8} />
         </div>
         <div style={{ flex: 1 }}>
-          <div style={{ fontFamily: "'Pretendard Variable',sans-serif", fontWeight: 700, fontSize: 14, color: "var(--color-text-primary)" }}>{name}</div>
+          <div style={{ fontFamily: "'Pretendard Variable',sans-serif", fontWeight: 700, fontSize: 14, color: "var(--color-text-primary)" }}>{noEmoji(name)}</div>
           {/* 영어 모드에서는 name 이 이미 영문명이라 같은 이름이 두 번 나왔다. 같으면 한 줄만 그린다. */}
           {nameEn && nameEn.trim().toLowerCase() !== (name || "").trim().toLowerCase() && (
-            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 10, color: "var(--color-text-secondary)", marginTop: 1 }}>{nameEn}</div>
+            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-secondary)", marginTop: 1 }}>{noEmoji(nameEn)}</div>
           )}
           {renderDescWithLinks(desc, inkColor(accentColor))}
           <ContactRow website={website} email={email} phone={phone} desc={desc} accentColor={inkColor(accentColor)} />
           {tags && (
             <div className="flex flex-wrap gap-[5px] mt-[8px]">
               {tags.map((tag, i) => (
-                <span key={i} style={{ background: `${accentColor}18`, border: `1px solid ${accentColor}33`, color: inkColor(accentColor), borderRadius: 8, padding: "2px 8px", fontSize: 12, fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 600 }}>{tag}</span>
+                <span key={i} style={{ background: `${accentColor}18`, border: `1px solid ${accentColor}33`, color: inkColor(accentColor), borderRadius: 8, padding: "2px 8px", fontSize: 12, fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 600 }}>{noEmoji(tag)}</span>
               ))}
             </div>
           )}
@@ -10785,7 +10846,7 @@ function PlaceCard({ emoji, name, nameEn, desc, tags, accentColor = MINT, websit
 function EmergencyRow({ emoji, title, number, desc }: { emoji: string; title: string; number: string; desc: string }) {
   return (
     <a href={`tel:${number.replace(/\D/g, "")}`} className="transition-colors duration-200 hover:bg-[rgba(248,113,113,0.08)]" style={{ display: "flex", alignItems: "center", gap: 14, padding: "14px 18px", borderBottom: "1px solid rgba(27,42,74,0.06)", textDecoration: "none" }}>
-      <div style={{ width: 42, height: 42, borderRadius: 13, background: "rgba(239,68,68,0.15)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, flexShrink: 0 }}>{emoji}</div>
+      <div style={{ width: 42, height: 42, borderRadius: 13, background: "rgba(239,68,68,0.15)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, flexShrink: 0, color: "#DC2626" }}><EmojiIcon emoji={emoji} size={20} strokeWidth={1.9} /></div>
       <div style={{ flex: 1 }}>
         <div style={{ fontFamily: "'Pretendard Variable',sans-serif", fontWeight: 700, fontSize: 14, color: "var(--color-text-primary)" }}>{title}</div>
         <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "var(--color-text-primary)", marginTop: 2 }}>{desc}</div>
@@ -21843,7 +21904,7 @@ function AmericaWorldContent({ lang, citySlug, accent }: { lang: string; citySlu
   }) => (
     <div style={{ background: "rgba(27,42,74,0.05)", borderRadius: 14, padding: "14px", marginBottom: 10 }}>
       <div style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 8 }}>
-        <span style={{ fontSize: 22, flexShrink: 0 }}>{emoji}</span>
+        <span style={{ fontSize: 22, flexShrink: 0, display: "inline-flex" }}><EmojiIcon emoji={emoji} size={22} /></span>
         <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 14, color: "var(--color-text-primary)", lineHeight: 1.3 }}>{title}</div>
       </div>
       <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 13, color: "var(--color-text-primary)", lineHeight: 1.7, paddingLeft: 32 }}>{desc}</div>
@@ -23358,7 +23419,7 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
               <EmergencyRow key={l.number} emoji="🚨" title={lang === "ko" ? l.ko : l.en} number={l.number} desc={lang === "ko" ? l.descKo : l.descEn} />
             ))}
             <EmergencyRow emoji="🏥" title={em.erName} number={em.erPhone} desc={em.erAddr} />
-            {isUS && <EmergencyRow emoji="☁️" title={lang === "ko" ? "독·약물 중독" : "Poison Control"} number="800-222-1222" desc={lang === "ko" ? "약물·화학물질 중독 24시간 — 즉시 전화" : "Drug & chemical poisoning — call immediately"} />}
+            {isUS && <EmergencyRow emoji="💊" title={lang === "ko" ? "독·약물 중독" : "Poison Control"} number="800-222-1222" desc={lang === "ko" ? "약물·화학물질 중독 24시간 — 즉시 전화" : "Drug & chemical poisoning — call immediately"} />}
             {show988 && <EmergencyRow emoji="☎️" title={lang === "ko" ? "정신건강 위기 (988)" : "Mental Health Crisis (988)"} number="988" desc={lang === "ko" ? "자살 예방·정신건강 위기 24시간. 한국어 통역 가능" : "Suicide prevention & mental health crisis 24/7. Korean interpreter"} />}
             {/* 한인 긴급 — 한국 안의 도시에는 영사관이 없다 */}
             {showConsulate && <EmergencyRow emoji="🇰🇷" title={lang === "ko" ? "한국 영사관 긴급" : "Korean Consulate Emergency"} number={em.consulatePhone} desc={lang === "ko" ? "여권 분실·억류·사고·사망 — 24시간 긴급 직통" : "Lost passport, detention, accident, death — 24hr direct line"} />}
@@ -30034,6 +30095,8 @@ function CityCard({ c, currentCity, lang, onClose }: {
 ───────────────────────────────────────── */
 export function HebronGuide() {
   const [activeNav, setActiveNav] = useState(0);
+  const mainRef = useRef<HTMLElement | null>(null);
+  useEmojiFilter(mainRef);
   const [showSearch, setShowSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [showChat, setShowChat] = useState(false);
@@ -30623,7 +30686,7 @@ export function HebronGuide() {
         {/* PWA 설치 배너 */}
         {/* 위쪽 설치 띠는 뺐다 — 설치 안내는 PWAInstallGuideBanner 하나 (2026-11-02) */}
 
-        <main className="flex-1 overflow-y-auto" style={{ paddingBottom: 72 }}>
+        <main ref={mainRef} className="flex-1 overflow-y-auto" style={{ paddingBottom: 72 }}>
           {screens[Math.min(activeNav, screens.length - 1)]}
           {/* 여정을 끊지 않는다 — 보고 나면 되돌아 나오지 않아도 된다 */}
           {activeNav !== 0 && (
