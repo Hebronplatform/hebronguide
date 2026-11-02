@@ -11107,7 +11107,7 @@ function CommunitySection({ category, citySlug, lang }: { category: string; city
           style={{
             background: text.trim() ? "rgba(110,231,183,0.15)" : "rgba(27,42,74,0.04)",
             border: `1px solid ${text.trim() ? "rgba(110,231,183,0.4)" : "rgba(27,42,74,0.08)"}`,
-            color: text.trim() ? "#047857" : "rgba(27,42,74,0.55)",
+            color: text.trim() ? "#047857" : "rgba(27,42,74,0.65)",
             borderRadius: 8, padding: "0 16px", minHeight: 44, fontSize: 13, fontWeight: 700,
             cursor: text.trim() ? "pointer" : "default", fontFamily: "inherit",
           }}
@@ -28750,8 +28750,8 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
   // ── 언어 설정 ──
   const fromBcp = dir === "ko-en" ? "ko-KR" : "en-US";
   const toBcp   = dir === "ko-en" ? "en-US" : "ko-KR";
-  const fromFlag = dir === "ko-en" ? "🇰🇷" : "🇺🇸";
-  const toFlag   = dir === "ko-en" ? "🇺🇸" : "🇰🇷";
+  const fromFlag = dir === "ko-en" ? "KO" : "EN";   // 국기 대신 글자 (2026-11-02)
+  const toFlag   = dir === "ko-en" ? "EN" : "KO";
   const fromLabel = dir === "ko-en" ? "한국어" : "English";
   const toLabel   = dir === "ko-en" ? "English" : "한국어";
 
@@ -28863,7 +28863,7 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
   return (
     <div style={{ position:"fixed", inset:0, zIndex:300, background:"rgba(0,0,0,0.6)",
       backdropFilter:"blur(8px)", display:"flex", alignItems:"flex-end" }} onClick={handleClose}>
-      <div style={{ width:"100%", maxWidth:430, margin:"0 auto", background:"#0f172a",
+      <div style={{ width:"100%", maxWidth:430, margin:"0 auto", background:"var(--color-surface)",
         borderRadius:"24px 24px 0 0", paddingBottom:"env(safe-area-inset-bottom,20px)",
         boxShadow:"0 -8px 48px rgba(0,0,0,0.4)", maxHeight:"90vh", overflowY:"auto" }}
         onClick={e => e.stopPropagation()}>
@@ -28873,11 +28873,11 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
           <div>
             <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize:16, color: "var(--color-text-primary)",
               display:"flex", alignItems:"center", gap:7 }}>
-              🎙️ {ko ? "AI 통역기" : "AI Interpreter"}
-              {isSpeaking && <span style={{ fontSize:10, background:"rgba(110,231,183,0.2)", color: "var(--color-success)",
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ verticalAlign: "-3px", marginRight: 6 }}><rect x="9" y="3" width="6" height="11" rx="3" /><path d="M5 11a7 7 0 0 0 14 0" /><path d="M12 18v3" /></svg>{ko ? "AI 통역기" : "AI Interpreter"}
+              {isSpeaking && <span style={{ fontSize:12, background:"rgba(110,231,183,0.2)", color: "var(--color-success)",
                 borderRadius:8, padding:"2px 8px", fontWeight:700, animation:"pulse 1s infinite" }}>▶ 재생 중</span>}
             </div>
-            <div style={{ fontSize:10, color: "var(--color-text-muted)", marginTop:2, fontFamily:"Geist,Pretendard Variable,sans-serif" }}>
+            <div style={{ fontSize:12, color: "var(--color-text-muted)", marginTop:2, fontFamily:"Geist,Pretendard Variable,sans-serif" }}>
               {ko ? "음성 인식 · AI 번역 · 음성 출력" : "Speech Recognition · AI Translation · TTS"}
             </div>
           </div>
@@ -28886,9 +28886,9 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
             <button onClick={() => setAutoSpeak(a => !a)}
               style={{ border:"none", background: autoSpeak ? "rgba(110,231,183,0.2)" : "rgba(27,42,74,0.08)",
                 borderRadius:20, padding:"5px 10px", cursor:"pointer",
-                fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:10, fontWeight:700,
+                fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, fontWeight:700,
                 color: autoSpeak ? "#6EE7B7" : "rgba(27,42,74,0.45)" }}>
-              {autoSpeak ? "🔊 자동 ON" : "🔇 자동 OFF"}
+              {autoSpeak ? (ko ? "소리 켬" : "Sound on") : (ko ? "소리 끔" : "Sound off")}
             </button>
             <button onClick={handleClose}
               style={{ border:"none", background:"rgba(27,42,74,0.1)", borderRadius:"50%",
@@ -28905,7 +28905,7 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
               <div style={{ fontSize:18 }}>{fromFlag}</div>
               <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, fontWeight:700,
                 color: "var(--color-text-primary)", marginTop:3 }}>{fromLabel}</div>
-              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:9, color: "var(--color-text-muted)" }}>
+              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color: "var(--color-text-muted)" }}>
                 {ko ? "입력" : "Input"}
               </div>
             </div>
@@ -28920,7 +28920,7 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
               <div style={{ fontSize:18 }}>{toFlag}</div>
               <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, fontWeight:700,
                 color: "var(--color-success)", marginTop:3 }}>{toLabel}</div>
-              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:9, color:"rgba(110,231,183,0.5)" }}>
+              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color:"var(--color-success)" }}>
                 {ko ? "번역 출력" : "Output"}
               </div>
             </div>
@@ -28930,7 +28930,7 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
           <div style={{ background:"rgba(27,42,74,0.06)", borderRadius:14,
             padding:"12px 14px", minHeight:54, marginBottom:8,
             border:"1px solid rgba(27,42,74,0.1)" }}>
-            <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:9, color: "var(--color-text-muted)",
+            <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color: "var(--color-text-muted)",
               fontWeight:700, letterSpacing:"0.08em", marginBottom:5 }}>
               {fromFlag} {ko ? "원문 (자막)" : "Original (caption)"}
             </div>
@@ -28938,7 +28938,7 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
               color: original ? "#1B2A4A" : "rgba(27,42,74,0.25)", lineHeight:1.7, minHeight:22 }}>
               {original || (interim
                 ? <span style={{ color: "var(--color-text-secondary)", fontStyle:"italic" }}>{interim}...</span>
-                : <span>{ko ? "🎙️ 아래 버튼을 눌러 말씀하세요" : "🎙️ Tap the button below to speak"}</span>
+                : <span>{ko ? "아래 버튼을 눌러 말씀하세요" : "Tap the button below to speak"}</span>
               )}
             </div>
           </div>
@@ -28949,7 +28949,7 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
             border:`1px solid ${translated ? "rgba(110,231,183,0.25)" : "rgba(27,42,74,0.06)"}`,
             transition:"all 0.3s" }}>
             <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:5 }}>
-              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:9, color:"rgba(110,231,183,0.6)",
+              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color:"var(--color-success)",
                 fontWeight:700, letterSpacing:"0.08em" }}>
                 {toFlag} {ko ? "번역 결과 (자막)" : "Translation (caption)"}
               </div>
@@ -28957,22 +28957,22 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
                 <div style={{ display:"flex", gap:6 }}>
                   {isSpeaking
                     ? <button onClick={stopSpeak}
-                        style={{ border:"none", background:"rgba(239,68,68,0.2)", color:"#FCA5A5",
+                        style={{ border:"none", background:"rgba(239,68,68,0.2)", color:"#B91C1C",
                           borderRadius:8, padding:"3px 8px", cursor:"pointer",
-                          fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:9, fontWeight:700 }}>
+                          fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, fontWeight:700 }}>
                         ⏹ {ko ? "중지" : "Stop"}
                       </button>
                     : <button onClick={() => speak(translated, toBcp)}
                         style={{ border:"none", background:"rgba(110,231,183,0.15)", color: "var(--color-success)",
                           borderRadius:8, padding:"3px 8px", cursor:"pointer",
-                          fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:9, fontWeight:700 }}>
-                        🔊 {ko ? "다시 듣기" : "Play again"}
+                          fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, fontWeight:700 }}>
+                        {ko ? "다시 듣기" : "Play again"}
                       </button>
                   }
                   <button onClick={() => navigator.clipboard?.writeText(translated)}
                     style={{ border:"none", background:"rgba(27,42,74,0.08)", color: "var(--color-text-secondary)",
                       borderRadius:8, padding:"3px 8px", cursor:"pointer",
-                      fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:9, fontWeight:700 }}>
+                      fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, fontWeight:700 }}>
                     📋 {ko ? "복사" : "Copy"}
                   </button>
                 </div>
@@ -28981,7 +28981,7 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
             <div style={{ fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif", fontSize:15,
               color: translated ? "#1B2A4A" : "rgba(27,42,74,0.2)", lineHeight:1.7, minHeight:22 }}>
               {isTranslating
-                ? <span style={{ color:"rgba(110,231,183,0.6)", fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12 }}>
+                ? <span style={{ color:"var(--color-success)", fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12 }}>
                     ✦ {ko ? "AI 번역 중..." : "Translating..."}
                   </span>
                 : (translated || (ko ? "번역 결과가 여기에 표시됩니다" : "Translation will appear here"))}
@@ -28992,7 +28992,7 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
           {errMsg && (
             <div style={{ background:"rgba(239,68,68,0.1)", border:"1px solid rgba(239,68,68,0.3)",
               borderRadius:10, padding:"8px 12px", marginBottom:10,
-              fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:11, color:"#FCA5A5" }}>
+              fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color:"#B91C1C" }}>
               ⚠️ {errMsg}
             </div>
           )}
@@ -29018,7 +29018,9 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
                 transition:"all 0.18s",
                 marginBottom:10,
               }}>
-              <span style={{ fontSize:20 }}>{isListening ? "🔴" : "🎙️"}</span>
+              <span aria-hidden="true" style={{ display:"inline-flex" }}>{isListening
+                ? <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7" fill="#DC2626" /></svg>
+                : <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3" /><path d="M5 11a7 7 0 0 0 14 0" /><path d="M12 18v3" /></svg>}</span>
               {isListening
                 ? (ko ? "듣는 중... (손 떼면 중지)" : "Listening... (release to stop)")
                 : (ko ? "누르고 말하세요" : "Hold & Speak")}
@@ -29050,17 +29052,17 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
           <div style={{ marginTop:12, padding:"10px 12px", background:"rgba(27,42,74,0.04)",
             borderRadius:10, display:"flex", gap:8, alignItems:"flex-start" }}>
             <span style={{ flexShrink:0, marginTop:1 }}><EmojiIcon emoji={"🎧"} size={11} /></span>
-            <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:10, color: "var(--color-text-muted)", lineHeight:1.6 }}>
+            <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color: "var(--color-text-muted)", lineHeight:1.6 }}>
               {ko
-                ? "이어폰 연결 시 번역 음성이 자동으로 이어폰으로 재생됩니다. '자동 ON' 상태에서 번역 완료 즉시 음성이 출력됩니다."
-                : "When earphones are connected, translated audio plays automatically through them. With 'Auto ON', audio plays immediately after translation."}
+                ? "이어폰 연결 시 번역 음성이 자동으로 이어폰으로 재생됩니다. '소리 켬' 상태에서 번역 완료 즉시 음성이 출력됩니다."
+                : "When earphones are connected, translated audio plays automatically through them. With 'Sound on', audio plays immediately after translation."}
             </div>
           </div>
 
           {/* ── 최근 번역 기록 ── */}
           {history.length > 0 && (
             <div style={{ marginTop:12 }}>
-              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:10, fontWeight:700,
+              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, fontWeight:700,
                 color: "var(--color-text-muted)", letterSpacing:"0.08em", marginBottom:6 }}>
                 {ko ? "📋 최근 번역" : "📋 Recent"}
               </div>
@@ -29070,9 +29072,9 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
                   style={{ background:"rgba(27,42,74,0.04)", borderRadius:10, padding:"8px 12px",
                     marginBottom:5, cursor:"pointer",
                     borderLeft:"2px solid rgba(110,231,183,0.3)" }}>
-                  <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:10, color: "var(--color-text-secondary)",
+                  <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color: "var(--color-text-secondary)",
                     marginBottom:2, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{h.orig}</div>
-                  <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:11, color:"rgba(110,231,183,0.75)",
+                  <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color:"var(--color-success)",
                     whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{h.trans}</div>
                 </div>
               ))}

@@ -113,7 +113,7 @@
   --color-surface-warm:   #F6EED5;
   --color-text-primary:   #1B2A4A;
   --color-text-secondary: #4A5A75;
-  --color-text-muted:     #64748B;
+  --color-text-muted:     #617189;   /* 2026-11-02: #64748B 는 바탕 #F7F8FB 에서 대비 4.48 — 4.5 를 넘기려 한 칸 짙게 */
   --color-text-inverse:   #FFFFFF;
   --color-border:         #E5E9F0;
   --color-primary:        #1B2A4A;
