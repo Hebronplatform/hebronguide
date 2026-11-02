@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>HebronGuide 운영 대시보드</title>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
 <style>
 :root{--bg:#0d1117;--s1:rgba(255,255,255,.04);--s2:rgba(255,255,255,.07);
@@ -16,7 +16,7 @@ body{font-family:'Pretendard Variable',sans-serif;background:var(--bg);color:var
 /* ── 네비 */
 nav{background:rgba(13,17,23,.97);border-bottom:1px solid rgba(255,255,255,.08);
   padding:14px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;}
-.logo{font-weight:800;font-size:1rem;color:var(--gold);font-family:'JetBrains Mono',monospace;}
+.logo{font-weight:800;font-size:1rem;color:var(--gold);font-family:'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;}
 .nav-right{display:flex;gap:10px;align-items:center;}
 .live-dot{width:8px;height:8px;border-radius:50%;background:#22C55E;animation:blink 2s infinite;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
@@ -41,7 +41,7 @@ nav{background:rgba(13,17,23,.97);border-bottom:1px solid rgba(255,255,255,.08);
 /* ── KPI 카드 */
 .kpi{background:var(--s1);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px 20px;}
 .kpi-label{font-size:.72rem;color:var(--muted);font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;}
-.kpi-value{font-size:2rem;font-weight:800;font-family:'JetBrains Mono',monospace;color:#fff;margin-bottom:4px;}
+.kpi-value{font-size:2rem;font-weight:800;font-family:'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;color:#fff;margin-bottom:4px;}
 .kpi-sub{font-size:.75rem;color:var(--muted);}
 .kpi-trend{font-size:.75rem;margin-top:4px;}
 .up{color:var(--mint);}
@@ -59,14 +59,14 @@ nav{background:rgba(13,17,23,.97);border-bottom:1px solid rgba(255,255,255,.08);
 .check-item.error{border-left:3px solid var(--red);}
 .check-badge{font-size:14px;flex-shrink:0;}
 .check-name{flex:1;font-size:.82rem;font-weight:600;color:#fff;}
-.check-status{font-size:.72rem;font-family:'JetBrains Mono',monospace;}
+.check-status{font-size:.72rem;font-family:'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;}
 .check-status.ok{color:var(--mint);}
 .check-status.warn{color:var(--yellow);}
 .check-status.error{color:var(--red);}
 
 /* ── 도시 그리드 */
 .city-grid{display:flex;flex-wrap:wrap;gap:6px;}
-.city-pill{font-size:.7rem;padding:3px 10px;border-radius:20px;font-weight:700;font-family:'JetBrains Mono',monospace;}
+.city-pill{font-size:.7rem;padding:3px 10px;border-radius:20px;font-weight:700;font-family:'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;}
 .city-pill.full{background:rgba(110,231,183,.15);color:var(--mint);border:1px solid rgba(110,231,183,.3);}
 .city-pill.partial{background:rgba(245,158,11,.12);color:var(--yellow);border:1px solid rgba(245,158,11,.3);}
 .city-pill.basic{background:rgba(255,255,255,.05);color:var(--muted);border:1px solid rgba(255,255,255,.1);}
@@ -91,7 +91,7 @@ nav{background:rgba(13,17,23,.97);border-bottom:1px solid rgba(255,255,255,.08);
 /* ── 최근 배포 */
 .deploy-list{display:flex;flex-direction:column;gap:8px;}
 .deploy-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:var(--s2);border-radius:10px;}
-.deploy-hash{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--blue);font-weight:600;flex-shrink:0;}
+.deploy-hash{font-family:'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;font-size:.7rem;color:var(--blue);font-weight:600;flex-shrink:0;}
 .deploy-msg{font-size:.78rem;color:rgba(236,253,245,.8);flex:1;line-height:1.4;}
 .deploy-time{font-size:.68rem;color:var(--muted);flex-shrink:0;}
 

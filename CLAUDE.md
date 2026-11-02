@@ -1015,17 +1015,18 @@ HebronGuide는 처음 그 도시에 도착한 사람이 여는 첫 문입니다.
 아래는 **지금 코드에서 실제로 쓰이고 있는 값**입니다. 지금 화면을 바꾸지 않습니다.
 순서는 **보존(Preserve) → 정규화(Normalize) → 개선(Improve)** 입니다.
 
-**1. 글꼴 — 현재 실제로 불러오는 것 (정본 3종과 다름)**
+**1. 글꼴 — 정본 3종으로 옮김 완료 (2026-11-02 실측) · 남은 예외는 로고 Cinzel 하나**
 
-| 곳 | 불러오는 글꼴 | 쓰임 |
+| 곳 | 불러오는 글꼴 (브라우저에서 확인) | 쓰임 |
 |---|---|---|
-| 랜딩 `index.html` (Google Fonts) | **Noto Sans KR** 300·400·500·700·900 · **Cinzel** 700·900 | body = Noto Sans KR / 로고·숫자·연도 = Cinzel |
-| React 앱 `hebronguide/src/styles/fonts.css` | **Manrope** 300~800 · **Noto Sans KR** 400·500·700 | UI = Manrope / 본문 = Noto Sans KR |
-| 앱 토큰 `hebronguide/src/styles/theme.css` | `--hebron-font-display: 'Cinzel','Georgia',serif` · `--hebron-font-body: 'Noto Sans KR',…` · `--hebron-font-ui: 'Manrope',…` | (앱은 Cinzel 웹폰트를 로드하지 않아 Georgia로 폴백) |
+| 랜딩 `index.html` | **Pretendard Variable** · **Geist** · **Cinzel** | 본문 = Pretendard / 로고 = Cinzel (서랍 브랜드명도 Cinzel) |
+| React 앱 `hebronguide/src/styles/fonts.css` | **Geist** · **Geist Mono** · **Pretendard Variable** | UI·본문 = Geist·Pretendard / 숫자 코드 = Geist Mono |
+| 앱 토큰 `hebronguide/src/styles/theme.css` | `--hebron-font-body: 'Pretendard Variable',…` · `--hebron-font-ui: 'Geist','Pretendard Variable',…` · `--hebron-font-display: 'Cinzel','Georgia',serif` | (앱은 Cinzel 웹폰트를 로드하지 않아 display 는 Georgia 로 폴백) |
+| 정적 페이지 `hebronguide/public/*.html` | **Pretendard Variable** · **Geist** (+ 필요한 곳 **Geist Mono**, 로고 **Cinzel**) | 2026-11-02에 Noto Serif KR(25쪽)·Playfair Display·Fraunces·JetBrains Mono·Inter 를 모두 정본으로 바꿈 |
 
-- 랜딩 `.hg-drawer-brand`만 `'Playfair Display'`를 지정하지만 **그 글꼴을 불러오지 않아 실제 화면은 serif 폴백**입니다 — 이전할 때 정리합니다(지금 손대면 화면이 바뀌므로 그대로 둡니다).
-- 정본은 Pretendard Variable · Geist · Geist Mono입니다. **랜딩과 앱은 서로 다른 파일**이므로 **같은 회차에 함께** 교체해야 두 화면이 갈리지 않습니다. 그때까지 새 페이지도 위 글꼴을 따릅니다.
-- 정본은 굵기 **900을 쓰지 않습니다.** 이전할 때 Cinzel 900·Noto Sans KR 900은 800으로 내립니다.
+- **예외는 하나 — 로고의 Cinzel.** 브랜드 로고라 그대로 둔다 (2026-11-02 폴 김 목사 결정). 이야기 페이지의 명조(Noto Serif KR)도 정본 Pretendard로 바꿨다 — 페이지의 개성은 색·구성·일러스트에서 낸다.
+- 새 페이지는 Pretendard Variable · Geist · Geist Mono 만 쓴다. 다른 글꼴을 Google Fonts 주소에 더하지 않는다.
+- 정본은 굵기 **900을 쓰지 않습니다.** Cinzel 900 등 남은 900은 다듬을 때 800으로 내립니다.
 
 **2. 다크 브랜드 색 — 앱 토큰 `hebronguide/src/styles/theme.css` (출처 `_hebron_codex/design-tokens/hebron-tokens.css`)**
 

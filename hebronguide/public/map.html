@@ -16,7 +16,7 @@
 <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
 
 <style>
@@ -44,7 +44,7 @@
   html,body{height:100%;}
   body{font-family:'Pretendard Variable','Pretendard Variable',-apple-system,sans-serif;
        background:var(--bg);color:var(--text);overflow:hidden;word-break:keep-all;}
-  .serif{font-family:'Noto Serif KR',serif;letter-spacing:-.3px;}
+  .serif{font-family:'Pretendard Variable', Pretendard, Geist, -apple-system, sans-serif;letter-spacing:-.3px;}
 
   /* 상단 바 */
   .top{position:fixed;top:0;left:0;right:0;z-index:10;pointer-events:none;
@@ -65,7 +65,7 @@
   /* 성구 띠 (상단, 지도 위 떠다님) */
   .verse{position:fixed;top:62px;left:50%;transform:translateX(-50%);z-index:9;
          text-align:center;max-width:90%;pointer-events:none;}
-  .verse p{font-family:'Noto Serif KR',serif;font-size:1rem;letter-spacing:-.3px;
+  .verse p{font-family:'Pretendard Variable', Pretendard, Geist, -apple-system, sans-serif;font-size:1rem;letter-spacing:-.3px;
            color:var(--accent2);text-shadow:0 2px 10px rgba(0,0,0,.6);line-height:1.5;}
   .verse cite{display:block;font-family:'Pretendard Variable','Pretendard Variable',sans-serif;
               font-size:.78rem;color:var(--muted2);margin-top:4px;font-style:normal;}
@@ -132,7 +132,7 @@
   .cta a.secondary{background:rgba(13,17,23,.88);color:var(--muted);border:1px solid var(--line);}
   .cta a.secondary:hover{color:var(--accent2);}
   .cta .motto{color:var(--muted2);font-size:.76rem;margin-right:4px;letter-spacing:.3px;
-              font-family:'Noto Serif KR',serif;}
+              font-family:'Pretendard Variable', Pretendard, Geist, -apple-system, sans-serif;}
 
   /* 모바일 */
   @media (max-width:720px){
@@ -156,7 +156,7 @@
   .loading .spinner{width:30px;height:30px;border:2px solid var(--line);
                     border-top-color:var(--accent);border-radius:50%;
                     animation:spin 1s linear infinite;}
-  .loading .verse-ko{font-family:'Noto Serif KR',serif;color:var(--accent2);
+  .loading .verse-ko{font-family:'Pretendard Variable', Pretendard, Geist, -apple-system, sans-serif;color:var(--accent2);
                      text-align:center;max-width:280px;line-height:1.6;margin-top:6px;}
   .loading .verse-ko small{display:block;color:var(--muted2);font-size:.74rem;
                            font-family:'Pretendard Variable','Pretendard Variable',sans-serif;margin-top:4px;}

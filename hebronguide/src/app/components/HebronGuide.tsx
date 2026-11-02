@@ -21911,7 +21911,7 @@ function AmericaWorldContent({ lang, citySlug, accent }: { lang: string; citySlu
       {phrase && (
         <div style={{ margin: "10px 0 0 32px", background: "rgba(201,162,39,0.12)", border: "1px solid rgba(201,162,39,0.3)", borderRadius: 10, padding: "10px 12px" }}>
           <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "#8A6A12", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: 5 }}><EmojiIcon emoji={"💬"} size={13} /> {ko ? "이렇게 말하세요" : "Say this"}</div>
-          <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 13, color: "var(--color-text-primary)", fontWeight: 700, marginBottom: 3 }}>"{phrase}"</div>
+          <div style={{ fontFamily: "'Geist Mono',ui-monospace,monospace", fontSize: 13, color: "var(--color-text-primary)", fontWeight: 700, marginBottom: 3 }}>"{phrase}"</div>
           {phraseKo && <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-primary)" }}>{phraseKo}</div>}
         </div>
       )}
@@ -27698,7 +27698,7 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
       <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "#8A6A12", fontWeight: 700, marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.5px" }}>
         💬 {situation}
       </div>
-      <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 14, color: "var(--color-text-primary)", fontWeight: 700, marginBottom: 4 }}>
+      <div style={{ fontFamily: "'Geist Mono',ui-monospace,monospace", fontSize: 14, color: "var(--color-text-primary)", fontWeight: 700, marginBottom: 4 }}>
         "{english}"
       </div>
       <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-secondary)" }}>
@@ -27725,7 +27725,7 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
     <div style={{ background: "rgba(27,42,74,0.05)", borderRadius: 14, padding: "14px 14px 16px", marginBottom: 10, borderLeft: `3px solid ${critical ? "#EF4444" : accent}` }}>
       <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
         <div style={{ width: 28, height: 28, borderRadius: "50%", background: critical ? "#EF4444" : accent, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-          <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, color: "#0d1117", fontWeight: 800 }}>{num}</span>
+          <span style={{ fontFamily: "'Geist Mono',ui-monospace,monospace", fontSize: 12, color: "#0d1117", fontWeight: 800 }}>{num}</span>
         </div>
         <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 14, color: "var(--color-text-primary)", lineHeight: 1.3 }}>{title}</div>
         {critical && <span style={{ background: "#EF4444", color: "#fff", fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, fontWeight: 800, padding: "2px 6px", borderRadius: 6, letterSpacing: "0.5px", flexShrink: 0 }}>필수</span>}

@@ -5,6 +5,20 @@
 
 ---
 
+### 2026-11-02 | [글꼴] 정적 페이지까지 정본 3종으로 — 남은 예외는 로고 Cinzel 하나
+
+- **무엇을**:
+  - 실측해 보니 앱(81개 도시)과 1면은 **이미** Pretendard·Geist만 쓰고 있었다. CLAUDE.md 의 "앱 = Manrope + Noto Sans KR" 표는 낡은 기록이었다 → 사실대로 고쳤다.
+  - 정적 페이지 28곳: Noto Serif KR(이야기·홍보 페이지 25곳) · Playfair Display · Fraunces · Inter → Pretendard·Geist, JetBrains Mono → Geist Mono. 글꼴 주소 28개·선언 139곳.
+  - 앱의 JetBrains Mono 3곳 → Geist Mono, 앱 `fonts.css`에 Geist Mono 추가.
+  - `codex.html` 본문 속 "Fraunces·Noto Serif KR·JetBrains Mono로 조판" 문장을 사실대로.
+  - 낮/밤 단추가 Arial로 그려지던 3쪽 → 페이지 글꼴을 따르게.
+  - 확인: 10개 페이지를 브라우저로 열어 실제로 불러온 글꼴이 Pretendard·Geist·Geist Mono(+로고 Cinzel)뿐인지 봤다.
+- **왜**: 폴 김 목사 결정 — 이야기 페이지 명조도 정본으로, 로고 Cinzel 은 유지. "페이지의 개성은 색·구성·일러스트에서, 글꼴은 정본에서."
+- **교훈**: 문서의 "지금 상태" 표는 실측으로 다시 본다. 이미 끝난 일을 다시 하려다 문서만 틀려 있는 경우가 있다.
+
+---
+
 ### 2026-11-02 | [다듬기] 12px 아래 글자 없애기 · 투명도까지 넣어 다시 재기
 
 - **무엇을**:
