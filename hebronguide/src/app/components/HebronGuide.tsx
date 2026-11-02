@@ -29634,7 +29634,8 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
     setShowMore(false);
   };
 
-  const ACCENT = "#F2994A";
+  // 강조색은 한 곳 — 홈의 버튼과 같은 남색 (2026-11-02, 설계도 ⑦-7). 예전 주황 #F2994A 는 버튼과 다투었다.
+  const ACCENT = "#1B2A4A";   // = --color-primary (SVG 속성에는 CSS 변수 대신 값)
 
   return (
     <>
