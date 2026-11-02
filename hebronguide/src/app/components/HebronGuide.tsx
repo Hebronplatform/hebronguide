@@ -8516,7 +8516,7 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
               textDecoration: "none", background: `${accentColor}1F`,
               border: `1px solid ${accentColor}44`, borderRadius: 20, padding: "5px 11px", minHeight: 32 }}>
             <MapPin size={12} strokeWidth={2.2} color={accentColor} />
-            <span style={{ fontFamily: "'Pretendard Variable',sans-serif", fontSize: 11,
+            <span style={{ fontFamily: "'Pretendard Variable',sans-serif", fontSize: 12,
               fontWeight: 700, color: inkColor(accentColor) }}>
               {lang === "ko" ? "지도에서 코스 보기" : "See the route"}
             </span>
@@ -8550,20 +8550,20 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
             </div>
             {item.rating && (
               <div style={{ marginBottom: 6 }}>
-                <span style={{ fontSize: 11, color: "#F59E0B", fontWeight: 700 }}>
+                <span style={{ fontSize: 12, color: "#F59E0B", fontWeight: 700 }}>
                   {"★".repeat(Math.round(item.rating))} {item.rating}
                 </span>
-                {item.ratingCount && <span style={{ fontSize: 10, color: "var(--color-text-muted)" }}> ({item.ratingCount})</span>}
+                {item.ratingCount && <span style={{ fontSize: 12, color: "var(--color-text-muted)" }}> ({item.ratingCount})</span>}
               </div>
             )}
             {item.price && (
               <div style={{ marginBottom: 6, fontSize: 12, color: inkColor(accentColor), fontWeight: 700 }}>{item.price}</div>
             )}
-            <div style={{ fontSize: 11, color: "var(--color-text-secondary)", lineHeight: 1.5, marginBottom: 6 }}>
+            <div style={{ fontSize: 12, color: "var(--color-text-secondary)", lineHeight: 1.5, marginBottom: 6 }}>
               {item.why}
             </div>
             {item.address && (
-              <div style={{ fontSize: 10, color: "var(--color-text-secondary)", marginBottom: 6 }}>
+              <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginBottom: 6 }}>
                 📍 {item.address.split(",")[0]}
               </div>
             )}
@@ -8575,7 +8575,7 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
                   target="_blank" rel="noopener noreferrer"
                   style={{ display: "inline-flex", alignItems: "center", gap: 3, textDecoration: "none",
                     background: `${accentColor}18`, border: `1px solid ${accentColor}33`, borderRadius: 20, padding: "3px 8px" }}>
-                  <span style={{ fontSize: 10 }}>📍</span>
+                  <span style={{ fontSize: 12 }}>📍</span>
                   <span style={{ fontSize: 12, color: inkColor(accentColor), fontWeight: 700 }}>Google Maps</span>
                 </a>
               )}
@@ -8584,7 +8584,7 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
                 <a href={`tel:${item.phone}`}
                   style={{ display: "inline-flex", alignItems: "center", gap: 3, textDecoration: "none",
                     background: `${accentColor}18`, border: `1px solid ${accentColor}33`, borderRadius: 20, padding: "3px 8px" }}>
-                  <span style={{ fontSize: 10 }}>📞</span>
+                  <span style={{ fontSize: 12 }}>📞</span>
                   <span style={{ fontSize: 12, color: inkColor(accentColor), fontWeight: 700 }}>전화</span>
                 </a>
               )}
@@ -8595,13 +8595,13 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
                   style={{ display: "inline-flex", alignItems: "center", gap: 3, textDecoration: "none",
                     background: "rgba(110,231,183,0.12)", border: "1px solid rgba(110,231,183,0.3)", borderRadius: 20, padding: "3px 8px" }}>
                   <Globe size={9} strokeWidth={2} />
-                  <span style={{ fontSize: 10, color: "var(--color-success)", fontWeight: 700 }}>공식 사이트</span>
+                  <span style={{ fontSize: 12, color: "var(--color-success)", fontWeight: 700 }}>공식 사이트</span>
                 </a>
               )}
             </div>
             {item.tip && (
               <div style={{ marginTop: 6, padding: "4px 8px", borderRadius: 6, background: "rgba(27,42,74,0.06)",
-                fontSize: 10, color: "var(--color-text-primary)", fontStyle: "italic" }}>
+                fontSize: 12, color: "var(--color-text-primary)", fontStyle: "italic" }}>
                 💡 {item.tip}
               </div>
             )}
@@ -8705,15 +8705,15 @@ function ChecklistItem({ itemId, title, desc, accentColor = MINT, showReminder =
           textDecoration: isDone ? "line-through" : "none",
           opacity: isDone ? 0.6 : 1, marginBottom: 3, transition: "all 0.2s ease",
         }}>{title}</div>
-        <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, lineHeight: 1.65, color: "var(--color-text-primary)" }}>{desc}</div>
+        <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, lineHeight: 1.65, color: "var(--color-text-primary)" }}>{desc}</div>
         {showReminder && !isDone && (
           <button
             onClick={handleReminder}
             style={{
               marginTop: 8, background: reminderSet ? "rgba(110,231,183,0.15)" : "rgba(27,42,74,0.06)",
               border: reminderSet ? `1px solid ${accentColor}44` : "1px solid rgba(27,42,74,0.1)",
-              borderRadius: 6, padding: "4px 10px", fontSize: 10, fontFamily: "Geist,Pretendard Variable,sans-serif",
-              fontWeight: 600, color: reminderSet ? accentColor : "rgba(27,42,74,0.5)",
+              borderRadius: 6, padding: "4px 10px", fontSize: 12, fontFamily: "Geist,Pretendard Variable,sans-serif",
+              fontWeight: 600, color: reminderSet ? accentColor : "rgba(27,42,74,0.72)",
               cursor: "pointer",
             }}
           >
@@ -8795,15 +8795,15 @@ function DualClock() {
       {/* Seattle */}
       <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 2, paddingRight: 12, borderRight: "1px solid rgba(27,42,74,0.08)" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-          <span style={{ fontSize: 11 }}>🇺🇸</span>
-          <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 9, color: GOLD, letterSpacing: "0.6px", textTransform: "uppercase" }}>
+          <span style={{ fontSize: 12 }}>🇺🇸</span>
+          <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: GOLD, letterSpacing: "0.6px", textTransform: "uppercase" }}>
             {label.seattle}
           </span>
         </div>
         <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 15, color: "var(--color-text-primary)", letterSpacing: "-0.3px", lineHeight: 1 }}>
           {seattleTime}
         </div>
-        <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 9, color: "var(--color-text-primary)" }}>
+        <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-primary)" }}>
           {seattleDate}
         </div>
       </div>
@@ -8813,21 +8813,21 @@ function DualClock() {
         <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 8, color: "rgba(255,255,255,0.22)", letterSpacing: "0.4px" }}>
           {lang === "ko" ? "시차" : "GAP"}
         </span>
-        <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 11, color: MINT }}>+17h</span>
+        <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 12, color: MINT }}>+17h</span>
       </div>
 
       {/* Korea */}
       <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 2, paddingLeft: 12, borderLeft: "1px solid rgba(27,42,74,0.08)" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-          <span style={{ fontSize: 11 }}>🇰🇷</span>
-          <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 9, color: MINT, letterSpacing: "0.6px", textTransform: "uppercase" }}>
+          <span style={{ fontSize: 12 }}>🇰🇷</span>
+          <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: MINT, letterSpacing: "0.6px", textTransform: "uppercase" }}>
             {label.korea}
           </span>
         </div>
         <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 15, color: "var(--color-text-primary)", letterSpacing: "-0.3px", lineHeight: 1 }}>
           {koreaTime}
         </div>
-        <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 9, color: "var(--color-text-primary)" }}>
+        <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-primary)" }}>
           {koreaDate}
         </div>
       </div>
@@ -8867,7 +8867,7 @@ function StatCard({ label, value, icon }: StatCardProps) {
       border: "1px solid rgba(27,42,74,0.08)",
       boxShadow: "0 4px 24px rgba(27,42,74,0.08), inset 0 1px 0 rgba(27,42,74,0.08)"
     }}>
-      <span className="uppercase tracking-[0.6px]" style={{ color: "var(--color-text-secondary)", fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 9 }}>{label}</span>
+      <span className="uppercase tracking-[0.6px]" style={{ color: "var(--color-text-secondary)", fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12 }}>{label}</span>
       <div className="flex items-end gap-[5px]">
         <span style={{ color: "var(--color-text-primary)", fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 22, lineHeight: 1 }}>{value}</span>
         {icon && <span className="mb-[2px]">{typeof icon === "string" ? <EmojiIcon emoji={icon} size={18} /> : icon}</span>}
@@ -8942,7 +8942,7 @@ function WorldCupBanner() {
         <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4 }}>
           <Trophy size={15} strokeWidth={2} />
           <span style={{
-            fontFamily: "Geist,Pretendard Variable, sans-serif", fontWeight: 800, fontSize: 11,
+            fontFamily: "Geist,Pretendard Variable, sans-serif", fontWeight: 800, fontSize: 12,
             color: "#fff", letterSpacing: "1px", opacity: 0.9,
           }}>FIFA WORLD CUP 2026</span>
         </div>
@@ -9042,7 +9042,7 @@ function NextStep({ at, lang, onNavigate, onHome }: {
         {Icon && <Icon size={20} color="#fff" strokeWidth={1.9} />}
       </div>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ fontFamily: "'Pretendard Variable',sans-serif", fontSize: 11,
+        <div style={{ fontFamily: "'Pretendard Variable',sans-serif", fontSize: 12,
           color: "var(--color-text-muted)", marginBottom: 2 }}>
           {ko ? headKo : headEn}
         </div>
@@ -9137,7 +9137,7 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: 
         </div>
         <span style={{
           fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif",
-          fontWeight: 500, fontSize: 11, color: "#1C1C1E",
+          fontWeight: 500, fontSize: 12, color: "#1C1C1E",
           letterSpacing: "-0.15px", textAlign: "center", lineHeight: 1.25, width: "100%",
         }}>
           {ko ? item.labelKo : item.labelEn}
@@ -9184,13 +9184,13 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: 
             <div style={{ padding: "12px 14px" }}>
               <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 10, color: "rgba(255,255,255,0.7)", letterSpacing: "1.2px", textTransform: "uppercase", marginBottom: 3 }}>
+                  <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 12, color: "rgba(255,255,255,0.7)", letterSpacing: "1.2px", textTransform: "uppercase", marginBottom: 3 }}>
                     FIFA WORLD CUP 2026
                   </div>
                   <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 15, color: "#fff", lineHeight: 1.25, marginBottom: 6 }}>
                     ⚽ {ko ? `${city.nameKo} 월드컵 경기장 & 교통 가이드` : `${city.nameEn} World Cup — Venues & Transit`}
                   </div>
-                  <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "rgba(255,255,255,0.8)", lineHeight: 1.5, marginBottom: 10 }}>
+                  <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "rgba(255,255,255,0.8)", lineHeight: 1.5, marginBottom: 10 }}>
                     {ko ? "경기 일정 · 경기장 교통 · 한식당 · 환전 정보" : "Match schedule · Stadium transit · Korean food · Exchange"}
                   </div>
                   <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
@@ -9237,7 +9237,7 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: 
             </div>
             <span style={{
               fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif",
-              fontWeight: 500, fontSize: 11, color: "#1C1C1E",
+              fontWeight: 500, fontSize: 12, color: "#1C1C1E",
               letterSpacing: "-0.15px", textAlign: "center", lineHeight: 1.25, width: "100%",
             }}>{ko ? "더보기" : "More"}</span>
           </button>
@@ -9250,7 +9250,7 @@ function QuickMenuSection({ onNavigate }: { onNavigate?: (tab: number, subTab?: 
               <div style={{
                 display: "flex", alignItems: "center", gap: 5,
                 fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif",
-                fontWeight: 600, fontSize: 11, color: "#8E8E93",
+                fontWeight: 600, fontSize: 12, color: "#8E8E93",
                 letterSpacing: "0.2px", marginBottom: 12, paddingLeft: 2,
               }}>
                 {(() => {
@@ -10388,7 +10388,7 @@ function SettlementEssentialsSection({ onNavigate }: { onNavigate?: (tab: number
         </div>
         <button onClick={() => onNavigate?.(1)} style={{
           background: "none", border: "none", cursor: "pointer",
-          fontFamily: "Geist,Pretendard Variable, sans-serif", fontWeight: 700, fontSize: 11,
+          fontFamily: "Geist,Pretendard Variable, sans-serif", fontWeight: 700, fontSize: 12,
           color: "#C9A227",
         }}>
           {lang === "ko" ? "전체 보기 →" : "See all →"}
@@ -10420,10 +10420,10 @@ function SettlementEssentialsSection({ onNavigate }: { onNavigate?: (tab: number
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontFamily: "'Pretendard Variable', sans-serif", fontWeight: 700,
-                fontSize: 11, color: "#ECFDF5", marginBottom: 2, lineHeight: 1.3 }}>
+                fontSize: 12, color: "#ECFDF5", marginBottom: 2, lineHeight: 1.3 }}>
                 {lang === "ko" ? step.titleKo : step.titleEn}
               </div>
-              <div style={{ fontFamily: "Geist,Pretendard Variable, sans-serif", fontSize: 9.5,
+              <div style={{ fontFamily: "Geist,Pretendard Variable, sans-serif", fontSize: 12,
                 color: "rgba(236,253,245,0.48)", lineHeight: 1.4, whiteSpace: "pre-line" }}>
                 {lang === "ko" ? step.descKo : step.descEn}
               </div>
@@ -10470,7 +10470,7 @@ function CategoryItem({ label, pathKey, vb, active = false, onClick }: CategoryI
           <IconBox pathKey={pathKey} vb={vb} fill={active ? MINT : "rgba(27,42,74,0.6)"} />
         </div>
       </div>
-      <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 600, fontSize: 11, color: active ? MINT : "rgba(27,42,74,0.5)", transition: "color 0.2s ease" }}>
+      <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 600, fontSize: 12, color: active ? MINT : "rgba(27,42,74,0.5)", transition: "color 0.2s ease" }}>
         {label}
       </span>
     </button>
@@ -10516,7 +10516,7 @@ function ArticleCard({ imageSrc, category, title, excerpt, readTime = "5분", is
         <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(0,0,0,0) 20%, rgba(1,22,13,0.6) 70%, rgba(1,22,13,0.95) 100%)" }} />
         <div className="absolute bottom-[12px] left-[14px]">
           <div className="px-[10px] py-[3px] rounded-[10px]" style={{ background: "rgba(185,236,238,0.55)", backdropFilter: "blur(8px)" }}>
-            <span className="uppercase tracking-[0.8px]" style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 9, color: "#356668" }}>{category}</span>
+            <span className="uppercase tracking-[0.8px]" style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "#356668" }}>{category}</span>
           </div>
         </div>
       </div>
@@ -10525,7 +10525,7 @@ function ArticleCard({ imageSrc, category, title, excerpt, readTime = "5분", is
         <p className="m-0" style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 400, fontSize: 12, lineHeight: 1.6, color: "var(--color-text-primary)" }}>{excerpt}</p>
         <div className="flex items-center gap-[6px] mt-[2px]">
           <div style={{ width: 4, height: 4, borderRadius: "50%", background: GOLD }} />
-          <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 600, fontSize: 10, color: "rgba(201,162,39,0.75)" }}>{readTime}{t("readtime.suffix")}</span>
+          <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 600, fontSize: 12, color: "rgba(201,162,39,0.75)" }}>{readTime}{t("readtime.suffix")}</span>
         </div>
       </div>
     </div>
@@ -10564,8 +10564,8 @@ function AnnouncementBanner() {
     <div className="flex items-center gap-[10px] px-[14px] py-[10px] rounded-[14px]" style={{ background: "linear-gradient(135deg, rgba(201,162,39,0.12) 0%, rgba(201,162,39,0.06) 100%)", border: "1px solid rgba(201,162,39,0.25)" }}>
       <Megaphone size={12} strokeWidth={2} />
       <div className="flex flex-col gap-[1px] flex-1 min-w-0">
-        <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: GOLD }}>{t("announce.tag")} · {t("announce.title")}</span>
-        <span className="truncate" style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 400, fontSize: 10, color: "rgba(201,162,39,0.65)" }}>{t("announce.body")}</span>
+        <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: GOLD }}>{t("announce.tag")} · {t("announce.title")}</span>
+        <span className="truncate" style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 400, fontSize: 12, color: "rgba(201,162,39,0.65)" }}>{t("announce.body")}</span>
       </div>
     </div>
   );
@@ -10602,7 +10602,7 @@ function ScreenHeader({ emoji, titleKo, titleEn, descKo, descEn, accentColor, li
           <h2 className="m-0" style={{ fontFamily: "'Pretendard Variable',sans-serif", fontWeight: 700, fontSize: 22, letterSpacing: "-0.5px", color: titleColor }}>
             {lang === "ko" ? titleKo : titleEn}
           </h2>
-          <p className="m-0 mt-[3px]" style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: descColor }}>
+          <p className="m-0 mt-[3px]" style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: descColor }}>
             {lang === "ko" ? descKo : descEn}
           </p>
         </div>
@@ -10655,11 +10655,11 @@ function StepItem({ num, title, desc, accentColor = MINT }: { num: number; title
   return (
     <div className="flex gap-[12px]" style={{ marginBottom: 14 }}>
       <div className="flex-shrink-0 flex items-center justify-center" style={{ width: 26, height: 26, borderRadius: "50%", background: `${accentColor}22`, border: `1px solid ${accentColor}55`, marginTop: 1 }}>
-        <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 11, color: accentColor }}>{num}</span>
+        <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 12, color: accentColor }}>{num}</span>
       </div>
       <div style={{ flex: 1 }}>
         <div style={{ fontFamily: "'Pretendard Variable',sans-serif", fontWeight: 700, fontSize: 13, color: "var(--color-text-primary)", marginBottom: 3 }}>{title}</div>
-        <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, lineHeight: 1.65, color: "var(--color-text-secondary)" }}>{desc}</div>
+        <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, lineHeight: 1.65, color: "var(--color-text-secondary)" }}>{desc}</div>
       </div>
     </div>
   );
@@ -10731,7 +10731,7 @@ function renderDescWithLinks(desc: string, accentColor: string) {
                 background: "rgba(110,231,183,0.12)", border: "1px solid rgba(110,231,183,0.3)",
                 borderRadius: 20, padding: "3px 10px" }}>
               <Globe size={9} strokeWidth={2} />
-              <span style={{ fontSize: 10, color: "var(--color-success)", fontWeight: 700 }}>공식 웹사이트</span>
+              <span style={{ fontSize: 12, color: "var(--color-success)", fontWeight: 700 }}>공식 웹사이트</span>
             </a>
           )}
         </div>
@@ -10764,7 +10764,7 @@ function ContactRow({ website, email, phone, desc, accentColor }:
     display: "inline-flex", alignItems: "center", gap: 5, textDecoration: "none",
     background: accentColor + "18", border: "1px solid " + accentColor + "33",
     borderRadius: 20, padding: "8px 12px", minHeight: 36,
-    fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, fontWeight: 700, color: accentColor,
+    fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, fontWeight: 700, color: accentColor,
   };
   const Ico = ({ children }: { children: React.ReactNode }) => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}
@@ -10849,7 +10849,7 @@ function EmergencyRow({ emoji, title, number, desc }: { emoji: string; title: st
       <div style={{ width: 42, height: 42, borderRadius: 13, background: "rgba(239,68,68,0.15)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, flexShrink: 0, color: "#DC2626" }}><EmojiIcon emoji={emoji} size={20} strokeWidth={1.9} /></div>
       <div style={{ flex: 1 }}>
         <div style={{ fontFamily: "'Pretendard Variable',sans-serif", fontWeight: 700, fontSize: 14, color: "var(--color-text-primary)" }}>{title}</div>
-        <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "var(--color-text-primary)", marginTop: 2 }}>{desc}</div>
+        <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-primary)", marginTop: 2 }}>{desc}</div>
       </div>
       <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 16, color: "#B91C1C" }}>{number}</div>
     </a>
@@ -10897,7 +10897,7 @@ function CityRequestForm({ lang }: { lang: string }) {
       <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 13, color: "var(--color-success)", marginBottom: 6 }}>
         🌏 {ko ? "내 도시에도 HebronGuide를 만들어 주세요" : "Bring HebronGuide to My City"}
       </div>
-      <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "var(--color-text-secondary)", lineHeight: 1.7, marginBottom: 12 }}>
+      <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-secondary)", lineHeight: 1.7, marginBottom: 12 }}>
         {ko
           ? "아직 HebronGuide가 없는 도시라면 신청해 주세요.\n이름과 이메일을 남겨 주시면 담당자가 연락드립니다."
           : "If HebronGuide isn't in your city yet, let us know.\nLeave your name and email — we'll reach out to you."}
@@ -10970,11 +10970,11 @@ function HebronServiceCard({ icon, titleKo, titleEn, descKo, descEn, color, lang
             <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 13, color: "var(--color-text-primary)" }}>
               {ko ? titleKo : titleEn}
             </span>
-            <span style={{ background: `${color}25`, border: `1px solid ${color}50`, color: color, borderRadius: 10, padding: "1px 7px", fontSize: 9, fontWeight: 700 }}>
+            <span style={{ background: `${color}25`, border: `1px solid ${color}50`, color: color, borderRadius: 10, padding: "1px 7px", fontSize: 12, fontWeight: 700 }}>
               {ko ? "준비 중" : "Coming Soon"}
             </span>
           </div>
-          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "var(--color-text-secondary)", lineHeight: 1.5 }}>
+          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-secondary)", lineHeight: 1.5 }}>
             {ko ? descKo : descEn}
           </div>
         </div>
@@ -11081,15 +11081,15 @@ function CommunityItemCard({ item, lang }: { item: any; lang: string }) {
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
         <span style={{ fontSize: 18 }}>{item.emoji || "🌱"}</span>
         <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 14, color: "var(--color-text-primary)" }}>{item.name}</span>
-        <span style={{ marginLeft: "auto", background: "rgba(110,231,183,0.15)", border: "1px solid rgba(110,231,183,0.35)", color: "var(--color-success)", borderRadius: 8, padding: "2px 8px", fontSize: 10, fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, flexShrink: 0 }}>
+        <span style={{ marginLeft: "auto", background: "rgba(110,231,183,0.15)", border: "1px solid rgba(110,231,183,0.35)", color: "var(--color-success)", borderRadius: 8, padding: "2px 8px", fontSize: 12, fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, flexShrink: 0 }}>
           {lang === "ko" ? "커뮤니티" : lang === "es" ? "Comunidad" : "Community"}
         </span>
       </div>
       {desc && <div style={{ fontSize: 12, color: "var(--color-text-secondary)", lineHeight: 1.65, marginBottom: 6 }}>{desc}</div>}
       <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-        {item.contact && <a href={`tel:${item.contact}`} style={{ fontSize: 11, color: "var(--color-success)", textDecoration: "none", fontWeight: 700 }}>📞 {item.contact}</a>}
-        {item.website && <a href={item.website} target="_blank" rel="noopener" style={{ fontSize: 11, color: "var(--color-success)", textDecoration: "none", fontWeight: 700 }}>🔗 {lang === "ko" ? "웹사이트" : lang === "es" ? "Sitio web" : "Website"}</a>}
-        <span style={{ fontSize: 10, color: "var(--color-text-muted)", marginLeft: "auto" }}>{item.addedAt}</span>
+        {item.contact && <a href={`tel:${item.contact}`} style={{ fontSize: 12, color: "var(--color-success)", textDecoration: "none", fontWeight: 700 }}>📞 {item.contact}</a>}
+        {item.website && <a href={item.website} target="_blank" rel="noopener" style={{ fontSize: 12, color: "var(--color-success)", textDecoration: "none", fontWeight: 700 }}>🔗 {lang === "ko" ? "웹사이트" : lang === "es" ? "Sitio web" : "Website"}</a>}
+        <span style={{ fontSize: 12, color: "var(--color-text-muted)", marginLeft: "auto" }}>{item.addedAt}</span>
       </div>
     </div>
   );
@@ -11205,7 +11205,7 @@ function BackToHomeButton({ onHome, lang }: { onHome?: () => void; lang: string 
         <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "#F2994A" }}>
           {lang === "ko" ? "← 홈으로" : "← Home"}
         </div>
-        <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 10, color: "rgba(242,153,74,0.6)", marginTop: 1 }}>
+        <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "rgba(242,153,74,0.6)", marginTop: 1 }}>
           HebronGuide
         </div>
       </div>
@@ -11378,7 +11378,7 @@ function Top3NeighborhoodsSection() {
               <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, transparent 30%, rgba(13,17,23,0.85) 100%)" }} />
               <div style={{ position: "absolute", top: 12, left: 12, display: "flex", gap: 8, alignItems: "center" }}>
                 <EmojiIcon emoji={h.emoji} size={19} />
-                <span style={{ background: h.color, color: "#0d1117", fontWeight: 800, fontSize: 11, padding: "3px 10px", borderRadius: 20 }}>
+                <span style={{ background: h.color, color: "#0d1117", fontWeight: 800, fontSize: 12, padding: "3px 10px", borderRadius: 20 }}>
                   #{h.rank} {lang === "ko" ? h.tagKo : h.tagEn}
                 </span>
               </div>
@@ -11565,12 +11565,12 @@ function CityHubSection({ lang }: { lang: string }) {
               {lang === "ko" ? "다른 도시 HebronGuide" : "HebronGuide Cities"}
             </span>
           </div>
-          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "var(--color-text-muted)", paddingLeft: 21 }}>
+          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-muted)", paddingLeft: 21 }}>
             {lang === "ko" ? "이사·출장·방문 도시를 미리 탐색하세요" : "Explore your next city before you move"}
           </div>
         </div>
         <a href="https://hebronguide.com" target="_blank" rel="noopener noreferrer"
-          style={{ fontSize: 11, color: "#F2994A", fontWeight: 700, fontFamily: "Geist,Pretendard Variable,sans-serif", textDecoration: "none" }}>
+          style={{ fontSize: 12, color: "#F2994A", fontWeight: 700, fontFamily: "Geist,Pretendard Variable,sans-serif", textDecoration: "none" }}>
           {lang === "ko" ? "전체 →" : "All →"}
         </a>
       </div>
@@ -11629,7 +11629,7 @@ function CityHubSection({ lang }: { lang: string }) {
                   {design.code}
                 </div>
                 {/* 국기 (작게) */}
-                <div style={{ fontSize: 10, lineHeight: 1, marginTop: 2, opacity: 0.85 }}>
+                <div style={{ fontSize: 12, lineHeight: 1, marginTop: 2, opacity: 0.85 }}>
                   {city.flag}
                 </div>
                 {/* 현재 도시 표시 */}
@@ -11646,7 +11646,7 @@ function CityHubSection({ lang }: { lang: string }) {
 
               {/* 도시 이름 — 풀네임 표시 */}
               <div style={{
-                fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 600, fontSize: 9.5,
+                fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 600, fontSize: 12,
                 color: "#374151", textAlign: "center", lineHeight: 1.25,
                 maxWidth: 72, wordBreak: "break-word",
               }}>
@@ -11982,7 +11982,7 @@ function FloatingMusicPlayer() {
     background: isActive ? "rgba(110,231,183,0.15)" : "none",
     border: "none", borderBottom: isActive ? "2px solid rgba(110,231,183,0.8)" : "2px solid transparent",
     cursor: "pointer", whiteSpace: "nowrap" as const,
-    padding: "4px 8px 5px", fontSize: 10,
+    padding: "4px 8px 5px", fontSize: 12,
     fontWeight: isActive ? 700 : 500,
     color: isActive ? "rgba(110,231,183,1)" : "rgba(255,255,255,0.55)",
     fontFamily: "Geist,Pretendard Variable,sans-serif", borderRadius: "6px 6px 0 0", flexShrink: 0,
@@ -12006,7 +12006,7 @@ function FloatingMusicPlayer() {
           {reqStatus === "success" ? (
             <div style={{ textAlign: "center", padding: "16px 0" }}>
               <div style={{ fontSize: 13, color: "rgba(110,231,183,1)", fontFamily: "Geist,Pretendard Variable,sans-serif", marginTop: 4 }}>신청되었습니다!</div>
-              <div style={{ fontSize: 10, color: "rgba(255,255,255,0.4)", fontFamily: "Geist,Pretendard Variable,sans-serif", marginTop: 4 }}>검토 후 신청곡 탭에서 재생됩니다.</div>
+              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", fontFamily: "Geist,Pretendard Variable,sans-serif", marginTop: 4 }}>검토 후 신청곡 탭에서 재생됩니다.</div>
             </div>
           ) : (
             <>
@@ -12015,18 +12015,18 @@ function FloatingMusicPlayer() {
                   placeholder={field === "url" ? "YouTube 링크 (필수)" : field === "name" ? "이름 (선택)" : "메모 (선택)"}
                   value={reqForm[field]}
                   onChange={e => setReqForm(p => ({ ...p, [field]: e.target.value }))}
-                  style={{ width: "100%", boxSizing: "border-box", padding: "7px 10px", marginBottom: 7, borderRadius: 8, border: "1px solid rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.06)", color: "#fff", fontSize: 11, fontFamily: "Geist,Pretendard Variable,sans-serif", outline: "none" }}
+                  style={{ width: "100%", boxSizing: "border-box", padding: "7px 10px", marginBottom: 7, borderRadius: 8, border: "1px solid rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.06)", color: "#fff", fontSize: 12, fontFamily: "Geist,Pretendard Variable,sans-serif", outline: "none" }}
                 />
               ))}
               <select value={reqForm.timePref} onChange={e => setReqForm(p => ({ ...p, timePref: e.target.value }))}
-                style={{ width: "100%", boxSizing: "border-box", padding: "7px 10px", marginBottom: 10, borderRadius: 8, border: "1px solid rgba(255,255,255,0.15)", background: "rgba(16,20,36,0.97)", color: "rgba(255,255,255,0.7)", fontSize: 11, fontFamily: "Geist,Pretendard Variable,sans-serif", outline: "none" }}>
+                style={{ width: "100%", boxSizing: "border-box", padding: "7px 10px", marginBottom: 10, borderRadius: 8, border: "1px solid rgba(255,255,255,0.15)", background: "rgba(16,20,36,0.97)", color: "rgba(255,255,255,0.7)", fontSize: 12, fontFamily: "Geist,Pretendard Variable,sans-serif", outline: "none" }}>
                 {["언제나","새벽 (5-7시)","아침 (9-11시)","오후 (1-5시)","저녁 (7-10시)"].map(t => <option key={t} value={t}>{t}</option>)}
               </select>
               <button onClick={submitRequest} disabled={reqStatus === "loading" || !reqForm.url.trim()}
                 style={{ width: "100%", padding: "8px", borderRadius: 8, border: "none", cursor: reqForm.url.trim() ? "pointer" : "not-allowed", background: reqForm.url.trim() ? "rgba(110,231,183,0.85)" : "rgba(255,255,255,0.1)", color: reqForm.url.trim() ? "#0d1117" : "rgba(255,255,255,0.3)", fontSize: 12, fontWeight: 700, fontFamily: "Geist,Pretendard Variable,sans-serif" }}>
                 {reqStatus === "loading" ? "신청 중..." : "신청하기"}
               </button>
-              {reqStatus === "error" && <div style={{ fontSize: 10, color: "#f87171", textAlign: "center", marginTop: 6, fontFamily: "Geist,Pretendard Variable,sans-serif" }}>오류가 발생했습니다. 다시 시도해주세요.</div>}
+              {reqStatus === "error" && <div style={{ fontSize: 12, color: "#f87171", textAlign: "center", marginTop: 6, fontFamily: "Geist,Pretendard Variable,sans-serif" }}>오류가 발생했습니다. 다시 시도해주세요.</div>}
             </>
           )}
         </div>
@@ -12059,9 +12059,9 @@ function FloatingMusicPlayer() {
             ))}
             <button onClick={() => setMusicLang(l => l === "ko" ? "en" : "ko")}
               style={{ marginLeft: "auto", flexShrink: 0, display: "flex", alignItems: "center", gap: 1, background: "none", border: "1px solid rgba(255,255,255,0.18)", borderRadius: 6, padding: "2px 6px", cursor: "pointer", marginBottom: 4, fontFamily: "Geist,Pretendard Variable,sans-serif" }}>
-              <span style={{ fontSize: 9, fontWeight: musicLang === "ko" ? 800 : 500, color: musicLang === "ko" ? "rgba(110,231,183,0.9)" : "rgba(255,255,255,0.3)" }}>한</span>
+              <span style={{ fontSize: 12, fontWeight: musicLang === "ko" ? 800 : 500, color: musicLang === "ko" ? "rgba(110,231,183,0.9)" : "rgba(255,255,255,0.3)" }}>한</span>
               <span style={{ fontSize: 8, color: "rgba(255,255,255,0.2)" }}>/</span>
-              <span style={{ fontSize: 9, fontWeight: musicLang === "en" ? 800 : 500, color: musicLang === "en" ? "rgba(110,231,183,0.9)" : "rgba(255,255,255,0.3)" }}>EN</span>
+              <span style={{ fontSize: 12, fontWeight: musicLang === "en" ? 800 : 500, color: musicLang === "en" ? "rgba(110,231,183,0.9)" : "rgba(255,255,255,0.3)" }}>EN</span>
             </button>
           </div>
         )}
@@ -12078,11 +12078,11 @@ function FloatingMusicPlayer() {
         }}>
           <span style={{ fontSize: 13, flexShrink: 0 }}>▶</span>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: "#fff", fontFamily: "Geist,Pretendard Variable,sans-serif", whiteSpace: "nowrap" as const, overflow: "hidden", textOverflow: "ellipsis" }}>
+            <div style={{ fontSize: 12, fontWeight: 700, color: "#fff", fontFamily: "Geist,Pretendard Variable,sans-serif", whiteSpace: "nowrap" as const, overflow: "hidden", textOverflow: "ellipsis" }}>
               {(() => { const g = MUSIC_GENRES.find(x => x.id === mode); return g ? g.labelEn : "Healing"; })()}
               {curItem?.sub ? ` — ${curItem.sub}` : ""}
             </div>
-            <div style={{ fontSize: 9, color: "rgba(255,255,255,0.35)", fontFamily: "Geist,Pretendard Variable,sans-serif" }}>
+            <div style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", fontFamily: "Geist,Pretendard Variable,sans-serif" }}>
               {mini ? "재생 중" : "Hebron Music"}
             </div>
           </div>
@@ -12102,7 +12102,7 @@ function FloatingMusicPlayer() {
           {/* 크기 전환 */}
           {!mini && (
             <button onClick={(e) => { e.stopPropagation(); setSizeIdx(i => (i + 1) % 3); }}
-              style={{ ...btnStyle, background: "rgba(255,255,255,0.08)", fontWeight: 700, fontSize: 10, color: "#fff", padding: "3px 6px", borderRadius: 7 }}>
+              style={{ ...btnStyle, background: "rgba(255,255,255,0.08)", fontWeight: 700, fontSize: 12, color: "#fff", padding: "3px 6px", borderRadius: 7 }}>
               {YT_SIZES[sizeIdx].label}
             </button>
           )}
@@ -12128,7 +12128,7 @@ function FloatingMusicPlayer() {
           ) : (
             <div style={{ width: w, height: h, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column" as const, gap: 8 }}>
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", fontFamily: "Geist,Pretendard Variable,sans-serif", textAlign: "center" as const, padding: "0 16px" }}>
+              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.3)", fontFamily: "Geist,Pretendard Variable,sans-serif", textAlign: "center" as const, padding: "0 16px" }}>
                 {mode === "request" ? "신청곡이 없습니다. + 버튼으로 신청해보세요!" : "콘텐츠 준비 중입니다."}
               </div>
             </div>
@@ -12254,7 +12254,7 @@ function GrowthShareSection({ lang }: { lang: string }) {
           <span style={{ fontSize: 12.5, fontWeight: 600, color: "#FEE500", fontFamily: "'Pretendard Variable',sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
             💬 {ko ? "문의·수정 요청 → 카카오톡 채널" : "Contact via KakaoTalk Channel"}
           </span>
-          <span style={{ fontSize: 11.5, fontWeight: 800, color: "#3C2A00", background: "#FEE500", borderRadius: 7, padding: "3px 9px", whiteSpace: "nowrap", fontFamily: "Geist,Pretendard Variable,sans-serif", flexShrink: 0 }}>
+          <span style={{ fontSize: 12, fontWeight: 800, color: "#3C2A00", background: "#FEE500", borderRadius: 7, padding: "3px 9px", whiteSpace: "nowrap", fontFamily: "Geist,Pretendard Variable,sans-serif", flexShrink: 0 }}>
             {ko ? "채널 추가" : "Follow"}
           </span>
         </div>
@@ -12284,17 +12284,17 @@ function GrowthShareSection({ lang }: { lang: string }) {
             <span style={{ fontSize: 22 }}>▶</span>
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: "#FF4444", fontFamily: "Geist,Pretendard Variable,sans-serif", marginBottom: 3, letterSpacing: ".04em" }}>
+            <div style={{ fontSize: 12, fontWeight: 700, color: "#FF4444", fontFamily: "Geist,Pretendard Variable,sans-serif", marginBottom: 3, letterSpacing: ".04em" }}>
               {ko ? "🎵 지금 듣기 — 탭 이동해도 계속 재생" : "🎵 Music — plays while you browse"}
             </div>
             <div style={{ fontSize: 13, fontWeight: 800, color: "#ECFDF5", fontFamily: "Geist,Pretendard Variable,sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
               {ko ? "헤브론 뮤직" : "Hebron Music"}
             </div>
-            <div style={{ fontSize: 10.5, color: "rgba(236,253,245,0.5)", fontFamily: "Geist,Pretendard Variable,sans-serif", marginTop: 2 }}>
+            <div style={{ fontSize: 12, color: "rgba(236,253,245,0.5)", fontFamily: "Geist,Pretendard Variable,sans-serif", marginTop: 2 }}>
               {ko ? "Healing · Jazz" : "Healing · Jazz"}
             </div>
           </div>
-          <div style={{ fontSize: 11, fontWeight: 700, color: "rgba(255,68,68,0.8)", fontFamily: "Geist,Pretendard Variable,sans-serif", flexShrink: 0 }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "rgba(255,68,68,0.8)", fontFamily: "Geist,Pretendard Variable,sans-serif", flexShrink: 0 }}>
             {ko ? "▶ 열기" : "▶ Open"}
           </div>
         </div>
@@ -12341,14 +12341,14 @@ function CityPartnerBanner({ lang }: { lang: string }) {
       border: "1px solid rgba(20,184,166,0.35)",
     }}>
       <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 6 }}>
-        <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: "0.08em", color: "rgba(20,184,166,1)", background: "rgba(20,184,166,0.15)", border: "1px solid rgba(20,184,166,0.4)", borderRadius: 6, padding: "2px 7px", fontFamily: "Geist,Pretendard Variable,sans-serif" }}>
+        <span style={{ fontSize: 12, fontWeight: 800, letterSpacing: "0.08em", color: "rgba(20,184,166,1)", background: "rgba(20,184,166,0.15)", border: "1px solid rgba(20,184,166,0.4)", borderRadius: 6, padding: "2px 7px", fontFamily: "Geist,Pretendard Variable,sans-serif" }}>
           {ko ? "공식 파트너" : "OFFICIAL PARTNER"}
         </span>
       </div>
       <div style={{ fontSize: 14, fontWeight: 800, color: "#ECFDF5", fontFamily: "'Pretendard Variable',Geist,Pretendard Variable,sans-serif", marginBottom: 3 }}>
         {ko ? p.nameKo : p.nameEn}
       </div>
-      <div style={{ fontSize: 11, color: "rgba(236,253,245,0.6)", fontFamily: "Geist,Pretendard Variable,sans-serif", lineHeight: 1.6 }}>
+      <div style={{ fontSize: 12, color: "rgba(236,253,245,0.6)", fontFamily: "Geist,Pretendard Variable,sans-serif", lineHeight: 1.6 }}>
         {p.address && <div>{p.address}</div>}
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap" as const, marginTop: 2 }}>
           {p.phone && <a href={`tel:${p.phone.replace(/[^0-9+]/g, "")}`} style={{ color: "rgba(20,184,166,0.95)", textDecoration: "none", fontWeight: 700 }}>{p.phone}</a>}
@@ -12433,7 +12433,7 @@ function PWAInstallGuideBanner({ lang }: { lang: string }) {
           <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontWeight:800, fontSize:13, color:"#ECFDF5" }}>
             {ko ? "홈 화면에 추가하면 앱처럼 쓸 수 있어요" : "Add to home screen for app-like experience"}
           </div>
-          <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:10.5, color:"rgba(236,253,245,0.5)" }}>
+          <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color:"rgba(236,253,245,0.5)" }}>
             {ko ? "무료 · 설치 3단계" : "Free · 3 simple steps"}
           </div>
         </div>
@@ -12450,7 +12450,7 @@ function PWAInstallGuideBanner({ lang }: { lang: string }) {
             {steps.map((s, i) => (
               <div key={i} style={{ flex:1, background:"rgba(255,255,255,0.05)", borderRadius:10, padding:"10px 8px", textAlign:"center" }}>
                 <div style={{ width:22, height:22, borderRadius:"50%", background:"#C9A227", color:"#000", fontFamily:"Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize:12, display:"flex", alignItems:"center", justifyContent:"center", margin:"0 auto 6px" }}>{i+1}</div>
-                <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:10.5, color:"rgba(236,253,245,0.75)", lineHeight:1.4 }}>{s}</div>
+                <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color:"rgba(236,253,245,0.75)", lineHeight:1.4 }}>{s}</div>
               </div>
             ))}
           </div>
@@ -12518,12 +12518,12 @@ function BoardBanner() {
             color: "var(--color-text-primary)", lineHeight: 1.4, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
             {ko ? ev.titleKo : (ev.titleEn || ev.titleKo)}
           </div>
-          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "var(--color-text-secondary)", marginTop: 2 }}>
+          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-secondary)", marginTop: 2 }}>
             {(ko ? ev.whenKo : ev.whenEn) || ""}
             {more > 0 && (ko ? ` · 외 ${more}건` : ` · +${more} more`)}
           </div>
         </div>
-        <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, fontWeight: 800,
+        <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, fontWeight: 800,
           color: "#F5C76E", flexShrink: 0 }}>
           {ko ? "환대 게시판 \u2192" : "Board \u2192"}
         </span>
@@ -12875,7 +12875,7 @@ function HomeScreen({ onNavigate, onSearch }: { onNavigate?: (tab: number, subTa
             <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 13, color: "#1B2A4A", marginBottom: 3 }}>
               {ko ? "이야기 스튜디오 — 당신의 이야기를 들려주세요" : "Story Studio — Share Your Story"}
             </div>
-            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "#475569", lineHeight: 1.5 }}>
+            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "#475569", lineHeight: 1.5 }}>
               {ko ? "환대를 경험했거나 베푼 이야기가 전 세계 이민자에게 희망이 됩니다." : "Your hospitality story becomes hope for immigrants worldwide."}
             </div>
           </div>
@@ -12975,7 +12975,7 @@ function HebronWellSection({ citySlug, lang }: { citySlug: string; lang: string 
     </svg>
   );
   const Badge = ({ label, color }: { label: string; color: string }) => (
-    <span style={{ display: "inline-block", fontFamily: font, fontWeight: 700, fontSize: 12, color, border: `1px solid ${color}`, borderRadius: 999, padding: "2px 10px" }}>{label}</span>
+    <span style={{ display: "inline-block", fontFamily: font, fontWeight: 700, fontSize: 12, color: inkColor(color), border: `1px solid ${color}`, borderRadius: 999, padding: "2px 10px" }}>{label}</span>
   );
   const Card = ({ it, badge, color }: { it: WellItem; badge: string; color: string }) => (
     <div style={{ background: "rgba(27,42,74,0.04)", border: "1px solid rgba(27,42,74,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 10 }}>
@@ -14668,7 +14668,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 13, color: "#FCA5A5", marginBottom: 6 }}>
                 🗺️ {lang === "ko" ? "한국 이주 — 4가지 트랙" : "Moving to Korea — 4 Tracks"}
               </div>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "var(--color-text-secondary)", lineHeight: 1.8 }}>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-secondary)", lineHeight: 1.8 }}>
                 {lang === "ko"
                   ? "① 역이민·귀환 (재외동포)  ② 취업 이민  ③ 결혼 이민  ④ 장기거주·디지털노마드\n본인에게 해당하는 트랙을 확인하세요."
                   : "① Return migration (diaspora)  ② Work immigration  ③ Marriage immigration  ④ Long-stay · Digital nomad\nFind the track that applies to you."}
@@ -14680,7 +14680,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 12, color: "#FCA5A5", marginBottom: 8 }}>
                 🇰🇷 {lang === "ko" ? "트랙 ① — 역이민·귀환 동포 (재외동포 한인)" : "Track ① — Returning Korean Diaspora"}
               </div>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "var(--color-text-secondary)", lineHeight: 1.85, whiteSpace: "pre-line" }}>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-secondary)", lineHeight: 1.85, whiteSpace: "pre-line" }}>
                 {lang === "ko"
                   ? "• F-4 재외동포 비자 — 외국국적 동포 장기체류. 취업 가능(단순노무 제외). 2년 갱신\n• F-5 영주 — 5년+ 체류 후 신청. 갱신 없음\n• 국적회복 — 외국국적 포기 후 한국 국적 재취득 (법무부)\n• 거소신고 — 91일+ 체류 시 주소지 구청 신고 의무\n• 주민등록 재등록 — 주민센터 방문, 당일 처리\n• 건강보험 — 귀국 후 1개월 내 국민건강보험공단 자동 편입\n\n📞 재외동포청 무료 상담: oka.go.kr / 032-410-1000\n📞 하이코리아 온라인 비자: hikorea.go.kr"
                   : "• F-4 Overseas Korean Visa — long-stay for ethnic Koreans with foreign citizenship. Work permitted. Renew every 2 years\n• F-5 Permanent Residency — after 5+ years. No renewal needed\n• Nationality Recovery — regain Korean citizenship after renouncing foreign nationality\n• Residence Registration — required if staying 91+ days. Register at local district office\n• Re-register Resident ID — visit 주민센터, same-day processing\n• Health Insurance — auto-enrolled within 1 month of return\n\n📞 Overseas Koreans Agency: oka.go.kr / 032-410-1000\n📞 Online visa: hikorea.go.kr"}
@@ -14692,7 +14692,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 12, color: "#93C5FD", marginBottom: 8 }}>
                 💼 {lang === "ko" ? "트랙 ② — 취업 이민 (한국에서 일하고 싶은 외국인)" : "Track ② — Work Immigration"}
               </div>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "var(--color-text-secondary)", lineHeight: 1.85, whiteSpace: "pre-line" }}>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-secondary)", lineHeight: 1.85, whiteSpace: "pre-line" }}>
                 {lang === "ko"
                   ? "• E-7 특정활동 — 전문직 취업비자. 고용주 초청 필수. 가장 일반적인 취업 경로\n• E-1/E-2 회화지도 — 영어·외국어 강사 (E-2: 영어권 국적자 한정)\n• E-3/E-4/E-5 — 연구원·기술지도·전문직업 (의사·변호사 등)\n• D-8 기업투자 — 외국인 투자기업 직원 파견\n• F-2 거주 — 장기체류 후 취득. 취업 제한 없음\n\n절차:\n1. 한국 고용주 채용 → 비자 초청장 발급\n2. 본국 한국 영사관에서 비자 신청\n3. 입국 후 90일 내 출입국사무소 → 외국인등록증 발급\n\n📞 하이코리아: hikorea.go.kr\n📞 고용노동부: work.go.kr"
                   : "• E-7 Designated Activities — professional work visa. Employer sponsorship required. Most common route\n• E-1/E-2 Language Teaching — foreign language instruction (E-2: English-speaking nationalities only)\n• E-3/E-4/E-5 — Researcher / Technical guidance / Professional (doctors, lawyers, etc.)\n• D-8 Corporate Investment — employee dispatch from foreign-invested company\n• F-2 Residence — obtained after long-term stay. No work restrictions\n\nProcess:\n1. Korean employer hires you → issues visa invitation\n2. Apply for visa at Korean consulate in home country\n3. Within 90 days of arrival → register foreigner ID at immigration office\n\n📞 HiKorea: hikorea.go.kr\n📞 Ministry of Employment: work.go.kr"}
@@ -14704,7 +14704,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 12, color: "var(--color-success)", marginBottom: 8 }}>
                 💑 {lang === "ko" ? "트랙 ③ — 결혼 이민 (한국인 배우자)" : "Track ③ — Marriage Immigration"}
               </div>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "var(--color-text-secondary)", lineHeight: 1.85, whiteSpace: "pre-line" }}>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-secondary)", lineHeight: 1.85, whiteSpace: "pre-line" }}>
                 {lang === "ko"
                   ? "• F-6 결혼이민 — 한국인 배우자와 결혼 시 발급. 취업 가능. 2년 갱신\n• F-5 영주 — F-6으로 2년+ 체류 후 신청 가능\n• 혼인귀화 — F-6으로 2년+ 또는 혼인 3년+ 후 신청\n\n절차:\n1. 본국에서 한국 혼인신고 서류 준비\n2. 한국 영사관에서 F-6 비자 신청\n3. 입국 후 시청/구청 혼인신고\n4. 출입국사무소 → 외국인등록증 발급\n\n중요:\n• 가정폭력·이혼 시에도 체류 지위 보호 가능\n• 다문화가족지원센터 무료 한국어 교육·정착 지원\n\n📞 다문화가족지원포털: liveinkorea.kr\n📞 출입국외국인정책본부: 1345"
                   : "• F-6 Marriage Migration — issued when married to a Korean national. Work permitted. Renew every 2 years\n• F-5 Permanent Residency — apply after 2+ years on F-6\n• Naturalization by marriage — after 2+ years on F-6 or 3+ years of marriage\n\nProcess:\n1. Prepare marriage registration documents in home country\n2. Apply for F-6 visa at Korean consulate\n3. After entry: register marriage at city/district office\n4. Immigration office → get foreigner registration card\n\nImportant:\n• Stay status protected even in domestic violence/divorce cases\n• Multicultural Family Support Centers offer free Korean education\n\n📞 LiveInKorea: liveinkorea.kr\n📞 Immigration hotline: 1345"}
@@ -14716,7 +14716,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 12, color: "#C4B5FD", marginBottom: 8 }}>
                 🌐 {lang === "ko" ? "트랙 ④ — 장기거주·디지털노마드" : "Track ④ — Long-Stay · Digital Nomad"}
               </div>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "var(--color-text-secondary)", lineHeight: 1.85, whiteSpace: "pre-line" }}>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-secondary)", lineHeight: 1.85, whiteSpace: "pre-line" }}>
                 {lang === "ko"
                   ? "• D-10 구직 비자 — 한국 취업 준비 중 체류 (최대 6개월, 1회 연장)\n• 워킹홀리데이 — 한국과 협정국 (호주·캐나다·영국 등 약 30개국). 만 18~30세\n• C-3 단기 체류 → 장기로 전환 시 D/F/E 비자 필요\n• 외국인등록 — 90일 초과 체류 시 반드시 등록 (벌금 방지)\n\n디지털노마드 팁:\n• 한국은 공식 '디지털노마드 비자' 없음 (2025년 기준)\n• 관광(C-3) 90일 + 인접국 출입국 반복 방식 일부 사용 (비추천)\n• E-7 또는 D-8 취업 비자가 현실적 장기 체류 경로\n• 코워킹 스페이스: 위워크 서울·패스트파이브·스파크플러스\n\n📞 출입국외국인정책본부: 1345 (24시간, 영어 가능)\n📞 외국인등록 안내: hikorea.go.kr"
                   : "• D-10 Job Seeker Visa — stay while seeking employment in Korea (up to 6 months, 1 extension)\n• Working Holiday — Korea has agreements with ~30 countries (Australia, Canada, UK, etc.). Ages 18–30\n• C-3 Short Stay → must switch to D/F/E visa for long-term\n• Foreigner Registration — mandatory if staying 90+ days (avoid fines)\n\nDigital Nomad tips:\n• Korea has no official 'Digital Nomad Visa' as of 2025\n• Tourist (C-3) 90-day + border run method used by some (not recommended)\n• E-7 or D-8 work visa is the realistic long-term option\n• Coworking: WeWork Seoul · FastFive · Sparkplus\n\n📞 Immigration hotline: 1345 (24hrs, English available)\n📞 Foreigner registration: hikorea.go.kr"}
@@ -14725,10 +14725,10 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
 
             {/* 공통 핵심 체크포인트 */}
             <div style={{ background: "rgba(201,162,39,0.07)", border: "1px solid rgba(201,162,39,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 4 }}>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: "#FDE68A", marginBottom: 4 }}>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "#92400E", marginBottom: 4 }}>
                 {lang === "ko" ? "공통 핵심 절차" : "Universal Key Steps"}
               </div>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, lineHeight: 1.85, color: "var(--color-text-secondary)", whiteSpace: "pre-line" }}>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 13, lineHeight: 1.85, color: "var(--color-text-secondary)", whiteSpace: "pre-line" }}>
                 {lang === "ko"
                   ? "• 90일 초과 체류 → 반드시 외국인등록 (출입국사무소)\n• 체류 자격 모를 때 → 1345 전화 (24시간, 영어·한국어)\n• 카카오뱅크 — 외국인 등록 후 비대면 즉시 개설\n• 국민건강보험 — 6개월+ 체류 시 지역가입자 의무 가입\n• 구글맵 'immigration office near me' 또는 hikorea.go.kr"
                   : "• Staying 90+ days → register as foreigner (immigration office)\n• Unsure about visa status → call 1345 (24hrs, English/Korean)\n• Kakaobank — open instantly online after foreigner registration\n• Health Insurance — mandatory enrollment after 6+ months of stay\n• Google Maps 'immigration office near me' or hikorea.go.kr"}
@@ -14743,7 +14743,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontWeight:800, fontSize:13, color:"#FCA5A5", marginBottom:6 }}>
                 🗾 {lang==="ko" ? "일본 이주 — 4가지 트랙" : "Moving to Japan — 4 Tracks"}
               </div>
-              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:11, color: "var(--color-text-secondary)", lineHeight:1.8 }}>
+              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color: "var(--color-text-secondary)", lineHeight:1.8 }}>
                 {lang==="ko" ? "① 재일동포·특별영주  ② 취업 비자  ③ 결혼·가족 비자  ④ 유학·장기체류" : "① Zainichi · Special PR  ② Work visa  ③ Marriage · Family  ④ Study · Long-stay"}
               </div>
             </div>
@@ -14752,7 +14752,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontWeight:800, fontSize:12, color:"#FCA5A5", marginBottom:8 }}>
                 🇰🇷 {lang==="ko" ? "트랙 ① — 재일동포·특별영주자" : "Track ① — Zainichi Koreans · Special PR"}
               </div>
-              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:11, color: "var(--color-text-secondary)", lineHeight:1.85, whiteSpace:"pre-line" }}>
+              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color: "var(--color-text-secondary)", lineHeight:1.85, whiteSpace:"pre-line" }}>
                 {lang==="ko"
                   ? "• 특별영주자 (特別永住者) — 재일동포 3세 이하 대상. 일본 체류 기간 제한 없음\n• 재류카드 (在留カード) — 입국 후 14일 내 시구정촌(市区町村) 신고 의무\n• 한국 국적 유지 가능 — 귀화 없이 영구 체류 가능\n• 마이넘버 (マイナンバー) — 재류카드 등록 후 주민표 기재 → 마이넘버 카드 신청\n• 국민건강보험 — 시구정촌 창구에서 가입 (직장 없으면 지역 가입)\n\n📞 입국재류관리청: immi-moj.go.jp\n📞 한국 총영사관 도쿄: 03-3452-7611"
                   : "• Special Permanent Resident — for ethnic Koreans (Zainichi). No time limit on stay in Japan\n• Residence Card (在留カード) — register at city/ward office within 14 days of entry\n• Can maintain Korean nationality — permanent stay without naturalization\n• My Number (マイナンバー) — register at city office after residence card\n• National Health Insurance — enroll at city office if not covered by employer\n\n📞 Immigration Services Agency: immi-moj.go.jp\n📞 Korean Consulate Tokyo: 03-3452-7611"}
@@ -14763,7 +14763,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontWeight:800, fontSize:12, color:"#93C5FD", marginBottom:8 }}>
                 💼 {lang==="ko" ? "트랙 ② — 취업 비자" : "Track ② — Work Visa"}
               </div>
-              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:11, color: "var(--color-text-secondary)", lineHeight:1.85, whiteSpace:"pre-line" }}>
+              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color: "var(--color-text-secondary)", lineHeight:1.85, whiteSpace:"pre-line" }}>
                 {lang==="ko"
                   ? "• 技術·人文知識·国際業務 (기인국) — IT·엔지니어·마케팅·통역. 가장 일반적인 취업 비자\n• 高度専門職 (고도전문직) — 포인트제 우대 비자. 영주권 취득 최단 경로 (1~3년)\n• 特定技能 (특정기능) — 제조·외식·건설 등 특정 업종 (1호: 5년, 2호: 갱신 가능)\n• 経営·管理 (경영관리) — 법인 대표·창업자 비자\n\n절차:\n1. 일본 고용주 채용 → 재류자격 인정증명서 발급\n2. 한국 일본 대사관에서 비자 신청\n3. 입국 후 14일 내 거주지 시구정촌 신고\n4. 재류카드 + 마이넘버 카드 발급\n\n📞 JNTO 외국인 취업 안내: jinto.go.jp\n📞 헬로워크 (공공직업안정소): hello-work.go.jp"
                   : "• 技術·人文知識·国際業務 — IT/engineering/marketing/interpretation. Most common work visa\n• 高度専門職 — Points-based preferential visa. Fastest PR pathway (1–3 years)\n• 特定技能 — Specified skilled worker for manufacturing, food service, construction\n• 経営·管理 — Corporate manager / startup founder visa\n\nProcess:\n1. Japanese employer hires you → issues Certificate of Eligibility\n2. Apply for visa at Japanese Embassy in Korea\n3. Within 14 days of entry: register at city/ward office\n4. Obtain Residence Card + My Number Card"}
@@ -14774,7 +14774,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontWeight:800, fontSize:12, color: "var(--color-success)", marginBottom:8 }}>
                 💑 {lang==="ko" ? "트랙 ③ — 결혼·가족 비자" : "Track ③ — Marriage · Family Visa"}
               </div>
-              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:11, color: "var(--color-text-secondary)", lineHeight:1.85, whiteSpace:"pre-line" }}>
+              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color: "var(--color-text-secondary)", lineHeight:1.85, whiteSpace:"pre-line" }}>
                 {lang==="ko"
                   ? "• 日本人の配偶者等 (일본인 배우자) — 일본인과 결혼 시. 갱신 가능. 취업 제한 없음\n• 永住者の配偶者等 — 영주자 배우자\n• 定住者 (정주자) — 일계인 등 특정 출신 배우자·자녀\n\n절차:\n1. 일본에서 혼인신고 (시구정촌 창구)\n2. 재류자격 인정증명서 신청 → 비자 취득\n3. 3~5년 체류 후 영주 신청 가능\n\n💡 한·일 부부 — 한국 출생 자녀 국적 선택: 만 22세까지 이중국적 유지 가능"
                   : "• 日本人の配偶者等 — Spouse of Japanese national. Renewable. No work restrictions\n• 永住者の配偶者等 — Spouse of permanent resident\n• 定住者 — Settled status for descendants of Japanese nationals, etc.\n\nProcess:\n1. Register marriage at city/ward office in Japan\n2. Apply for Certificate of Eligibility → obtain visa\n3. After 3–5 years, can apply for Permanent Residency\n\n💡 Korean-Japanese couples — children can maintain dual nationality until age 22"}
@@ -14785,7 +14785,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontWeight:800, fontSize:12, color:"#C4B5FD", marginBottom:8 }}>
                 🎓 {lang==="ko" ? "트랙 ④ — 유학·장기체류·워킹홀리데이" : "Track ④ — Study · Long-Stay · Working Holiday"}
               </div>
-              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:11, color: "var(--color-text-secondary)", lineHeight:1.85, whiteSpace:"pre-line" }}>
+              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color: "var(--color-text-secondary)", lineHeight:1.85, whiteSpace:"pre-line" }}>
                 {lang==="ko"
                   ? "• 留学 (유학) — 일본어학교·대학·전문학교. 주 28시간 아르바이트 가능\n• 워킹홀리데이 — 한·일 협정. 만 18~30세. 1년 체류 + 취업 가능\n• 短期滞在 (단기체류) — 관광·방문. 90일 (한국인 무비자)\n• 特定活動46号 — 일본 대학 졸업 외국인의 일본 취업 탐색 비자\n\n핵심 공통 절차:\n• 재류카드 — 중장기 체류자 필수. 14일 내 거주지 신고\n• 마이넘버 — 은행 계좌·건강보험·세금 신고에 필수\n• 은행 계좌 — Japan Post Bank(우체국) 외국인 개설 장벽 낮음\n• 건강보험 — 3개월 이상 체류 시 국민건강보험 가입 의무\n\n📞 외국인 종합 상담: 0120-282-8382 (다국어)"
                   : "• 留学 (Study) — language school, university, vocational. Up to 28 hrs/week part-time\n• Working Holiday — Korea-Japan agreement. Ages 18–30. 1-year stay + work permitted\n• 短期滞在 — Tourism/visit. 90 days (Koreans visa-free)\n• 特定活動46号 — Job-search visa for foreign graduates of Japanese universities\n\nKey steps for all:\n• Residence Card — mandatory for mid/long-term stays. Register within 14 days\n• My Number — required for bank account, health insurance, taxes\n• Bank account — Japan Post Bank has lowest barrier for foreigners\n• Health Insurance — mandatory enrollment after 3+ months of stay"}
@@ -14801,7 +14801,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontWeight:800, fontSize:13, color:"#FCA5A5", marginBottom:6 }}>
                 🍁 {lang==="ko" ? "캐나다 이민 — 4가지 경로" : "Canada Immigration — 4 Pathways"}
               </div>
-              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:11, color: "var(--color-text-secondary)", lineHeight:1.8 }}>
+              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color: "var(--color-text-secondary)", lineHeight:1.8 }}>
                 {lang==="ko" ? "① Express Entry (연방 기술이민)  ② 주정부 이민(PNP)  ③ 가족초청  ④ 유학 → 취업 경로" : "① Express Entry  ② Provincial Nominee  ③ Family Sponsorship  ④ Study → Work pathway"}
               </div>
             </div>
@@ -14829,7 +14829,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             ].map((t, i) => (
               <div key={i} style={{ background:t.color, border:`1px solid ${t.border}`, borderRadius:14, padding:"14px 16px", marginBottom:10 }}>
                 <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontWeight:800, fontSize:12, color:t.tc, marginBottom:8 }}>{t.title}</div>
-                <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:11, color: "var(--color-text-secondary)", lineHeight:1.85, whiteSpace:"pre-line" }}>{t.body}</div>
+                <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color: "var(--color-text-secondary)", lineHeight:1.85, whiteSpace:"pre-line" }}>{t.body}</div>
               </div>
             ))}
           </div>
@@ -14842,7 +14842,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontWeight:800, fontSize:13, color:"#93C5FD", marginBottom:6 }}>
                 🦘 {lang==="ko" ? "호주 이민 — 4가지 경로" : "Australia Immigration — 4 Pathways"}
               </div>
-              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:11, color: "var(--color-text-secondary)", lineHeight:1.8 }}>
+              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color: "var(--color-text-secondary)", lineHeight:1.8 }}>
                 {lang==="ko" ? "① 기술이민(Skilled)  ② 파트너 비자  ③ 워킹홀리데이(WHV)  ④ 유학 → 졸업생 비자" : "① Skilled Migration  ② Partner Visa  ③ Working Holiday  ④ Study → Graduate Visa"}
               </div>
             </div>
@@ -14870,7 +14870,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             ].map((t, i) => (
               <div key={i} style={{ background:t.color, border:`1px solid ${t.border}`, borderRadius:14, padding:"14px 16px", marginBottom:10 }}>
                 <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontWeight:800, fontSize:12, color:t.tc, marginBottom:8 }}>{t.title}</div>
-                <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:11, color: "var(--color-text-secondary)", lineHeight:1.85, whiteSpace:"pre-line" }}>{t.body}</div>
+                <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color: "var(--color-text-secondary)", lineHeight:1.85, whiteSpace:"pre-line" }}>{t.body}</div>
               </div>
             ))}
           </div>
@@ -14883,7 +14883,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontWeight:800, fontSize:13, color:"#93C5FD", marginBottom:6 }}>
                 🇪🇺 {lang==="ko" ? "유럽 비자 가이드 (영국·독일·프랑스)" : "Europe Visa Guide (UK · Germany · France)"}
               </div>
-              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:11, color: "var(--color-text-secondary)", lineHeight:1.8 }}>
+              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color: "var(--color-text-secondary)", lineHeight:1.8 }}>
                 {lang==="ko" ? "한국인 무비자 90일 (쉥겐). 장기 체류는 각국 비자 필요." : "Koreans: 90 days visa-free (Schengen). Long-term requires national visa."}
               </div>
             </div>
@@ -14906,7 +14906,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             ].map((t, i) => (
               <div key={i} style={{ background:t.color, border:`1px solid ${t.border}`, borderRadius:14, padding:"14px 16px", marginBottom:10 }}>
                 <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontWeight:800, fontSize:12, color:t.tc, marginBottom:8 }}>{t.title}</div>
-                <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:11, color: "var(--color-text-secondary)", lineHeight:1.85, whiteSpace:"pre-line" }}>{t.body}</div>
+                <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color: "var(--color-text-secondary)", lineHeight:1.85, whiteSpace:"pre-line" }}>{t.body}</div>
               </div>
             ))}
           </div>
@@ -14919,7 +14919,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontWeight:800, fontSize:13, color:"#FDE68A", marginBottom:6 }}>
                 🌙 {lang==="ko" ? "UAE(두바이) 비자 가이드" : "UAE (Dubai) Visa Guide"}
               </div>
-              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:11, color: "var(--color-text-secondary)", lineHeight:1.8 }}>
+              <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color: "var(--color-text-secondary)", lineHeight:1.8 }}>
                 {lang==="ko" ? "한국인 무비자 30일. 장기 체류는 취업·골든 비자 필요." : "Koreans: 30 days visa-free. Long-term requires employment or Golden Visa."}
               </div>
             </div>
@@ -14942,7 +14942,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             ].map((t, i) => (
               <div key={i} style={{ background:t.color, border:`1px solid ${t.border}`, borderRadius:14, padding:"14px 16px", marginBottom:10 }}>
                 <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontWeight:800, fontSize:12, color:t.tc, marginBottom:8 }}>{t.title}</div>
-                <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:11, color: "var(--color-text-secondary)", lineHeight:1.85, whiteSpace:"pre-line" }}>{t.body}</div>
+                <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color: "var(--color-text-secondary)", lineHeight:1.85, whiteSpace:"pre-line" }}>{t.body}</div>
               </div>
             ))}
           </div>
@@ -14966,7 +14966,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             ].map((t, i) => (
               <div key={i} style={{ background:t.color, border:`1px solid ${t.border}`, borderRadius:14, padding:"14px 16px", marginBottom:10 }}>
                 <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontWeight:800, fontSize:12, color:t.tc, marginBottom:8 }}>{t.title}</div>
-                <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:11, color: "var(--color-text-secondary)", lineHeight:1.85, whiteSpace:"pre-line" }}>{t.body}</div>
+                <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color: "var(--color-text-secondary)", lineHeight:1.85, whiteSpace:"pre-line" }}>{t.body}</div>
               </div>
             ))}
             {/* 태국 */}
@@ -14979,7 +14979,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             ].map((t, i) => (
               <div key={i} style={{ background:t.color, border:`1px solid ${t.border}`, borderRadius:14, padding:"14px 16px", marginBottom:10 }}>
                 <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontWeight:800, fontSize:12, color:t.tc, marginBottom:8 }}>{t.title}</div>
-                <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:11, color: "var(--color-text-secondary)", lineHeight:1.85, whiteSpace:"pre-line" }}>{t.body}</div>
+                <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color: "var(--color-text-secondary)", lineHeight:1.85, whiteSpace:"pre-line" }}>{t.body}</div>
               </div>
             ))}
             {/* 베트남 */}
@@ -14992,7 +14992,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             ].map((t, i) => (
               <div key={i} style={{ background:t.color, border:`1px solid ${t.border}`, borderRadius:14, padding:"14px 16px", marginBottom:10 }}>
                 <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontWeight:800, fontSize:12, color:t.tc, marginBottom:8 }}>{t.title}</div>
-                <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:11, color: "var(--color-text-secondary)", lineHeight:1.85, whiteSpace:"pre-line" }}>{t.body}</div>
+                <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color: "var(--color-text-secondary)", lineHeight:1.85, whiteSpace:"pre-line" }}>{t.body}</div>
               </div>
             ))}
           </div>
@@ -15029,8 +15029,8 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                 tags: lang === "ko" ? ["총영사관", "여권", "재외국민"] : ["Consulate", "Passport", "Registration"] },
             ].map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
             <div style={{ background: "rgba(99,102,241,0.08)", border: "1px solid rgba(99,102,241,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: "#818CF8", marginBottom: 4 }}><EmojiIcon emoji={"🥝"} size={13} /> {lang === "ko" ? "핵심 체크포인트" : "Key Checkpoints"}</div>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, lineHeight: 1.8, color: "var(--color-text-secondary)" }}>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: inkColor("#818CF8"), marginBottom: 4 }}><EmojiIcon emoji={"🥝"} size={13} /> {lang === "ko" ? "핵심 체크포인트" : "Key Checkpoints"}</div>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 13, lineHeight: 1.8, color: "var(--color-text-secondary)" }}>
                 {lang === "ko"
                   ? "• 도착 즉시: ird.govt.nz에서 IRD 번호 신청\n• GP 등록: 도착 첫 주 내 (NHI 번호 발급)\n• 비자 만료 4개월 전: 연장·영주권 신청 준비\n• 재외국민 등록: 오클랜드 한국 총영사관 방문"
                   : "• On arrival: apply for IRD number at ird.govt.nz\n• Register with a GP within the first week (NHI number issued)\n• 4 months before visa expiry: prepare extension or residency application\n• Register as overseas Korean: visit Korean Consulate Auckland"}
@@ -15070,8 +15070,8 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                 tags: lang === "ko" ? ["총영사관", "여권", "CPF"] : ["Consulate", "Passport", "CPF"] },
             ].map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
             <div style={{ background: "rgba(99,102,241,0.08)", border: "1px solid rgba(99,102,241,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: "#818CF8", marginBottom: 4 }}>🇧🇷 {lang === "ko" ? "핵심 체크포인트" : "Key Checkpoints"}</div>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, lineHeight: 1.8, color: "var(--color-text-secondary)" }}>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: inkColor("#818CF8"), marginBottom: 4 }}>🇧🇷 {lang === "ko" ? "핵심 체크포인트" : "Key Checkpoints"}</div>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, lineHeight: 1.8, color: "var(--color-text-secondary)" }}>
                 {lang === "ko"
                   ? "• 도착 즉시: 한국 총영사관 또는 Receita Federal에서 CPF 신청\n• 90일 내: Polícia Federal에서 RNE(외국인등록증) 발급\n• 취업 즉시: CTPS 디지털 등록 + INSS 가입 확인\n• 비자 만료 90일 전: 연장 또는 VIPER 영주권 준비"
                   : "• On arrival: apply for CPF at Korean consulate or Receita Federal\n• Within 90 days: get RNE (foreigners' ID) at Polícia Federal\n• On employment: verify digital CTPS registration + INSS enrollment\n• 90 days before visa expiry: prepare extension or VIPER permanent residency"}
@@ -15111,8 +15111,8 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                 tags: lang === "ko" ? ["대사관", "여권", "재외국민"] : ["Embassy", "Passport", "Registration"] },
             ].map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
             <div style={{ background: "rgba(99,102,241,0.08)", border: "1px solid rgba(99,102,241,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: "#818CF8", marginBottom: 4 }}>🇲🇽 {lang === "ko" ? "핵심 체크포인트" : "Key Checkpoints"}</div>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, lineHeight: 1.8, color: "var(--color-text-secondary)" }}>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: inkColor("#818CF8"), marginBottom: 4 }}>🇲🇽 {lang === "ko" ? "핵심 체크포인트" : "Key Checkpoints"}</div>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, lineHeight: 1.8, color: "var(--color-text-secondary)" }}>
                 {lang === "ko"
                   ? "• 도착 즉시: gob.mx에서 CURP 발급\n• 취업 시: SAT에서 RFC 발급 + IMSS 가입 확인\n• 비자 만료 30일 전: INM 방문하여 Residente Temporal 연장\n• 재외국민 등록: 주멕시코 한국 대사관 방문"
                   : "• On arrival: get CURP at gob.mx\n• On employment: get RFC at SAT + verify IMSS enrollment\n• 30 days before visa expiry: visit INM to extend Residente Temporal\n• Register as overseas Korean: visit Korean Embassy Mexico City"}
@@ -15161,8 +15161,8 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                 tags: lang === "ko" ? ["총영사관", "여권", "공증"] : ["Consulate", "Passport", "Notary"] },
             ].map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
             <div style={{ background: "rgba(99,102,241,0.08)", border: "1px solid rgba(99,102,241,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: "#818CF8", marginBottom: 4 }}><EmojiIcon emoji={"🛂"} size={13} /> {lang === "ko" ? "핵심 체크포인트" : "Key Checkpoints"}</div>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, lineHeight: 1.8, color: "var(--color-text-secondary)" }}>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: inkColor("#818CF8"), marginBottom: 4 }}><EmojiIcon emoji={"🛂"} size={13} /> {lang === "ko" ? "핵심 체크포인트" : "Key Checkpoints"}</div>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, lineHeight: 1.8, color: "var(--color-text-secondary)" }}>
                 {lang === "ko"
                   ? "• 도착 즉시: cbp.dhs.gov/i94 에서 I-94 확인\n• 재외국민 등록: 영사관 방문 (무료, 도착 3개월 내)\n• 비자 만료 6개월 전: 이민 변호사 상담 시작\n• USCIS 사건 조회: egov.uscis.gov (영수증 번호로 조회)"
                   : "• On arrival: check I-94 at cbp.dhs.gov/i94\n• Register as overseas Korean: visit consulate (free, within 3 months)\n• 6 months before visa expiry: consult immigration attorney\n• Track USCIS case: egov.uscis.gov (use receipt number)"}
@@ -15187,13 +15187,13 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               <div style={{ height: 10, borderRadius: 6, background: "rgba(27,42,74,0.08)", overflow: "hidden", marginBottom: 8 }}>
                 <div style={{ height: "100%", width: `${totalItems > 0 ? (totalDone / totalItems) * 100 : 0}%`, background: `linear-gradient(90deg,${accent},#6EE7B7)`, borderRadius: 6, transition: "width 0.5s ease" }} />
               </div>
-              <div style={{ fontSize: 11, color: "var(--color-text-primary)" }}>
+              <div style={{ fontSize: 12, color: "var(--color-text-primary)" }}>
                 {totalDone === totalItems && totalItems > 0
                   ? (lang === "ko" ? "🎉 모든 정착 단계 완료! 축하합니다!" : "🎉 All settlement steps complete! Congratulations!")
                   : (lang === "ko" ? `${Math.round((totalDone / totalItems) * 100)}% 완료 — 계속 진행하세요 💪` : `${Math.round((totalDone / totalItems) * 100)}% done — keep going 💪`)}
               </div>
               <button onClick={(e) => { e.stopPropagation(); if (window.confirm(lang === "ko" ? "모든 체크리스트를 초기화할까요?" : "Reset all checklist items?")) { allPhases.forEach(p => p.items.forEach((_, i) => localStorage.removeItem(`hg_checklist_${p.prefix}_${i}`))); forceUpdate(n => n + 1); } }}
-                style={{ marginTop: 10, border: "none", background: "rgba(248,113,113,0.15)", borderRadius: 20, padding: "5px 14px", color: "#B91C1C", fontSize: 11, cursor: "pointer", fontWeight: 600 }}>
+                style={{ marginTop: 10, border: "none", background: "rgba(248,113,113,0.15)", borderRadius: 20, padding: "5px 14px", color: "#B91C1C", fontSize: 12, cursor: "pointer", fontWeight: 600 }}>
                 🔄 {lang === "ko" ? "전체 초기화" : "Reset All"}
               </button>
             </div>
@@ -15205,7 +15205,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                 <div key={phase.prefix} style={{ marginBottom: 14 }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6, padding: "0 2px" }}>
                     <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: accent }}>{phase.label}</div>
-                    <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: pDone === phase.items.length ? "#6EE7B7" : "rgba(27,42,74,0.4)", fontWeight: 600 }}>
+                    <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: pDone === phase.items.length ? "#6EE7B7" : "rgba(27,42,74,0.4)", fontWeight: 600 }}>
                       {pDone}/{phase.items.length} {pDone === phase.items.length ? "✓" : ""}
                     </div>
                   </div>
@@ -15234,7 +15234,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
               <div style={{ fontFamily: "'Pretendard Variable',sans-serif", fontWeight: 700, fontSize: 13, color: accent, marginBottom: 4 }}>
                 🏘️ {lang === "ko" ? `${citySlug.toUpperCase()} 동네별 가이드` : `${citySlug.toUpperCase()} Neighborhood Guide`}
               </div>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "var(--color-text-primary)", lineHeight: 1.5 }}>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-primary)", lineHeight: 1.5 }}>
                 {lang === "ko" ? "가족·학군·예산·통근 — 한 눈에 비교" : "Family · Schools · Budget · Commute — at a glance"}
               </div>
             </div>
@@ -15246,13 +15246,13 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                   <EmojiIcon emoji={area.emoji} size={18} />
                   <div style={{ fontFamily: "'Pretendard Variable',sans-serif", fontWeight: 700, fontSize: 13, color: "var(--color-text-primary)" }}>{area.title}</div>
                 </div>
-                <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, lineHeight: 1.7, color: "var(--color-text-secondary)" }}>{area.desc}</div>
+                <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, lineHeight: 1.7, color: "var(--color-text-secondary)" }}>{area.desc}</div>
               </div>
             ))}
 
             {/* 부동산 검색 — 가정집·상업지 분류 */}
             <div style={{ background: "rgba(37,99,235,0.08)", border: "1px solid rgba(37,99,235,0.25)", borderRadius: 14, padding: "14px 16px", marginTop: 4 }}>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: "#2563EB", marginBottom: 10 }}>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "#2563EB", marginBottom: 10 }}>
                 🔍 {lang === "ko" ? "전문 부동산 검색 — 가정집 · 상업지 · 지역별" : "Pro Real Estate Search — Residential · Commercial · By Area"}
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
@@ -15262,7 +15262,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                     <EmojiIcon emoji={link.emoji} size={14} />
                     <div style={{ flex: 1 }}>
                       <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-primary)" }}>{link.label}</div>
-                      <div style={{ fontSize: 10, color: "var(--color-text-secondary)", marginTop: 1 }}>{link.sub}</div>
+                      <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 1 }}>{link.sub}</div>
                     </div>
                     <span style={{ color: "#2563EB", fontSize: 14 }}>→</span>
                   </a>
@@ -15272,7 +15272,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
 
             {/* 한인 커뮤니티 부동산 (도시별) */}
             <div style={{ background: "rgba(96,165,250,0.08)", border: "1px solid rgba(96,165,250,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 12 }}>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 10 }}>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: accent, marginBottom: 10 }}>
                 💬 {lang === "ko" ? "한인 커뮤니티 — 룸메이트·렌탈 실시간" : "Korean Community — Roommates & Rentals"}
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
@@ -15283,7 +15283,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                     <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-primary)" }}>
                       {lang === "ko" ? kakaoOpenChat(citySlug).label : `KakaoTalk '${kakaoOpenChat(citySlug).term}'`}
                     </div>
-                    <div style={{ fontSize: 10, color: "var(--color-text-secondary)", marginTop: 1 }}>{lang === "ko" ? "룸메이트·렌탈 실시간 정보" : "Roommate & rental listings"}</div>
+                    <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 1 }}>{lang === "ko" ? "룸메이트·렌탈 실시간 정보" : "Roommate & rental listings"}</div>
                   </div>
                   <span style={{ color: accent, fontSize: 14 }}>→</span>
                 </a>
@@ -15293,7 +15293,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                     <Building2 size={14} strokeWidth={2} />
                     <div style={{ flex: 1 }}>
                       <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-primary)" }}>WowSeattle</div>
-                      <div style={{ fontSize: 10, color: "var(--color-text-secondary)", marginTop: 1 }}>{lang === "ko" ? "시애틀 한인 부동산·렌탈" : "Seattle Korean realty & rentals"}</div>
+                      <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 1 }}>{lang === "ko" ? "시애틀 한인 부동산·렌탈" : "Seattle Korean realty & rentals"}</div>
                     </div>
                     <span style={{ color: accent, fontSize: 14 }}>→</span>
                   </a>
@@ -15305,7 +15305,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                   <Newspaper size={14} strokeWidth={2} />
                   <div style={{ flex: 1 }}>
                     <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-primary)" }}>{lang === "ko" ? "미주중앙일보 부동산" : "Korea Daily Real Estate"}</div>
-                    <div style={{ fontSize: 10, color: "var(--color-text-secondary)", marginTop: 1 }}>{lang === "ko" ? "전국 한인 부동산 매물·구인" : "National Korean realty listings"}</div>
+                    <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 1 }}>{lang === "ko" ? "전국 한인 부동산 매물·구인" : "National Korean realty listings"}</div>
                   </div>
                   <span style={{ color: accent, fontSize: 14 }}>→</span>
                 </a>
@@ -15327,10 +15327,10 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             {/* 프로그레스 바 */}
             <div style={{ marginBottom: 16 }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
-                <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, fontWeight: 600, color: "var(--color-text-primary)" }}>
+                <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, fontWeight: 600, color: "var(--color-text-primary)" }}>
                   {lang === "ko" ? "완료" : "Progress"}
                 </span>
-                <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, fontWeight: 700, color: accent }}>
+                <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, fontWeight: 700, color: accent }}>
                   {doneCount} / {items.length}
                 </span>
               </div>
@@ -15365,7 +15365,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                     <div style={{ marginBottom: 12 }}>
                       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
                         <div style={{ height: 1, flex: 1, background: "rgba(201,162,39,0.25)" }} />
-                        <span style={{ fontSize: 10, fontWeight: 800, color: "#8A6A12", fontFamily: "Geist,Pretendard Variable,sans-serif", whiteSpace: "nowrap" }}>
+                        <span style={{ fontSize: 12, fontWeight: 800, color: "#8A6A12", fontFamily: "Geist,Pretendard Variable,sans-serif", whiteSpace: "nowrap" }}>
                           ⭐ {lang === "ko" ? "협력 전문가" : "Partner Specialists"}
                         </span>
                         <div style={{ height: 1, flex: 1, background: "rgba(201,162,39,0.25)" }} />
@@ -15383,7 +15383,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                               {item.title}
                             </span>
                           </div>
-                          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, lineHeight: 1.65, color: "var(--color-text-primary)" }}>
+                          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, lineHeight: 1.65, color: "var(--color-text-primary)" }}>
                             {item.desc}
                           </div>
                         </div>
@@ -15405,11 +15405,11 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                         <StickyNote size={13} strokeWidth={2} />
                         <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 13, color: "var(--color-text-secondary)", flex: 1, textAlign: "left" }}>
                           {lang === "ko" ? "3개월 정착 체크리스트" : "Month 3 Checklist"}
-                          <span style={{ fontWeight: 500, color: "var(--color-text-muted)", fontSize: 11, marginLeft: 6 }}>
+                          <span style={{ fontWeight: 500, color: "var(--color-text-muted)", fontSize: 12, marginLeft: 6 }}>
                             ({regularItems.length}{lang === "ko" ? "개" : ""})
                           </span>
                         </span>
-                        <span style={{ color: "rgba(255,255,255,0.35)", fontSize: 12, fontFamily: "Geist,Pretendard Variable,sans-serif" }}>
+                        <span style={{ color: "var(--color-text-muted)", fontSize: 12, fontFamily: "Geist,Pretendard Variable,sans-serif" }}>
                           {showRegularItems ? (lang === "ko" ? "접기 ▲" : "Collapse ▲") : (lang === "ko" ? "펼치기 ▼" : "Show ▼")}
                         </span>
                       </button>
@@ -15448,7 +15448,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
 
             {/* 팁 배너 */}
             <div style={{ background: "rgba(96,165,250,0.08)", border: "1px solid rgba(96,165,250,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 10 }}><EmojiIcon emoji={"💡"} size={13} /> {lang === "ko" ? "한인 커뮤니티 연결" : "Korean Community"}</div>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: accent, marginBottom: 10 }}><EmojiIcon emoji={"💡"} size={13} /> {lang === "ko" ? "한인 커뮤니티 연결" : "Korean Community"}</div>
               <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
                 <a href={kakaoOpenChat(citySlug).url} target="_blank" rel="noopener noreferrer"
                   style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(27,42,74,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(96,165,250,0.2)" }}>
@@ -15457,7 +15457,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                     <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-primary)" }}>
                       {lang === "ko" ? kakaoOpenChat(citySlug).label : `KakaoTalk '${kakaoOpenChat(citySlug).term}'`}
                     </div>
-                    <div style={{ fontSize: 10, color: "var(--color-text-secondary)", marginTop: 1 }}>{lang === "ko" ? "정착정보·중고거래·룸메이트" : "Settlement tips, used goods, roommates"}</div>
+                    <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 1 }}>{lang === "ko" ? "정착정보·중고거래·룸메이트" : "Settlement tips, used goods, roommates"}</div>
                   </div>
                   <span style={{ color: accent, fontSize: 14 }}>→</span>
                 </a>
@@ -15468,7 +15468,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                     <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-primary)" }}>
                       {lang === "ko" ? "HebronGuide 카카오 채널" : "HebronGuide KakaoTalk Channel"}
                     </div>
-                    <div style={{ fontSize: 10, color: "var(--color-text-secondary)", marginTop: 1 }}>{lang === "ko" ? "정착 Q&A · 정보 공유 · 커뮤니티" : "Settlement Q&A · Info · Community"}</div>
+                    <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 1 }}>{lang === "ko" ? "정착 Q&A · 정보 공유 · 커뮤니티" : "Settlement Q&A · Info · Community"}</div>
                   </div>
                   <span style={{ color: accent, fontSize: 14 }}>→</span>
                 </a>
@@ -16395,7 +16395,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             background: "linear-gradient(135deg,rgba(201,162,39,0.14) 0%,rgba(110,231,183,0.05) 100%)",
             border: "1px solid rgba(201,162,39,0.34)", borderRadius: 16, padding: "16px 18px",
           }}>
-            <div style={{ fontSize: 10, fontWeight: 800, color: "#8A6A12", letterSpacing: "0.1em" }}>
+            <div style={{ fontSize: 12, fontWeight: 800, color: "#8A6A12", letterSpacing: "0.1em" }}>
               {lang === "ko" ? "이번 주" : "THIS WEEK"}
             </div>
             <div style={{ fontSize: 16, fontWeight: 800, color: "var(--color-text-primary)", marginTop: 6, lineHeight: 1.45 }}>
@@ -16439,11 +16439,11 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                     }}>
                       {/* 피처드 헤더 바 */}
                       <div style={{ background: "rgba(110,231,183,0.1)", borderBottom: "1px solid rgba(110,231,183,0.2)", padding: "8px 16px", display: "flex", alignItems: "center", gap: 8 }}>
-                        <span style={{ fontSize: 10, fontWeight: 800, color: "var(--color-success)", fontFamily: "Geist,Pretendard Variable,sans-serif", letterSpacing: "0.04em" }}>
+                        <span style={{ fontSize: 12, fontWeight: 800, color: "var(--color-success)", fontFamily: "Geist,Pretendard Variable,sans-serif", letterSpacing: "0.04em" }}>
                           {lang === "ko" ? "Hebron 협력교회" : "Hebron Partner Church"}
                         </span>
                         {isHome(c) && (
-                          <span style={{ fontSize: 9, fontWeight: 800, color: "#8A6A12", fontFamily: "Geist,Pretendard Variable,sans-serif" }}>{lang === "ko" ? "가정교회" : "House Church"}</span>
+                          <span style={{ fontSize: 12, fontWeight: 800, color: "#8A6A12", fontFamily: "Geist,Pretendard Variable,sans-serif" }}>{lang === "ko" ? "가정교회" : "House Church"}</span>
                         )}
                       </div>
                       {/* 카드 본문 */}
@@ -16510,7 +16510,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
               <div style={{ marginBottom: 16 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
                   <div style={{ height: 1, flex: 1, background: "rgba(201,162,39,0.2)" }} />
-                  <span style={{ fontSize: 10, fontWeight: 800, color: "#8A6A12", fontFamily: "Geist,Pretendard Variable,sans-serif", whiteSpace: "nowrap" }}>
+                  <span style={{ fontSize: 12, fontWeight: 800, color: "#8A6A12", fontFamily: "Geist,Pretendard Variable,sans-serif", whiteSpace: "nowrap" }}>
                     {lang === "ko" ? "가정교회" : "Home Churches"}
                   </span>
                   <div style={{ height: 1, flex: 1, background: "rgba(201,162,39,0.2)" }} />
@@ -16545,7 +16545,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                   >
                     <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 13, color: "var(--color-text-secondary)", flex: 1, textAlign: "left" }}>
                       {lang === "ko" ? `다른 한인 교회` : `More Korean churches`}
-                      <span style={{ fontWeight: 500, color: "var(--color-text-muted)", fontSize: 11, marginLeft: 6 }}>
+                      <span style={{ fontWeight: 500, color: "var(--color-text-muted)", fontSize: 12, marginLeft: 6 }}>
                         ({allOther.length}{lang === "ko" ? "개" : ""})
                       </span>
                     </span>
@@ -16580,7 +16580,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                           }}>
                             {c.isCommunity && (
                               <div style={{ padding: "5px 12px 0" }}>
-                                <span style={{ fontSize: 9, fontWeight: 700, color: "var(--color-success)", fontFamily: "Geist,Pretendard Variable,sans-serif" }}><EmojiIcon emoji={"✅"} size={13} /> 커뮤니티 등록</span>
+                                <span style={{ fontSize: 12, fontWeight: 700, color: "var(--color-success)", fontFamily: "Geist,Pretendard Variable,sans-serif" }}><EmojiIcon emoji={"✅"} size={13} /> 커뮤니티 등록</span>
                               </div>
                             )}
                             <PlaceCard {...enriched} accentColor={c.tier === 1 ? "#C9A227" : accent} />
@@ -16595,7 +16595,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                           <span style={{ display: "block", fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12.5, color: "var(--color-success)", fontWeight: 700 }}>
                             {lang === "ko" ? "우리 교회도 등록하기 →" : "Register your church →"}
                           </span>
-                          <span style={{ display: "block", fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "var(--color-text-secondary)", fontWeight: 500, marginTop: 4, lineHeight: 1.6 }}>
+                          <span style={{ display: "block", fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-secondary)", fontWeight: 500, marginTop: 4, lineHeight: 1.6 }}>
                             {lang === "ko"
                               ? "교회 크기는 보지 않습니다. 환대할 준비가 되었다면 연결합니다"
                               : "Size doesn\u2019t matter here. If you\u2019re ready to welcome someone, we\u2019ll connect you"}
@@ -16703,7 +16703,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                 <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 14, color: "#0d1117", marginBottom: 3 }}>
                   {lang === "ko" ? "🤝 Hebron 파트너 교회 신청하기 →" : "🤝 Apply as Hebron Partner Church →"}
                 </div>
-                <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 10, color: "rgba(0,0,0,0.55)" }}>
+                <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "rgba(0,0,0,0.55)" }}>
                   {lang === "ko" ? "이 도시에서 이웃을 환영하는 교회로 함께하세요" : "Join as a welcoming church in this city"}
                 </div>
               </div>
@@ -16714,10 +16714,10 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
               <div style={{ background: "rgba(74,21,75,0.15)", border: "1px solid rgba(154,100,156,0.35)", borderRadius: 14, padding: "12px 18px", display: "flex", alignItems: "center", gap: 12 }}>
                 <MessageCircle size={17} strokeWidth={2} />
                 <div>
-                  <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 12.5, color: "#E8B4E8" }}>
+                  <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 12.5, color: "#86198F" }}>
                     {lang === "ko" ? "파트너 목사 전용 — Slack 채널" : "Partner Pastors — Slack Channel"}
                   </div>
-                  <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 10.5, color: "var(--color-text-secondary)", marginTop: 2 }}>
+                  <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-secondary)", marginTop: 2 }}>
                     {lang === "ko" ? "파트너 교회 목사님들의 소통 공간입니다" : "A private space for Hebron partner pastors"}
                   </div>
                 </div>
@@ -16729,7 +16729,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             <CityRequestForm lang={lang} />
 
             {/* 브랜드 푸터 */}
-            <div style={{ textAlign: "center", padding: "12px 0 8px", fontFamily: "Geist,Pretendard Variable,sans-serif", color: "var(--color-text-muted)", fontSize: 10, letterSpacing: "0.04em" }}>
+            <div style={{ textAlign: "center", padding: "12px 0 8px", fontFamily: "Geist,Pretendard Variable,sans-serif", color: "var(--color-text-muted)", fontSize: 12, letterSpacing: "0.04em" }}>
               <div style={{ marginBottom: 5 }}>
                 © 2026 Hebron Platform LLC · 무단 전재·복제 금지 ·{" "}
                 <a href="https://hebronguide.com/privacy.html" target="_blank" rel="noopener" style={{ color: "inherit", textDecoration: "none" }}>개인정보처리방침</a>
@@ -16773,7 +16773,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
             <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 16, color: "var(--color-text-primary)", lineHeight: 1.3, marginBottom: 8 }}>
               {welcomeChurch.name}
             </div>
-            <div style={{ fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif", fontSize: 11, color: "var(--color-text-muted)", fontStyle: "italic", lineHeight: 1.6 }}>
+            <div style={{ fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif", fontSize: 12, color: "var(--color-text-muted)", fontStyle: "italic", lineHeight: 1.6 }}>
               {lang === "ko"
                 ? '"내가 나그네 되었을 때 너희가 영접하였다" — 마태복음 25:35'
                 : '"I was a stranger and you welcomed me." — Matthew 25:35'}
@@ -21746,7 +21746,7 @@ function GroceryMartContent({ lang, accent }: { lang: string; accent: string }) 
       )}
       {website && (
         <div style={{ paddingLeft: 32, marginTop: 6 }}>
-          <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: accent }}>🔗 {website}</span>
+          <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: accent }}>🔗 {website}</span>
         </div>
       )}
     </div>
@@ -21910,9 +21910,9 @@ function AmericaWorldContent({ lang, citySlug, accent }: { lang: string; citySlu
       <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 13, color: "var(--color-text-primary)", lineHeight: 1.7, paddingLeft: 32 }}>{desc}</div>
       {phrase && (
         <div style={{ margin: "10px 0 0 32px", background: "rgba(201,162,39,0.12)", border: "1px solid rgba(201,162,39,0.3)", borderRadius: 10, padding: "10px 12px" }}>
-          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 9, color: "#8A6A12", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: 5 }}><EmojiIcon emoji={"💬"} size={13} /> {ko ? "이렇게 말하세요" : "Say this"}</div>
+          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "#8A6A12", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: 5 }}><EmojiIcon emoji={"💬"} size={13} /> {ko ? "이렇게 말하세요" : "Say this"}</div>
           <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 13, color: "var(--color-text-primary)", fontWeight: 700, marginBottom: 3 }}>"{phrase}"</div>
-          {phraseKo && <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "var(--color-text-primary)" }}>{phraseKo}</div>}
+          {phraseKo && <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-primary)" }}>{phraseKo}</div>}
         </div>
       )}
       {tip && (
@@ -22285,7 +22285,7 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
             })}
           </div>
           {foodFilter !== "전체" && (
-            <div style={{ fontSize: 10, color: "var(--color-text-muted)", fontFamily: "Geist,Pretendard Variable,sans-serif", marginTop: 6, paddingLeft: 2 }}>
+            <div style={{ fontSize: 12, color: "var(--color-text-muted)", fontFamily: "Geist,Pretendard Variable,sans-serif", marginTop: 6, paddingLeft: 2 }}>
               {lang === "ko" ? `"${foodFilter}" 카테고리 필터 중` : `Filtering by "${foodFilter}"`}
             </div>
           )}
@@ -22632,7 +22632,7 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
                   ].map((s, i) => (
                     <div key={i} style={{ background: "rgba(0,0,0,0.2)", borderRadius: 10, padding: "10px 8px", textAlign: "center" }}>
                       <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 12, color: "#06B6D4" }}>{s.n}</div>
-                      <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 9, color: "var(--color-text-primary)", marginTop: 2 }}>{s.d}</div>
+                      <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-primary)", marginTop: 2 }}>{s.d}</div>
                     </div>
                   ))}
                 </div>
@@ -22682,7 +22682,7 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
                         {lang === "ko" ? pkg.priceKo : pkg.priceEn}
                       </span>
                     </div>
-                    <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "var(--color-text-secondary)", lineHeight: 1.6, paddingLeft: 26 }}>
+                    <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-secondary)", lineHeight: 1.6, paddingLeft: 26 }}>
                       {lang === "ko" ? pkg.descKo : pkg.descEn}
                     </div>
                   </div>
@@ -22699,7 +22699,7 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
                     <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 14, color: "var(--color-text-primary)", marginBottom: 3 }}>
                       🧭 {lang === "ko" ? "투어 예약 문의하기" : "Book a Tour"}
                     </div>
-                    <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "rgba(255,255,255,0.8)" }}>
+                    <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "rgba(255,255,255,0.8)" }}>
                       hebronplatform@gmail.com
                     </div>
                   </div>
@@ -22708,7 +22708,7 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
                 <a href="mailto:hebronplatform@gmail.com?subject=Hebron 관광 가이드 참여 문의"
                   style={{ display: "block", textDecoration: "none" }}>
                   <div style={{ background: "rgba(27,42,74,0.04)", border: "1px solid rgba(27,42,74,0.1)", borderRadius: 12, padding: "10px 16px", textAlign: "center" }}>
-                    <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "var(--color-text-primary)" }}>
+                    <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-primary)" }}>
                       {lang === "ko" ? "이 도시를 안내하고 싶으신 분 → 문의하기" : "Want to guide this city? → Contact us"}
                     </div>
                   </div>
@@ -23432,8 +23432,8 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
           </div>
           {/* 안전 팁 — 도시별 */}
           <div style={{ margin: "16px 16px 0", background: "rgba(248,113,113,0.07)", border: "1px solid rgba(248,113,113,0.18)", borderRadius: 14, padding: "14px 16px" }}>
-            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 6 }}><EmojiIcon emoji={"💡"} size={13} /> {lang === "ko" ? `${city.nameKo} 안전 팁` : `${city.nameEn} Safety Tips`}</div>
-            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, lineHeight: 1.8, color: "var(--color-text-secondary)" }}>
+            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: accent, marginBottom: 6 }}><EmojiIcon emoji={"💡"} size={13} /> {lang === "ko" ? `${city.nameKo} 안전 팁` : `${city.nameEn} Safety Tips`}</div>
+            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, lineHeight: 1.8, color: "var(--color-text-secondary)" }}>
               {lang === "ko" ? em.safetyTips : em.safetyTipsEn}
             </div>
           </div>
@@ -23446,7 +23446,7 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             <div style={{ fontFamily: "'Pretendard Variable',sans-serif", fontWeight: 700, fontSize: 13, color: accent, marginBottom: 4 }}>
               🏥 {lang === "ko" ? "한인 의료·병원 안내" : "Korean Medical & Hospital Guide"}
             </div>
-            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "var(--color-text-primary)", lineHeight: 1.5 }}>
+            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-primary)", lineHeight: 1.5 }}>
               {lang === "ko" ? "한국어 가능 의료기관 · 정신건강 · 응급 연락" : "Korean-speaking clinics · Mental health · Emergency contacts"}
             </div>
           </div>
@@ -23454,8 +23454,8 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             {medicalItems.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
           </div>
           <div style={{ background: "rgba(248,113,113,0.07)", border: "1px solid rgba(248,113,113,0.18)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
-            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}><EmojiIcon emoji={"⚠"} size={13} /> {lang === "ko" ? "의료 정보 안내" : "Medical Info Note"}</div>
-            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, lineHeight: 1.7, color: "var(--color-text-secondary)" }}>
+            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: accent, marginBottom: 4 }}><EmojiIcon emoji={"⚠"} size={13} /> {lang === "ko" ? "의료 정보 안내" : "Medical Info Note"}</div>
+            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, lineHeight: 1.7, color: "var(--color-text-secondary)" }}>
               {lang === "ko"
                 ? `전화번호·주소는 변경될 수 있습니다. 방문 전 반드시 공식 웹사이트 또는 전화로 확인하세요. 응급 상황 → ${emAll}`
                 : `Phone numbers & addresses may change. Always verify via official website or phone before visiting. Emergency → ${emAll}`}
@@ -23483,18 +23483,18 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
                   ].map((s, i) => (
                     <div key={i} style={{ background: "rgba(27,42,74,0.05)", borderRadius: 10, padding: "9px 8px", textAlign: "center" }}>
                       <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 14, color: "var(--color-text-primary)" }}>{s.value}</div>
-                      <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 9, color: "var(--color-text-secondary)", marginTop: 2 }}>{s.label}</div>
+                      <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-secondary)", marginTop: 2 }}>{s.label}</div>
                     </div>
                   ))}
                 </div>
                 {/* 주요 언어 */}
                 <div style={{ marginBottom: 8 }}>
-                  <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 10, color: "var(--color-text-secondary)", marginBottom: 5 }}>
+                  <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-secondary)", marginBottom: 5 }}>
                     🗣️ {lang === "ko" ? "주요 사용 언어 (순위)" : "Top Languages (by use)"}
                   </div>
                   <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
                     {demo.topLanguages.map((l, i) => (
-                      <span key={i} style={{ background: i === 0 ? "rgba(201,162,39,0.25)" : i <= 2 ? "rgba(110,231,183,0.15)" : "rgba(27,42,74,0.07)", border: `1px solid ${i === 0 ? "rgba(201,162,39,0.5)" : "rgba(27,42,74,0.1)"}`, borderRadius: 20, padding: "3px 9px", fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 10, fontWeight: i <= 2 ? 700 : 400, color: i === 0 ? "#C9A227" : "#1B2A4A" }}>
+                      <span key={i} style={{ background: i === 0 ? "rgba(201,162,39,0.25)" : i <= 2 ? "rgba(110,231,183,0.15)" : "rgba(27,42,74,0.07)", border: `1px solid ${i === 0 ? "rgba(201,162,39,0.5)" : "rgba(27,42,74,0.1)"}`, borderRadius: 20, padding: "3px 9px", fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, fontWeight: i <= 2 ? 700 : 400, color: i === 0 ? "#C9A227" : "#1B2A4A" }}>
                         {i + 1}. {l}
                       </span>
                     ))}
@@ -23503,12 +23503,12 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
                 {/* 민족 구성 */}
                 {demo.ethnicComposition.length > 0 && (
                   <div style={{ marginBottom: 8 }}>
-                    <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 10, color: "var(--color-text-secondary)", marginBottom: 5 }}>
+                    <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-secondary)", marginBottom: 5 }}>
                       🌍 {lang === "ko" ? "민족 구성" : "Ethnic Composition"}
                     </div>
                     <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
                       {demo.ethnicComposition.map((e, i) => (
-                        <span key={i} style={{ background: "rgba(27,42,74,0.06)", border: "1px solid rgba(27,42,74,0.1)", borderRadius: 6, padding: "3px 8px", fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 10, color: "var(--color-text-primary)" }}>
+                        <span key={i} style={{ background: "rgba(27,42,74,0.06)", border: "1px solid rgba(27,42,74,0.1)", borderRadius: 6, padding: "3px 8px", fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-primary)" }}>
                           {e.group} <strong style={{ color: "var(--color-success)" }}>{e.pct}</strong>
                         </span>
                       ))}
@@ -23517,14 +23517,14 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
                 )}
                 {/* 전략 메모 */}
                 <div style={{ background: "rgba(0,0,0,0.2)", borderRadius: 8, padding: "8px 10px" }}>
-                  <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 9, color: "#8A6A12", marginBottom: 3, letterSpacing: "0.5px" }}>
+                  <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "#8A6A12", marginBottom: 3, letterSpacing: "0.5px" }}>
                     ⚡ {lang === "ko" ? "HebronGuide 전략 메모" : "HebronGuide Strategic Note"}
                   </div>
-                  <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 10, lineHeight: 1.7, color: "var(--color-text-secondary)" }}>
+                  <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, lineHeight: 1.7, color: "var(--color-text-secondary)" }}>
                     {lang === "ko" ? demo.strategicNote : demo.strategicNoteEn}
                   </div>
                 </div>
-                <div style={{ marginTop: 6, fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 9, color: "var(--color-text-muted)" }}>
+                <div style={{ marginTop: 6, fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-muted)" }}>
                   {lang === "ko" ? "출처: US Census ACS 2023 / Stats Canada 2021 / INEGI 2020 (근사치)" : "Sources: US Census ACS 2023 / Stats Canada 2021 / INEGI 2020 (estimates)"}
                 </div>
               </div>
@@ -23568,8 +23568,8 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             {usefulLinks.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
           </div>
           <div style={{ background: "rgba(248,113,113,0.07)", border: "1px solid rgba(248,113,113,0.18)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
-            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>ℹ️ {lang === "ko" ? "안내" : "Note"}</div>
-            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, lineHeight: 1.7, color: "var(--color-text-secondary)" }}>
+            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: accent, marginBottom: 4 }}>ℹ️ {lang === "ko" ? "안내" : "Note"}</div>
+            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, lineHeight: 1.7, color: "var(--color-text-secondary)" }}>
               {lang === "ko"
                 ? "이 가이드의 정보는 참고용입니다. 중요한 결정 전 반드시 전문가(변호사·의사·회계사)와 상담하세요."
                 : "Information in this guide is for reference only. Always consult a professional (attorney, doctor, accountant) before important decisions."}
@@ -23584,12 +23584,12 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             <div style={{ fontFamily: "'Pretendard Variable',sans-serif", fontWeight: 700, fontSize: 13, color: accent, marginBottom: 4 }}>
               📋 {lang === "ko" ? "한인 이민자가 모르는 미국 무료 자원" : "Free American Resources Korean Immigrants Often Don't Know"}
             </div>
-            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "var(--color-text-primary)", lineHeight: 1.5 }}>
+            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-primary)", lineHeight: 1.5 }}>
               {lang === "ko" ? "미국 주류 사회의 검증된 무료·저비용 서비스 모음. 한국어 통역 가능한 곳 우선 표시" : "Verified free & low-cost mainstream American services. Korean interpreter availability noted"}
             </div>
           </div>
 
-          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: "var(--color-text-muted)", marginBottom: 8, marginTop: 4, letterSpacing: "0.05em" }}>
+          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-muted)", marginBottom: 8, marginTop: 4, letterSpacing: "0.05em" }}>
             🍎 {lang === "ko" ? "식품 지원" : "FOOD ASSISTANCE"}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3" style={{ marginBottom: 16 }}>
@@ -23598,7 +23598,7 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             <PlaceCard emoji="📞" name={lang === "ko" ? "킹카운티 2-1-1 검증됨" : "King County 2-1-1 Verified"} nameEn={lang === "ko" ? "무료 서비스 연결 핫라인" : "Free Services Hotline"} desc={lang === "ko" ? "전화 211 — 식품·의료·주거·법률 무료 서비스 즉시 연결. 한국어 통역 가능" : "Dial 211 — connects to all free services (food, medical, housing, legal). Korean interpreter available"} tags={lang === "ko" ? ["211", "무료연결", "한국어"] : ["211", "Free", "Korean"]} accentColor={accent} />
           </div>
 
-          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: "var(--color-text-muted)", marginBottom: 8, letterSpacing: "0.05em" }}>
+          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-muted)", marginBottom: 8, letterSpacing: "0.05em" }}>
             ⚖️ {lang === "ko" ? "법률 지원" : "LEGAL AID"}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3" style={{ marginBottom: 16 }}>
@@ -23606,21 +23606,21 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             <PlaceCard emoji="🏛️" name={lang === "ko" ? "KCBA 프로보노 검증됨" : "KCBA Pro Bono Verified"} nameEn={lang === "ko" ? "무료 법률 상담" : "Free Legal Consultations"} desc={lang === "ko" ? "킹카운티 변호사협회 무료 법률 상담. 📞 206-267-7100" : "King County Bar Association free legal consultations. 📞 206-267-7100"} tags={lang === "ko" ? ["변호사", "무료", "상담"] : ["Attorney", "Free", "Consult"]} accentColor={accent} />
           </div>
 
-          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: "var(--color-text-muted)", marginBottom: 8, letterSpacing: "0.05em" }}>
+          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-muted)", marginBottom: 8, letterSpacing: "0.05em" }}>
             💰 {lang === "ko" ? "세금·재정 지원" : "TAX & FINANCIAL ASSISTANCE"}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3" style={{ marginBottom: 16 }}>
             <PlaceCard emoji="🧾" name={lang === "ko" ? "VITA 무료 세금 신고 검증됨" : "VITA Free Tax Filing Verified"} nameEn={lang === "ko" ? "자원봉사 세금 지원 프로그램" : "Volunteer Income Tax Assistance"} desc={lang === "ko" ? "1월~4월 무료 세금 신고 서비스. 한인 이민자 대부분 모름! 🔗 vitataxhelp.org" : "Free tax filing Jan–April. Most Korean immigrants don't know about this! 🔗 vitataxhelp.org"} tags={lang === "ko" ? ["무료세금", "1~4월", "중요"] : ["Free Tax", "Jan-Apr", "Important"]} accentColor={accent} />
           </div>
 
-          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: "var(--color-text-muted)", marginBottom: 8, letterSpacing: "0.05em" }}>
+          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-muted)", marginBottom: 8, letterSpacing: "0.05em" }}>
             🏠 {lang === "ko" ? "주거 지원" : "HOUSING ASSISTANCE"}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3" style={{ marginBottom: 16 }}>
             <PlaceCard emoji="🏠" name={lang === "ko" ? "킹카운티 주거청 검증됨" : "King County Housing Authority Verified"} nameEn={lang === "ko" ? "저렴한 공공주거" : "Affordable Public Housing"} desc={lang === "ko" ? "저렴한 주거 대기자 명단 신청. 📞 206-574-1100 | 🔗 kcha.org" : "Affordable housing waiting list applications. 📞 206-574-1100 | 🔗 kcha.org"} tags={lang === "ko" ? ["공공주거", "대기자", "저렴"] : ["Public Housing", "Waitlist", "Affordable"]} accentColor={accent} />
           </div>
 
-          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: "var(--color-text-muted)", marginBottom: 8, letterSpacing: "0.05em" }}>
+          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-muted)", marginBottom: 8, letterSpacing: "0.05em" }}>
             🚌 {lang === "ko" ? "대중교통" : "TRANSPORTATION"}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3" style={{ marginBottom: 16 }}>
@@ -23644,7 +23644,7 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
                 <div style={{ background: accent, borderRadius: 8, padding: "5px 14px", fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 13, color: "#0d1117" }}>
                   {lang === "ko" ? "📱 211 전화하기" : "📱 Call 211"}
                 </div>
-                <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "var(--color-text-primary)" }}>
+                <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-primary)" }}>
                   {lang === "ko" ? "검증됨 · 한국어 통역 가능" : "Verified · Korean interpreter available"}
                 </span>
               </div>
@@ -23652,8 +23652,8 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
           </a>
 
           <div style={{ background: "rgba(248,113,113,0.07)", border: "1px solid rgba(248,113,113,0.18)", borderRadius: 14, padding: "14px 16px", marginTop: 12 }}>
-            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}><EmojiIcon emoji={"💡"} size={13} /> {lang === "ko" ? "이 자원들을 모르셨나요?" : "Did You Know These Resources Existed?"}</div>
-            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, lineHeight: 1.8, color: "var(--color-text-secondary)" }}>
+            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: accent, marginBottom: 4 }}><EmojiIcon emoji={"💡"} size={13} /> {lang === "ko" ? "이 자원들을 모르셨나요?" : "Did You Know These Resources Existed?"}</div>
+            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, lineHeight: 1.8, color: "var(--color-text-secondary)" }}>
               {lang === "ko"
                 ? "• VITA 무료 세금 신고 — 매년 수백 달러 절약 가능\n• 211 서비스 — 한 번의 전화로 모든 지원 연결\n• 무료 클리닉 — 보험 없어도 의료 서비스 이용 가능\n• NW 저스티스 — 이민 법률 무료 상담 가능"
                 : "• VITA free tax filing — save hundreds of dollars each year\n• 211 service — one call connects to all free resources\n• Free Clinic — medical care even without insurance\n• NW Justice — free immigration legal consultations"}
@@ -23886,8 +23886,8 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
             })().map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
           </div>
           <div style={{ background: "rgba(248,113,113,0.07)", border: "1px solid rgba(248,113,113,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 12 }}>
-            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}><EmojiIcon emoji={"⚖"} size={13} /> {lang === "ko" ? "법률 도움 받는 첫 단계" : "First Step to Get Legal Help"}</div>
-            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, lineHeight: 1.8, color: "var(--color-text-secondary)" }}>
+            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: accent, marginBottom: 4 }}><EmojiIcon emoji={"⚖"} size={13} /> {lang === "ko" ? "법률 도움 받는 첫 단계" : "First Step to Get Legal Help"}</div>
+            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, lineHeight: 1.8, color: "var(--color-text-secondary)" }}>
               {lang === "ko"
                 ? `1. 이민 긴급 → 위 무료 법률 기관 전화\n2. 한국어 통역 필요 → Language Line: 800-752-6096\n3. 이민 사기 신고 → FTC: reportfraud.ftc.gov\n4. 멕시코 거주 → 한국 대사관: 55-5202-9866\n5. 캐나다 거주 → Legal Aid 해당 주 연락`
                 : `1. Immigration emergency → call free legal org above\n2. Korean interpreter needed → Language Line: 800-752-6096\n3. Report immigration fraud → FTC: reportfraud.ftc.gov\n4. Mexico residents → Korean Embassy: 55-5202-9866\n5. Canada residents → contact provincial Legal Aid`}
@@ -24024,7 +24024,7 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
                 <div style={{ fontWeight: 800, fontSize: 13, color: "#B91C1C" }}>
                   {lang === "ko" ? "다른 도움도 필요하세요?" : "Need other help?"}
                 </div>
-                <div style={{ fontSize: 11, color: "rgba(248,113,113,0.6)", marginTop: 1 }}>
+                <div style={{ fontSize: 12, color: "rgba(248,113,113,0.6)", marginTop: 1 }}>
                   {lang === "ko"
                     ? `긴급연락 · 커뮤니티 · 무료자원 · 법률 · ${DIASPORA_IDENTITY[city.slug]?.ko ?? "동포 여정"}`
                     : `Emergency · Community · Free Resources · Legal · ${DIASPORA_IDENTITY[city.slug]?.en ?? "Journey"}`}
@@ -24693,7 +24693,7 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
           {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
         </div>
         <div style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
-          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 10 }}>
+          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: accent, marginBottom: 10 }}>
             💼 {lang === "ko" ? "취업 바로 연결" : "Job Resources"}
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
@@ -24706,7 +24706,7 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
                 <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-primary)" }}>
                   {lang === "ko" ? "카카오오픈채팅 '시애틀한인'" : "KakaoTalk '시애틀한인'"}
                 </div>
-                <div style={{ fontSize: 10, color: "var(--color-text-secondary)", marginTop: 1 }}>{lang === "ko" ? "취업 정보·추천 실시간 공유" : "Live job info & referrals"}</div>
+                <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 1 }}>{lang === "ko" ? "취업 정보·추천 실시간 공유" : "Live job info & referrals"}</div>
               </div>
               <span style={{ color: accent, fontSize: 14 }}>→</span>
             </a>
@@ -24715,7 +24715,7 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
               <EmojiIcon emoji={"🏢"} size={14} />
               <div style={{ flex: 1 }}>
                 <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-primary)" }}>WorkSource WA</div>
-                <div style={{ fontSize: 10, color: "var(--color-text-secondary)", marginTop: 1 }}>{lang === "ko" ? "무료 이력서·면접 코칭" : "Free resume & interview coaching"}</div>
+                <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 1 }}>{lang === "ko" ? "무료 이력서·면접 코칭" : "Free resume & interview coaching"}</div>
               </div>
               <span style={{ color: accent, fontSize: 14 }}>→</span>
             </a>
@@ -24726,7 +24726,7 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
               <Briefcase size={14} strokeWidth={2} />
               <div style={{ flex: 1 }}>
                 <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-primary)" }}>LinkedIn Jobs — {city.nameEn}</div>
-                <div style={{ fontSize: 10, color: "var(--color-text-secondary)", marginTop: 1 }}>{lang === "ko" ? `${city.nameKo} 한인 취업 공고` : `${city.nameEn} Korean job listings`}</div>
+                <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 1 }}>{lang === "ko" ? `${city.nameKo} 한인 취업 공고` : `${city.nameEn} Korean job listings`}</div>
               </div>
               <span style={{ color: accent, fontSize: 14 }}>→</span>
             </a>
@@ -26042,10 +26042,10 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
           {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
         </div>
         <div style={{ background: "rgba(167,139,250,0.08)", border: "1px solid rgba(167,139,250,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
-          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>
+          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: accent, marginBottom: 4 }}>
             {tip.icon} {lang === "ko" ? "꼭 알아야 할 팁" : "Key Tip"}
           </div>
-          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, lineHeight: 1.7, color: "var(--color-text-secondary)", whiteSpace: "pre-line" }}>
+          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, lineHeight: 1.7, color: "var(--color-text-secondary)", whiteSpace: "pre-line" }}>
             {lang === "ko" ? tip.ko : tip.en}
           </div>
         </div>
@@ -26841,10 +26841,10 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
               {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
             </div>
             <div style={{ background: "rgba(52,211,153,0.08)", border: "1px solid rgba(52,211,153,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: accent, marginBottom: 4 }}>
                 💰 {lang === "ko" ? "비용 절약 팁" : "Cost-saving Tip"}
               </div>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, lineHeight: 1.7, color: "var(--color-text-secondary)" }}>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, lineHeight: 1.7, color: "var(--color-text-secondary)" }}>
                 {lang === "ko"
                   ? isSeattle
                     ? "워싱턴주는 소득세가 없어서 같은 연봉이라도 캘리포니아(13.3%)나 오리건(9.9%)보다 실수령액이 훨씬 높습니다. 린우드 거주 시 Link Light Rail로 시애틀 통근이 가능해 교통비도 절약됩니다."
@@ -26890,7 +26890,7 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
               📱 {lang === "ko" ? "절약 앱 & 무료자원" : "Money-Saving Apps & Free Resources"}
             </div>
             <div style={{ background: "rgba(52,211,153,0.08)", border: "1px solid rgba(52,211,153,0.2)", borderRadius: 14, padding: "14px 16px", marginBottom: 12 }}>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 8 }}>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: accent, marginBottom: 8 }}>
                 📱 {lang === "ko" ? "돈 절약 앱" : "Apps to Save Money"}
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
@@ -26905,7 +26905,7 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
                     <EmojiIcon emoji={link.emoji} size={14} />
                     <div style={{ flex: 1 }}>
                       <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-primary)" }}>{link.label}</div>
-                      <div style={{ fontSize: 10, color: "var(--color-text-secondary)", marginTop: 1 }}>{link.sub}</div>
+                      <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 1 }}>{link.sub}</div>
                     </div>
                     <span style={{ color: accent, fontSize: 14 }}>→</span>
                   </a>
@@ -26913,7 +26913,7 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
               </div>
             </div>
             <div style={{ background: "rgba(52,211,153,0.08)", border: "1px solid rgba(52,211,153,0.2)", borderRadius: 14, padding: "14px 16px", marginBottom: 8 }}>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 8 }}>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: accent, marginBottom: 8 }}>
                 🆓 {lang === "ko" ? "무료자원 — 꼭 활용하세요!" : "FREE Resources — Don't Miss These!"}
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
@@ -26939,7 +26939,7 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
                     <EmojiIcon emoji={link.emoji} size={14} />
                     <div style={{ flex: 1 }}>
                       <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-primary)" }}>{link.label}</div>
-                      <div style={{ fontSize: 10, color: "var(--color-text-secondary)", marginTop: 1 }}>{link.sub}</div>
+                      <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 1 }}>{link.sub}</div>
                     </div>
                     <span style={{ color: accent, fontSize: 14 }}>→</span>
                   </a>
@@ -26947,10 +26947,10 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
               </div>
             </div>
             <div style={{ background: "rgba(52,211,153,0.08)", border: "1px solid rgba(52,211,153,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: accent, marginBottom: 4 }}>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: accent, marginBottom: 4 }}>
                 💡 {lang === "ko" ? "알뜰생활 철학" : "Smart Living Philosophy"}
               </div>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, lineHeight: 1.7, color: "var(--color-text-secondary)" }}>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, lineHeight: 1.7, color: "var(--color-text-secondary)" }}>
                 {lang === "ko"
                   ? "HebronGuide는 한인 커뮤니티를 넘어 다문화 미국 생활 전체를 가르칩니다. 베트남 쌀국수, 멕시칸 타코, 인도 뷔페 — 이민자들이 만든 음식이 이민자에게 가장 가성비가 좋습니다. 돈을 아끼면서 지혜로운 생활 🌎"
                   : "HebronGuide teaches you to thrive in ALL of multicultural America, not just the Korean community. Vietnamese pho, Mexican tacos, Indian buffets — food made by immigrants offers the best value for immigrants. Smart frugal living 🌎"}
@@ -27013,8 +27013,8 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
               ].map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
             </div>
             <div style={{ background: "rgba(249,115,22,0.07)", border: "1px solid rgba(249,115,22,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 12 }}>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: "#FB923C", marginBottom: 4 }}><EmojiIcon emoji={"💡"} size={13} /> {lang === "ko" ? "세금신고 핵심 원칙" : "Key Tax Filing Principles"}</div>
-              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, lineHeight: 1.8, color: "var(--color-text-secondary)" }}>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "#FB923C", marginBottom: 4 }}><EmojiIcon emoji={"💡"} size={13} /> {lang === "ko" ? "세금신고 핵심 원칙" : "Key Tax Filing Principles"}</div>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, lineHeight: 1.8, color: "var(--color-text-secondary)" }}>
                 {lang === "ko"
                   ? "1. 소득이 있으면 신고 — 금액 작아도 의무\n2. VITA 무료 신고 먼저 확인 ($67K 이하)\n3. 해외 계좌 $10K+ → FBAR 별도 신고 필수\n4. 연장 신청은 납부 연장 아님 — 세금은 4/15까지 납부\n5. 복잡한 상황 → 반드시 한인 CPA 상담"
                   : "1. File if you have income — even small amounts are required\n2. Check VITA free filing first (under $67K)\n3. Foreign accounts $10K+ → FBAR filing required separately\n4. Extension ≠ payment extension — taxes still due by 4/15\n5. Complex situation → consult Korean CPA"}
@@ -27695,13 +27695,13 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
   // ── 공통 UI 헬퍼 ─────────────────────────────────────────
   const PhraseCard = ({ situation, english, korean }: { situation: string; english: string; korean: string }) => (
     <div style={{ background: "rgba(201,162,39,0.12)", border: "1px solid rgba(201,162,39,0.35)", borderRadius: 12, padding: "12px 14px", marginTop: 10 }}>
-      <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 10, color: "#8A6A12", fontWeight: 700, marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.5px" }}>
+      <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "#8A6A12", fontWeight: 700, marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.5px" }}>
         💬 {situation}
       </div>
       <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 14, color: "var(--color-text-primary)", fontWeight: 700, marginBottom: 4 }}>
         "{english}"
       </div>
-      <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "var(--color-text-secondary)" }}>
+      <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-secondary)" }}>
         {korean}
       </div>
     </div>
@@ -27728,7 +27728,7 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
           <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, color: "#0d1117", fontWeight: 800 }}>{num}</span>
         </div>
         <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 14, color: "var(--color-text-primary)", lineHeight: 1.3 }}>{title}</div>
-        {critical && <span style={{ background: "#EF4444", color: "#fff", fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 9, fontWeight: 800, padding: "2px 6px", borderRadius: 6, letterSpacing: "0.5px", flexShrink: 0 }}>필수</span>}
+        {critical && <span style={{ background: "#EF4444", color: "#fff", fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, fontWeight: 800, padding: "2px 6px", borderRadius: 6, letterSpacing: "0.5px", flexShrink: 0 }}>필수</span>}
       </div>
       <div style={{ paddingLeft: 38 }}>{children}</div>
     </div>
@@ -28104,10 +28104,10 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
         <StepCard key={i} num={i + 1} title={`${t.icon} ${t.name}`}>
           <BodyText>{t.desc}</BodyText>
           <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
-            <div style={{ background: "rgba(201,162,39,0.15)", borderRadius: 8, padding: "6px 10px", fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "#8A6A12", fontWeight: 700 }}>
+            <div style={{ background: "rgba(201,162,39,0.15)", borderRadius: 8, padding: "6px 10px", fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "#8A6A12", fontWeight: 700 }}>
               💰 {t.price}
             </div>
-            <div style={{ background: "rgba(56,189,248,0.1)", borderRadius: 8, padding: "6px 10px", fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: accent, fontWeight: 700 }}>
+            <div style={{ background: "rgba(56,189,248,0.1)", borderRadius: 8, padding: "6px 10px", fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: accent, fontWeight: 700 }}>
               ⏱ {t.time}
             </div>
           </div>
@@ -28160,9 +28160,9 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
               <div style={{flex:1}}>
                 <div style={{fontFamily:"Geist,Pretendard Variable,sans-serif",fontWeight:800,fontSize:12.5,color: "var(--color-text-primary)",marginBottom:4}}>
                   {ko?item.titleKo:item.titleEn}
-                  <span style={{marginLeft:8,background:"rgba(201,162,39,0.18)",borderRadius:6,padding:"1px 7px",fontSize:10,color: "#8A6A12",fontWeight:700}}>{item.price}</span>
+                  <span style={{marginLeft:8,background:"rgba(201,162,39,0.18)",borderRadius:6,padding:"1px 7px",fontSize:12,color: "#8A6A12",fontWeight:700}}>{item.price}</span>
                 </div>
-                <div style={{fontFamily:"Geist,Pretendard Variable,sans-serif",fontSize:11.5,color: "var(--color-text-secondary)",lineHeight:1.6}}>
+                <div style={{fontFamily:"Geist,Pretendard Variable,sans-serif",fontSize:12,color: "var(--color-text-secondary)",lineHeight:1.6}}>
                   {ko?item.descKo:item.descEn}
                 </div>
               </div>
@@ -28210,7 +28210,7 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
                 boxShadow: isActive ? `0 2px 12px ${accent}44` : "none",
               }}>
                 <span style={{ fontSize: 18 }}>{p.icon}</span>
-                <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 10, color: isActive ? "#0d1117" : "rgba(56,189,248,0.8)", whiteSpace: "nowrap" }}>
+                <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 12, color: isActive ? "#0d1117" : "rgba(56,189,248,0.8)", whiteSpace: "nowrap" }}>
                   {ko ? p.labelKo : p.labelEn}
                 </span>
               </button>
@@ -28224,7 +28224,7 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
         <div style={{ height: 3, background: "rgba(56,189,248,0.1)", borderRadius: 2, overflow: "hidden" }}>
           <div style={{ height: "100%", width: `${((phase + 1) / PHASES.length) * 100}%`, background: accent, borderRadius: 2, transition: "width 0.3s ease" }} />
         </div>
-        <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 10, color: "rgba(56,189,248,0.5)", marginTop: 4, textAlign: "right" }}>
+        <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "rgba(56,189,248,0.5)", marginTop: 4, textAlign: "right" }}>
           {phase + 1} / {PHASES.length}
         </div>
       </div>
@@ -28336,7 +28336,7 @@ function SupportScreen({ onHome }: { onHome?: () => void }) {
                     </div>
                   </div>
                   {Array.isArray(org.tags) && org.tags.length > 0 && (
-                    <span style={{ background: "#1B2A4A", color: "#059669", fontSize: 11,
+                    <span style={{ background: "#1B2A4A", color: "#059669", fontSize: 12,
                       fontWeight: 700, padding: "3px 10px", borderRadius: 99,
                       whiteSpace: "nowrap" as const, marginLeft: 8 }}>
                       {org.tags[0]}
@@ -28525,7 +28525,7 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
                 {i === 0 && isPartner && (
                   <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
                     <div style={{ height: 1, flex: 1, background: "rgba(99,102,241,0.2)" }} />
-                    <span style={{ fontSize: 10, fontWeight: 800, color: "#6366F1", whiteSpace: "nowrap" }}>
+                    <span style={{ fontSize: 12, fontWeight: 800, color: "#6366F1", whiteSpace: "nowrap" }}>
                       ⭐ {ko ? "Hebron 협력 사업체" : "Hebron Partner Businesses"}
                     </span>
                     <div style={{ height: 1, flex: 1, background: "rgba(99,102,241,0.2)" }} />
@@ -28534,7 +28534,7 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
                 {!isPartner && prevIsPartner && (
                   <div style={{ display: "flex", alignItems: "center", gap: 8, margin: "4px 0" }}>
                     <div style={{ height: 1, flex: 1, background: "#F1F5F9" }} />
-                    <span style={{ fontSize: 10, color: "var(--color-text-muted)", whiteSpace: "nowrap" }}>
+                    <span style={{ fontSize: 12, color: "var(--color-text-muted)", whiteSpace: "nowrap" }}>
                       {ko ? "기타 업소" : "Other Businesses"}
                     </span>
                     <div style={{ height: 1, flex: 1, background: "#F1F5F9" }} />
@@ -28547,7 +28547,7 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
                 {isPartner && (
                   <div style={{ marginBottom: 8 }}>
                     <span style={{ background: "rgba(99,102,241,0.1)", border: "1px solid rgba(99,102,241,0.3)",
-                      color: "#4F46E5", borderRadius: 8, padding: "2px 8px", fontSize: 10,
+                      color: "#4F46E5", borderRadius: 8, padding: "2px 8px", fontSize: 12,
                       fontWeight: 700, fontFamily: "Geist,Pretendard Variable,sans-serif" }}>
                       ⭐ Hebron 협력 사업체
                     </span>
@@ -28563,7 +28563,7 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
                     )}
                   </div>
                   {(b.category || b.type) && (
-                    <span style={{ background: "#EEF2FF", color: "#4F46E5", fontSize: 11,
+                    <span style={{ background: "#EEF2FF", color: "#4F46E5", fontSize: 12,
                       fontWeight: 700, padding: "3px 10px", borderRadius: 99, whiteSpace: "nowrap", marginLeft: 8 }}>
                       {b.category || b.type}
                     </span>
@@ -28667,9 +28667,9 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
               <span style={{ fontSize: 24, flexShrink: 0 }}>{item.emoji}</span>
               <div style={{ flex: 1 }}>
                 <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 13, color: "#1B2A4A" }}>{item.name}</div>
-                <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "#64748B", marginTop: 2 }}>{item.desc}</div>
+                <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "#64748B", marginTop: 2 }}>{item.desc}</div>
               </div>
-              <div style={{ background: "#FEF3C7", border: "1px solid #F59E0B", borderRadius: 99, padding: "2px 8px", fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 9, color: "#D97706", whiteSpace: "nowrap" as const }}>
+              <div style={{ background: "#FEF3C7", border: "1px solid #F59E0B", borderRadius: 99, padding: "2px 8px", fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "#D97706", whiteSpace: "nowrap" as const }}>
                 {ko ? "준비중" : "SOON"}
               </div>
             </div>
@@ -28682,7 +28682,7 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
           <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 13, color: "#065f46", marginBottom: 4 }}>
             💌 {ko ? "오픈 소식을 먼저 받아보세요" : "Be the first to know"}
           </div>
-          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "#475569", marginBottom: 14, lineHeight: 1.5 }}>
+          <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "#475569", marginBottom: 14, lineHeight: 1.5 }}>
             {ko ? "스토어 오픈 시 이메일로 먼저 알려드립니다." : "We will notify you by email when the store opens."}
           </div>
           <a href="mailto:hebronplatform@gmail.com?subject=헤브론 스토어 오픈 알림 신청&body=이름:%0A이메일:%0A관심 상품:"
@@ -28692,7 +28692,7 @@ function StoreScreen({ onHome }: { onHome?: () => void }) {
         </div>
       </div>
       <div style={{ padding: "20px", textAlign: "center" as const }}>
-        <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "var(--color-text-muted)" }}>
+        <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-muted)" }}>
           {ko ? "곧 찾아옵니다. 기대해 주세요 🙏" : "Coming soon. Thank you for your patience 🙏"}
         </div>
       </div>
@@ -29553,7 +29553,7 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
 
         {/* ── 하단 안내 ── */}
         <div style={{ padding: "6px 16px 14px", textAlign: "center" }}>
-          <div style={{ fontSize: 10, color: "#CBD5E1" }}>
+          <div style={{ fontSize: 12, color: "#CBD5E1" }}>
             💡 {lang === "ko" ? "공유 시 HebronGuide 링크가 자동으로 포함됩니다" : "HebronGuide link is automatically included in every share"}
           </div>
         </div>
@@ -29701,7 +29701,7 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
                       <IconComp size={20} color={isActive ? "#fff" : s.color} strokeWidth={1.8} />
                     </div>
                     <span style={{
-                      fontSize: 10, fontWeight: 600,
+                      fontSize: 12, fontWeight: 600,
                       color: isActive ? s.color : "#374151",
                       fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif",
                       textAlign: "center", lineHeight: 1.2,
@@ -29747,7 +29747,7 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
                   }}
                 >
                   <IconComp size={20} color="#6B7280" strokeWidth={1.8} />
-                  <span style={{ fontSize: 10, fontWeight: 600, color: "#6B7280",
+                  <span style={{ fontSize: 12, fontWeight: 600, color: "#6B7280",
                     fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif" }}>
                     {lang === "ko" ? u.labelKo : u.labelEn}
                   </span>
@@ -29769,10 +29769,10 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
             {/* 아이콘 */}
             <div style={{ width: 36, height: 36, borderRadius: 10, background: "rgba(201, 162, 39, 0.15)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}><Handshake size={15} strokeWidth={2} /></div>
             <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 11.5, fontWeight: 800, color: "#92400E", letterSpacing: "0.1px", marginBottom: 2, fontFamily: "Geist,Pretendard Variable, sans-serif" }}>
+              <div style={{ fontSize: 12, fontWeight: 800, color: "#92400E", letterSpacing: "0.1px", marginBottom: 2, fontFamily: "Geist,Pretendard Variable, sans-serif" }}>
                 {lang === "ko" ? "무료 등재 신청 (교회·업소)" : "List for free (Church · Business)"}
               </div>
-              <div style={{ fontSize: 10.5, color: "#C9A227", fontWeight: 700, fontFamily: "Geist,Pretendard Variable, sans-serif" }}>
+              <div style={{ fontSize: 12, color: "#C9A227", fontWeight: 700, fontFamily: "Geist,Pretendard Variable, sans-serif" }}>
                 {lang === "ko" ? "사실을 확인한 뒤 무료로 올립니다 →" : "Verified, then listed for free →"}
               </div>
             </div>
@@ -29928,7 +29928,7 @@ function AppBar({ onHome, onSearch }: { onHome?: () => void; onSearch?: () => vo
           onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(242,153,74,0.08)"; }}
           title={lang === "ko" ? "도시 변경" : "Change city"}
         >
-          <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 9, letterSpacing: "1px", color: "#F2994A" }}>
+          <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, letterSpacing: "1px", color: "#F2994A" }}>
             {currentCity.nameEn.toUpperCase()}
           </span>
           <span style={{ fontSize: 8, color: "#F2994A", lineHeight: 1 }}>▾</span>
@@ -29995,7 +29995,7 @@ function AppBar({ onHome, onSearch }: { onHome?: () => void; onSearch?: () => vo
             <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 16, color: "#1a2535", marginBottom: 2 }}>
               🌍 {lang === "ko" ? "81개 도시" : "81 Cities"}
             </div>
-            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 11, color: "var(--color-text-muted)" }}>
+            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-muted)" }}>
               {lang === "ko" ? "이사·출장·방문 도시를 선택하세요" : "Select your destination city"}
             </div>
           </div>
@@ -30030,7 +30030,7 @@ function AppBar({ onHome, onSearch }: { onHome?: () => void; onSearch?: () => vo
               /* 기본 — 지역별 그룹 */
               regions.map(r => (
                 <div key={r.label} style={{ marginBottom: 16 }}>
-                  <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 11, color: "var(--color-text-muted)",
+                  <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-muted)",
                     letterSpacing: "0.06em", padding: "4px 8px 6px" }}>{r.label}</div>
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, padding: "0 8px" }}>
                     {r.cities.map(c => <CityCard key={c.nameEn} c={c} currentCity={currentCity} lang={lang} onClose={() => setShowCitySheet(false)} />)}
@@ -30083,7 +30083,7 @@ function CityCard({ c, currentCity, lang, onClose }: {
           whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
           {lang === "ko" ? c.nameKo : c.nameEn}
         </div>
-        <div style={{ fontSize: 10, color: "var(--color-text-muted)", marginTop: 1 }}>
+        <div style={{ fontSize: 12, color: "var(--color-text-muted)", marginTop: 1 }}>
           {c.flag}{isCurrent ? (lang === "ko" ? " 현재 위치" : " Current") : ""}
         </div>
       </div>
@@ -30516,7 +30516,7 @@ export function HebronGuide() {
                         <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 13, color: "#1B2A4A" }}>
                           HebronGuide {lang === "ko" ? cityMatch.nameKo : cityMatch.nameEn}
                         </div>
-                        <div style={{ fontSize: 11, color: "#64748B", marginTop: 2 }}>
+                        <div style={{ fontSize: 12, color: "#64748B", marginTop: 2 }}>
                           {isLive
                             ? (lang === "ko" ? "라이브 — 지금 바로 볼 수 있어요" : "Live — available now")
                             : (lang === "ko" ? "🔜 준비 중 — 곧 오픈합니다" : "🔜 Coming soon")}
@@ -30536,7 +30536,7 @@ export function HebronGuide() {
               {/* ── Supabase 실시간 검색 결과 (교회·업소·카페) ── */}
               {(sbSearchLoading || sbSearchResults.length > 0) && q.length >= 2 && (
                 <div style={{ padding: "8px 0", borderTop: "0.5px solid #F2F2F7" }}>
-                  <div style={{ padding: "4px 16px 8px", fontSize: 10, fontFamily: "Geist,Pretendard Variable,sans-serif",
+                  <div style={{ padding: "4px 16px 8px", fontSize: 12, fontFamily: "Geist,Pretendard Variable,sans-serif",
                     fontWeight: 700, color: "#4F46E5", letterSpacing: "0.5px", textTransform: "uppercase" }}>
                     {lang === "ko" ? "🌏 81개 도시 전체 검색 결과" : "🌏 Results across 81 cities"}
                   </div>
@@ -30562,7 +30562,7 @@ export function HebronGuide() {
                         overflow: "hidden" }}>
                         {/* 도시 라벨 */}
                         <div style={{ padding: "5px 12px 0", display: "flex", alignItems: "center", gap: 6 }}>
-                          <span style={{ fontSize: 10, color: isCurrent ? "#16A34A" : "var(--color-text-muted)",
+                          <span style={{ fontSize: 12, color: isCurrent ? "#16A34A" : "var(--color-text-muted)",
                             fontWeight: isCurrent ? 800 : 500, fontFamily: "Geist,Pretendard Variable,sans-serif" }}>
                             {cityLabel}{isCurrent ? ` · 현재 도시` : ''}
                           </span>
@@ -30573,10 +30573,10 @@ export function HebronGuide() {
                               fontSize: 13, color: "#1E293B" }}>{name}</div>
                             {cat && <span style={{ background: isChurch ? "#EEF2FF" : "#F0FDF4",
                               color: isChurch ? "#4F46E5" : "#16A34A",
-                              fontSize: 10, fontWeight: 700, padding: "2px 7px",
+                              fontSize: 12, fontWeight: 700, padding: "2px 7px",
                               borderRadius: 99, marginLeft: 8, flexShrink: 0 }}>{cat}</span>}
                           </div>
-                          {desc && <div style={{ fontSize: 11, color: "#64748B", lineHeight: 1.6,
+                          {desc && <div style={{ fontSize: 12, color: "#64748B", lineHeight: 1.6,
                             marginBottom: 6 }}>{desc}</div>}
                           <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
                             {phone && (
@@ -30584,7 +30584,7 @@ export function HebronGuide() {
                                 style={{ display: "flex", alignItems: "center", gap: 4,
                                   padding: "5px 10px", background: "#F0FDF4",
                                   border: "1px solid #BBF7D0", borderRadius: 8,
-                                  textDecoration: "none", fontSize: 11,
+                                  textDecoration: "none", fontSize: 12,
                                   color: "#16A34A", fontWeight: 700 }}>📞 {phone}</a>
                             )}
                             {website && website !== '없음' && (
@@ -30594,7 +30594,7 @@ export function HebronGuide() {
                                 style={{ display: "flex", alignItems: "center", gap: 4,
                                   padding: "5px 10px", background: "#EFF6FF",
                                   border: "1px solid #BFDBFE", borderRadius: 8,
-                                  textDecoration: "none", fontSize: 11,
+                                  textDecoration: "none", fontSize: 12,
                                   color: "#2563EB", fontWeight: 700 }}>🔗 웹사이트</a>
                             )}
                             {email && (
@@ -30602,7 +30602,7 @@ export function HebronGuide() {
                                 style={{ display: "flex", alignItems: "center", gap: 4,
                                   padding: "5px 10px", background: "#FFF7ED",
                                   border: "1px solid #FED7AA", borderRadius: 8,
-                                  textDecoration: "none", fontSize: 11,
+                                  textDecoration: "none", fontSize: 12,
                                   color: "#C2410C", fontWeight: 700 }}><EmojiIcon emoji={"✉"} size={13} /> 이메일</a>
                             )}
                           </div>
@@ -30616,7 +30616,7 @@ export function HebronGuide() {
               {/* 앱 내 결과 */}
               {internalMatches.length > 0 && (
                 <div style={{ padding: "8px 0" }}>
-                  <div style={{ padding: "4px 16px 8px", fontSize: 10, fontFamily: "Geist,Pretendard Variable,sans-serif",
+                  <div style={{ padding: "4px 16px 8px", fontSize: 12, fontFamily: "Geist,Pretendard Variable,sans-serif",
                     fontWeight: 700, color: "var(--color-text-muted)", letterSpacing: "0.5px", textTransform: "uppercase" }}>
                     {lang === "ko" ? "앱 내 결과" : "In-App Results"}
                   </div>
@@ -30631,7 +30631,7 @@ export function HebronGuide() {
                         <div style={{ fontFamily: "'Pretendard Variable',sans-serif", fontWeight: 600, fontSize: 14, color: "#1B2A4A" }}>
                           {lang === "ko" ? m.labelKo : m.labelEn}
                         </div>
-                        <div style={{ fontSize: 11, color: "var(--color-text-muted)" }}>
+                        <div style={{ fontSize: 12, color: "var(--color-text-muted)" }}>
                           {lang === "ko" ? "탭으로 이동" : "Go to section"}
                         </div>
                       </div>
@@ -30648,7 +30648,7 @@ export function HebronGuide() {
                   borderTop: "1px solid rgba(120,120,128,0.08)",
                 }}>
                   <div style={{ fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif",
-                    fontSize:11, color:"#C7C7CC", marginBottom:7, textAlign:"center" }}>
+                    fontSize:12, color:"#C7C7CC", marginBottom:7, textAlign:"center" }}>
                     {lang === "ko"
                       ? (sbSearchResults.length > 0 || internalMatches.length > 0
                           ? "헤브론에 없으면 외부에서 더 찾기"
@@ -30665,7 +30665,7 @@ export function HebronGuide() {
                     }}>
                       <Search size={10} strokeWidth={2} />
                       <span style={{ fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif", fontWeight:500,
-                        fontSize:11, color:"#8E8E93" }}>Google</span>
+                        fontSize:12, color:"#8E8E93" }}>Google</span>
                     </a>
                     <a href={perplexityUrl} target="_blank" rel="noopener noreferrer" style={{
                       flex:1, display:"flex", alignItems:"center", justifyContent:"center", gap:5,
@@ -30674,7 +30674,7 @@ export function HebronGuide() {
                     }}>
                       <Sparkles size={10} strokeWidth={2} />
                       <span style={{ fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif", fontWeight:500,
-                        fontSize:11, color:"#8E8E93" }}>AI Search</span>
+                        fontSize:12, color:"#8E8E93" }}>AI Search</span>
                     </a>
                   </div>
                 </div>
