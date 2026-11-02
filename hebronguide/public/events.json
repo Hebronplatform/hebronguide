@@ -33,10 +33,37 @@
       "poster": "/planting-seed-2026-poster.jpg",
       "until": "2026-11-26",
       "sponsored": true,
-      "cities": ["seoul", "busan", "incheon", "daegu"],
+      "cities": [
+        "seoul",
+        "busan",
+        "incheon",
+        "daegu"
+      ],
       "registerUrl": "https://docs.google.com/forms/d/e/1FAIpQLScmfxG1j86cHboPA6mjVuJ4E_8hLuRz0Ux2E2IDhhotdProOA/viewform",
       "themeKo": "환대",
       "themeEn": "Hospitality"
+    },
+    {
+      "id": "gmc-saturday-family-prayer-2026",
+      "titleKo": "토요가족기도모임 · 우동집",
+      "titleEn": "Saturday Family Prayer · Udon Table",
+      "kindKo": "자녀들과 함께하는 기도 모임",
+      "kindEn": "Family prayer gathering",
+      "leadKo": "찬양과 기도, 따끈한 우동 한 그릇. 신청 없이 그냥 오시면 됩니다",
+      "leadEn": "Worship, prayer, and a warm bowl of udon. No sign-up — just come",
+      "whenKo": "11월 7일(토)부터 매주 토요일 오전 6시 · 우동집 7시",
+      "whenEn": "Every Saturday from Nov 7, 6 AM · udon at 7 AM",
+      "whereKo": "12918 35th Ave SE, Everett, WA 98208",
+      "whereEn": "12918 35th Ave SE, Everett, WA 98208",
+      "hostKo": "시애틀지구촌교회",
+      "hostEn": "Global Mission Church of Greater Seattle",
+      "feeKo": "무료",
+      "feeEn": "Free",
+      "page": "https://ijiguchon.org",
+      "until": "2026-12-31",
+      "cities": [
+        "seattle"
+      ]
     }
   ]
 }
