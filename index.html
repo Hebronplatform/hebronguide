@@ -1769,6 +1769,21 @@ function closeMenu(){
   d.setAttribute('aria-hidden','true'); if(b)b.setAttribute('aria-expanded','false');
 }
 document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeMenu(); });
+// 마우스로 연 메뉴는 커서가 메뉴 밖에 2초 머물면 스스로 접힌다. 메뉴 위에 있는 동안은 그대로 (2026-11-03).
+// 휴대폰·키보드로 연 메뉴는 건드리지 않는다 — 닫기 단추·바깥 누르기·Esc로 닫는다.
+(function(){
+  var d=document.getElementById('hgDrawer'); if(!d) return;
+  var byMouse=false, t=null;
+  document.addEventListener('pointerdown',function(e){ byMouse=(e.pointerType==='mouse'); },true);
+  document.addEventListener('keydown',function(){ byMouse=false; },true);
+  function arm(){ clearTimeout(t); t=setTimeout(function(){ if(!d.matches(':hover')) closeMenu(); },2000); }
+  function disarm(){ clearTimeout(t); t=null; }
+  d.addEventListener('mouseenter',disarm);
+  d.addEventListener('mouseleave',function(){ if(byMouse && d.classList.contains('on')) arm(); });
+  var open=window.openMenu, close=window.closeMenu;
+  window.openMenu=function(){ open.apply(this,arguments); if(byMouse) arm(); };
+  window.closeMenu=function(){ disarm(); close.apply(this,arguments); };
+})();
 
 // 언어 버튼 글자만 맞춘다. 실제 언어는 문서 머리의 이른 스크립트가 이미 정했다.
 (function(){
