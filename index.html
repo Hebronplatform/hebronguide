@@ -662,6 +662,21 @@ details.fold .about-story-wrap{padding-top:0 !important;}
 .hero-resume:hover{background:rgba(201,162,39,.24);border-color:var(--gold);}
 .hero-resume svg{width:15px;height:15px;flex:none;}
 .hero-resume.hide{display:none;}
+
+  /* 손가락 크기 · 12px · 글꼴 (2026-11-03) */
+  button,input,select,textarea{font-family:inherit;}
+  .nav-logo{min-height:44px;}
+  .lang-btn{width:44px;height:44px;}
+  .hg-burger{width:44px;height:44px;padding:11px;}
+  .hg-drawer-close{width:44px;height:44px;}
+  .search-wrap input{min-height:44px;}
+  #cityMic{width:44px;height:44px;right:2px;}
+  .region-label{font-size:.75rem;}
+  .city-pills{gap:8px;}
+  .city-pill{min-height:44px;padding:0 15px;}
+  .hg-drawer-legal a{display:inline-flex;align-items:center;min-height:44px;}
+  .hj-quick a{display:inline-flex;align-items:center;min-height:44px !important;}
+  .leaflet-control-zoom a{width:44px !important;height:44px !important;line-height:44px !important;font-size:20px !important;}
 </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css"/>
@@ -945,7 +960,7 @@ details.fold .about-story-wrap{padding-top:0 !important;}
     </div>
   </div>
   <div style="margin-bottom:10px;">
-    <a href="mailto:Hebronplatform@gmail.com" style="color:rgba(201,162,39,0.7);font-size:.8rem;font-family:'Pretendard Variable',sans-serif;text-decoration:none;">
+    <a href="mailto:Hebronplatform@gmail.com" style="display:inline-flex;align-items:center;min-height:44px;color:rgba(201,162,39,0.7);font-size:.8rem;font-family:'Pretendard Variable',sans-serif;text-decoration:none;">
       Hebronplatform@gmail.com
     </a>
   </div>
@@ -1608,7 +1623,7 @@ html[lang="en"] .hg-lb .en{display:inline;}
 /* 언어 토글은 밖에 있어야 한다 — 서랍을 열어야 바꿀 수 있으면 아무도 안 바꾼다 (2026-09-25) */
 @media(max-width:640px){
   nav .nav-actions .lang-btn{display:inline-flex !important;
-    width:36px;height:36px;border-radius:50%;padding:0;
+    width:44px;height:44px;border-radius:50%;padding:0;   /* 36 → 44 (2026-11-03) */
     background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);}
   nav .nav-actions .lang-btn svg{width:17px;height:17px;opacity:.9;}
   nav .nav-actions .lang-btn #lang-label{position:absolute;width:1px;height:1px;
@@ -1637,6 +1652,11 @@ html[lang="en"] .hg-lb .en{display:inline;}
   9.5%,100%{transform:none;}}
 @media(prefers-reduced-motion:reduce){
   .hero-creed .thud .ko,.hero-creed .thud .en{animation:none;}}
+
+/* 손가락 크기 — 맨 끝에 둔다: 위의 여러 회차가 같은 단추를 40·36px로 다시 정했다 (2026-11-03) */
+.hero .hj-quick a{min-height:44px !important;}
+.hero .hj-mic,.hj-mic{width:44px !important;height:44px !important;}
+.hero .hj-box input{min-height:44px !important;}
 </style>
 <script>
 function toggleAboutStory(btn){
