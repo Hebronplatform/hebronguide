@@ -747,6 +747,34 @@ const CITY_HERO_SLIDES: Partial<Record<string, HeroSlide[]>> = {
     { url: "https://images.unsplash.com/photo-1580138051672-325eb98b2749?w=1200&q=95", pos: "center 50%", alt: "Osaka people street food Kuromon market community" },
     { url: "https://images.unsplash.com/photo-1575489129683-4f7d23379975?w=1200&q=95", pos: "center 40%", alt: "Osaka residential apartment neighborhood settle" },
   ],
+
+  // ── 사진이 없어 도시 색 단색만 보이던 8곳 (2026-11-03) ──
+  // 홈은 첫 장만 쓴다. 모두 Wikimedia Commons — 분류·설명·GPS로 실제 그 도시인지 확인하고, 1280px 로드와 화면 검수를 거쳤다.
+  // 나머지 장(랜드마크 → 자연 → 거리 → 사람들)은 같은 검증을 거쳐 더한다.
+  newjersey: [   // 포트리 스카이라인과 조지 워싱턴 다리 (설명: "the skyline of Fort Lee, New Jersey") · CC BY-SA 4.0 Beyond My Ken
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/2021_George_Washington_Bridge%2C_Fort_Lee%2C_and_the_Palisades_in_winter_1.jpg/1280px-2021_George_Washington_Bridge%2C_Fort_Lee%2C_and_the_Palisades_in_winter_1.jpg", pos: "15% 50%", alt: "George Washington Bridge and the Fort Lee skyline above the Hudson River Palisades, New Jersey" },
+  ],
+  fairfield: [   // 분류: Downtown Fairfield, California · Sarah Stierch 2023
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Downtown_Fairfield_-_April_2023_-_Sarah_Stierch.jpg/1280px-Downtown_Fairfield_-_April_2023_-_Sarah_Stierch.jpg", pos: "center 55%", alt: "Downtown Fairfield, California street on a clear spring day" },
+  ],
+  waynesville: [ // 분류: Waynesville, Missouri · 국가 사적(NRHP) 옛 역마차 정거장
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/OLD_STAGECOACH_STOP%2C_WAYNESVILLE%2C_PULASKI_COUNTY%2C_MO.jpg/1280px-OLD_STAGECOACH_STOP%2C_WAYNESVILLE%2C_PULASKI_COUNTY%2C_MO.jpg", pos: "center 45%", alt: "Old Stagecoach Stop, a historic building in Waynesville, Missouri" },
+  ],
+  leesville: [   // 분류: Downtown Leesville Historic District
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Leesville%2C_LA%2C_3rd_St_north_from_Lula_St%2C_W_side.jpg/1280px-Leesville%2C_LA%2C_3rd_St_north_from_Lula_St%2C_W_side.jpg", pos: "center 45%", alt: "Historic downtown Leesville, Louisiana under a blue sky" },
+  ],
+  tampa: [       // 설명: "downtown Tampa Florida skyline as seen from across the Hillsborough River" · GPS 27.949,-82.464 · CC BY 2.0 Gregory Urbano
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Hillsborough_River_Panoramic_%2839899012302%29.jpg/1280px-Hillsborough_River_Panoramic_%2839899012302%29.jpg", pos: "center 55%", alt: "Downtown Tampa skyline across the Hillsborough River, Florida" },
+  ],
+  virginia: [    // 분류: Blue Ridge Parkway in Virginia (태그라인 "애넌데일에서 블루리지까지")
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Blue_Ridge_Parkway_clouds_VA1.jpg/1280px-Blue_Ridge_Parkway_clouds_VA1.jpg", pos: "center 50%", alt: "Blue Ridge Parkway above the clouds in Virginia" },
+  ],
+  neworleans: [  // 분류: Jackson Square · Saint Louis Cathedral, New Orleans
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/St._Louis_Cathedral_-_New_Orleans_Jackson_Square_July_2015.jpg/1280px-St._Louis_Cathedral_-_New_Orleans_Jackson_Square_July_2015.jpg", pos: "center 30%", alt: "St. Louis Cathedral on Jackson Square, New Orleans" },
+  ],
+  ansan: [       // 분류: Ansan Lake Park · April 2015 in Ansan · CC BY-SA 3.0 Piotrus — 봄꽃 사이 사람들
+    { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Ansan_Lake_Park_Spring_2015_01.JPG/1280px-Ansan_Lake_Park_Spring_2015_01.JPG", pos: "center 55%", alt: "People enjoying spring tulips at Ansan Lake Park, Ansan" },
+  ],
 };
 
 // 하위 호환: HERO_PHOTOS/POSITIONS 유지 (line 3840 imgHeroCard 참조용)
