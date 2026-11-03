@@ -8586,7 +8586,7 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
                   style={{ display: "inline-flex", alignItems: "center", gap: 5, textDecoration: "none",
                     background: `${accentColor}18`, border: `1px solid ${accentColor}33`, borderRadius: 22, padding: "0 12px", minHeight: 44 }}>
                   <Phone size={13} strokeWidth={2} aria-hidden="true" />
-                  <span style={{ fontSize: 12, color: inkColor(accentColor), fontWeight: 700 }}>전화</span>
+                  <span style={{ fontSize: 12, color: inkColor(accentColor), fontWeight: 700 }}>{lang === "ko" ? "전화" : "Call"}</span>
                 </a>
               )}
               {/* 공식 웹사이트 */}
@@ -8596,7 +8596,7 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
                   style={{ display: "inline-flex", alignItems: "center", gap: 5, textDecoration: "none",
                     background: "rgba(110,231,183,0.12)", border: "1px solid rgba(110,231,183,0.3)", borderRadius: 22, padding: "0 12px", minHeight: 44 }}>
                   <Globe size={13} strokeWidth={2} aria-hidden="true" />
-                  <span style={{ fontSize: 12, color: "var(--color-success)", fontWeight: 700 }}>공식 사이트</span>
+                  <span style={{ fontSize: 12, color: "var(--color-success)", fontWeight: 700 }}>{lang === "ko" ? "공식 사이트" : "Official site"}</span>
                 </a>
               )}
             </div>
@@ -10671,7 +10671,7 @@ function StepItem({ num, title, desc, accentColor = MINT }: { num: number; title
 ───────────────────────────────────────── */
 // desc 텍스트에서 📍주소·📞전화를 추출해 Maps/전화 링크로 변환
 // 지도: Google Maps (범용) + Apple Maps (iPhone 네이티브) 동시 제공
-function renderDescWithLinks(desc: string, accentColor: string) {
+function renderDescWithLinks(desc: string, accentColor: string, ko = true) {
   if (!desc) return null;
   const addrMatch  = desc.match(/📍\s*([^|📞🔗\n]+)/);
   const phoneMatch = desc.match(/📞\s*([\d\s\-()+]+)/);
@@ -10732,7 +10732,7 @@ function renderDescWithLinks(desc: string, accentColor: string) {
                 background: "rgba(110,231,183,0.12)", border: "1px solid rgba(110,231,183,0.3)",
                 borderRadius: 22, padding: "0 14px", minHeight: 44 }}>
               <Globe size={13} strokeWidth={2} aria-hidden="true" />
-              <span style={{ fontSize: 12, color: "var(--color-success)", fontWeight: 700 }}>공식 웹사이트</span>
+              <span style={{ fontSize: 12, color: "var(--color-success)", fontWeight: 700 }}>{ko ? "공식 웹사이트" : "Official website"}</span>
             </a>
           )}
         </div>
@@ -10803,6 +10803,20 @@ function ContactRow({ website, email, phone, desc, accentColor }:
    바탕 #F7F8FB 기준 대비 5.4 이상이 될 때까지 짙게 섞는다. 색의 성격은 그대로 남는다.
    (2026-11-02: 4.5로 맞추면 같은 색을 엷게 깐 꼬리표·단추 위에서는 3.7~4.4로 떨어졌다. 그래서 여유를 둔다)
    target — 같은 색을 더 진하게 깐 단추(교회 연락 단추 등)는 6으로 높여 부른다. */
+/* 상태 꼬리표 — 영어 화면에서만 바꿔 그린다 (2026-11-03). 동네 이름·업종 같은 데이터 꼬리표는 그대로 둔다 */
+const TAG_EN: Record<string, string> = {
+  "검증됨": "Verified", "확인중": "Checking", "확인 중": "Checking", "필수": "Required", "무료": "Free",
+  "추천": "Recommended", "한인밀집": "Korean community", "비자지원": "Visa support", "커뮤니티": "Community",
+  "렌트": "Rent", "주거": "Housing", "비교": "Compare",
+};
+
+/* 교단 낱말 — 영어 화면에서만 바꿔 그린다. 약자만 쓰는 원칙(CLAUDE.md "교단은 약자만")과 별개로 데이터에 한글 낱말이 있을 때 */
+const DENOM_EN: Record<string, string> = {
+  "침례회": "Baptist", "침례교": "Baptist", "장로교": "Presbyterian", "장로회": "Presbyterian",
+  "감리교": "Methodist", "감리회": "Methodist", "성결교": "Holiness", "순복음": "Full Gospel",
+  "초교파": "Non-denominational", "커뮤니티": "Community",
+};
+
 function inkColor(hex: string, target = 5.4): string {
   const m = /^#?([0-9a-f]{6})$/i.exec(hex || "");
   if (!m) return hex;
@@ -10816,6 +10830,7 @@ function inkColor(hex: string, target = 5.4): string {
 }
 
 function PlaceCard({ emoji, name, nameEn, desc, tags, accentColor = MINT, website, email, phone }: { emoji: string; name: string; nameEn?: string; desc: string; tags?: string[]; accentColor?: string; website?: string; email?: string; phone?: string }) {
+  const { lang } = useI18n();
   return (
     <div className="transition-all duration-200 hover:scale-[1.02] hover:border-opacity-20" style={{ background: "rgba(27,42,74,0.04)", borderRadius: 16, padding: "14px 16px", border: "1px solid rgba(27,42,74,0.07)" }}>
       <div className="flex items-start gap-[12px]">
@@ -10828,12 +10843,12 @@ function PlaceCard({ emoji, name, nameEn, desc, tags, accentColor = MINT, websit
           {nameEn && nameEn.trim().toLowerCase() !== (name || "").trim().toLowerCase() && (
             <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-secondary)", marginTop: 1 }}>{noEmoji(nameEn)}</div>
           )}
-          {renderDescWithLinks(desc, inkColor(accentColor))}
+          {renderDescWithLinks(desc, inkColor(accentColor), lang === "ko")}
           <ContactRow website={website} email={email} phone={phone} desc={desc} accentColor={inkColor(accentColor)} />
           {tags && (
             <div className="flex flex-wrap gap-[5px] mt-[8px]">
               {tags.map((tag, i) => (
-                <span key={i} style={{ background: `${accentColor}18`, border: `1px solid ${accentColor}33`, color: inkColor(accentColor), borderRadius: 8, padding: "2px 8px", fontSize: 12, fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 600 }}>{noEmoji(tag)}</span>
+                <span key={i} style={{ background: `${accentColor}18`, border: `1px solid ${accentColor}33`, color: inkColor(accentColor), borderRadius: 8, padding: "2px 8px", fontSize: 12, fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 600 }}>{lang === "ko" ? noEmoji(tag) : (TAG_EN[noEmoji(tag)] || noEmoji(tag))}</span>
               ))}
             </div>
           )}
@@ -16586,9 +16601,17 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                             [(c as any).denomination, (c as any).service_time]
                               .filter(Boolean).join(" · ");
                           const hasInfo = !!(sbDesc || (c as any).website);
+                          // 저장된 글은 그대로 두고 그릴 때만 바꾼다 (2026-11-03):
+                          // 영어 화면에서 "○○ 목사" → "Pastor ○○", 교단 낱말 → 영어, 도시 슬러그(seattle) → 도시 이름
+                          const rawDesc = stripEmoji(c.desc || sbDesc);
+                          const shownDesc = ko || !rawDesc ? rawDesc : rawDesc.replace(/^([^·\n]+?)\s*목사\s*$/, "Pastor $1");
+                          const shownTags = Array.isArray((c as any).tags)
+                            ? (c as any).tags.map((t: string) => t === citySlug ? (ko ? city.nameKo : city.nameEn) : (ko ? t : (DENOM_EN[t] || t)))
+                            : (c as any).tags;
                           const enriched = {
                             ...c,
-                            desc: stripEmoji(c.desc || sbDesc) ||
+                            tags: shownTags,
+                            desc: shownDesc ||
                               (lang === "ko" ? "목사님, 교회 정보를 업데이트해주세요 →" : "Pastor, please update your church info →"),
                           };
                           return (
@@ -16600,7 +16623,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                           }}>
                             {c.isCommunity && (
                               <div style={{ padding: "5px 12px 0" }}>
-                                <span style={{ fontSize: 12, fontWeight: 700, color: "var(--color-success)", fontFamily: "Geist,Pretendard Variable,sans-serif" }}><EmojiIcon emoji={"✅"} size={13} /> 커뮤니티 등록</span>
+                                <span style={{ fontSize: 12, fontWeight: 700, color: "var(--color-success)", fontFamily: "Geist,Pretendard Variable,sans-serif" }}><EmojiIcon emoji={"✅"} size={13} /> {ko ? "커뮤니티 등록" : "Community-added"}</span>
                               </div>
                             )}
                             <PlaceCard {...enriched} accentColor={c.tier === 1 ? "#C9A227" : accent} />
@@ -22331,7 +22354,9 @@ function DiningScreen({ onHome }: { onHome?: () => void }) {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+                {content.map((item, i) => <PlaceCard key={i} {...item}
+                name={lang === "ko" ? item.name : (item.nameEn || item.name)}
+                nameEn={lang === "ko" ? item.nameEn : undefined} accentColor={accent} />)}
               </div>
             )}
           </div>
@@ -22627,7 +22652,9 @@ function ExploreScreen({ onHome }: { onHome?: () => void }) {
           {/* 시애틀 전용: 지역·자연·문화·스포츠 서브탭 콘텐츠 */}
           {content && ((isSeattle && sub <= 3) || (!isSeattle && sub === 1)) && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+              {content.map((item, i) => <PlaceCard key={i} {...item}
+                name={lang === "ko" ? item.name : (item.nameEn || item.name)}
+                nameEn={lang === "ko" ? item.nameEn : undefined} accentColor={accent} />)}
             </div>
           )}
           {/* 헤브론관광 서브탭 */}
@@ -24710,7 +24737,9 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5 px-4 md:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+          {content.map((item, i) => <PlaceCard key={i} {...item}
+                name={lang === "ko" ? item.name : (item.nameEn || item.name)}
+                nameEn={lang === "ko" ? item.nameEn : undefined} accentColor={accent} />)}
         </div>
         <div style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
           <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: accent, marginBottom: 10 }}>
@@ -26059,7 +26088,9 @@ function EducationScreen({ onHome, initialSub = 0 }: { onHome?: () => void; init
       <SubTabBar tabs={tabs} active={sub} onChange={setSub} accentColor={accent} />
       <div className="pt-5 px-4 md:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+          {content.map((item, i) => <PlaceCard key={i} {...item}
+                name={lang === "ko" ? item.name : (item.nameEn || item.name)}
+                nameEn={lang === "ko" ? item.nameEn : undefined} accentColor={accent} />)}
         </div>
         <div style={{ background: "rgba(167,139,250,0.08)", border: "1px solid rgba(167,139,250,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
           <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: accent, marginBottom: 4 }}>
@@ -26858,7 +26889,9 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
         {sub !== 3 && sub !== 4 ? (
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {content.map((item, i) => <PlaceCard key={i} {...item} accentColor={accent} />)}
+              {content.map((item, i) => <PlaceCard key={i} {...item}
+                name={lang === "ko" ? item.name : (item.nameEn || item.name)}
+                nameEn={lang === "ko" ? item.nameEn : undefined} accentColor={accent} />)}
             </div>
             <div style={{ background: "rgba(52,211,153,0.08)", border: "1px solid rgba(52,211,153,0.2)", borderRadius: 14, padding: "14px 16px", marginTop: 8 }}>
               <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: accent, marginBottom: 4 }}>
@@ -27748,7 +27781,7 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
           <span style={{ fontFamily: "'Geist Mono',ui-monospace,monospace", fontSize: 12, color: "#0d1117", fontWeight: 800 }}>{num}</span>
         </div>
         <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 14, color: "var(--color-text-primary)", lineHeight: 1.3 }}>{title}</div>
-        {critical && <span style={{ background: "#EF4444", color: "#fff", fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, fontWeight: 800, padding: "2px 6px", borderRadius: 6, letterSpacing: "0.5px", flexShrink: 0 }}>필수</span>}
+        {critical && <span style={{ background: "var(--color-error)", color: "#fff", fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, fontWeight: 800, padding: "2px 6px", borderRadius: 6, letterSpacing: "0.5px", flexShrink: 0 }}>{ko ? "필수" : "Required"}</span>}
       </div>
       <div style={{ paddingLeft: 38 }}>{children}</div>
     </div>
@@ -27796,7 +27829,7 @@ function ArrivalSimulationScreen({ onHome }: { onHome?: () => void }) {
   ) : (
     <div>
       <div style={{ background: "rgba(56,189,248,0.08)", borderRadius: 14, padding: "14px 16px", marginBottom: 14 }}>
-        <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 14, color: accent, marginBottom: 4 }}>🇰🇷 한국 출발 전 체크리스트</div>
+        <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 14, color: accent, marginBottom: 4 }}>{ko ? "한국 출발 전 체크리스트" : "Before you leave Korea"}</div>
         <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-secondary)", lineHeight: 1.6 }}>
           {ko ? "비행기 타기 최소 2주 전에 확인하세요. 공항에서 당황하지 않으려면 여기서 시작합니다." : "Check at least 2 weeks before your flight. Preparation here prevents airport panic."}
         </div>
@@ -28513,7 +28546,7 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
       <div style={{ padding: "0 16px" }}>
         {loading ? (
           <div style={{ textAlign: "center", padding: "40px 0", color: "var(--color-text-muted)", fontSize: 14 }}>
-            불러오는 중...
+            {ko ? "불러오는 중..." : "Loading..."}
           </div>
         ) : filtered.length === 0 ? (
           <div style={{ textAlign: "center", padding: "40px 0" }}>
