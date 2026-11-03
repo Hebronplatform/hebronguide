@@ -232,6 +232,22 @@
     .checklist{padding:22px;}
     .table-card{padding:22px;}
   }
+
+  /* 손가락 크기 · 초점 (2026-11-03) */
+  button,input,select,textarea{font-family:inherit;}
+  input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select{min-height:44px;}
+  input[type=checkbox],input[type=radio]{width:20px;height:20px;}
+  label:has(> input[type=checkbox]),label:has(> input[type=radio]){min-height:44px;}
+  footer a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;}
+  :focus-visible{outline:3px solid #F0C040;outline-offset:2px;}
+  .nav .home,.footnav a,.news-card .go,.role a,.reset{display:inline-flex;align-items:center;min-height:44px;}
+  .check-item input[type=checkbox]{width:24px;height:24px;}
+  /* 어두운 바탕에서 읽히는 에메랄드 (#2E7D5B는 대비 3.5 → #4FB286은 7.4) */
+  .nav .brand .plus,.hero .quick a.primary,.role a{background:#4FB286;color:#0d1117;}
+  .section-h .no,.news-card .go,.compare .tag.mint{color:#4FB286;}
+  /* 어두운 바탕에서 읽히는 에메랄드·쪽빛 (3.5 → 7) */
+  :root{--origin:#4FB286;--sky:#7FA3C7;}
+  .footnav a{min-width:44px;justify-content:center;}
 </style>
 </head>
 <body>

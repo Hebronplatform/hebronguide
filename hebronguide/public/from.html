@@ -17,7 +17,7 @@
 <style>
   :root {
     --bg: #E8E2D4; --bg-whisper: #F2EDE0; --bg-mist: #D8D3C5;
-    --text: #2A2520; --text-muted: rgba(42,37,32,.62); --text-faint: rgba(42,37,32,.66);
+    --text: #2A2520; --text-muted: rgba(42,37,32,.74); --text-faint: rgba(42,37,32,.66);
     --line: rgba(42,37,32,.1); --line-strong: rgba(42,37,32,.2);
     --origin: #2E7D5B;
     --spectrum-01: #F4B59A; --spectrum-02: #D9A054; --spectrum-03: #7B8E52;
@@ -171,6 +171,21 @@
     header.hero { padding: 50px 18px 30px; }
     .ad-cta { padding: 22px; }
   }
+
+  /* 손가락 크기 · 초점 (2026-11-03) */
+  button,input,select,textarea{font-family:inherit;}
+  input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select{min-height:44px;}
+  input[type=checkbox],input[type=radio]{width:20px;height:20px;}
+  label:has(> input[type=checkbox]),label:has(> input[type=radio]){min-height:44px;}
+  footer a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;}
+  :focus-visible{outline:3px solid var(--text);outline-offset:2px;}
+  nav.top .brand,nav.top .back,a.back{display:inline-flex;align-items:center;min-height:44px;}
+  footer nav a{display:inline-flex;align-items:center;min-height:44px;}
+  /* 밝은 바탕 대비 4.5 — 화살표는 도시 색을 어둡게 섞어 쓴다 */
+  .rec .arrow{color:color-mix(in srgb, var(--sp-color) 40%, #2A2520);}
+  .welcome-ribbon{color:#1F5E43;}
+  :root{--origin:#1F5E43;}
+  footer a,footer nav a{min-width:44px;justify-content:center;}
 </style>
 </head>
 <body>
