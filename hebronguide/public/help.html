@@ -95,6 +95,16 @@ html[lang="ko"] .en{display:none!important}
   @keyframes micPulse{0%,100%{box-shadow:0 0 0 0 rgba(201,162,39,.5);}
                       50%{box-shadow:0 0 0 9px rgba(201,162,39,0);}}
   .btn-mic.hide{display:none;}
+
+  /* 손가락 크기 · 초점 (2026-11-03) */
+  button,input,select,textarea{font-family:inherit;}
+  input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select{min-height:44px;}
+  textarea{min-height:88px;}
+  input[type=checkbox],input[type=radio]{width:20px;height:20px;}
+  label:has(> input[type=checkbox]),label:has(> input[type=radio]){min-height:44px;}
+  .logo,.nav-logo,.nav-back,.back,.lang-btn,.lang,header nav a,footer a{display:inline-flex;align-items:center;min-height:44px;}
+  .lang-btn,.lang{min-width:44px;justify-content:center;}
+  :focus-visible{outline:3px solid #F0C040;outline-offset:2px;}
 </style>
 </head>
 <body>
@@ -105,7 +115,7 @@ html[lang="ko"] .en{display:none!important}
 <div class="header">
   <a href="/" class="logo">HebronGuide</a>
   <div class="header-right">
-    <a href="/register.html" style="color:var(--muted);text-decoration:none;font-size:.82rem" class="ko">등록하기</a>
+    <a href="/register.html" style="color:var(--muted);text-decoration:none;font-size:.82rem;display:inline-flex;align-items:center;min-height:44px" class="ko">등록하기</a>
     <a href="/register.html" style="color:var(--muted);text-decoration:none;font-size:.82rem" class="en">Register</a>
     <button class="lang-btn" id="btn-ko" onclick="setLang('ko')">한국어</button>
     <button class="lang-btn" id="btn-en" onclick="setLang('en')">English</button>

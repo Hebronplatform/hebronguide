@@ -20,6 +20,8 @@
     --text:#ECFDF5;--muted:rgba(236,253,245,.62);--muted2:rgba(236,253,245,.6);
     --origin:#2E7D5B;--spectrum-01:#F4B59A;--spectrum-02:#D9A054;--spectrum-04:#4A6B8C;
     --gold:#D9A054;--gold2:#F4B59A;--mint:#6EE7B7;
+    /* 글자·단추용 밝은 짝 (2026-11-03): 어두운 바탕에서 #2E7D5B 3.4 · #4A6B8C 3.1 → 6.6 · 6.5 */
+    --origin-text:#4FB286;--blue-text:#7FA3C7;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:'Pretendard Variable',-apple-system,sans-serif;background:var(--bg);color:var(--text);
@@ -56,19 +58,20 @@
                  border-radius:50%;transition:all .2s;}
   .choice.active .check{border-color:var(--accent);background:var(--accent);
                         box-shadow:inset 0 0 0 3px var(--bg2);}
-  .choice .tag{display:inline-block;font-size:.78rem;letter-spacing:1.5px;color:var(--accent);
+  .choice .tag{display:inline-block;font-size:.78rem;letter-spacing:1.5px;color:var(--accent-text,var(--accent));
                padding:3px 10px;border:1px solid color-mix(in srgb, var(--accent) 40%, transparent);
                border-radius:99px;margin-bottom:10px;}
   .choice h3{font-size:1.1rem;font-weight:500;margin-bottom:4px;color:var(--text);}
-  .choice .price{color:var(--accent);font-weight:600;font-size:1.08rem;margin-left:6px;}
+  .choice .price{color:var(--accent-text,var(--accent));font-weight:600;font-size:1.08rem;margin-left:6px;}
   .choice p{color:var(--muted);font-size:.9rem;line-height:1.65;margin-top:8px;}
   .choice ul{list-style:none;margin-top:10px;}
   .choice li{color:var(--muted);font-size:.84rem;line-height:1.7;padding-left:16px;position:relative;}
   .choice li::before{content:'·';position:absolute;left:4px;color:var(--accent);}
 
-  .choice[data-type="list"]  {--accent:var(--origin);}
+  .choice[data-type="list"]  {--accent:var(--origin);--accent-text:var(--origin-text);}
   .choice[data-type="ad"]    {--accent:var(--gold);}
-  .choice[data-type="ask"]   {--accent:var(--spectrum-04);}
+  .choice[data-type="ask"]   {--accent:var(--spectrum-04);--accent-text:var(--blue-text);}
+  .choice:focus-visible,.outside:focus-visible,.go:focus-visible,.top a:focus-visible,.foot a:focus-visible{outline:3px solid var(--gold2);outline-offset:2px;}
 
   /* ────── 양식 ────── */
   .card{background:var(--bg2);border:1px solid var(--line);border-radius:20px;padding:24px 22px;margin:16px 0;}
@@ -105,7 +108,7 @@
   .mark{width:56px;height:56px;border-radius:50%;background:rgba(110,231,183,.12);
         border:1px solid rgba(110,231,183,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
   .foot{color:var(--muted2);font-size:.82rem;text-align:center;margin-top:22px;line-height:1.9;font-weight:300;}
-  .foot a{color:var(--muted);}
+  .foot a{color:var(--muted);display:inline-flex;align-items:center;min-height:44px;padding:0 6px;}
 
   /* 하단 추가 안내 — 홈페이지 제작 외부 링크 */
   .outside{margin-top:18px;background:var(--bg2);border:1px solid var(--line);border-radius:16px;
@@ -114,7 +117,7 @@
   .outside:hover{border-color:var(--line2);}
   .outside .l b{display:block;font-size:.98rem;font-weight:500;}
   .outside .l small{color:var(--muted);font-size:.84rem;font-weight:300;}
-  .outside .r{color:var(--spectrum-04);font-size:.86rem;font-weight:500;}
+  .outside .r{color:var(--blue-text);font-size:.86rem;font-weight:500;}
 </style>
 </head>
 <body>
@@ -134,7 +137,7 @@
   <div class="choice-head">
     <span class="label">01 · WHICH ONE</span>
     <h2 class="serif">어떤 자리를 원하시나요?</h2>
-    <p>클릭하시면 아래 양식이 그 자리에 맞춰 바뀝니다.</p>
+    <p>누르시면 아래 양식이 그 자리에 맞춰 바뀝니다.</p>
   </div>
 
   <div class="choices">
@@ -167,20 +170,20 @@
     <div class="section-h" id="formTitle">02 · 신청</div>
 
     <label for="f1">이름 또는 상호</label>
-    <input id="f1" autocomplete="organization" placeholder="헤브론식당 · 멤피스한인침례교회"/>
+    <input id="f1" aria-required="true" autocomplete="organization" placeholder="예: 한빛교회 · 서울식당"/>
 
     <label for="f2">도시</label>
-    <input id="f2" placeholder="시애틀 · 멤피스 · 서울 분당"/>
+    <input id="f2" aria-required="true" autocomplete="address-level2" placeholder="예: 시애틀 · 달라스 · 서울 분당"/>
 
     <label for="f3">연락처 (전화 또는 이메일)</label>
-    <input id="f3" placeholder="예: pastor@kbcm.org 또는 (901) 240-8834"/>
+    <input id="f3" aria-required="true" placeholder="예: name@example.com 또는 (206) 555-0123"/>
 
     <!-- 등재용 추가 필드 -->
     <div id="listFields" class="hide">
       <label for="fAddr">주소 (등재용)</label>
-      <input id="fAddr" placeholder="9650 E. Shelby Dr, Collierville TN 38017"/>
+      <input id="fAddr" placeholder="예: 123 Main St, Seattle WA 98101"/>
       <label for="fSite">공식 홈페이지 (있으시면)</label>
-      <input id="fSite" placeholder="https://kbcm.org"/>
+      <input id="fSite" placeholder="예: https://example.org"/>
     </div>
 
 
@@ -244,12 +247,12 @@
       formTitle.textContent = '02 · 등재 신청 (무료)';
       listFields.classList.remove('hide');
       goBtn.textContent = '등재 신청 보내기';
-      goBtn.style.setProperty('--mode-color', 'var(--origin)');
+      goBtn.style.setProperty('--mode-color', 'var(--origin-text)');
     } else {
       formTitle.textContent = '02 · 상담 요청 (무료)';
       listFields.classList.add('hide');
       goBtn.textContent = '상담 보내기';
-      goBtn.style.setProperty('--mode-color', 'var(--spectrum-04)');
+      goBtn.style.setProperty('--mode-color', 'var(--blue-text)');
     }
 
     // 스크롤

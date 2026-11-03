@@ -59,6 +59,16 @@
   .foot{color:var(--muted2);font-size:.85rem;text-align:center;margin-top:36px;
         padding-top:22px;border-top:1px solid var(--line);font-weight:300;line-height:1.9;}
   .foot a{color:var(--muted);}
+
+  /* 손가락 크기 · 초점 (2026-11-03) */
+  button,input,select,textarea{font-family:inherit;}
+  input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select{min-height:44px;}
+  textarea{min-height:88px;}
+  input[type=checkbox],input[type=radio]{width:20px;height:20px;}
+  label:has(> input[type=checkbox]),label:has(> input[type=radio]){min-height:44px;}
+  .logo,.nav-logo,.nav-back,.back,.lang-btn,.lang,header nav a,footer a{display:inline-flex;align-items:center;min-height:44px;}
+  .lang-btn,.lang{min-width:44px;justify-content:center;}
+  :focus-visible{outline:3px solid #F0C040;outline-offset:2px;}
 </style>
 </head>
 <body>

@@ -101,6 +101,17 @@ textarea{min-height:80px;resize:vertical;line-height:1.7;}
 
 /* 메인으로 돌아가기 */
 .back-footer{text-align:center;padding:44px 24px 64px;border-top:1px solid rgba(255,255,255,0.07);}
+
+  /* 손가락 크기 · 초점 (2026-11-03) */
+  button,input,select,textarea{font-family:inherit;}
+  input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select{min-height:44px;}
+  textarea{min-height:88px;}
+  input[type=checkbox],input[type=radio]{width:20px;height:20px;}
+  label:has(> input[type=checkbox]),label:has(> input[type=radio]){min-height:44px;}
+  .logo,.nav-logo,.nav-back,.back,.lang-btn,.lang,header nav a,footer a{display:inline-flex;align-items:center;min-height:44px;}
+  .lang-btn,.lang{min-width:44px;justify-content:center;}
+  :focus-visible{outline:3px solid #F0C040;outline-offset:2px;}
+  .foot-links a{display:inline-flex;align-items:center;min-height:44px;}
 </style>
 </head>
 <body>
@@ -299,7 +310,7 @@ textarea{min-height:80px;resize:vertical;line-height:1.7;}
   <a href="/seattle/" style="display:inline-flex;align-items:center;gap:10px;background:rgba(201,162,39,0.12);border:1px solid rgba(201,162,39,0.35);color:#C9A227;text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:800;font-size:.95rem;font-family:'Pretendard Variable',sans-serif;">
     ← &nbsp;HebronGuide 메인으로 돌아가기
   </a>
-  <div style="margin-top:20px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;align-items:center;">
+  <div class="foot-links" style="margin-top:20px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;align-items:center;">
     <a href="/founding-partner.html" style="font-size:.78rem;color:rgba(236,253,245,.62);text-decoration:none;font-family:'Pretendard Variable',sans-serif;">협력 신청</a>
     <span style="color:rgba(255,255,255,.62);">·</span>
     <a href="/ad-request.html" style="font-size:.78rem;color:rgba(236,253,245,.62);text-decoration:none;font-family:'Pretendard Variable',sans-serif;">무료 등재</a>

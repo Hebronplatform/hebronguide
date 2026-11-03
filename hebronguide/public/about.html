@@ -111,12 +111,22 @@
     .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 20px; margin-bottom: 14px; }
     .footer-links a { font-size: 13px; color: var(--muted); transition: color 0.2s; }
     .footer-links a:hover { color: var(--text); }
-    .footer-copy { font-size: 12px; color: rgba(139,148,158,0.6); }
+    .footer-copy { font-size: 12px; color: rgba(139,148,158,0.95); }
 
     [data-ko], [data-en] { }
     body.en [data-ko] { display: none !important; }
     body:not(.en) [data-en] { display: none !important; }
-  </style>
+  
+  /* 손가락 크기 · 초점 (2026-11-03) */
+  button,input,select,textarea{font-family:inherit;}
+  input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select{min-height:44px;}
+  textarea{min-height:88px;}
+  input[type=checkbox],input[type=radio]{width:20px;height:20px;}
+  label:has(> input[type=checkbox]),label:has(> input[type=radio]){min-height:44px;}
+  .logo,.nav-logo,.nav-back,.back,.lang-btn,.lang,header nav a,footer a{display:inline-flex;align-items:center;min-height:44px;}
+  .lang-btn,.lang{min-width:44px;justify-content:center;}
+  :focus-visible{outline:3px solid #F0C040;outline-offset:2px;}
+</style>
 <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
 </head>
 <body>
@@ -205,7 +215,7 @@
                 allowfullscreen></iframe>
       </div>
 
-      <p data-ko style="margin-top:0.75rem;font-size:0.9em;opacity:0.75;">▶ 창립 과정은 Builders Lounge 4차 모임 (개발자 커뮤니티) 에서 소개되었습니다.</p>
+      <p data-ko style="margin-top:0.75rem;font-size:0.9em;opacity:0.85;">창립 과정은 Builders Lounge 4차 모임 (개발자 커뮤니티) 에서 소개되었습니다.</p>
       <p data-en style="margin-top:0.75rem;font-size:0.9em;opacity:0.75;">▶ The founding journey was shared at Builders Lounge Session 4, a developer community gathering.</p>
     </div>
 
@@ -411,7 +421,7 @@
         <div class="about-item">
           <div class="about-label" data-ko>문의</div>
           <div class="about-label" data-en>Contact</div>
-          <div class="about-value"><a href="mailto:hebronplatform@gmail.com">hebronplatform@gmail.com</a></div>
+          <div class="about-value"><a href="mailto:hebronplatform@gmail.com" style="display:inline-flex;align-items:center;min-height:44px">hebronplatform@gmail.com</a></div>
         </div>
       </div>
     </div>

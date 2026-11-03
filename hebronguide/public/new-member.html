@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>새가족 신청 | HebronGuide</title>
-<meta name="description" content="HebronGuide 허브교회 새가족 신청">
+<meta name="description" content="HebronGuide 새가족 신청 — 교회를 방문하기 전에 미리 알려 주세요">
 <style>
 :root {
   --bg: #0d1117; --surface: rgba(255,255,255,0.04); --border: rgba(255,255,255,0.08);
@@ -13,7 +13,7 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:-apple-system,'Pretendard Variable','Segoe UI',sans-serif;
      background:var(--bg);color:var(--text);min-height:100vh;
-     display:flex;align-items:center;justify-content:center;padding:24px 16px;}
+     display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 16px;} /* 2026-11-03: column 빠져 카드와 아래 링크가 옆으로 나란히 서서 휴대폰에서 카드가 116px로 찌그러졌다 */
 .card{width:100%;max-width:480px;background:var(--surface);border:1px solid var(--border);
   border-radius:20px;overflow:hidden;}
 .card-head{padding:28px 24px 20px;
@@ -47,6 +47,17 @@ body{font-family:-apple-system,'Pretendard Variable','Segoe UI',sans-serif;
 #ok h3{font-size:1.05rem;font-weight:800;color:var(--mint);margin-bottom:8px;}
 #ok p{font-size:.83rem;color:var(--muted);line-height:1.7;}
 #ok .ok-church{color:var(--gold);font-weight:700;}
+
+  /* 손가락 크기 · 초점 (2026-11-03) */
+  button,input,select,textarea{font-family:inherit;}
+  input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select{min-height:44px;}
+  textarea{min-height:88px;}
+  input[type=checkbox],input[type=radio]{width:20px;height:20px;}
+  label:has(> input[type=checkbox]),label:has(> input[type=radio]){min-height:44px;}
+  .logo,.nav-logo,.nav-back,.back,.lang-btn,.lang,header nav a,footer a{display:inline-flex;align-items:center;min-height:44px;}
+  .lang-btn,.lang{min-width:44px;justify-content:center;}
+  :focus-visible{outline:3px solid #F0C040;outline-offset:2px;}
+  .foot-links a{display:inline-flex;align-items:center;min-height:44px;}
 </style>
 <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
 </head>
@@ -54,7 +65,7 @@ body{font-family:-apple-system,'Pretendard Variable','Segoe UI',sans-serif;
 <div class="card">
   <div class="card-head">
     <span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 3v18"/><path d="M7 8.5h10"/></svg> HebronGuide</span>
-    <div class="church-name" id="churchDisplay">허브교회 새가족 신청</div>
+    <div class="church-name" id="churchDisplay">새가족 신청</div>
     <div class="subtitle" id="subtitleDisplay">
       교회를 방문하기 전에 미리 신청해 주세요.<br>담당자가 따뜻하게 맞이할 준비를 합니다.
     </div>
@@ -145,17 +156,19 @@ body{font-family:-apple-system,'Pretendard Variable','Segoe UI',sans-serif;
 <script>
 // URL 파라미터에서 교회 정보 읽기
 const params = new URLSearchParams(location.search);
-const churchName = params.get('church') || '허브교회';
+// 교회 이름이 주소에 없으면 지어내지 않는다 (2026-11-03: 없는 "허브교회"가 나왔다)
+const churchName = (params.get('church') || '').trim();
 const churchEmail = params.get('email') || '';
 const churchWebsite = params.get('website') || '';
 const lang = params.get('lang') || 'ko';
 
 // 언어 설정
 const isEn = lang === 'en';
+const churchLabel = churchName || (isEn ? 'the church' : '교회');   // 이름이 없을 때 안내문에 쓰는 말
 if (isEn) {
   document.documentElement.lang = 'en';
   document.title = 'New Member Registration | HebronGuide';
-  document.getElementById('churchDisplay').textContent = `${churchName} — New Member Registration`;
+  document.getElementById('churchDisplay').textContent = churchName ? `${churchName} — New Member Registration` : 'New Member Registration';
   document.getElementById('subtitleDisplay').innerHTML =
     'Register before your first visit.<br>Our team will be ready to welcome you warmly.';
   document.querySelector('.verse').textContent = '"I was a stranger and you welcomed me." — Matt. 25:35';
@@ -176,19 +189,18 @@ if (isEn) {
   document.querySelector('textarea').placeholder = 'Tell us anything — what you need, questions, or prayer requests.';
   document.querySelector('.note').textContent = '* Your information is used only for new member follow-up.';
 } else {
-  document.getElementById('churchDisplay').textContent = `${churchName} — 새가족 신청`;
+  document.getElementById('churchDisplay').textContent = churchName ? `${churchName} — 새가족 신청` : '새가족 신청';
 }
 
 // hidden 필드 설정
 document.getElementById('hidChurch').value = churchName;
 document.getElementById('hidEmail').value = churchEmail;
 
-// 현재 도시 자동 채우기 (URL 경로에서)
-const pathCity = location.hostname === 'localhost'
-  ? 'seattle'
-  : location.pathname.split('/').filter(Boolean)[0] || 'seoul';
+// 현재 도시 — 주소에 ?city= 가 있을 때만 채운다
+// (2026-11-03: 경로 첫 조각을 넣어서 실제 사이트에서는 "new-member.html"이 도시 칸에 들어갔다)
+const cityParam = (params.get('city') || '').trim();
 const cityInput = document.getElementById('fCity');
-if (cityInput && !cityInput.value) cityInput.value = pathCity;
+if (cityInput && !cityInput.value && cityParam) cityInput.value = cityParam;
 
 // 폼 제출
 document.getElementById('nmForm').addEventListener('submit', function(e) {
@@ -199,7 +211,7 @@ document.getElementById('nmForm').addEventListener('submit', function(e) {
 
   const fd = new FormData(this);
   const lines = [
-    `교회: ${churchName}`,
+    `교회: ${churchName || '(지정 안 됨)'}`,
     '',
   ];
   fd.forEach((v, k) => { if (v && !k.startsWith('_')) lines.push(`${k}: ${v}`); });
@@ -207,7 +219,7 @@ document.getElementById('nmForm').addEventListener('submit', function(e) {
 
   const subject = isEn
     ? `[HebronGuide] New Member Registration — ${fd.get('성함') || fd.get('이름') || ''}`
-    : `[HebronGuide] 새가족 신청 — ${fd.get('성함') || ''} (${churchName})`;
+    : `[HebronGuide] 새가족 신청 — ${fd.get('성함') || ''} (${churchLabel})`;
 
   // 2026-11-02: 메일 프로그램에 넘기던 방식(mailto)을 버렸다. 메일 앱이 없으면 아무것도 안 갔는데
   // 0.8초 뒤 「접수되었습니다」를 띄웠다. 이제 서버(/api/submit-form)가 저장하고 HebronGuide에 알린다.
@@ -219,10 +231,10 @@ document.getElementById('nmForm').addEventListener('submit', function(e) {
     method: 'POST', headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       type: 'newmember',
-      name: nameVal + ' (새가족 · ' + churchName + ')',
+      name: nameVal + ' (새가족 · ' + churchLabel + ')',
       email: emailVal, phone: phoneVal,
       city: fd.get('거주도시') || '',
-      subject: (isEn ? '[New member] ' : '[새가족] ') + nameVal + ' → ' + churchName,
+      subject: (isEn ? '[New member] ' : '[새가족] ') + nameVal + ' → ' + churchLabel,
       body: lines.concat(['', '교회 이메일: ' + (churchEmail || '(없음)'), '※ 교회에 전해 주세요.']).join('\n')
     })
   })
@@ -232,12 +244,12 @@ document.getElementById('nmForm').addEventListener('submit', function(e) {
     document.getElementById('nmForm').style.display = 'none';
     const ok = document.getElementById('ok');
     ok.style.display = 'block';
-    document.getElementById('okChurch').textContent = churchName;
+    document.getElementById('okChurch').textContent = churchLabel;
     if (isEn) {
       document.getElementById('okTitle').textContent = 'Received';
       document.getElementById('okBody').innerHTML =
         'HebronGuide has received it and will pass it on to <b></b>.<br><br>Someone from the church will reach out.';
-      document.querySelector('#okBody b').textContent = churchName;
+      document.querySelector('#okBody b').textContent = churchLabel;
     }
     // 교회에 직접 보내고 싶은 분을 위한 작은 길 (메일 앱이 있을 때만 쓸모 있다)
     if (churchEmail) {
@@ -269,7 +281,7 @@ document.getElementById('nmForm').addEventListener('submit', function(e) {
   <a href="/seattle/" style="display:inline-flex;align-items:center;gap:10px;background:rgba(201,162,39,0.12);border:1px solid rgba(201,162,39,0.35);color:#C9A227;text-decoration:none;padding:14px 36px;border-radius:50px;font-weight:800;font-size:.95rem;font-family:'Pretendard Variable',sans-serif;letter-spacing:.01em;transition:background .2s;">
     ← &nbsp;HebronGuide 메인으로 돌아가기
   </a>
-  <div style="margin-top:20px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;align-items:center;">
+  <div class="foot-links" style="margin-top:20px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;align-items:center;">
     <a href="/founding-partner.html" style="font-size:.78rem;color:rgba(236,253,245,0.6);text-decoration:none;font-family:'Pretendard Variable',sans-serif;">협력 신청</a>
     <span style="color:rgba(255,255,255,.62);">·</span>
     <a href="/ad-request.html" style="font-size:.78rem;color:rgba(236,253,245,0.6);text-decoration:none;font-family:'Pretendard Variable',sans-serif;">무료 등재</a>
