@@ -857,7 +857,7 @@ import {
   Dumbbell,
   Scissors,
   Wrench,
-  Siren, Cloud, Phone, Languages, Shield, Smile, Brain, ChartColumn, Footprints, Music, Calendar, Circle, Bell, Flag, Mail,
+  Siren, Cloud, Phone, Languages, Shield, Smile, Brain, ChartColumn, Footprints, Music, Calendar, Circle, Bell, Flag, Mail, Luggage, DoorOpen,
 } from "lucide-react";
 
 
@@ -868,7 +868,8 @@ import {
 ───────────────────────────────────────── */
 const EMOJI_ICON: Record<string, React.ComponentType<{ size?: number; strokeWidth?: number; color?: string }>> = {
   // 2026-11-02: 표에 없어서 날 이모지로 그려지던 것들
-  "🆘": LifeBuoy, "🚨": Siren, "☁": Cloud, "☎": Phone, "📞": Phone, "✉": Mail, "📧": Mail, "📩": Mail, "📨": Mail, "🗣": Languages, "🚓": Shield,
+  "🆘": LifeBuoy, "🚨": Siren, "☁": Cloud, "☎": Phone, "📞": Phone, "✉": Mail, "📧": Mail, "📩": Mail, "📨": Mail,
+  "✕": X, "✖": X, "×": X, "🧳": Luggage, "🚪": DoorOpen,   // 2026-11-03: ✕가 표에 없어 닫기 단추 4곳이 위치 핀으로 그려졌다 "🗣": Languages, "🚓": Shield,
   "👩‍👧": Users, "📍": MapPin, "🦷": Smile, "🧠": Brain, "📊": ChartColumn, "🏃": Footprints,
   "🎵": Music, "📅": Calendar, "🏡": Home, "🔴": Circle, "🔔": Bell, "🇰🇷": Flag, "🇺🇸": Flag,
   "\u2615": Coffee, "\uD83C\uDFDB\uFE0F": Landmark, "\uD83C\uDFDB": Landmark,
@@ -11975,8 +11976,9 @@ function FloatingMusicPlayer() {
 
   const btnStyle: React.CSSProperties = {
     background: "none", border: "none", cursor: "pointer",
-    color: "rgba(255,255,255,0.55)", fontSize: 12, padding: "2px 5px",
-    borderRadius: 6, lineHeight: 1, flexShrink: 0,
+    color: "rgba(255,255,255,0.8)", fontSize: 14, padding: 0,
+    minWidth: 40, minHeight: 44, display: "inline-flex", alignItems: "center", justifyContent: "center",
+    borderRadius: 8, lineHeight: 1, flexShrink: 0,
   };
 
   // 장르 탭 버튼 공통 스타일 (active 여부에 따라)
@@ -11984,9 +11986,9 @@ function FloatingMusicPlayer() {
     background: isActive ? "rgba(110,231,183,0.15)" : "none",
     border: "none", borderBottom: isActive ? "2px solid rgba(110,231,183,0.8)" : "2px solid transparent",
     cursor: "pointer", whiteSpace: "nowrap" as const,
-    padding: "4px 8px 5px", fontSize: 12,
+    padding: "0 12px", minHeight: 44, fontSize: 13,
     fontWeight: isActive ? 700 : 500,
-    color: isActive ? "rgba(110,231,183,1)" : "rgba(255,255,255,0.55)",
+    color: isActive ? "rgba(110,231,183,1)" : "rgba(255,255,255,0.75)",
     fontFamily: "Geist,Pretendard Variable,sans-serif", borderRadius: "6px 6px 0 0", flexShrink: 0,
   });
 
@@ -11996,19 +11998,19 @@ function FloatingMusicPlayer() {
       {showRequest && (
         <div style={{
           position: "fixed", right: pos.right,
-          bottom: pos.bottom + (mini ? 40 : h + 72),
+          bottom: pos.bottom + (mini ? 54 : h + 114),   // 조작 줄이 44px로 커져 자리도 함께 올림 (2026-11-03)
           zIndex: 9001, width: Math.max(barW, 280),
           background: "rgba(16,20,36,0.98)", border: "1px solid rgba(255,255,255,0.15)",
           borderRadius: 14, padding: 14, boxShadow: "0 4px 28px rgba(0,0,0,0.7)",
         }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
             <span style={{ fontSize: 12, fontWeight: 700, color: "#fff", fontFamily: "Geist,Pretendard Variable,sans-serif" }}>곡 신청</span>
-            <button onClick={() => { setShowRequest(false); setReqStatus("idle"); }} style={btnStyle}><EmojiIcon emoji={"✕"} size={18} /></button>
+            <button onClick={() => { setShowRequest(false); setReqStatus("idle"); }} aria-label="곡 신청 닫기" style={btnStyle}><X size={18} strokeWidth={2} aria-hidden="true" /></button>
           </div>
           {reqStatus === "success" ? (
             <div style={{ textAlign: "center", padding: "16px 0" }}>
               <div style={{ fontSize: 13, color: "rgba(110,231,183,1)", fontFamily: "Geist,Pretendard Variable,sans-serif", marginTop: 4 }}>신청되었습니다!</div>
-              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", fontFamily: "Geist,Pretendard Variable,sans-serif", marginTop: 4 }}>검토 후 신청곡 탭에서 재생됩니다.</div>
+              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.7)", fontFamily: "Geist,Pretendard Variable,sans-serif", marginTop: 4 }}>검토 후 신청곡 탭에서 재생됩니다.</div>
             </div>
           ) : (
             <>
@@ -12017,15 +12019,17 @@ function FloatingMusicPlayer() {
                   placeholder={field === "url" ? "YouTube 링크 (필수)" : field === "name" ? "이름 (선택)" : "메모 (선택)"}
                   value={reqForm[field]}
                   onChange={e => setReqForm(p => ({ ...p, [field]: e.target.value }))}
-                  style={{ width: "100%", boxSizing: "border-box", padding: "7px 10px", marginBottom: 7, borderRadius: 8, border: "1px solid rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.06)", color: "#fff", fontSize: 12, fontFamily: "Geist,Pretendard Variable,sans-serif" }}
+                  aria-label={field === "url" ? "YouTube 링크 (필수)" : field === "name" ? "이름 (선택)" : "메모 (선택)"}
+                  style={{ width: "100%", boxSizing: "border-box", padding: "0 12px", minHeight: 44, marginBottom: 8, borderRadius: 8, border: "1px solid rgba(255,255,255,0.2)", background: "rgba(255,255,255,0.06)", color: "#fff", fontSize: 14, fontFamily: "Geist,Pretendard Variable,sans-serif" }}
                 />
               ))}
               <select value={reqForm.timePref} onChange={e => setReqForm(p => ({ ...p, timePref: e.target.value }))}
-                style={{ width: "100%", boxSizing: "border-box", padding: "7px 10px", marginBottom: 10, borderRadius: 8, border: "1px solid rgba(255,255,255,0.15)", background: "rgba(16,20,36,0.97)", color: "rgba(255,255,255,0.7)", fontSize: 12, fontFamily: "Geist,Pretendard Variable,sans-serif" }}>
+                aria-label="듣고 싶은 시간"
+                style={{ width: "100%", boxSizing: "border-box", padding: "0 12px", minHeight: 44, marginBottom: 10, borderRadius: 8, border: "1px solid rgba(255,255,255,0.2)", background: "rgba(16,20,36,0.97)", color: "rgba(255,255,255,0.85)", fontSize: 14, fontFamily: "Geist,Pretendard Variable,sans-serif" }}>
                 {["언제나","새벽 (5-7시)","아침 (9-11시)","오후 (1-5시)","저녁 (7-10시)"].map(t => <option key={t} value={t}>{t}</option>)}
               </select>
               <button onClick={submitRequest} disabled={reqStatus === "loading" || !reqForm.url.trim()}
-                style={{ width: "100%", padding: "8px", borderRadius: 8, border: "none", cursor: reqForm.url.trim() ? "pointer" : "not-allowed", background: reqForm.url.trim() ? "rgba(110,231,183,0.85)" : "rgba(255,255,255,0.1)", color: reqForm.url.trim() ? "#0d1117" : "rgba(255,255,255,0.3)", fontSize: 12, fontWeight: 700, fontFamily: "Geist,Pretendard Variable,sans-serif" }}>
+                style={{ width: "100%", minHeight: 44, borderRadius: 8, border: "none", cursor: reqForm.url.trim() ? "pointer" : "not-allowed", background: reqForm.url.trim() ? "rgba(110,231,183,0.85)" : "rgba(255,255,255,0.1)", color: reqForm.url.trim() ? "#0d1117" : "rgba(255,255,255,0.6)", fontSize: 14, fontWeight: 700, fontFamily: "Geist,Pretendard Variable,sans-serif" }}>
                 {reqStatus === "loading" ? "신청 중..." : "신청하기"}
               </button>
               {reqStatus === "error" && <div style={{ fontSize: 12, color: "#f87171", textAlign: "center", marginTop: 6, fontFamily: "Geist,Pretendard Variable,sans-serif" }}>오류가 발생했습니다. 다시 시도해주세요.</div>}
@@ -12060,10 +12064,11 @@ function FloatingMusicPlayer() {
               </button>
             ))}
             <button onClick={() => setMusicLang(l => l === "ko" ? "en" : "ko")}
-              style={{ marginLeft: "auto", flexShrink: 0, display: "flex", alignItems: "center", gap: 1, background: "none", border: "1px solid rgba(255,255,255,0.18)", borderRadius: 6, padding: "2px 6px", cursor: "pointer", marginBottom: 4, fontFamily: "Geist,Pretendard Variable,sans-serif" }}>
-              <span style={{ fontSize: 12, fontWeight: musicLang === "ko" ? 800 : 500, color: musicLang === "ko" ? "rgba(110,231,183,0.9)" : "rgba(255,255,255,0.3)" }}>한</span>
-              <span style={{ fontSize: 8, color: "rgba(255,255,255,0.2)" }}>/</span>
-              <span style={{ fontSize: 12, fontWeight: musicLang === "en" ? 800 : 500, color: musicLang === "en" ? "rgba(110,231,183,0.9)" : "rgba(255,255,255,0.3)" }}>EN</span>
+              aria-label={musicLang === "ko" ? "제목을 영어로" : "제목을 한국어로"}
+              style={{ marginLeft: "auto", flexShrink: 0, display: "flex", alignItems: "center", gap: 2, background: "none", border: "none", borderRadius: 8, padding: "0 10px", minHeight: 44, cursor: "pointer", fontFamily: "Geist,Pretendard Variable,sans-serif" }}>
+              <span style={{ fontSize: 12, fontWeight: musicLang === "ko" ? 800 : 500, color: musicLang === "ko" ? "rgba(110,231,183,0.95)" : "rgba(255,255,255,0.65)" }}>한</span>
+              <span aria-hidden="true" style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>/</span>
+              <span style={{ fontSize: 12, fontWeight: musicLang === "en" ? 800 : 500, color: musicLang === "en" ? "rgba(110,231,183,0.95)" : "rgba(255,255,255,0.65)" }}>EN</span>
             </button>
           </div>
         )}
@@ -12074,44 +12079,44 @@ function FloatingMusicPlayer() {
           border: "1px solid rgba(255,255,255,0.12)",
           borderTop: mini ? undefined : "none",
           borderRadius: mini ? 24 : 0,
-          display: "flex", alignItems: "center", gap: 6,
-          padding: "7px 10px", cursor: "grab", userSelect: "none" as const,
+          display: "flex", alignItems: "center", gap: 0,
+          padding: "0 4px 0 12px", cursor: "grab", userSelect: "none" as const,
           borderBottom: mini ? undefined : "1px solid rgba(255,255,255,0.08)",
         }}>
-          <span style={{ fontSize: 13, flexShrink: 0 }}>▶</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(110,231,183,0.95)" aria-hidden="true" style={{ flexShrink: 0, marginRight: 8 }}><path d="M7 4v16l13-8z" /></svg>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: 12, fontWeight: 700, color: "#fff", fontFamily: "Geist,Pretendard Variable,sans-serif", whiteSpace: "nowrap" as const, overflow: "hidden", textOverflow: "ellipsis" }}>
               {(() => { const g = MUSIC_GENRES.find(x => x.id === mode); return g ? g.labelEn : "Healing"; })()}
               {curItem?.sub ? ` — ${curItem.sub}` : ""}
             </div>
-            <div style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", fontFamily: "Geist,Pretendard Variable,sans-serif" }}>
+            <div style={{ fontSize: 12, color: "rgba(255,255,255,0.7)", fontFamily: "Geist,Pretendard Variable,sans-serif", whiteSpace: "nowrap" as const, overflow: "hidden", textOverflow: "ellipsis" }}>
               {mini ? "재생 중" : "Hebron Music"}
             </div>
           </div>
 
           {/* 곡 신청 버튼 */}
           <button onClick={(e) => { e.stopPropagation(); setShowRequest(p => !p); setReqStatus("idle"); }}
-            title="곡 신청" style={{ ...btnStyle, fontWeight: 700, fontSize: 16, color: showRequest ? "rgba(110,231,183,0.9)" : "rgba(255,255,255,0.5)" }}>+</button>
+            title="곡 신청" aria-label="곡 신청" aria-expanded={showRequest} style={{ ...btnStyle, fontWeight: 700, fontSize: 20, color: showRequest ? "rgba(110,231,183,0.95)" : "rgba(255,255,255,0.8)" }}>+</button>
 
           {/* 서브큐 이전/다음 (2개 이상일 때) */}
-          {curItems.length > 1 && (
+          {curItems.length > 1 && !mini && (
             <>
-              <button onClick={(e) => { e.stopPropagation(); setSubIdx(i => (i - 1 + curItems.length) % curItems.length); }} style={btnStyle}>‹</button>
-              <button onClick={(e) => { e.stopPropagation(); setSubIdx(i => (i + 1) % curItems.length); }} style={btnStyle}>›</button>
+              <button onClick={(e) => { e.stopPropagation(); setSubIdx(i => (i - 1 + curItems.length) % curItems.length); }} aria-label="이전 곡" style={{ ...btnStyle, fontSize: 20 }}>‹</button>
+              <button onClick={(e) => { e.stopPropagation(); setSubIdx(i => (i + 1) % curItems.length); }} aria-label="다음 곡" style={{ ...btnStyle, fontSize: 20 }}>›</button>
             </>
           )}
 
           {/* 크기 전환 */}
           {!mini && (
-            <button onClick={(e) => { e.stopPropagation(); setSizeIdx(i => (i + 1) % 3); }}
-              style={{ ...btnStyle, background: "rgba(255,255,255,0.08)", fontWeight: 700, fontSize: 12, color: "#fff", padding: "3px 6px", borderRadius: 7 }}>
+            <button onClick={(e) => { e.stopPropagation(); setSizeIdx(i => (i + 1) % 3); }} aria-label={`영상 크기 바꾸기 — 지금 ${YT_SIZES[sizeIdx].label}`}
+              style={{ ...btnStyle, fontWeight: 700, fontSize: 13, color: "#fff" }}>
               {YT_SIZES[sizeIdx].label}
             </button>
           )}
-          <button onClick={(e) => { e.stopPropagation(); setMini(p => !p); }} title={mini ? "영상 펼치기" : "오디오만"} style={btnStyle}>
+          <button onClick={(e) => { e.stopPropagation(); setMini(p => !p); }} title={mini ? "영상 펼치기" : "오디오만"} aria-label={mini ? "영상 펼치기" : "소리만 듣기"} style={btnStyle}>
             {mini ? "□" : "▬"}
           </button>
-          <button onClick={(e) => { e.stopPropagation(); setActive(false); }} style={btnStyle}><EmojiIcon emoji={"✕"} size={18} /></button>
+          <button onClick={(e) => { e.stopPropagation(); setActive(false); }} aria-label="음악 끄기" style={btnStyle}><X size={18} strokeWidth={2} aria-hidden="true" /></button>
         </div>
 
         {/* YouTube iframe */}
@@ -12130,7 +12135,7 @@ function FloatingMusicPlayer() {
           ) : (
             <div style={{ width: w, height: h, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column" as const, gap: 8 }}>
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.3)", fontFamily: "Geist,Pretendard Variable,sans-serif", textAlign: "center" as const, padding: "0 16px" }}>
+              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.7)", fontFamily: "Geist,Pretendard Variable,sans-serif", textAlign: "center" as const, padding: "0 16px" }}>
                 {mode === "request" ? "신청곡이 없습니다. + 버튼으로 신청해보세요!" : "콘텐츠 준비 중입니다."}
               </div>
             </div>
@@ -28832,6 +28837,13 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
   const recognRef = useRef<unknown>(null);
   const synthRef  = useRef<SpeechSynthesisUtterance | null>(null);
 
+  // Esc 로 닫기 — 없으면 창이 뒤에 남아, 다시 "통역"을 누를 때 열리지 않고 닫혔다 (2026-11-03)
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
   // ── 언어 설정 ──
   const fromBcp = dir === "ko-en" ? "ko-KR" : "en-US";
   const toBcp   = dir === "ko-en" ? "en-US" : "ko-KR";
@@ -28948,7 +28960,8 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
   return (
     <div style={{ position:"fixed", inset:0, zIndex:300, background:"rgba(0,0,0,0.6)",
       backdropFilter:"blur(8px)", display:"flex", alignItems:"flex-end" }} onClick={handleClose}>
-      <div style={{ width:"100%", maxWidth:430, margin:"0 auto", background:"var(--color-surface)",
+      <div role="dialog" aria-modal="true" aria-label={ko ? "AI 통역기" : "AI Interpreter"}
+        style={{ width:"100%", maxWidth:430, margin:"0 auto", background:"var(--color-surface)",
         borderRadius:"24px 24px 0 0", paddingBottom:"env(safe-area-inset-bottom,20px)",
         boxShadow:"0 -8px 48px rgba(0,0,0,0.4)", maxHeight:"90vh", overflowY:"auto" }}
         onClick={e => e.stopPropagation()}>
@@ -28960,7 +28973,7 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
               display:"flex", alignItems:"center", gap:7 }}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ verticalAlign: "-3px", marginRight: 6 }}><rect x="9" y="3" width="6" height="11" rx="3" /><path d="M5 11a7 7 0 0 0 14 0" /><path d="M12 18v3" /></svg>{ko ? "AI 통역기" : "AI Interpreter"}
               {isSpeaking && <span style={{ fontSize:12, background:"rgba(110,231,183,0.2)", color: "var(--color-success)",
-                borderRadius:8, padding:"2px 8px", fontWeight:700, animation:"pulse 1s infinite" }}>▶ 재생 중</span>}
+                borderRadius:8, padding:"2px 8px", fontWeight:700 }}>{ko ? "재생 중" : "Playing"}</span>}
             </div>
             <div style={{ fontSize:12, color: "var(--color-text-muted)", marginTop:2, fontFamily:"Geist,Pretendard Variable,sans-serif" }}>
               {ko ? "음성 인식 · AI 번역 · 음성 출력" : "Speech Recognition · AI Translation · TTS"}
@@ -28968,16 +28981,17 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
           </div>
           <div style={{ display:"flex", gap:8, alignItems:"center" }}>
             {/* 자동 읽기 토글 */}
-            <button onClick={() => setAutoSpeak(a => !a)}
-              style={{ border:"none", background: autoSpeak ? "rgba(110,231,183,0.2)" : "rgba(27,42,74,0.08)",
-                borderRadius:20, padding:"5px 10px", cursor:"pointer",
-                fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, fontWeight:700,
-                color: autoSpeak ? "#6EE7B7" : "rgba(27,42,74,0.45)" }}>
+            <button onClick={() => setAutoSpeak(a => !a)} aria-pressed={autoSpeak}
+              style={{ border:"none", background: autoSpeak ? "rgba(15,118,110,0.10)" : "rgba(27,42,74,0.08)",
+                borderRadius:22, padding:"0 14px", minHeight:44, cursor:"pointer",
+                fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:13, fontWeight:700,
+                color: autoSpeak ? "var(--color-success)" : "var(--color-text-secondary)" }}>
               {autoSpeak ? (ko ? "소리 켬" : "Sound on") : (ko ? "소리 끔" : "Sound off")}
             </button>
-            <button onClick={handleClose}
+            <button onClick={handleClose} aria-label={ko ? "닫기" : "Close"}
               style={{ border:"none", background:"rgba(27,42,74,0.1)", borderRadius:"50%",
-                width:32, height:32, fontSize:16, cursor:"pointer", color: "var(--color-text-primary)" }}><EmojiIcon emoji={"✕"} size={18} /></button>
+                width:44, height:44, cursor:"pointer", color: "var(--color-text-primary)",
+                display:"flex", alignItems:"center", justifyContent:"center" }}><X size={18} strokeWidth={2.2} aria-hidden="true" /></button>
           </div>
         </div>
 
@@ -28994,8 +29008,8 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
                 {ko ? "입력" : "Input"}
               </div>
             </div>
-            <button onClick={flipDir}
-              style={{ width:40, height:40, borderRadius:"50%", border:"1px solid rgba(201,162,39,0.4)",
+            <button onClick={flipDir} aria-label={ko ? "통역 방향 바꾸기" : "Swap languages"}
+              style={{ width:44, height:44, borderRadius:"50%", border:"1px solid rgba(201,162,39,0.4)",
                 background:"rgba(201,162,39,0.12)", cursor:"pointer", fontSize:18,
                 display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
               ⇄
@@ -29020,7 +29034,7 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
               {fromFlag} {ko ? "원문 (자막)" : "Original (caption)"}
             </div>
             <div style={{ fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif", fontSize:14,
-              color: original ? "#1B2A4A" : "rgba(27,42,74,0.25)", lineHeight:1.7, minHeight:22 }}>
+              color: original ? "#1B2A4A" : "var(--color-text-muted)", lineHeight:1.7, minHeight:22 }}>
               {original || (interim
                 ? <span style={{ color: "var(--color-text-secondary)", fontStyle:"italic" }}>{interim}...</span>
                 : <span>{ko ? "아래 버튼을 눌러 말씀하세요" : "Tap the button below to speak"}</span>
@@ -29042,32 +29056,32 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
                 <div style={{ display:"flex", gap:6 }}>
                   {isSpeaking
                     ? <button onClick={stopSpeak}
-                        style={{ border:"none", background:"rgba(239,68,68,0.2)", color:"#B91C1C",
-                          borderRadius:8, padding:"3px 8px", cursor:"pointer",
-                          fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, fontWeight:700 }}>
-                        ⏹ {ko ? "중지" : "Stop"}
+                        style={{ border:"none", background:"rgba(239,68,68,0.12)", color:"#B91C1C",
+                          borderRadius:10, padding:"0 12px", minHeight:44, cursor:"pointer",
+                          fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:13, fontWeight:700 }}>
+                        {ko ? "중지" : "Stop"}
                       </button>
                     : <button onClick={() => speak(translated, toBcp)}
-                        style={{ border:"none", background:"rgba(110,231,183,0.15)", color: "var(--color-success)",
-                          borderRadius:8, padding:"3px 8px", cursor:"pointer",
-                          fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, fontWeight:700 }}>
+                        style={{ border:"none", background:"rgba(15,118,110,0.10)", color: "var(--color-success)",
+                          borderRadius:10, padding:"0 12px", minHeight:44, cursor:"pointer",
+                          fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:13, fontWeight:700 }}>
                         {ko ? "다시 듣기" : "Play again"}
                       </button>
                   }
                   <button onClick={() => navigator.clipboard?.writeText(translated)}
                     style={{ border:"none", background:"rgba(27,42,74,0.08)", color: "var(--color-text-secondary)",
-                      borderRadius:8, padding:"3px 8px", cursor:"pointer",
-                      fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, fontWeight:700 }}>
-                    📋 {ko ? "복사" : "Copy"}
+                      borderRadius:10, padding:"0 12px", minHeight:44, cursor:"pointer",
+                      fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:13, fontWeight:700 }}>
+                    {ko ? "복사" : "Copy"}
                   </button>
                 </div>
               )}
             </div>
             <div style={{ fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif", fontSize:15,
-              color: translated ? "#1B2A4A" : "rgba(27,42,74,0.2)", lineHeight:1.7, minHeight:22 }}>
+              color: translated ? "#1B2A4A" : "var(--color-text-muted)", lineHeight:1.7, minHeight:22 }}>
               {isTranslating
                 ? <span style={{ color:"var(--color-success)", fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12 }}>
-                    ✦ {ko ? "AI 번역 중..." : "Translating..."}
+                    {ko ? "번역하는 중..." : "Translating..."}
                   </span>
                 : (translated || (ko ? "번역 결과가 여기에 표시됩니다" : "Translation will appear here"))}
             </div>
@@ -29078,7 +29092,7 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
             <div style={{ background:"rgba(239,68,68,0.1)", border:"1px solid rgba(239,68,68,0.3)",
               borderRadius:10, padding:"8px 12px", marginBottom:10,
               fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color:"#B91C1C" }}>
-              ⚠️ {errMsg}
+              <TriangleAlert size={13} strokeWidth={2} aria-hidden="true" style={{ verticalAlign: "-2px", marginRight: 6 }} />{errMsg}
             </div>
           )}
 
@@ -29119,17 +29133,18 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
               onChange={e => setTextInput(e.target.value)}
               onKeyDown={e => e.key === "Enter" && handleTextSubmit()}
               placeholder={ko ? `${fromLabel}로 입력...` : `Type in ${fromLabel}...`}
-              style={{ flex:1, background:"rgba(27,42,74,0.08)", border:"1px solid rgba(27,42,74,0.14)",
-                borderRadius:12, padding:"11px 14px", fontSize:13, color: "var(--color-text-primary)",
+              aria-label={ko ? `${fromLabel}로 입력` : `Type in ${fromLabel}`}
+              style={{ flex:1, minWidth:0, minHeight:44, background:"rgba(27,42,74,0.05)", border:"1px solid rgba(27,42,74,0.14)",
+                borderRadius:12, padding:"0 14px", fontSize:14, color: "var(--color-text-primary)",
                 fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif" }}
             />
             <button onClick={handleTextSubmit}
-              disabled={!textInput.trim()}
-              style={{ background: textInput.trim() ? "rgba(201,162,39,0.85)" : "rgba(27,42,74,0.06)",
-                border:"none", borderRadius:12, padding:"0 16px", cursor: textInput.trim() ? "pointer" : "default",
-                fontFamily:"Geist,Pretendard Variable,sans-serif", fontWeight:800, fontSize:13,
-                color: textInput.trim() ? "#1B2A4A" : "rgba(255,255,255,0.25)" }}>
-              →
+              disabled={!textInput.trim()} aria-label={ko ? "번역하기" : "Translate"}
+              style={{ background: textInput.trim() ? "var(--color-primary)" : "rgba(27,42,74,0.06)",
+                border:"none", borderRadius:12, minWidth:48, minHeight:44, padding:"0 14px", cursor: textInput.trim() ? "pointer" : "default",
+                fontFamily:"Geist,Pretendard Variable,sans-serif", fontWeight:800, fontSize:14,
+                color: textInput.trim() ? "var(--color-text-inverse)" : "var(--color-text-muted)" }}>
+              {ko ? "번역" : "Go"}
             </button>
           </div>
 
@@ -29149,19 +29164,19 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
             <div style={{ marginTop:12 }}>
               <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, fontWeight:700,
                 color: "var(--color-text-muted)", letterSpacing:"0.08em", marginBottom:6 }}>
-                {ko ? "📋 최근 번역" : "📋 Recent"}
+                {ko ? "최근 번역" : "Recent"}
               </div>
               {history.slice(0,3).map((h, i) => (
-                <div key={i}
+                <button key={i} type="button"
                   onClick={() => { setOriginal(h.orig); setTranslated(h.trans); if (autoSpeak) speak(h.trans, toBcp); }}
-                  style={{ background:"rgba(27,42,74,0.04)", borderRadius:10, padding:"8px 12px",
-                    marginBottom:5, cursor:"pointer",
-                    borderLeft:"2px solid rgba(110,231,183,0.3)" }}>
+                  style={{ display:"block", width:"100%", textAlign:"left", border:"none", background:"rgba(27,42,74,0.04)", borderRadius:10, padding:"8px 12px",
+                    marginBottom:5, cursor:"pointer", minHeight:44,
+                    borderLeft:"2px solid rgba(15,118,110,0.35)" }}>
                   <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color: "var(--color-text-secondary)",
                     marginBottom:2, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{h.orig}</div>
                   <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color:"var(--color-success)",
                     whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{h.trans}</div>
-                </div>
+                </button>
               ))}
             </div>
           )}
@@ -29353,6 +29368,12 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
 
   const [copied, setCopied] = useState(false);
 
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
   const copy = () => {
     navigator.clipboard?.writeText(fullMsg + "\n" + appUrl).then(() => {
       setCopied(true);
@@ -29468,7 +29489,8 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
     <div style={{ position:"fixed", inset:0, zIndex:300,
       background:"rgba(0,0,0,0.4)", backdropFilter:"blur(16px) saturate(180%)",
       display:"flex", alignItems:"flex-end" }} onClick={onClose}>
-      <div style={{ width:"100%", maxWidth:430, margin:"0 auto",
+      <div role="dialog" aria-modal="true" aria-label={lang === "ko" ? "이 도시 함께 나누기" : "Share this city"}
+        style={{ width:"100%", maxWidth:430, margin:"0 auto",
         background:"rgba(255,255,255,0.97)", backdropFilter:"saturate(180%) blur(20px)",
         borderRadius:"22px 22px 0 0", paddingBottom:"env(safe-area-inset-bottom,20px)",
         boxShadow:"0 -2px 0 rgba(0,0,0,0.06), 0 -20px 60px rgba(0,0,0,0.15)" }}
@@ -29490,10 +29512,14 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
               {lang === "ko" ? "마음이 가는 분과 나눌 수 있어요" : "With anyone you have in mind"}
             </div>
           </div>
-          <button onClick={onClose} style={{ border:"none",
-            background:"rgba(120,120,128,0.12)", borderRadius:"50%",
-            width:30, height:30, fontSize:14, cursor:"pointer", color:"#8E8E93",
-            display:"flex", alignItems:"center", justifyContent:"center" }}><EmojiIcon emoji={"✕"} size={18} /></button>
+          <button onClick={onClose} aria-label={lang === "ko" ? "닫기" : "Close"} style={{ border:"none",
+            background:"none", width:44, height:44, padding:0, cursor:"pointer",
+            display:"flex", alignItems:"center", justifyContent:"center" }}>
+            <span style={{ width:32, height:32, borderRadius:"50%", background:"rgba(120,120,128,0.12)",
+              display:"flex", alignItems:"center", justifyContent:"center", color:"var(--color-text-secondary)" }}>
+              <X size={16} strokeWidth={2.2} aria-hidden="true" />
+            </span>
+          </button>
         </div>
 
         {/* ── 공유 미리보기 카드 ── */}
@@ -29534,7 +29560,7 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
                   {isLast && copied ? (lang === "ko" ? "복사했어요" : "Copied") : p.label}
                 </div>
                 {(isInstagram || isTikTok) && (
-                  <div style={{ fontSize: 12, color: "var(--color-accent-text)", textAlign: "center", marginTop: 1 }}>
+                  <div style={{ fontSize: 12, color: "var(--color-accent-text)", textAlign: "center", marginTop: 1, wordBreak: "keep-all", lineHeight: 1.3 }}>
                     {lang === "ko" ? "복사 후 붙여넣기" : "Copy, then paste"}
                   </div>
                 )}
@@ -29556,18 +29582,18 @@ function ChatShareModal({ onClose, lang, activeNav = 0 }: { onClose: () => void;
 
         {/* ── 폰 기본 공유 큰 버튼 (카카오·문자·이메일 등 전부) ── */}
         <div style={{ padding: "8px 16px 6px" }}>
-          <button onClick={nativeShare} style={{ width: "100%", border: "none", borderRadius: 14, background: "linear-gradient(135deg,#F2994A,#F59E0B)", padding: "13px 16px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
-            <EmojiIcon emoji={"📤"} size={16} />
-            <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 13, color: "#fff" }}>
-              {lang === "ko" ? "폰 공유 시트 열기 (카카오·문자·이메일…)" : "Open share sheet (KakaoTalk, SMS, Mail…)"}
+          <button onClick={nativeShare} style={{ width: "100%", border: "none", borderRadius: 14, background: "var(--color-primary)", padding: "13px 16px", minHeight: 48, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+            <EmojiIcon emoji={"📤"} size={16} color="#fff" />
+            <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 14, color: "var(--color-text-inverse)" }}>
+              {lang === "ko" ? "휴대폰의 다른 앱으로 보내기" : "Send with another app"}
             </span>
           </button>
         </div>
 
         {/* ── 하단 안내 ── */}
         <div style={{ padding: "6px 16px 14px", textAlign: "center" }}>
-          <div style={{ fontSize: 12, color: "#CBD5E1" }}>
-            💡 {lang === "ko" ? "공유 시 HebronGuide 링크가 자동으로 포함됩니다" : "HebronGuide link is automatically included in every share"}
+          <div style={{ fontSize: 12, color: "var(--color-text-muted)" }}>
+            {lang === "ko" ? "어느 방법으로 보내도 이 도시 주소가 함께 갑니다" : "The link to this city goes with every share"}
           </div>
         </div>
       </div>
@@ -29642,6 +29668,13 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
     return () => window.removeEventListener(OPEN_MORE_EVENT, open);
   }, []);
 
+  useEffect(() => {
+    if (!showMore) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setShowMore(false); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [showMore]);
+
   const handleMoreSection = (tab: number, subTab?: number) => {
     onChange(tab, subTab);
     setShowMore(false);
@@ -29665,6 +29698,7 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
       {showMore && (
         <div
           className="fixed z-50 lg:hidden"
+          role="dialog" aria-modal="true" aria-label={lang === "ko" ? "더 보기" : "More"}
           style={{
             bottom: "calc(56px + env(safe-area-inset-bottom, 0px))",
             left: "50%", transform: "translateX(-50%)",
@@ -29679,10 +29713,10 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
           {/* 핸들 */}
           <div style={{ width: 36, height: 4, borderRadius: 2, background: "#E5E7EB", margin: "0 auto 16px" }} />
 
-          {/* 섹션 버튼 그리드 — 2행 */}
-          {[MORE_SECTIONS.slice(0, 6), MORE_SECTIONS.slice(6, 12), MORE_SECTIONS.slice(12)].map((row, rowIdx) => (
-            <div key={rowIdx} style={{ display: "grid", gridTemplateColumns: `repeat(${row.length}, 1fr)`, gap: 8, marginBottom: rowIdx === 2 ? 16 : 8 }}>
-              {rowIdx === 2 && (
+          {/* 섹션 버튼 그리드 — 한 줄에 넷 (2026-11-03: 여섯이면 칸이 좁아 "공항·도 / 착"처럼 낱말이 끊겼다) */}
+          {[MORE_SECTIONS.slice(0, 12), MORE_SECTIONS.slice(12)].map((row, rowIdx) => (
+            <div key={rowIdx} style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8, marginBottom: rowIdx === 1 ? 16 : 8 }}>
+              {rowIdx === 1 && (
                 /* 2행 라벨 */
                 <div style={{ gridColumn: "1 / -1", marginBottom: 2, paddingLeft: 2 }}>
                   <span style={{ fontSize: 12, fontWeight: 700, color: "var(--color-text-muted)", letterSpacing: "0.5px",
@@ -29700,14 +29734,14 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
                     onClick={() => handleMoreSection(s.tab, s.subTab)}
                     style={{
                       display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
-                      padding: "10px 4px 8px", borderRadius: 14, border: "none", cursor: "pointer",
+                      padding: "8px 4px", borderRadius: 14, border: "none", cursor: "pointer",
                       background: isActive ? `${s.color}15` : "#F8FAFC",
                       outline: isActive ? `1.5px solid ${s.color}40` : undefined,
                       transition: "all 0.15s ease",
                     }}
                   >
                     <div style={{
-                      width: 38, height: 38, borderRadius: 12,
+                      width: 36, height: 36, borderRadius: 12,
                       background: isActive ? s.color : `${s.color}18`,
                       display: "flex", alignItems: "center", justifyContent: "center",
                     }}>
@@ -29715,9 +29749,9 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
                     </div>
                     <span style={{
                       fontSize: 12, fontWeight: 600,
-                      color: isActive ? s.color : "#374151",
+                      color: isActive ? inkColor(s.color, 6) : "#374151",
                       fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif",
-                      textAlign: "center", lineHeight: 1.2,
+                      textAlign: "center", lineHeight: 1.2, wordBreak: "keep-all",
                     }}>
                       {lang === "ko" ? s.labelKo : s.labelEn}
                     </span>
@@ -29785,11 +29819,11 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
               <div style={{ fontSize: 12, fontWeight: 800, color: "#92400E", letterSpacing: "0.1px", marginBottom: 2, fontFamily: "Geist,Pretendard Variable, sans-serif" }}>
                 {lang === "ko" ? "무료 등재 신청 (교회·업소)" : "List for free (Church · Business)"}
               </div>
-              <div style={{ fontSize: 12, color: "#C9A227", fontWeight: 700, fontFamily: "Geist,Pretendard Variable, sans-serif" }}>
-                {lang === "ko" ? "사실을 확인한 뒤 무료로 올립니다 →" : "Verified, then listed for free →"}
+              <div style={{ fontSize: 12, color: "var(--color-text-secondary)", fontWeight: 600, fontFamily: "Geist,Pretendard Variable, sans-serif" }}>
+                {lang === "ko" ? "사실을 확인한 뒤 무료로 올립니다" : "Verified, then listed for free"}
               </div>
             </div>
-            <div style={{ fontSize: 16, color: "#C9A227", fontWeight: 700 }}>›</div>
+            <div aria-hidden="true" style={{ fontSize: 16, color: "var(--color-accent-text)", fontWeight: 700 }}>›</div>
           </a>
         </div>
       )}
