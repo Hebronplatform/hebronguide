@@ -46,9 +46,9 @@ body{font-family:'Pretendard Variable',-apple-system,sans-serif;background:#0d11
   border:1px solid;transition:opacity .2s;
 }
 .qbtn:hover{opacity:.8;}
-.qbtn-gold{color:#C9A227;border-color:rgba(201,162,39,.35);background:rgba(201,162,39,.08);}
+.qbtn-gold{color:#C9A227;border-color:#C9A227;background:rgba(201,162,39,.08);}
 .qbtn-mint{color:#6EE7B7;border-color:rgba(110,231,183,.3);background:rgba(110,231,183,.06);}
-.qbtn-white{color:rgba(236,253,245,.65);border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.04);}
+.qbtn-white{color:rgba(236,253,245,.65);border-color:rgba(255,255,255,.62);background:rgba(255,255,255,.04);}
 
 @media print{
   body{background:#fff;color:#111;}
@@ -68,10 +68,10 @@ body{font-family:'Pretendard Variable',-apple-system,sans-serif;background:#0d11
   border-bottom:1px solid rgba(255,255,255,.06);
 }
 .lang-btn{
-  padding:6px 16px;border-radius:99px;font-size:.72rem;font-weight:800;
+  padding:6px 16px;border-radius:99px;font-size:.78rem;font-weight:800;
   font-family:'Pretendard Variable',sans-serif;cursor:pointer;
   border:1px solid rgba(255,255,255,.15);
-  background:transparent;color:rgba(236,253,245,.4);
+  background:transparent;color:rgba(236,253,245,.62);
   transition:all .2s;letter-spacing:.04em;
 }
 .lang-btn.active{
@@ -79,7 +79,7 @@ body{font-family:'Pretendard Variable',-apple-system,sans-serif;background:#0d11
   border-color:rgba(110,231,183,.5);
   color:#6EE7B7;
 }
-.lang-btn:hover:not(.active){color:rgba(236,253,245,.7);border-color:rgba(255,255,255,.3);}
+.lang-btn:hover:not(.active){color:rgba(236,253,245,.7);border-color:rgba(255,255,255,.62);}
 
 header{
   background:linear-gradient(160deg,#1a2535 0%,#0d1117 100%);
@@ -91,7 +91,7 @@ header{
   display:inline-flex;align-items:center;gap:8px;
   background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);
   border-radius:99px;padding:5px 18px;
-  font-size:.7rem;font-weight:800;color:#fca5a5;letter-spacing:.07em;
+  font-size:.78rem;font-weight:800;color:#fca5a5;letter-spacing:.07em;
   margin-bottom:18px;
 }
 header h1{
@@ -106,7 +106,7 @@ header .lead{
 }
 .container{max-width:620px;margin:0 auto;padding:36px 20px 100px;}
 .sec{margin:44px 0 18px;}
-.sec-label{font-size:.68rem;font-weight:800;color:#6EE7B7;letter-spacing:.12em;margin-bottom:8px;}
+.sec-label{font-size:.78rem;font-weight:800;color:#6EE7B7;letter-spacing:.12em;margin-bottom:8px;}
 .sec h2{font-family:'Pretendard Variable', Pretendard, Geist, -apple-system, sans-serif;font-size:1.2rem;font-weight:700;color:#fff;line-height:1.4;}
 .card{
   background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
@@ -143,7 +143,7 @@ header .lead{
 .biz-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px 14px;}
 .biz-emoji{font-size:1.4rem;margin-bottom:4px;}
 .biz-name{font-size:.82rem;font-weight:700;color:#fff;margin-bottom:2px;}
-.biz-desc{font-size:.72rem;color:rgba(236,253,245,.5);line-height:1.5;}
+.biz-desc{font-size:.78rem;color:rgba(236,253,245,.5);line-height:1.5;}
 .verse-box{
   background:rgba(201,162,39,.07);border:1px solid rgba(201,162,39,.2);
   border-radius:14px;padding:18px 22px;margin:20px 0;text-align:center;
@@ -163,13 +163,13 @@ header .lead{
   border-radius:14px;padding:18px 20px;display:flex;align-items:center;gap:16px;text-decoration:none;
 }
 .contact-icon{font-size:2rem;flex-shrink:0;}
-.contact-label{font-size:.72rem;color:rgba(236,253,245,.35);margin-bottom:2px;}
+.contact-label{font-size:.78rem;color:rgba(236,253,245,.62);margin-bottom:2px;}
 .contact-value{font-size:.95rem;font-weight:800;color:#6EE7B7;}
 footer{
   background:rgba(255,255,255,.02);border-top:1px solid rgba(255,255,255,.06);
-  text-align:center;padding:28px 24px;font-size:.72rem;color:rgba(236,253,245,.2);line-height:2;
+  text-align:center;padding:28px 24px;font-size:.78rem;color:rgba(236,253,245,.62);line-height:2;
 }
-footer strong{color:rgba(236,253,245,.4);}
+footer strong{color:rgba(236,253,245,.62);}
 .info-box{
   background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.15);
   border-radius:12px;padding:14px 18px;margin-bottom:18px;
@@ -196,8 +196,8 @@ footer strong{color:rgba(236,253,245,.4);}
   </a>
   <button class="lang-btn active" id="btn-ko" onclick="setLang('ko')">한국어</button>
   <button class="lang-btn" id="btn-en" onclick="setLang('en')">English</button>
-  <span style="margin-left:8px;font-size:.68rem;color:rgba(236,253,245,.2);">|</span>
-  <a onclick="window.print()" style="font-size:.72rem;color:rgba(201,162,39,.5);cursor:pointer;font-family:'Pretendard Variable',sans-serif;margin-left:8px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M7 8V4h10v4"/><rect x="4" y="8" width="16" height="8" rx="2"/><path d="M7 14h10v6H7z"/></svg></a>
+  <span style="margin-left:8px;font-size:.78rem;color:rgba(236,253,245,.62);">|</span>
+  <a onclick="window.print()" style="font-size:.78rem;color:#C9A227;cursor:pointer;font-family:'Pretendard Variable',sans-serif;margin-left:8px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M7 8V4h10v4"/><rect x="4" y="8" width="16" height="8" rx="2"/><path d="M7 14h10v6H7z"/></svg></a>
 </div>
 
 <header>
@@ -240,8 +240,8 @@ footer strong{color:rgba(236,253,245,.4);}
       data-en=" Mindshift: From &ldquo;Marketing&rdquo; to &ldquo;Hospitality&rdquo;">
     </div>
     <div class="a"
-      data-ko="기존 생각: <strong style='color:rgba(236,253,245,.4);'>&ldquo;내 가게를 더 알리고 싶다&rdquo; → 홍보</strong><br>새로운 시각: <strong style='color:#6EE7B7;'>&ldquo;새 이민자에게 내가 섬길 수 있다&rdquo; → 환대의 도구</strong><br><br>성도의 업종이 가이드에 올라오는 순간,<br>그 성도는 <em>파송받은 환대 사역자</em>가 됩니다."
-      data-en="Old mindset: <strong style='color:rgba(236,253,245,.4);'>&ldquo;I want more people to know my business.&rdquo; → Marketing</strong><br>New perspective: <strong style='color:#6EE7B7;'>&ldquo;I can serve a newly arrived immigrant.&rdquo; → A tool of hospitality</strong><br><br>The moment a member's business is listed on the guide,<br>that member becomes <em>a sent minister of hospitality</em>.">
+      data-ko="기존 생각: <strong style='color:rgba(236,253,245,.62);'>&ldquo;내 가게를 더 알리고 싶다&rdquo; → 홍보</strong><br>새로운 시각: <strong style='color:#6EE7B7;'>&ldquo;새 이민자에게 내가 섬길 수 있다&rdquo; → 환대의 도구</strong><br><br>성도의 업종이 가이드에 올라오는 순간,<br>그 성도는 <em>파송받은 환대 사역자</em>가 됩니다."
+      data-en="Old mindset: <strong style='color:rgba(236,253,245,.62);'>&ldquo;I want more people to know my business.&rdquo; → Marketing</strong><br>New perspective: <strong style='color:#6EE7B7;'>&ldquo;I can serve a newly arrived immigrant.&rdquo; → A tool of hospitality</strong><br><br>The moment a member's business is listed on the guide,<br>that member becomes <em>a sent minister of hospitality</em>.">
     </div>
   </div>
 
@@ -479,8 +479,8 @@ footer strong{color:rgba(236,253,245,.4);}
           <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Fhebronguide.com%2Fad-request.html&color=0d1117&bgcolor=ffffff&margin=4"
                alt="등록 QR" width="120" height="120" loading="lazy">
         </div>
-        <div style="font-size:.65rem;color:rgba(110,231,183,.6);margin-top:6px;font-weight:700;" data-ko=" QR 스캔" data-en=" Scan QR"></div>
-        <button onclick="downloadQR('register')" style="margin-top:6px;background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.25);color:rgba(110,231,183,.7);font-size:.62rem;font-weight:700;border-radius:8px;padding:4px 10px;cursor:pointer;font-family:'Pretendard Variable',sans-serif;"
+        <div style="font-size:.78rem;color:rgba(110,231,183,.6);margin-top:6px;font-weight:700;" data-ko=" QR 스캔" data-en=" Scan QR"></div>
+        <button onclick="downloadQR('register')" style="margin-top:6px;background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.25);color:rgba(110,231,183,.7);font-size:.78rem;font-weight:700;border-radius:8px;padding:4px 10px;cursor:pointer;font-family:'Pretendard Variable',sans-serif;"
           data-ko=" QR 저장" data-en=" Save QR"></button>
       </div>
 
@@ -509,8 +509,8 @@ footer strong{color:rgba(236,253,245,.4);}
           <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Fhebronguide.com&color=0d1117&bgcolor=ffffff&margin=4"
                alt="HebronGuide QR" width="120" height="120" loading="lazy">
         </div>
-        <div style="font-size:.65rem;color:rgba(201,162,39,.6);margin-top:6px;font-weight:700;" data-ko=" QR 스캔" data-en=" Scan QR"></div>
-        <button onclick="downloadQR('main')" style="margin-top:6px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.25);color:rgba(201,162,39,.7);font-size:.62rem;font-weight:700;border-radius:8px;padding:4px 10px;cursor:pointer;font-family:'Pretendard Variable',sans-serif;"
+        <div style="font-size:.78rem;color:rgba(201,162,39,.6);margin-top:6px;font-weight:700;" data-ko=" QR 스캔" data-en=" Scan QR"></div>
+        <button onclick="downloadQR('main')" style="margin-top:6px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.25);color:rgba(201,162,39,.7);font-size:.78rem;font-weight:700;border-radius:8px;padding:4px 10px;cursor:pointer;font-family:'Pretendard Variable',sans-serif;"
           data-ko=" QR 저장" data-en=" Save QR"></button>
       </div>
 
@@ -563,7 +563,7 @@ footer strong{color:rgba(236,253,245,.4);}
 <footer>
   <strong>HebronGuide</strong> · <span data-ko="이민자·이주자를 위한 디지털 환대" data-en="Digital Hospitality for Immigrants &amp; Newcomers"></span><br>
   <span data-ko=" 헤브론 협력교회 전용 비공개 문서 · 외부 공유 금지" data-en=" Hebron Church Private Document · Do Not Share Externally"></span><br>
-  <span style="font-size:.65rem;" data-ko="© 2026 HebronGuide · &ldquo;내가 나그네 되었을 때 너희가 영접하였다&rdquo; — 마 25:35" data-en="© 2026 HebronGuide · &ldquo;I was a stranger and you welcomed me.&rdquo; — Matt. 25:35"></span>
+  <span style="font-size:.78rem;" data-ko="© 2026 HebronGuide · &ldquo;내가 나그네 되었을 때 너희가 영접하였다&rdquo; — 마 25:35" data-en="© 2026 HebronGuide · &ldquo;I was a stranger and you welcomed me.&rdquo; — Matt. 25:35"></span>
 </footer>
 
 <script>

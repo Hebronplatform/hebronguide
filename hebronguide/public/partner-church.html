@@ -36,7 +36,7 @@ nav{position:sticky;top:0;z-index:100;
                  linear-gradient(180deg,#0d1117 0%,#0d1117 100%);}
 .hero-badge{display:inline-block;background:rgba(201,162,39,.15);
   border:1px solid rgba(201,162,39,.35);color:var(--gold);
-  font-size:.72rem;font-weight:800;padding:5px 16px;border-radius:20px;
+  font-size:.78rem;font-weight:800;padding:5px 16px;border-radius:20px;
   margin-bottom:20px;letter-spacing:.06em;}
 .hero h1{font-size:clamp(1.7rem,5vw,2.8rem);font-weight:800;line-height:1.25;margin-bottom:14px;}
 .hero h1 em{color:var(--gold);font-style:normal;}
@@ -88,7 +88,7 @@ section{padding:60px 20px;}
   transition:all .2s;position:relative;}
 .plan-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.5);}
 .plan-card.pop{border-color:var(--gold);}
-.ribbon{position:absolute;top:14px;right:-8px;font-size:.62rem;font-weight:800;
+.ribbon{position:absolute;top:14px;right:-8px;font-size:.78rem;font-weight:800;
   padding:4px 12px 4px 10px;border-radius:4px 0 0 4px;letter-spacing:.04em;
   background:var(--gold);color:#0d1117;}
 .plan-head{padding:26px 22px 18px;text-align:center;}
@@ -97,13 +97,13 @@ section{padding:60px 20px;}
 .plan-head.p{background:linear-gradient(135deg,#1e1b3e,#2d1b69);}
 .plan-icon{font-size:1.9rem;margin-bottom:8px;}
 .plan-name{font-size:1.05rem;font-weight:800;margin-bottom:2px;}
-.plan-sub{font-size:.73rem;color:var(--muted);margin-bottom:12px;}
-.msr{font-size:.75rem;color:rgba(255,255,255,.3);text-decoration:line-through;margin-bottom:4px;}
+.plan-sub{font-size:.78rem;color:var(--muted);margin-bottom:12px;}
+.msr{font-size:.75rem;color:rgba(255,255,255,.62);text-decoration:line-through;margin-bottom:4px;}
 .price{font-size:2.3rem;font-weight:800;color:var(--gold);line-height:1;}
 .price sup{font-size:.9rem;vertical-align:super;line-height:0;font-weight:500;color:var(--muted);}
 .price sub{font-size:.75rem;font-weight:400;color:var(--muted);}
-.price-note{font-size:.7rem;color:var(--muted);margin-top:4px;}
-.save{display:inline-block;background:#dc2626;color:white;font-size:.62rem;
+.price-note{font-size:.78rem;color:var(--muted);margin-top:4px;}
+.save{display:inline-block;background:#dc2626;color:white;font-size:.78rem;
   font-weight:800;padding:2px 7px;border-radius:8px;margin-left:6px;vertical-align:middle;}
 .plan-body{padding:18px 20px 22px;background:rgba(0,0,0,.2);}
 .feat{list-style:none;margin-bottom:18px;}
@@ -197,7 +197,7 @@ tbody tr:hover td{background:rgba(255,255,255,.02);}
 .fg select option{background:#1a2535;}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 @media(max-width:440px){.frow{grid-template-columns:1fr;}}
-.fsep{font-size:.72rem;font-weight:800;color:var(--gold);
+.fsep{font-size:.78rem;font-weight:800;color:var(--gold);
   margin:14px 0 7px;padding:4px 0;border-bottom:1px solid var(--border);letter-spacing:.04em;}
 .chk-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;}
 .chk{display:flex;align-items:center;gap:7px;font-size:.8rem;color:var(--muted);cursor:pointer;}
@@ -206,7 +206,7 @@ tbody tr:hover td{background:rgba(255,255,255,.02);}
   color:#0d1117;font-size:.9rem;font-weight:800;border:none;border-radius:10px;
   cursor:pointer;margin-top:14px;transition:opacity .15s;}
 .btn-submit:hover{opacity:.88;}
-.fnote{font-size:.68rem;color:var(--muted);text-align:center;margin-top:6px;}
+.fnote{font-size:.78rem;color:var(--muted);text-align:center;margin-top:6px;}
 #ok{display:none;}
 
 /* FOOTER */
@@ -222,7 +222,7 @@ footer strong{color:var(--text);}
   cursor:pointer;text-align:center;transition:all .2s;}
 .ftab.active.hub-t{background:rgba(110,231,183,.15);border-color:var(--mint);color:var(--mint);}
 .ftab.active.web-t{background:rgba(201,162,39,.15);border-color:var(--gold);color:var(--gold);}
-.ftab:not(.active):hover{border-color:rgba(255,255,255,.2);}
+.ftab:not(.active):hover{border-color:rgba(255,255,255,.62);}
 .form-section{display:none;}
 .form-section.active{display:block;}
 </style>
@@ -503,10 +503,10 @@ footer strong{color:var(--text);}
           <tr class="pr"><td>월 추가 비용</td><td>없음</td><td>없음</td><td>소액</td></tr>
           <tr class="pr"><td>제작 기간</td><td>3–5일</td><td>5–7일</td><td>10–14일</td></tr>
           <tr class="pr">
-            <td><strong>제작비</strong><br><span style="font-size:.67rem;color:var(--muted)">미국 시세 →</span></td>
-            <td><span style="font-size:.7rem;text-decoration:line-through;color:var(--muted)">$500–800</span><br><strong style="color:var(--mint)">$199</strong></td>
-            <td><span style="font-size:.7rem;text-decoration:line-through;color:var(--muted)">$1,500–2,000</span><br><strong style="color:var(--gold)">$349</strong></td>
-            <td><span style="font-size:.7rem;text-decoration:line-through;color:var(--muted)">$3,000–5,000</span><br><strong style="color:#c4b5fd">$649+</strong></td>
+            <td><strong>제작비</strong><br><span style="font-size:.78rem;color:var(--muted)">미국 시세 →</span></td>
+            <td><span style="font-size:.78rem;text-decoration:line-through;color:var(--muted)">$500–800</span><br><strong style="color:var(--mint)">$199</strong></td>
+            <td><span style="font-size:.78rem;text-decoration:line-through;color:var(--muted)">$1,500–2,000</span><br><strong style="color:var(--gold)">$349</strong></td>
+            <td><span style="font-size:.78rem;text-decoration:line-through;color:var(--muted)">$3,000–5,000</span><br><strong style="color:#c4b5fd">$649+</strong></td>
           </tr>
         </tbody>
       </table>
@@ -583,7 +583,7 @@ footer strong{color:var(--text);}
             이단 단체를 차단합니다.
           </p>
           <div style="margin-top:9px;padding-top:8px;border-top:1px solid rgba(248,113,113,.15);">
-            <p style="font-size:.72rem;color:rgba(248,113,113,.7);">의심 단체 신고: Hebronplatform@gmail.com</p>
+            <p style="font-size:.78rem;color:rgba(248,113,113,.7);">의심 단체 신고: Hebronplatform@gmail.com</p>
           </div>
         </div>
       </div>
@@ -750,23 +750,23 @@ footer strong{color:var(--text);}
           <!-- 3기둥 구조 -->
           <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
             border-radius:12px;padding:18px 16px;margin-bottom:20px;">
-            <div style="font-size:.72rem;font-weight:800;color:rgba(201,162,39,.8);
+            <div style="font-size:.78rem;font-weight:800;color:rgba(201,162,39,.8);
               letter-spacing:.06em;text-align:center;margin-bottom:14px;">우리가 함께 만드는 것</div>
             <div style="display:grid;grid-template-columns:1fr auto 1fr auto 1fr;
               align-items:center;gap:6px;text-align:center;">
               <div>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6EE7B7" stroke-width="1.5" style="display:block;margin:0 auto 5px;"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
-                <div style="font-size:.72rem;font-weight:700;color:#6EE7B7;">교회</div>
+                <div style="font-size:.78rem;font-weight:700;color:#6EE7B7;">교회</div>
               </div>
-              <div style="font-size:.75rem;color:rgba(255,255,255,.3);">+</div>
+              <div style="font-size:.75rem;color:rgba(255,255,255,.62);">+</div>
               <div>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A227" stroke-width="1.5" style="display:block;margin:0 auto 5px;"><path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/><path d="M3 9V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2"/><path d="M12 12v6"/></svg>
-                <div style="font-size:.72rem;font-weight:700;color:#C9A227;">사업체</div>
+                <div style="font-size:.78rem;font-weight:700;color:#C9A227;">사업체</div>
               </div>
-              <div style="font-size:.75rem;color:rgba(255,255,255,.3);">+</div>
+              <div style="font-size:.75rem;color:rgba(255,255,255,.62);">+</div>
               <div>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(236,253,245,.7)" stroke-width="1.5" style="display:block;margin:0 auto 5px;"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                <div style="font-size:.72rem;font-weight:700;color:rgba(236,253,245,.7);">HebronGuide</div>
+                <div style="font-size:.78rem;font-weight:700;color:rgba(236,253,245,.7);">HebronGuide</div>
               </div>
             </div>
             <div style="text-align:center;margin-top:14px;font-size:.75rem;color:rgba(236,253,245,.5);line-height:1.6;">
@@ -774,7 +774,7 @@ footer strong{color:var(--text);}
               협력 업체에서 정착 도움을 받으며<br>
               자연스럽게 공동체 안으로 연결됩니다
             </div>
-            <div style="text-align:center;margin-top:12px;font-size:.73rem;color:rgba(110,231,183,.7);font-style:italic;">
+            <div style="text-align:center;margin-top:12px;font-size:.78rem;color:rgba(110,231,183,.7);font-style:italic;">
               "내가 나그네 되었을 때 너희가 영접하였다" — 마태복음 25:35 (새번역)
             </div>
           </div>
@@ -802,7 +802,7 @@ footer strong{color:var(--text);}
           </a>
 
           <!-- 문의 -->
-          <div style="text-align:center;font-size:.72rem;color:rgba(236,253,245,.35);">
+          <div style="text-align:center;font-size:.78rem;color:rgba(236,253,245,.62);">
             정보 수정 · 문의: HebronPlatform@gmail.com
           </div>
 
@@ -817,7 +817,7 @@ footer strong{color:var(--text);}
   <p style="margin-bottom:6px;"><strong>한인 이민자 정착 가이드 · 81개 도시</strong></p>
   <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/></svg> <a href="mailto:HebronPlatform@gmail.com">HebronPlatform@gmail.com</a>
   &nbsp;|&nbsp; <a href="https://hebronguide.com" target="_blank">hebronguide.com →</a></p>
-  <p style="margin-top:10px;font-size:.7rem;opacity:.45;">
+  <p style="margin-top:10px;font-size:.78rem;opacity:.45;">
     © 2026 HebronGuide · HebronGuide<br>
     새로운 곳에 온 사람에게 먼저 손을 내미는 것이 진정한 환대입니다
   </p>
@@ -941,15 +941,15 @@ form.addEventListener('submit', async function(e) {
     ← &nbsp;HebronGuide 메인으로 돌아가기
   </a>
   <div style="margin-top:20px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;align-items:center;">
-    <a href="/founding-partner.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Pretendard Variable',sans-serif;">협력 신청</a>
-    <span style="color:rgba(255,255,255,0.12);">·</span>
-    <a href="/ad-request.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Pretendard Variable',sans-serif;">무료 등재</a>
-    <span style="color:rgba(255,255,255,0.12);">·</span>
-    <a href="/about.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Pretendard Variable',sans-serif;">소개</a>
-    <span style="color:rgba(255,255,255,0.12);">·</span>
-    <a href="/privacy.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Pretendard Variable',sans-serif;">개인정보</a>
+    <a href="/founding-partner.html" style="font-size:.78rem;color:rgba(236,253,245,.62);text-decoration:none;font-family:'Pretendard Variable',sans-serif;">협력 신청</a>
+    <span style="color:rgba(255,255,255,.62);">·</span>
+    <a href="/ad-request.html" style="font-size:.78rem;color:rgba(236,253,245,.62);text-decoration:none;font-family:'Pretendard Variable',sans-serif;">무료 등재</a>
+    <span style="color:rgba(255,255,255,.62);">·</span>
+    <a href="/about.html" style="font-size:.78rem;color:rgba(236,253,245,.62);text-decoration:none;font-family:'Pretendard Variable',sans-serif;">소개</a>
+    <span style="color:rgba(255,255,255,.62);">·</span>
+    <a href="/privacy.html" style="font-size:.78rem;color:rgba(236,253,245,.62);text-decoration:none;font-family:'Pretendard Variable',sans-serif;">개인정보</a>
   </div>
-  <div style="margin-top:14px;font-size:.67rem;color:rgba(236,253,245,0.18);font-family:'Pretendard Variable',sans-serif;">© 2026 HebronGuide · hebronguide.com</div>
+  <div style="margin-top:14px;font-size:.78rem;color:rgba(236,253,245,.62);font-family:'Pretendard Variable',sans-serif;">© 2026 HebronGuide · hebronguide.com</div>
 </div>
 <script>
 /* HebronGuide — 도시 자동 복귀 (모든 사용자가 자기 도시로) */
