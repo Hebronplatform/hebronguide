@@ -17,7 +17,7 @@
     --ink:        #1a1a14;
     --ink-soft:   #3a3a2e;
     --ink-mute:   #7a7a6a;
-    --ink-faint:  #b5b5a0;
+    --ink-faint:  #727265;   /* 2026-11-02: 대비 4.5 */
     --bg:         #f8f6f0;
     --bg-card:    #ffffff;
     --rule:       #e8e4d8;
@@ -54,11 +54,11 @@
   .brand-name em { font-style: italic; font-weight: 300; color: var(--gold); }
   .brand-sub {
     font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 11px; color: var(--ink-mute); letter-spacing: 0.4px;
+    font-size: 12px; color: var(--ink-mute); letter-spacing: 0.4px;
   }
   .nav-right {
     display: flex; align-items: center; gap: 20px;
-    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; color: var(--ink-mute);
+    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: var(--ink-mute);
   }
   .live-pill {
     display: flex; align-items: center; gap: 6px;
@@ -87,7 +87,7 @@
   }
   .hero-eyebrow {
     font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+    font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;
     color: var(--ink-mute); margin-bottom: 24px;
   }
   .hero-title {
@@ -118,7 +118,7 @@
     letter-spacing: -1.5px; color: var(--ink); line-height: 1;
   }
   .stat-label {
-    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px;
+    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px;
     letter-spacing: 1.5px; text-transform: uppercase;
     color: var(--ink-mute); margin-top: 6px;
   }
@@ -128,7 +128,7 @@
     max-width: 960px; margin: 0 auto; padding: 0 40px 80px;
   }
   .section-label {
-    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px;
+    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px;
     letter-spacing: 2.5px; text-transform: uppercase;
     color: var(--ink-faint); margin-bottom: 24px;
   }
@@ -151,12 +151,12 @@
     border-color: var(--gold);
   }
   .city-card.coming {
-    opacity: .6; cursor: default; pointer-events: none;
+    opacity: .8; cursor: default; pointer-events: none;   /* 준비 중 카드 — 흐리되 읽히게 */
   }
   .card-top { display: flex; justify-content: space-between; align-items: flex-start; }
   .city-flag { font-size: 30px; line-height: 1; }
   .badge {
-    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px;
+    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px;
     font-weight: 500; letter-spacing: .8px; padding: 4px 10px;
     border-radius: 20px; white-space: nowrap;
   }
@@ -173,7 +173,7 @@
   }
   .city-tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .city-tag {
-    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px;
+    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px;
     color: var(--ink-mute); background: var(--bg);
     border: 1px solid var(--rule); padding: 3px 9px; border-radius: 20px;
   }
@@ -189,7 +189,7 @@
     display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
   }
   .global-strip-label {
-    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px;
+    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px;
     letter-spacing: 2px; text-transform: uppercase; color: var(--ink-faint);
     white-space: nowrap; flex-shrink: 0;
   }
@@ -214,7 +214,7 @@
   .footer-brand em { font-style: italic; color: var(--gold); }
   .footer-links {
     display: flex; gap: 18px;
-    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px;
+    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px;
     letter-spacing: .5px; color: var(--ink-faint);
   }
   .footer-links a { color: inherit; text-decoration: none; transition: color .15s; }

@@ -124,7 +124,7 @@
     .topbar-left { display: flex; align-items: center; gap: 12px }
     .topbar-logo { font-size: .95rem; font-weight: 800; color: var(--gold) }
     .topbar-badge {
-      font-size: .68rem;
+      font-size: .78rem;
       font-weight: 700;
       background: rgba(201,162,39,.15);
       color: var(--gold);
@@ -176,7 +176,7 @@
     .stat-icon.red    { background: rgba(248,113,113,.12) }
     .stat-icon.purple { background: rgba(167,139,250,.12) }
     .stat-num  { font-size: 1.6rem; font-weight: 800; color: var(--text); line-height: 1 }
-    .stat-label{ font-size: .72rem; color: var(--muted); margin-top: 3px }
+    .stat-label{ font-size: .78rem; color: var(--muted); margin-top: 3px }
 
     /* ── 섹션 카드 ── */
     .section-card {
@@ -194,7 +194,7 @@
       border-bottom: 1px solid var(--border);
     }
     .section-title {
-      font-size: .72rem;
+      font-size: .78rem;
       font-weight: 800;
       letter-spacing: .08em;
       text-transform: uppercase;
@@ -275,7 +275,7 @@
       margin-bottom: 12px;
     }
     .review-count {
-      font-size: .72rem;
+      font-size: .78rem;
       font-weight: 700;
       background: rgba(201,162,39,.2);
       color: var(--gold);
@@ -292,10 +292,10 @@
       gap: 10px;
       align-items: flex-start;
     }
-    .review-meta { font-size: .72rem; color: var(--muted); margin-bottom: 3px }
+    .review-meta { font-size: .78rem; color: var(--muted); margin-bottom: 3px }
     .review-title { font-size: .85rem; font-weight: 700; margin-bottom: 4px }
-    .review-value { font-size: .76rem; color: var(--mint); line-height: 1.5 }
-    .review-source { font-size: .7rem; color: var(--muted); margin-top: 3px }
+    .review-value { font-size: .78rem; color: var(--mint); line-height: 1.5 }
+    .review-source { font-size: .78rem; color: var(--muted); margin-top: 3px }
     .review-actions { display: flex; gap: 5px; flex-shrink: 0 }
 
     /* ── 탭 + 필터 ── */
@@ -369,7 +369,7 @@
       padding: 9px 10px;
       text-align: left;
       color: var(--muted);
-      font-size: .72rem;
+      font-size: .78rem;
       font-weight: 600;
       letter-spacing: .04em;
       text-transform: uppercase;
@@ -389,9 +389,9 @@
     /* ── 셀 스타일 ── */
     /* 한 줄에 더 담기 위해 10px — 이름·교회명 (2026-08-11 폴 김 목사)
        nowrap 필수: 없으면 "시애틀지 / 구촌교회" 처럼 세로로 쪼개져 더 못 읽는다 */
-    .cell-name { font-weight: 700; font-size: 10px; max-width: 130px; line-height: 1.5;
+    .cell-name { font-weight: 700; font-size: 12px; max-width: 130px; line-height: 1.5;
                  white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
-    .cell-sub  { font-size: 10px; color: var(--muted); margin-top: 1px;
+    .cell-sub  { font-size: 12px; color: var(--muted); margin-top: 1px;
                  white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
     .cell-desc {
       color: var(--muted);
@@ -399,19 +399,19 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      font-size: 10px;
+      font-size: 12px;
     }
     .cell-city {
-      font-size: .72rem;
+      font-size: .78rem;
       background: rgba(255,255,255,.06);
       border: 1px solid var(--border);
       padding: 2px 7px;
       border-radius: 4px;
       white-space: nowrap;
     }
-    .cell-date { color: var(--text); font-size: 10px; white-space: nowrap; line-height: 1.5 }
-    .date-time  { color: var(--muted); font-size: 9px }
-    .cell-contact { font-size: 10px; color: var(--mint); white-space: nowrap }
+    .cell-date { color: var(--text); font-size: 12px; white-space: nowrap; line-height: 1.5 }
+    .date-time  { color: var(--muted); font-size: 12px }
+    .cell-contact { font-size: 12px; color: var(--mint); white-space: nowrap }
 
     /* ── 상태 뱃지 ── */
     .badge {
@@ -420,7 +420,7 @@
       gap: 3px;
       padding: 2px 8px;
       border-radius: 10px;
-      font-size: .72rem;
+      font-size: .78rem;
       font-weight: 600;
       white-space: nowrap;
     }
@@ -429,7 +429,7 @@
     .badge.rejected { background: rgba(248,113,113,.1); color: var(--red);    border: 1px solid rgba(248,113,113,.2) }
     .badge.default  { background: rgba(110,231,183,.08);color: var(--mint);   border: 1px solid rgba(110,231,183,.2) }
     /* 기존 .status 호환 */
-    .status { display: inline-flex; align-items: center; gap: 3px; padding: 2px 8px; border-radius: 10px; font-size: .72rem; font-weight: 600 }
+    .status { display: inline-flex; align-items: center; gap: 3px; padding: 2px 8px; border-radius: 10px; font-size: .78rem; font-weight: 600 }
     .status.pending  { background: rgba(251,191,36,.1);  color: var(--yellow); border: 1px solid rgba(251,191,36,.2) }
     .status.approved { background: rgba(74,222,128,.1);  color: var(--green);  border: 1px solid rgba(74,222,128,.2) }
     .status.rejected { background: rgba(248,113,113,.1); color: var(--red);    border: 1px solid rgba(248,113,113,.2) }
@@ -440,7 +440,7 @@
     .btn-sm {
       padding: 4px 9px;
       border-radius: 5px;
-      font-size: .74rem;
+      font-size: .78rem;
       font-weight: 600;
       cursor: pointer;
       border: 1px solid;
@@ -455,7 +455,7 @@
 
     .btn-approve:hover { background: rgba(74,222,128,.16);  border-color: rgba(74,222,128,.45); color: var(--green) }
     .btn-reject:hover  { background: rgba(248,113,113,.16); border-color: rgba(248,113,113,.45); color: var(--red) }
-    .btn-edit:hover    { background: rgba(201,162,39,.16);  border-color: rgba(201,162,39,.45); color: var(--gold) }
+    .btn-edit:hover    { background: rgba(201,162,39,.16);  border-color:#C9A227; color: var(--gold) }
     .btn-delete:hover  { border-color: var(--red); color: var(--red) }
     .btn-live:hover    { background: rgba(110,231,183,.16); border-color: rgba(110,231,183,.45); color: var(--mint) }
 
@@ -467,9 +467,9 @@
     .btn-sm:active { transform: translateY(1px) }
     /* 주소에서 읽어낸 나라·주·도시 — 슬러그와 같은 줄에 */
     .status-cell { display: flex; align-items: center; gap: 5px; white-space: nowrap }
-    .st-mark     { font-size: 9px; letter-spacing: -.2px }
+    .st-mark     { font-size: 12px; letter-spacing: -.2px }
     .geo-line    { display: flex; align-items: baseline; gap: 6px; white-space: nowrap }
-    .cell-geo    { font-size: 10px; color: var(--muted); letter-spacing: -.2px }
+    .cell-geo    { font-size: 12px; color: var(--muted); letter-spacing: -.2px }
     .cell-geo b  { color: var(--mint); font-weight: 700 }
     .cell-geo .no{ color: rgba(248,113,113,.75) }
     /* 수정 모달 */
@@ -536,7 +536,7 @@
       padding: 18px 20px;
     }
     .chart-title {
-      font-size: .72rem;
+      font-size: .78rem;
       font-weight: 800;
       letter-spacing: .08em;
       text-transform: uppercase;
@@ -550,7 +550,7 @@
       margin-bottom: 10px;
     }
     .bar-label {
-      font-size: .75rem;
+      font-size: .78rem;
       color: var(--muted);
       width: 90px;
       flex-shrink: 0;
@@ -574,7 +574,7 @@
     .bar-fill.purple { background: linear-gradient(90deg, #a78bfa, #c084fc) }
     .bar-fill.red    { background: linear-gradient(90deg, #f87171, #fb923c) }
     .bar-num {
-      font-size: .75rem;
+      font-size: .78rem;
       font-weight: 700;
       color: var(--text);
       width: 28px;
@@ -583,7 +583,7 @@
     }
     .summary-table { width: 100%; border-collapse: collapse; margin-top: 4px }
     .summary-table th {
-      font-size: .7rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+      font-size: .78rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
       color: var(--muted); padding: 6px 10px; border-bottom: 1px solid var(--border);
       text-align: left;
     }
@@ -642,7 +642,7 @@
     .modal-fields { display: flex; flex-direction: column; gap: 12px; }
     .modal-field { display: flex; flex-direction: column; gap: 4px; }
     .modal-label {
-      font-size: .7rem; font-weight: 700; letter-spacing: .06em;
+      font-size: .78rem; font-weight: 700; letter-spacing: .06em;
       color: var(--muted); text-transform: uppercase;
     }
     .modal-value {
@@ -668,7 +668,7 @@
     box-shadow:0 4px 14px rgba(0,0,0,.45);}
   .bulkbar.on{display:flex;}
   .bulkbar .cnt{font-size:.82rem;font-weight:800;color:var(--gold);}
-  .bulkbar .hint{font-size:.72rem;color:var(--muted);}
+  .bulkbar .hint{font-size:.78rem;color:var(--muted);}
   .bulkbar .sp{margin-left:auto;}
   </style>
 <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
@@ -707,7 +707,7 @@
     <div class="topbar-left">
       <span class="topbar-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M13 2 4 14h7l-1 8 10-13h-8z"/></svg> HebronGuide</span>
       <span class="topbar-badge">ADMIN</span>
-      <span style="font-size:.75rem;color:var(--muted)" id="admin-email"></span>
+      <span style="font-size:.78rem;color:var(--muted)" id="admin-email"></span>
     </div>
     <div style="display:flex;gap:8px;align-items:center;">
       <a href="/ops.html" style="background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.25);color:#C9A227;padding:5px 12px;border-radius:6px;font-size:.78rem;font-weight:700;text-decoration:none;" onmouseover="this.style.background='rgba(201,162,39,.2)'" onmouseout="this.style.background='rgba(201,162,39,.1)'">&#8592; 상황판</a>
@@ -895,42 +895,42 @@
 
     <!-- 용어 설명 Legend -->
     <div style="margin-top:40px;padding:20px 24px;background:var(--surface);border:1px solid var(--border);border-radius:12px;">
-      <div style="font-size:.7rem;font-weight:800;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:16px;">Status Legend</div>
+      <div style="font-size:.78rem;font-weight:800;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:16px;">Status Legend</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;">
 
         <div style="display:flex;align-items:flex-start;gap:10px;">
-          <span style="display:inline-block;min-width:80px;padding:2px 8px;border-radius:6px;font-size:.72rem;font-weight:700;background:rgba(251,191,36,.1);color:var(--yellow);border:1px solid rgba(251,191,36,.2);">PENDING</span>
+          <span style="display:inline-block;min-width:80px;padding:2px 8px;border-radius:6px;font-size:.78rem;font-weight:700;background:rgba(251,191,36,.1);color:var(--yellow);border:1px solid rgba(251,191,36,.2);">PENDING</span>
           <span style="font-size:.8rem;color:var(--muted);">검토 대기 — 아직 관리자가 확인하지 않은 신청</span>
         </div>
 
         <div style="display:flex;align-items:flex-start;gap:10px;">
-          <span style="display:inline-block;min-width:80px;padding:2px 8px;border-radius:6px;font-size:.72rem;font-weight:700;background:rgba(74,222,128,.1);color:var(--green);border:1px solid rgba(74,222,128,.2);">LIVE</span>
+          <span style="display:inline-block;min-width:80px;padding:2px 8px;border-radius:6px;font-size:.78rem;font-weight:700;background:rgba(74,222,128,.1);color:var(--green);border:1px solid rgba(74,222,128,.2);">LIVE</span>
           <span style="font-size:.8rem;color:var(--muted);">게시 중 — 앱 도시 페이지에 지금 표시되고 있음</span>
         </div>
 
         <div style="display:flex;align-items:flex-start;gap:10px;">
-          <span style="display:inline-block;min-width:80px;padding:2px 8px;border-radius:6px;font-size:.72rem;font-weight:700;background:rgba(74,222,128,.1);color:var(--green);border:1px solid rgba(74,222,128,.2);">APPROVED</span>
+          <span style="display:inline-block;min-width:80px;padding:2px 8px;border-radius:6px;font-size:.78rem;font-weight:700;background:rgba(74,222,128,.1);color:var(--green);border:1px solid rgba(74,222,128,.2);">APPROVED</span>
           <span style="font-size:.8rem;color:var(--muted);">승인 완료 — 검토 후 LIVE로 전환된 신청 기록</span>
         </div>
 
         <div style="display:flex;align-items:flex-start;gap:10px;">
-          <span style="display:inline-block;min-width:80px;padding:2px 8px;border-radius:6px;font-size:.72rem;font-weight:700;background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.2);">REJECTED</span>
+          <span style="display:inline-block;min-width:80px;padding:2px 8px;border-radius:6px;font-size:.78rem;font-weight:700;background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.2);">REJECTED</span>
           <span style="font-size:.8rem;color:var(--muted);">보류됨 — 앱에 표시하지 않음 (되돌릴 수 있습니다)</span>
         </div>
 
         <div style="display:flex;align-items:flex-start;gap:10px;">
-          <span style="display:inline-block;min-width:80px;padding:2px 8px;border-radius:6px;font-size:.72rem;font-weight:700;background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.2);">INACTIVE</span>
+          <span style="display:inline-block;min-width:80px;padding:2px 8px;border-radius:6px;font-size:.78rem;font-weight:700;background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.2);">INACTIVE</span>
           <span style="font-size:.8rem;color:var(--muted);">비활성 — 임시 숨김 처리 (삭제가 아님)</span>
         </div>
 
         <div style="display:flex;align-items:flex-start;gap:10px;">
-          <span style="display:inline-block;min-width:80px;padding:2px 8px;border-radius:6px;font-size:.72rem;font-weight:700;background:rgba(110,231,183,.08);color:var(--mint);border:1px solid rgba(110,231,183,.2);">VERIFIED</span>
+          <span style="display:inline-block;min-width:80px;padding:2px 8px;border-radius:6px;font-size:.78rem;font-weight:700;background:rgba(110,231,183,.08);color:var(--mint);border:1px solid rgba(110,231,183,.2);">VERIFIED</span>
           <span style="font-size:.8rem;color:var(--muted);">인증 완료 — 협력 목사 신원 확인됨</span>
         </div>
 
       </div>
       <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);display:flex;gap:24px;flex-wrap:wrap;">
-        <div style="font-size:.7rem;font-weight:800;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;width:100%;margin-bottom:6px;">Actions</div>
+        <div style="font-size:.78rem;font-weight:800;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;width:100%;margin-bottom:6px;">Actions</div>
         <div style="font-size:.8rem;color:var(--muted);"><span style="color:var(--green);font-weight:700;">승인</span> — 게시 전환, 교회·사업체는 자동 등록 · <span style="color:var(--mint);font-weight:700;">확인</span> — 실제로 뜬 자리 열기</div>
         <div style="font-size:.8rem;color:var(--muted);"><span style="color:var(--red);font-weight:700;">보류</span> — 앱에서 숨김 (되돌릴 수 있습니다)</div>
         <div style="font-size:.8rem;color:var(--muted);"><span style="color:var(--mint);font-weight:700;">Verify</span> — 협력 목사 인증 확인</div>
