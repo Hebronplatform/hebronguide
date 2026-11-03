@@ -10373,23 +10373,23 @@ function SettlementEssentialsSection({ onNavigate }: { onNavigate?: (tab: number
   return (
     <div style={{
       margin: "12px 16px 0",
-      background: "linear-gradient(135deg, #1a2535 0%, #0f1a27 100%)",
-      borderRadius: 18,
+      background: "var(--color-surface)",   /* 밝은 카드로 (2026-11-02, 어두운 그라데이션이었음) */
+      borderRadius: 16,
       padding: "16px 14px 14px",
-      border: "1px solid rgba(255,255,255,0.08)",
-      boxShadow: "0 4px 20px rgba(0,0,0,0.15)",
+      border: "1px solid var(--color-border)",
+      boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
     }}>
       {/* 헤더 */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
         <div style={{ fontFamily: "'Pretendard Variable', Geist,Pretendard Variable, sans-serif", fontWeight: 800, fontSize: 13,
-          color: "#ECFDF5", letterSpacing: "-0.2px", display: "flex", alignItems: "center", gap: 6 }}>
-          <PlaneLanding size={13} strokeWidth={2} />
+          color: "var(--color-text-primary)", letterSpacing: "-0.2px", display: "flex", alignItems: "center", gap: 6 }}>
+          <PlaneLanding size={16} strokeWidth={2} aria-hidden="true" />
           {lang === "ko" ? "정착 필수" : "Settlement Essentials"}
         </div>
         <button onClick={() => onNavigate?.(1)} style={{
-          background: "none", border: "none", cursor: "pointer",
-          fontFamily: "Geist,Pretendard Variable, sans-serif", fontWeight: 700, fontSize: 12,
-          color: "#C9A227",
+          background: "none", border: "none", cursor: "pointer", minHeight: 44, padding: "0 4px",
+          fontFamily: "Geist,Pretendard Variable, sans-serif", fontWeight: 700, fontSize: 13,
+          color: "var(--color-accent-text)",
         }}>
           {lang === "ko" ? "전체 보기 →" : "See all →"}
         </button>
@@ -10398,16 +10398,16 @@ function SettlementEssentialsSection({ onNavigate }: { onNavigate?: (tab: number
       <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 8 }}>
         {SETTLE_STEPS.map((step, i) => (
           <button key={i} onClick={() => onNavigate?.(1)} style={{
-            background: "rgba(255,255,255,0.06)",
-            border: "1px solid rgba(255,255,255,0.10)",
-            borderRadius: 12, padding: "11px 10px",
+            background: "var(--color-background)",
+            border: "1px solid var(--color-border)",
+            borderRadius: 12, padding: "11px 10px", minHeight: 44,
             display: "flex", flexDirection: "row", alignItems: "center", gap: 9,
             cursor: "pointer", textAlign: "left",
             transition: "background 0.15s",
             WebkitTapHighlightColor: "transparent",
           }}
-          onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.11)")}
-          onMouseLeave={e => (e.currentTarget.style.background = "rgba(255,255,255,0.06)")}
+          onMouseEnter={e => (e.currentTarget.style.background = "var(--color-surface-warm)")}
+          onMouseLeave={e => (e.currentTarget.style.background = "var(--color-background)")}
           >
             <div style={{
               width: 36, height: 36, borderRadius: 9,
@@ -10420,11 +10420,11 @@ function SettlementEssentialsSection({ onNavigate }: { onNavigate?: (tab: number
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontFamily: "'Pretendard Variable', sans-serif", fontWeight: 700,
-                fontSize: 12, color: "#ECFDF5", marginBottom: 2, lineHeight: 1.3 }}>
+                fontSize: 13, color: "var(--color-text-primary)", marginBottom: 2, lineHeight: 1.3 }}>
                 {lang === "ko" ? step.titleKo : step.titleEn}
               </div>
               <div style={{ fontFamily: "Geist,Pretendard Variable, sans-serif", fontSize: 12,
-                color: "rgba(236,253,245,0.48)", lineHeight: 1.4, whiteSpace: "pre-line" }}>
+                color: "var(--color-text-secondary)", lineHeight: 1.4, whiteSpace: "pre-line" }}>
                 {lang === "ko" ? step.descKo : step.descEn}
               </div>
             </div>
@@ -11570,7 +11570,7 @@ function CityHubSection({ lang }: { lang: string }) {
           </div>
         </div>
         <a href="https://hebronguide.com" target="_blank" rel="noopener noreferrer"
-          style={{ fontSize: 12, color: "#F2994A", fontWeight: 700, fontFamily: "Geist,Pretendard Variable,sans-serif", textDecoration: "none" }}>
+          style={{ display: "inline-flex", alignItems: "center", minHeight: 44, padding: "0 4px", fontSize: 13, color: "var(--color-accent-text)", fontWeight: 700, fontFamily: "Geist,Pretendard Variable,sans-serif", textDecoration: "none" }}>
           {lang === "ko" ? "전체 →" : "All →"}
         </a>
       </div>
@@ -12245,16 +12245,18 @@ function GrowthShareSection({ lang }: { lang: string }) {
 
       {/* 카카오 채널 등록 안내 */}
       <a href="https://pf.kakao.com/_dxdxlbX" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", display: "block" }}>
+        {/* 밝은 줄로 (2026-11-02, 짙은 갈색이었음). 노란 알약은 카카오 표준색 그대로 */}
         <div style={{
           display: "flex", alignItems: "center", justifyContent: "space-between",
-          padding: "10px 14px",
-          background: "#3C2A00",
+          padding: "10px 14px", minHeight: 48,
+          background: "var(--color-surface)", border: "1px solid var(--color-border)",
           borderRadius: 12, gap: 8,
         }}>
-          <span style={{ fontSize: 12.5, fontWeight: 600, color: "#FEE500", fontFamily: "'Pretendard Variable',sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-            💬 {ko ? "문의·수정 요청 → 카카오톡 채널" : "Contact via KakaoTalk Channel"}
+          <span style={{ display: "flex", alignItems: "center", gap: 7, minWidth: 0, fontSize: 13, fontWeight: 600, color: "var(--color-text-primary)", fontFamily: "'Pretendard Variable',sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+            <MessageCircle size={16} strokeWidth={2} aria-hidden="true" style={{ flexShrink: 0, color: "var(--color-text-secondary)" }} />
+            {ko ? "문의·수정 요청은 카카오톡 채널로" : "Questions & corrections: KakaoTalk"}
           </span>
-          <span style={{ fontSize: 12, fontWeight: 800, color: "#3C2A00", background: "#FEE500", borderRadius: 7, padding: "3px 9px", whiteSpace: "nowrap", fontFamily: "Geist,Pretendard Variable,sans-serif", flexShrink: 0 }}>
+          <span style={{ fontSize: 12, fontWeight: 800, color: "#3C1E1E", background: "#FEE500", borderRadius: 7, padding: "4px 10px", whiteSpace: "nowrap", fontFamily: "Geist,Pretendard Variable,sans-serif", flexShrink: 0 }}>
             {ko ? "채널 추가" : "Follow"}
           </span>
         </div>
@@ -12270,8 +12272,8 @@ function GrowthShareSection({ lang }: { lang: string }) {
       >
         <div style={{
           borderRadius: 14, overflow: "hidden",
-          border: "1px solid rgba(255,0,0,0.3)",
-          background: "linear-gradient(135deg, #1a0000 0%, #0d1117 100%)",
+          border: "1px solid var(--color-border)",
+          background: "var(--color-surface)",   /* 밝은 카드로 (2026-11-02, 검붉은 그라데이션이었음) */
           display: "flex", alignItems: "center", gap: 14, padding: "12px 14px",
         }}>
           {/* YouTube 로고 영역 */}
@@ -12279,23 +12281,23 @@ function GrowthShareSection({ lang }: { lang: string }) {
             width: 48, height: 48, borderRadius: 12, flexShrink: 0,
             background: "#FF0000",
             display: "flex", alignItems: "center", justifyContent: "center",
-            boxShadow: "0 4px 16px rgba(255,0,0,0.35)",
           }}>
-            <span style={{ fontSize: 22 }}>▶</span>
+            {/* ▶ 글자는 이모지 거르개에 지워져 빈 상자가 됐다 → SVG */}
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#fff"/></svg>
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 12, fontWeight: 700, color: "#FF4444", fontFamily: "Geist,Pretendard Variable,sans-serif", marginBottom: 3, letterSpacing: ".04em" }}>
-              {ko ? "🎵 지금 듣기 — 탭 이동해도 계속 재생" : "🎵 Music — plays while you browse"}
-            </div>
-            <div style={{ fontSize: 13, fontWeight: 800, color: "#ECFDF5", fontFamily: "Geist,Pretendard Variable,sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+            <div style={{ fontSize: 14, fontWeight: 800, color: "var(--color-text-primary)", fontFamily: "Geist,Pretendard Variable,sans-serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
               {ko ? "헤브론 뮤직" : "Hebron Music"}
             </div>
-            <div style={{ fontSize: 12, color: "rgba(236,253,245,0.5)", fontFamily: "Geist,Pretendard Variable,sans-serif", marginTop: 2 }}>
+            <div style={{ fontSize: 12, color: "var(--color-text-secondary)", fontFamily: "Geist,Pretendard Variable,sans-serif", marginTop: 2 }}>
+              {ko ? "다른 화면으로 가도 계속 들려요" : "Keeps playing while you browse"}
+            </div>
+            <div style={{ fontSize: 12, color: "var(--color-text-muted)", fontFamily: "Geist,Pretendard Variable,sans-serif", marginTop: 2 }}>
               {ko ? "Healing · Jazz" : "Healing · Jazz"}
             </div>
           </div>
-          <div style={{ fontSize: 12, fontWeight: 700, color: "rgba(255,68,68,0.8)", fontFamily: "Geist,Pretendard Variable,sans-serif", flexShrink: 0 }}>
-            {ko ? "▶ 열기" : "▶ Open"}
+          <div style={{ fontSize: 13, fontWeight: 700, color: "#B91C1C", fontFamily: "Geist,Pretendard Variable,sans-serif", flexShrink: 0 }}>
+            {ko ? "듣기 ›" : "Play ›"}
           </div>
         </div>
       </button>
@@ -12412,48 +12414,59 @@ function PWAInstallGuideBanner({ lang }: { lang: string }) {
         : ["Open in Chrome browser", "Tap ⋮ menu (top right)", "Select 'Add to Home Screen'"]);
 
   return (
-    <div style={{
+    <div data-hg-pwa style={{
       position:"fixed", bottom: "calc(72px + env(safe-area-inset-bottom,0px) + 8px)",
       left:12, right:12, zIndex:300,
-      background:"#1a2535",
+      background:"var(--color-surface)",   /* 밝은 상자로 (2026-11-02, 짙은 남색이었음) */
       borderRadius:16,
-      boxShadow:"0 8px 32px rgba(0,0,0,0.4)",
-      border:"1px solid rgba(201,162,39,0.3)",
+      boxShadow:"0 8px 28px rgba(27,42,74,0.16)",
+      border:"1px solid var(--color-border)",
       overflow:"hidden",
-      animation:"slideUp 0.35s cubic-bezier(0.34,1.56,0.64,1)"
+      animation:"hgSlideUp 0.3s ease-out"
     }}>
-      <style>{`@keyframes slideUp{from{transform:translateY(100px);opacity:0}to{transform:translateY(0);opacity:1}}`}</style>
+      <style>{`@keyframes hgSlideUp{from{transform:translateY(24px);opacity:0}to{transform:translateY(0);opacity:1}}@media (prefers-reduced-motion:reduce){[data-hg-pwa]{animation:none!important}}`}</style>
 
-      {/* 헤더 바 */}
-      <div
-        onClick={() => setExpanded(v => !v)}
-        style={{ padding:"12px 14px", display:"flex", alignItems:"center", gap:10, cursor:"pointer" }}>
-        <Smartphone size={19} strokeWidth={2} />
-        <div style={{ flex:1 }}>
-          <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontWeight:800, fontSize:13, color:"#ECFDF5" }}>
-            {ko ? "홈 화면에 추가하면 앱처럼 쓸 수 있어요" : "Add to home screen for app-like experience"}
-          </div>
-          <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color:"rgba(236,253,245,0.5)" }}>
-            {ko ? "무료 · 설치 3단계" : "Free · 3 simple steps"}
-          </div>
-        </div>
-        <span style={{ color:"#C9A227", fontSize:18, fontWeight:700 }}>{expanded ? "∨" : "∧"}</span>
+      {/* 헤더 바 — 펼치기는 버튼, 닫기는 따로 44px */}
+      <div style={{ display:"flex", alignItems:"center" }}>
         <button
-          onClick={(e) => { e.stopPropagation(); safeStorage.set("hg_pwa_dismissed", "1"); setShow(false); }}
-          style={{ background:"transparent", border:"none", color:"rgba(236,253,245,0.4)", fontSize:18, cursor:"pointer", padding:"0 4px", lineHeight:1 }}>×</button>
+          onClick={() => setExpanded(v => !v)}
+          aria-expanded={expanded}
+          style={{ flex:1, minWidth:0, minHeight:56, padding:"10px 4px 10px 14px", display:"flex", alignItems:"center", gap:10,
+            background:"none", border:"none", cursor:"pointer", textAlign:"left", color:"var(--color-text-primary)" }}>
+          <Smartphone size={20} strokeWidth={2} aria-hidden="true" style={{ flexShrink:0 }} />
+          <span style={{ flex:1, minWidth:0 }}>
+            <span style={{ display:"block", fontFamily:"Geist,Pretendard Variable,sans-serif", fontWeight:800, fontSize:14, color:"var(--color-text-primary)" }}>
+              {ko ? "홈 화면에 추가하면 앱처럼 쓸 수 있어요" : "Add to home screen for app-like experience"}
+            </span>
+            <span style={{ display:"block", fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color:"var(--color-text-secondary)", marginTop:2 }}>
+              {ko ? (expanded ? "무료 · 설치 3단계" : "무료 · 설치 3단계 — 눌러서 보기") : (expanded ? "Free · 3 simple steps" : "Free · 3 simple steps — tap to see")}
+            </span>
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
+            style={{ flexShrink:0, color:"var(--color-text-muted)", transform: expanded ? "rotate(180deg)" : "none", transition:"transform .2s" }}>
+            <path d="M6 15l6-6 6 6"/>
+          </svg>
+        </button>
+        <button
+          onClick={() => { safeStorage.set("hg_pwa_dismissed", "1"); setShow(false); }}
+          aria-label={ko ? "닫기 — 다시 묻지 않아요" : "Close — won't ask again"}
+          style={{ width:44, height:44, marginRight:6, flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center",
+            background:"none", border:"none", borderRadius:12, cursor:"pointer", color:"var(--color-text-secondary)" }}>
+          <X size={18} strokeWidth={2} aria-hidden="true" />
+        </button>
       </div>
 
       {/* 확장 단계 */}
       {expanded && (
-        <div style={{ padding:"0 14px 14px", borderTop:"1px solid rgba(255,255,255,0.07)" }}>
-          <div style={{ display:"flex", gap:8, marginTop:10 }}>
+        <div style={{ padding:"0 14px 14px", borderTop:"1px solid var(--color-border)" }}>
+          <ol style={{ display:"flex", gap:8, marginTop:10, padding:0, listStyle:"none" }}>
             {steps.map((s, i) => (
-              <div key={i} style={{ flex:1, background:"rgba(255,255,255,0.05)", borderRadius:10, padding:"10px 8px", textAlign:"center" }}>
-                <div style={{ width:22, height:22, borderRadius:"50%", background:"#C9A227", color:"#000", fontFamily:"Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize:12, display:"flex", alignItems:"center", justifyContent:"center", margin:"0 auto 6px" }}>{i+1}</div>
-                <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color:"rgba(236,253,245,0.75)", lineHeight:1.4 }}>{s}</div>
-              </div>
+              <li key={i} style={{ flex:1, background:"var(--color-background)", border:"1px solid var(--color-border)", borderRadius:10, padding:"10px 8px", textAlign:"center" }}>
+                <div aria-hidden="true" style={{ width:24, height:24, borderRadius:"50%", background:"var(--color-surface-warm)", color:"var(--color-text-primary)", fontFamily:"'Geist Mono',ui-monospace,monospace", fontWeight: 700, fontSize:12, display:"flex", alignItems:"center", justifyContent:"center", margin:"0 auto 6px" }}>{i+1}</div>
+                <div style={{ fontFamily:"Geist,Pretendard Variable,sans-serif", fontSize:12, color:"var(--color-text-primary)", lineHeight:1.4 }}>{s}</div>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       )}
     </div>
