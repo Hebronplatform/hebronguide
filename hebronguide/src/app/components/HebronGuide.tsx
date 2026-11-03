@@ -857,7 +857,7 @@ import {
   Dumbbell,
   Scissors,
   Wrench,
-  Siren, Cloud, Phone, Languages, Shield, Smile, Brain, ChartColumn, Footprints, Music, Calendar, Circle, Bell, Flag,
+  Siren, Cloud, Phone, Languages, Shield, Smile, Brain, ChartColumn, Footprints, Music, Calendar, Circle, Bell, Flag, Mail,
 } from "lucide-react";
 
 
@@ -868,7 +868,7 @@ import {
 ───────────────────────────────────────── */
 const EMOJI_ICON: Record<string, React.ComponentType<{ size?: number; strokeWidth?: number; color?: string }>> = {
   // 2026-11-02: 표에 없어서 날 이모지로 그려지던 것들
-  "🆘": LifeBuoy, "🚨": Siren, "☁": Cloud, "☎": Phone, "📞": Phone, "🗣": Languages, "🚓": Shield,
+  "🆘": LifeBuoy, "🚨": Siren, "☁": Cloud, "☎": Phone, "📞": Phone, "✉": Mail, "📧": Mail, "📩": Mail, "📨": Mail, "🗣": Languages, "🚓": Shield,
   "👩‍👧": Users, "📍": MapPin, "🦷": Smile, "🧠": Brain, "📊": ChartColumn, "🏃": Footprints,
   "🎵": Music, "📅": Calendar, "🏡": Home, "🔴": Circle, "🔔": Bell, "🇰🇷": Flag, "🇺🇸": Flag,
   "\u2615": Coffee, "\uD83C\uDFDB\uFE0F": Landmark, "\uD83C\uDFDB": Landmark,
@@ -10764,7 +10764,7 @@ function ContactRow({ website, email, phone, desc, accentColor }:
     display: "inline-flex", alignItems: "center", gap: 5, textDecoration: "none",
     background: accentColor + "18", border: "1px solid " + accentColor + "33",
     borderRadius: 22, padding: "0 14px", minHeight: 44,
-    fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 13, fontWeight: 700, color: inkColor(accentColor),
+    fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 13, fontWeight: 700, color: inkColor(accentColor, 6),
   };
   const Ico = ({ children }: { children: React.ReactNode }) => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}
@@ -10800,8 +10800,9 @@ function ContactRow({ website, email, phone, desc, accentColor }:
 /* 글자용 강조색 — 밝은 바탕에서 읽히도록 (2026-11-02, 설계도 ⑦-7)
    도시 색·금색·주황은 배경·선으로는 좋지만 글자로는 흐리다(대비 2~3).
    바탕 #F7F8FB 기준 대비 5.4 이상이 될 때까지 짙게 섞는다. 색의 성격은 그대로 남는다.
-   (2026-11-02: 4.5로 맞추면 같은 색을 엷게 깐 꼬리표·단추 위에서는 3.7~4.4로 떨어졌다. 그래서 여유를 둔다) */
-function inkColor(hex: string): string {
+   (2026-11-02: 4.5로 맞추면 같은 색을 엷게 깐 꼬리표·단추 위에서는 3.7~4.4로 떨어졌다. 그래서 여유를 둔다)
+   target — 같은 색을 더 진하게 깐 단추(교회 연락 단추 등)는 6으로 높여 부른다. */
+function inkColor(hex: string, target = 5.4): string {
   const m = /^#?([0-9a-f]{6})$/i.exec(hex || "");
   if (!m) return hex;
   const n = parseInt(m[1], 16);
@@ -10809,7 +10810,7 @@ function inkColor(hex: string): string {
   const lum = (c: number[]) => c.map(v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); })
     .reduce((a, v, i) => a + v * [0.2126, 0.7152, 0.0722][i], 0);
   const bg = lum([247, 248, 251]);
-  for (let k = 0; k < 20 && (bg + 0.05) / (lum(rgb) + 0.05) < 5.4; k++) rgb = rgb.map(v => Math.round(v * 0.88));
+  for (let k = 0; k < 20 && (bg + 0.05) / (lum(rgb) + 0.05) < target; k++) rgb = rgb.map(v => Math.round(v * 0.88));
   return "#" + rgb.map(v => v.toString(16).padStart(2, "0")).join("");
 }
 
@@ -10890,7 +10891,7 @@ function CityRequestForm({ lang }: { lang: string }) {
     border: "1px solid rgba(27,42,74,0.12)",
     borderRadius: 10, color: "var(--color-text-primary)",
     fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 13,
-    outline: "none", marginBottom: 8, boxSizing: "border-box",
+    marginBottom: 8, boxSizing: "border-box",
   };
 
   return (
@@ -10979,7 +10980,7 @@ function HebronServiceCard({ icon, titleKo, titleEn, descKo, descEn, color, lang
             {ko ? descKo : descEn}
           </div>
         </div>
-        <span style={{ color: color, fontSize: 16, flexShrink: 0 }}>→</span>
+        <span aria-hidden="true" style={{ color: color, fontSize: 16, flexShrink: 0 }}>→</span>
       </div>
     </a>
   );
@@ -11159,7 +11160,7 @@ function CommunitySection({ category, citySlug, lang }: { category: string; city
           style={{
             width: "100%", background: "rgba(27,42,74,0.05)", border: "1px solid rgba(27,42,74,0.1)",
             borderRadius: 8, padding: "10px 12px", color: "var(--color-text-primary)", fontSize: 13,
-            fontFamily: "inherit", outline: "none", resize: "none", marginBottom: 8,
+            fontFamily: "inherit", resize: "none", marginBottom: 8,
             boxSizing: "border-box" as const,
           }}
         />
@@ -11614,7 +11615,7 @@ function CityHubSection({ lang }: { lang: string }) {
                 boxShadow: isCurrent
                   ? `0 4px 16px ${city.color}44`
                   : isLive ? `0 2px 8px rgba(0,0,0,0.12)` : "none",
-                outline: isCurrent ? `2px solid ${city.color}` : "none",
+                outline: isCurrent ? `2px solid ${city.color}` : undefined,
                 outlineOffset: 2,
                 position: "relative",
               }}>
@@ -12016,11 +12017,11 @@ function FloatingMusicPlayer() {
                   placeholder={field === "url" ? "YouTube 링크 (필수)" : field === "name" ? "이름 (선택)" : "메모 (선택)"}
                   value={reqForm[field]}
                   onChange={e => setReqForm(p => ({ ...p, [field]: e.target.value }))}
-                  style={{ width: "100%", boxSizing: "border-box", padding: "7px 10px", marginBottom: 7, borderRadius: 8, border: "1px solid rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.06)", color: "#fff", fontSize: 12, fontFamily: "Geist,Pretendard Variable,sans-serif", outline: "none" }}
+                  style={{ width: "100%", boxSizing: "border-box", padding: "7px 10px", marginBottom: 7, borderRadius: 8, border: "1px solid rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.06)", color: "#fff", fontSize: 12, fontFamily: "Geist,Pretendard Variable,sans-serif" }}
                 />
               ))}
               <select value={reqForm.timePref} onChange={e => setReqForm(p => ({ ...p, timePref: e.target.value }))}
-                style={{ width: "100%", boxSizing: "border-box", padding: "7px 10px", marginBottom: 10, borderRadius: 8, border: "1px solid rgba(255,255,255,0.15)", background: "rgba(16,20,36,0.97)", color: "rgba(255,255,255,0.7)", fontSize: 12, fontFamily: "Geist,Pretendard Variable,sans-serif", outline: "none" }}>
+                style={{ width: "100%", boxSizing: "border-box", padding: "7px 10px", marginBottom: 10, borderRadius: 8, border: "1px solid rgba(255,255,255,0.15)", background: "rgba(16,20,36,0.97)", color: "rgba(255,255,255,0.7)", fontSize: 12, fontFamily: "Geist,Pretendard Variable,sans-serif" }}>
                 {["언제나","새벽 (5-7시)","아침 (9-11시)","오후 (1-5시)","저녁 (7-10시)"].map(t => <option key={t} value={t}>{t}</option>)}
               </select>
               <button onClick={submitRequest} disabled={reqStatus === "loading" || !reqForm.url.trim()}
@@ -12893,7 +12894,7 @@ function HomeScreen({ onNavigate, onSearch }: { onNavigate?: (tab: number, subTa
               {ko ? "환대를 경험했거나 베푼 이야기가 전 세계 이민자에게 희망이 됩니다." : "Your hospitality story becomes hope for immigrants worldwide."}
             </div>
           </div>
-          <span style={{ fontSize: 18, color: "#C9A227", flexShrink: 0 }}>→</span>
+          <span aria-hidden="true" style={{ fontSize: 18, color: "var(--color-accent-text)", flexShrink: 0 }}>→</span>
         </div>
       </a>
       {/* 헤브론 스토어 배너는 뺐다 (2026-11-02) — 없는 것을 보여 주지 않는다 */}
@@ -15278,7 +15279,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                       <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-primary)" }}>{link.label}</div>
                       <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 1 }}>{link.sub}</div>
                     </div>
-                    <span style={{ color: "#2563EB", fontSize: 14 }}>→</span>
+                    <span aria-hidden="true" style={{ color: "#2563EB", fontSize: 14 }}>→</span>
                   </a>
                 ))}
               </div>
@@ -15299,7 +15300,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                     </div>
                     <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 1 }}>{lang === "ko" ? "룸메이트·렌탈 실시간 정보" : "Roommate & rental listings"}</div>
                   </div>
-                  <span style={{ color: accent, fontSize: 14 }}>→</span>
+                  <span aria-hidden="true" style={{ color: accent, fontSize: 14 }}>→</span>
                 </a>
                 {citySlug === "seattle" && (
                   <a href="https://www.wowseattle.com/" target="_blank" rel="noopener noreferrer"
@@ -15309,7 +15310,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                       <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-primary)" }}>WowSeattle</div>
                       <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 1 }}>{lang === "ko" ? "시애틀 한인 부동산·렌탈" : "Seattle Korean realty & rentals"}</div>
                     </div>
-                    <span style={{ color: accent, fontSize: 14 }}>→</span>
+                    <span aria-hidden="true" style={{ color: accent, fontSize: 14 }}>→</span>
                   </a>
                 )}
                 {/* 미주중앙일보 = 북미 한인 디아스포라 부동산 보드 → US·CA만 노출 (한국·국제도시엔 부적절) */}
@@ -15321,7 +15322,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                     <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-primary)" }}>{lang === "ko" ? "미주중앙일보 부동산" : "Korea Daily Real Estate"}</div>
                     <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 1 }}>{lang === "ko" ? "전국 한인 부동산 매물·구인" : "National Korean realty listings"}</div>
                   </div>
-                  <span style={{ color: accent, fontSize: 14 }}>→</span>
+                  <span aria-hidden="true" style={{ color: accent, fontSize: 14 }}>→</span>
                 </a>
                 )}
               </div>
@@ -15473,7 +15474,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                     </div>
                     <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 1 }}>{lang === "ko" ? "정착정보·중고거래·룸메이트" : "Settlement tips, used goods, roommates"}</div>
                   </div>
-                  <span style={{ color: accent, fontSize: 14 }}>→</span>
+                  <span aria-hidden="true" style={{ color: accent, fontSize: 14 }}>→</span>
                 </a>
                 <a href="https://pf.kakao.com/_dxdxlbX" target="_blank" rel="noopener noreferrer"
                   style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(254,229,0,0.07)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(254,229,0,0.25)" }}>
@@ -15484,7 +15485,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
                     </div>
                     <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 1 }}>{lang === "ko" ? "정착 Q&A · 정보 공유 · 커뮤니티" : "Settlement Q&A · Info · Community"}</div>
                   </div>
-                  <span style={{ color: accent, fontSize: 14 }}>→</span>
+                  <span aria-hidden="true" style={{ color: accent, fontSize: 14 }}>→</span>
                 </a>
               </div>
             </div>
@@ -16735,7 +16736,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                     {lang === "ko" ? "파트너 교회 목사님들의 소통 공간입니다" : "A private space for Hebron partner pastors"}
                   </div>
                 </div>
-                <span style={{ marginLeft: "auto", color: "var(--color-text-muted)", fontSize: 12 }}>→</span>
+                <span aria-hidden="true" style={{ marginLeft: "auto", color: "var(--color-text-muted)", fontSize: 12 }}>→</span>
               </div>
             </a>
 
@@ -24045,7 +24046,7 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
                 </div>
               </div>
             </div>
-            <span style={{ fontSize: 16, color: "#B91C1C", fontWeight: 700 }}>→</span>
+            <span aria-hidden="true" style={{ fontSize: 16, color: "#B91C1C", fontWeight: 700 }}>→</span>
           </button>
         </div>
       )}
@@ -24722,7 +24723,7 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
                 </div>
                 <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 1 }}>{lang === "ko" ? "취업 정보·추천 실시간 공유" : "Live job info & referrals"}</div>
               </div>
-              <span style={{ color: accent, fontSize: 14 }}>→</span>
+              <span aria-hidden="true" style={{ color: accent, fontSize: 14 }}>→</span>
             </a>
             <a href="https://worksourcewa.com/" target="_blank" rel="noopener noreferrer"
               style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", background: "rgba(27,42,74,0.06)", borderRadius: 10, padding: "9px 12px", border: "1px solid rgba(251,191,36,0.2)" }}>
@@ -24731,7 +24732,7 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
                 <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-primary)" }}>WorkSource WA</div>
                 <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 1 }}>{lang === "ko" ? "무료 이력서·면접 코칭" : "Free resume & interview coaching"}</div>
               </div>
-              <span style={{ color: accent, fontSize: 14 }}>→</span>
+              <span aria-hidden="true" style={{ color: accent, fontSize: 14 }}>→</span>
             </a>
             </>)}
             {/* 전 도시 공통: LinkedIn + Indeed */}
@@ -24742,7 +24743,7 @@ function JobsScreen({ onHome }: { onHome?: () => void }) {
                 <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-primary)" }}>LinkedIn Jobs — {city.nameEn}</div>
                 <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 1 }}>{lang === "ko" ? `${city.nameKo} 한인 취업 공고` : `${city.nameEn} Korean job listings`}</div>
               </div>
-              <span style={{ color: accent, fontSize: 14 }}>→</span>
+              <span aria-hidden="true" style={{ color: accent, fontSize: 14 }}>→</span>
             </a>
           </div>
         </div>
@@ -26921,7 +26922,7 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
                       <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-primary)" }}>{link.label}</div>
                       <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 1 }}>{link.sub}</div>
                     </div>
-                    <span style={{ color: accent, fontSize: 14 }}>→</span>
+                    <span aria-hidden="true" style={{ color: accent, fontSize: 14 }}>→</span>
                   </a>
                 ))}
               </div>
@@ -26955,7 +26956,7 @@ function CostScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initialSu
                       <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: "var(--color-text-primary)" }}>{link.label}</div>
                       <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 1 }}>{link.sub}</div>
                     </div>
-                    <span style={{ color: accent, fontSize: 14 }}>→</span>
+                    <span aria-hidden="true" style={{ color: accent, fontSize: 14 }}>→</span>
                   </a>
                 ))}
               </div>
@@ -28479,7 +28480,7 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
           value={query} onChange={e => setQuery(e.target.value)}
           placeholder={ko ? "업소명·업종·전화 검색..." : "Search by name, type, phone..."}
           style={{ width: "100%", background: "#fff", border: "1.5px solid #E2E8F0",
-            borderRadius: 12, padding: "10px 14px", fontSize: 14, outline: "none",
+            borderRadius: 12, padding: "10px 14px", fontSize: 14, 
             fontFamily: "'Pretendard Variable',sans-serif" }}
         />
       </div>
@@ -28517,12 +28518,7 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
               {ko ? `아직 ${city.nameKo}에 올라온 업소가 없어요.\n아는 한인 업소가 있으면 알려 주세요.`
                    : `No listings in ${city.nameEn} yet.\nKnow a Korean-owned business? Let us know.`}
             </div>
-            <a href="/ad-request.html#business"
-              style={{ display: "inline-flex", alignItems: "center", minHeight: 44, marginTop: 16, background: "#6366F1",
-                color: "#fff", padding: "0 24px", borderRadius: 10, textDecoration: "none",
-                fontSize: 13, fontWeight: 700 }}>
-              {ko ? "업소 등재 신청 →" : "Register Your Business →"}
-            </a>
+            {/* 신청 단추는 아래 "업소가 없나요?" 상자에 하나만 둔다 (같은 단추 두 개 금지) */}
           </div>
         ) : (
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
@@ -28628,18 +28624,18 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
         )}
 
         {/* 등재 CTA */}
-        <div style={{ marginTop: 24, background: "linear-gradient(135deg,#EEF2FF,#F0FDF4)",
-          border: "1px solid #C7D2FE", borderRadius: 16, padding: "20px 18px", textAlign: "center" }}>
+        <div style={{ marginTop: 24, background: "var(--color-surface)",
+          border: "1px solid var(--color-border)", borderRadius: 16, padding: "20px 18px", textAlign: "center" }}>
           <div style={{ marginBottom: 8 }}><Store size={17} strokeWidth={2} /></div>
           <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 14,
-            color: "#3730A3", marginBottom: 6 }}>
+            color: "var(--color-text-primary)", marginBottom: 6 }}>
             {ko ? "업소가 없나요?" : "Not listed yet?"}
           </div>
-          <div style={{ fontSize: 12, color: "#6366F1", marginBottom: 14, lineHeight: 1.7 }}>
-            {ko ? "무료로 업소를 등재하고 이민자 고객을 만나세요." : "List your business for free and reach Korean diaspora."}
+          <div style={{ fontSize: 13, color: "var(--color-text-secondary)", marginBottom: 14, lineHeight: 1.7 }}>
+            {ko ? "한인 업소는 무료로 올릴 수 있어요. 아는 곳을 알려 주셔도 좋아요." : "Korean-owned businesses are listed for free. You can also tell us about one you know."}
           </div>
           <a href="/ad-request.html#business"
-            style={{ display: "inline-flex", alignItems: "center", minHeight: 44, background: "#4F46E5", color: "#fff",
+            style={{ display: "inline-flex", alignItems: "center", minHeight: 44, background: "var(--color-primary)", color: "var(--color-text-inverse)",
               padding: "0 24px", borderRadius: 10, textDecoration: "none",
               fontSize: 13, fontWeight: 800, fontFamily: "Geist,Pretendard Variable,sans-serif" }}>
             {ko ? "무료 등재 신청 →" : "Register Free →"}
@@ -28792,7 +28788,7 @@ function DesktopSidebar({ activeTab, onNavigate, onSearch }: { activeTab: number
               style={{ width: "100%", display: "flex", alignItems: "center", gap: 12, padding: "10px 12px",
                 borderRadius: 12, border: "none", cursor: "pointer", marginBottom: 2,
                 background: isActive ? "var(--color-background)" : "transparent",
-                outline: isActive ? "1.5px solid rgba(242,153,74,0.4)" : "none",
+                outline: isActive ? "1.5px solid rgba(242,153,74,0.4)" : undefined,
                 transition: "all 0.15s ease" }}>
               <div style={{
                 width: 30, height: 30, borderRadius: 9, flexShrink: 0,
@@ -29125,7 +29121,7 @@ function TranslateModal({ onClose, lang }: { onClose: () => void; lang: string; 
               placeholder={ko ? `${fromLabel}로 입력...` : `Type in ${fromLabel}...`}
               style={{ flex:1, background:"rgba(27,42,74,0.08)", border:"1px solid rgba(27,42,74,0.14)",
                 borderRadius:12, padding:"11px 14px", fontSize:13, color: "var(--color-text-primary)",
-                fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif", outline:"none" }}
+                fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif" }}
             />
             <button onClick={handleTextSubmit}
               disabled={!textInput.trim()}
@@ -29325,8 +29321,10 @@ function SearchVoiceButton({ onResult, lang }: { onResult: (text: string) => voi
     <button
       onClick={toggle}
       title={ko ? "음성으로 검색" : "Voice search"}
+      aria-label={listening ? (ko ? "음성 검색 멈추기" : "Stop voice search") : (ko ? "음성으로 검색" : "Voice search")}
+      aria-pressed={listening}
       style={{
-        width: 36, height: 36, borderRadius: "50%", border: "none",
+        width: 44, height: 44, borderRadius: "50%", border: "none",
         background: listening ? "rgba(255,59,48,0.12)" : "rgba(120,120,128,0.12)",
         display: "flex", alignItems: "center", justifyContent: "center",
         cursor: "pointer", flexShrink: 0, transition: "all 0.18s",
@@ -29334,7 +29332,7 @@ function SearchVoiceButton({ onResult, lang }: { onResult: (text: string) => voi
       }}>
       {listening
         ? <svg width="16" height="16" viewBox="0 0 24 24" fill="#FF3B30"><circle cx="12" cy="12" r="6"/></svg>
-        : <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" strokeWidth="2" strokeLinecap="round">
+        : <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-text-secondary)" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
             <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
             <path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/>
             <line x1="8" y1="23" x2="16" y2="23"/>
@@ -29704,7 +29702,7 @@ function BottomNav({ activeIndex, onChange, onSearchToggle, onShareToggle, onTra
                       display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
                       padding: "10px 4px 8px", borderRadius: 14, border: "none", cursor: "pointer",
                       background: isActive ? `${s.color}15` : "#F8FAFC",
-                      outline: isActive ? `1.5px solid ${s.color}40` : "none",
+                      outline: isActive ? `1.5px solid ${s.color}40` : undefined,
                       transition: "all 0.15s ease",
                     }}
                   >
@@ -30054,7 +30052,7 @@ function AppBar({ onHome, onSearch }: { onHome?: () => void; onSearch?: () => vo
               placeholder={lang === "ko" ? "도시 검색 (한글·영문)" : "Search city..."}
               style={{ width: "100%", background: "#F1F5F9", border: "1.5px solid #E2E8F0", borderRadius: 12,
                 padding: "10px 14px", fontSize: 14, fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif",
-                outline: "none", color: "#1a2535" }}
+                color: "#1a2535" }}
               onFocus={e => { (e.currentTarget as HTMLInputElement).style.borderColor = "#F2994A"; }}
               onBlur={e => { (e.currentTarget as HTMLInputElement).style.borderColor = "#E2E8F0"; }}
             />
@@ -30452,7 +30450,7 @@ export function HebronGuide() {
               onClick={handleSearchToggle}
               onTouchStart={handleSearchToggle}
             >
-            <div style={{
+            <div role="dialog" aria-modal="true" aria-label={lang === "ko" ? "검색" : "Search"} style={{
               position: "fixed", top: 0, left: "50%", transform: "translateX(-50%)",
               width: "100%", maxWidth: 430, zIndex: 201,
               background: "rgba(249,249,249,0.98)",
@@ -30494,7 +30492,7 @@ export function HebronGuide() {
                   onClick={e => e.stopPropagation()}
                   placeholder={lang === "ko" ? "교회, 맛집, 병원, 비자..." : "Church, food, hospital, visa..."}
                   style={{
-                    flex: 1, border: "none", outline: "none", fontSize: 17,
+                    flex: 1, minWidth: 0, border: "none", fontSize: 17,
                     fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif",
                     background: "transparent", color: "#1C1C1E", letterSpacing: "-0.2px",
                     WebkitAppearance: "none",
@@ -30512,15 +30510,19 @@ export function HebronGuide() {
 
                 {/* 닫기 */}
                 {searchQuery ? (
-                  <button onClick={() => setSearchQuery("")}
-                    style={{ border:"none", background:"rgba(120,120,128,0.18)", borderRadius:"50%",
-                      width:22, height:22, fontSize:12, cursor:"pointer", color:"#8E8E93",
-                      display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}><EmojiIcon emoji={"✕"} size={18} /></button>
+                  <button onClick={() => setSearchQuery("")} aria-label={lang === "ko" ? "검색어 지우기" : "Clear search"}
+                    style={{ border:"none", background:"none", width:44, height:44, cursor:"pointer", padding:0,
+                      display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+                    <span style={{ width:24, height:24, borderRadius:"50%", background:"rgba(120,120,128,0.18)",
+                      display:"flex", alignItems:"center", justifyContent:"center", color:"var(--color-text-secondary)" }}>
+                      <X size={14} strokeWidth={2.4} aria-hidden="true" />
+                    </span>
+                  </button>
                 ) : (
                   <button onClick={handleSearchToggle}
-                    style={{ border:"none", background:"none", fontSize:15, cursor:"pointer",
-                      color:"#007AFF", fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif", fontWeight:500,
-                      padding:"4px 0", flexShrink:0 }}>
+                    style={{ border:"none", background:"none", fontSize:15, cursor:"pointer", minHeight:44,
+                      color:"var(--color-info)", fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif", fontWeight:600,
+                      padding:"0 4px", flexShrink:0 }}>
                     {lang === "ko" ? "취소" : "Cancel"}
                   </button>
                 )}
@@ -30529,7 +30531,7 @@ export function HebronGuide() {
               {/* 검색어 없을 때 — 빠른 검색 칩 */}
               {!searchQuery && (
                 <div style={{ padding: "4px 14px 12px" }}>
-                  <div style={{ fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif", fontSize:12, color:"#8E8E93",
+                  <div style={{ fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif", fontSize:12, color:"var(--color-text-muted)",
                     fontWeight:600, letterSpacing:"0.02em", marginBottom:8 }}>
                     {lang === "ko" ? "빠른 검색" : "Quick Search"}
                   </div>
@@ -30537,8 +30539,8 @@ export function HebronGuide() {
                     {["교회","한식당","병원","비자","운전면허","취업","학교","생활비","이민"].map(chip => (
                       <button key={chip} onClick={() => { setSearchQuery(chip); handleSearch(chip); }}
                         style={{ border:"1px solid rgba(120,120,128,0.2)", background:"rgba(120,120,128,0.06)",
-                          borderRadius:20, padding:"5px 12px", cursor:"pointer",
-                          fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif", fontSize:13, color:"#1C1C1E" }}>
+                          borderRadius:22, padding:"0 14px", minHeight:44, cursor:"pointer",
+                          fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif", fontSize:14, color:"var(--color-text-primary)" }}>
                         {chip}
                       </button>
                     ))}
@@ -30548,7 +30550,7 @@ export function HebronGuide() {
 
               {/* 다른 도시 HebronGuide — 도시명 검색 시 */}
               {(() => {
-                const cityMatch = HEBRON_CITIES.filter(c => c.nameEn !== "Seattle").find(c => {
+                const cityMatch = HEBRON_CITIES.filter(c => c.url !== `/${city.slug}/`).find(c => {
                   const qLow = q.toLowerCase();
                   return (
                     qLow.includes((c.nameKo || "").toLowerCase()) ||
@@ -30567,22 +30569,22 @@ export function HebronGuide() {
                 return (
                   <div style={{ margin: "8px 12px", borderRadius: 14, overflow: "hidden", border: `1.5px solid ${cityMatch.color}44`, background: `linear-gradient(135deg, ${cityMatch.color}08, ${cityMatch.color}04)` }}>
                     <div style={{ padding: "12px 14px", display: "flex", alignItems: "center", gap: 12 }}>
-                      <div style={{ width: 44, height: 44, borderRadius: 12, background: `${cityMatch.color}18`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, flexShrink: 0 }}>
-                        {cityMatch.emoji}
+                      <div style={{ width: 44, height: 44, borderRadius: 12, background: `${cityMatch.color}18`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                        <MapPin size={22} strokeWidth={2} color={inkColor(cityMatch.color, 6)} aria-hidden="true" />
                       </div>
                       <div style={{ flex: 1 }}>
                         <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 13, color: "#1B2A4A" }}>
                           HebronGuide {lang === "ko" ? cityMatch.nameKo : cityMatch.nameEn}
                         </div>
-                        <div style={{ fontSize: 12, color: "#64748B", marginTop: 2 }}>
+                        <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 2 }}>
                           {isLive
                             ? (lang === "ko" ? "라이브 — 지금 바로 볼 수 있어요" : "Live — available now")
-                            : (lang === "ko" ? "🔜 준비 중 — 곧 오픈합니다" : "🔜 Coming soon")}
+                            : (lang === "ko" ? "준비 중이에요" : "Coming soon")}
                         </div>
                       </div>
                       {isLive && (
-                        <a href={`https://hebronguide.com${cityMatch.url}`} target="_blank" rel="noopener noreferrer"
-                          style={{ flexShrink: 0, background: cityMatch.color, color: "#fff", border: "none", borderRadius: 20, padding: "6px 14px", fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, cursor: "pointer", textDecoration: "none" }}>
+                        <a href={cityMatch.url}
+                          style={{ flexShrink: 0, display: "inline-flex", alignItems: "center", minHeight: 44, background: "var(--color-primary)", color: "var(--color-text-inverse)", border: "none", borderRadius: 22, padding: "0 16px", fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 13, cursor: "pointer", textDecoration: "none" }}>
                           {lang === "ko" ? "열기 →" : "Open →"}
                         </a>
                       )}
@@ -30596,7 +30598,7 @@ export function HebronGuide() {
                 <div style={{ padding: "8px 0", borderTop: "0.5px solid #F2F2F7" }}>
                   <div style={{ padding: "4px 16px 8px", fontSize: 12, fontFamily: "Geist,Pretendard Variable,sans-serif",
                     fontWeight: 700, color: "#4F46E5", letterSpacing: "0.5px", textTransform: "uppercase" }}>
-                    {lang === "ko" ? "🌏 81개 도시 전체 검색 결과" : "🌏 Results across 81 cities"}
+                    {lang === "ko" ? "81개 도시 전체 검색 결과" : "Results across 81 cities"}
                   </div>
                   {sbSearchLoading && (
                     <div style={{ padding: "8px 16px", fontSize: 12, color: "var(--color-text-muted)" }}>검색 중...</div>
@@ -30609,10 +30611,12 @@ export function HebronGuide() {
                     const phone = item.phone;
                     const email = item.email;
                     const website = item.website;
-                    const cat = item.category || item.denomination || (isChurch ? '교회' : '업소');
+                    const rawCat = item.category || item.denomination || (isChurch ? '교회' : '업소');
+                    const cat = rawCat === 'business' ? (lang === 'ko' ? '업소' : 'Business') : rawCat;
                     // 도시 이름 표시
                     const cityInfo = HEBRON_CITIES.find(c => c.url?.includes(`/${item.city_slug}/`));
-                    const cityLabel = cityInfo ? `${cityInfo.flag} ${lang === 'ko' ? cityInfo.nameKo : cityInfo.nameEn}` : item.city_slug;
+                    // 도시표에 없는 값(주 약자 ak·al 등)은 대문자로 — 날 슬러그를 그대로 보이지 않게
+                    const cityLabel = cityInfo ? (lang === 'ko' ? cityInfo.nameKo : cityInfo.nameEn) : String(item.city_slug || '').toUpperCase();
                     return (
                       <div key={i} style={{ margin: "0 12px 8px",
                         background: isCurrent ? "#F8FFF8" : "#FAFAFA", borderRadius: 12,
@@ -30620,9 +30624,9 @@ export function HebronGuide() {
                         overflow: "hidden" }}>
                         {/* 도시 라벨 */}
                         <div style={{ padding: "5px 12px 0", display: "flex", alignItems: "center", gap: 6 }}>
-                          <span style={{ fontSize: 12, color: isCurrent ? "#16A34A" : "var(--color-text-muted)",
+                          <span style={{ fontSize: 12, color: isCurrent ? "var(--color-success)" : "var(--color-text-muted)",
                             fontWeight: isCurrent ? 800 : 500, fontFamily: "Geist,Pretendard Variable,sans-serif" }}>
-                            {cityLabel}{isCurrent ? ` · 현재 도시` : ''}
+                            {cityLabel}{isCurrent ? (lang === 'ko' ? ' · 지금 보는 도시' : ' · You are here') : ''}
                           </span>
                         </div>
                         <div style={{ padding: "6px 12px 10px" }}>
@@ -30630,38 +30634,38 @@ export function HebronGuide() {
                             <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800,
                               fontSize: 13, color: "#1E293B" }}>{name}</div>
                             {cat && <span style={{ background: isChurch ? "#EEF2FF" : "#F0FDF4",
-                              color: isChurch ? "#4F46E5" : "#16A34A",
+                              color: isChurch ? "#4338CA" : "var(--color-success)",
                               fontSize: 12, fontWeight: 700, padding: "2px 7px",
                               borderRadius: 99, marginLeft: 8, flexShrink: 0 }}>{cat}</span>}
                           </div>
-                          {desc && <div style={{ fontSize: 12, color: "#64748B", lineHeight: 1.6,
+                          {desc && <div style={{ fontSize: 13, color: "var(--color-text-secondary)", lineHeight: 1.6,
                             marginBottom: 6 }}>{desc}</div>}
                           <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
                             {phone && (
                               <a href={`tel:${phone}`} onClick={e => e.stopPropagation()}
                                 style={{ display: "flex", alignItems: "center", gap: 4,
-                                  padding: "5px 10px", background: "#F0FDF4",
-                                  border: "1px solid #BBF7D0", borderRadius: 8,
-                                  textDecoration: "none", fontSize: 12,
-                                  color: "#16A34A", fontWeight: 700 }}>📞 {phone}</a>
+                                  padding: "0 12px", minHeight: 44, background: "#F0FDF4",
+                                  border: "1px solid #BBF7D0", borderRadius: 10,
+                                  textDecoration: "none", fontSize: 13,
+                                  color: "var(--color-success)", fontWeight: 700 }}><Phone size={13} strokeWidth={2} aria-hidden="true" /> {phone}</a>
                             )}
                             {website && website !== '없음' && (
                               <a href={website.startsWith('http') ? website : `https://${website}`}
                                 target="_blank" rel="noopener noreferrer"
                                 onClick={e => e.stopPropagation()}
                                 style={{ display: "flex", alignItems: "center", gap: 4,
-                                  padding: "5px 10px", background: "#EFF6FF",
-                                  border: "1px solid #BFDBFE", borderRadius: 8,
-                                  textDecoration: "none", fontSize: 12,
-                                  color: "#2563EB", fontWeight: 700 }}>🔗 웹사이트</a>
+                                  padding: "0 12px", minHeight: 44, background: "#EFF6FF",
+                                  border: "1px solid #BFDBFE", borderRadius: 10,
+                                  textDecoration: "none", fontSize: 13,
+                                  color: "var(--color-info)", fontWeight: 700 }}><Globe size={13} strokeWidth={2} aria-hidden="true" /> {lang === "ko" ? "웹사이트" : "Website"}</a>
                             )}
                             {email && (
                               <a href={`mailto:${email}`} onClick={e => e.stopPropagation()}
                                 style={{ display: "flex", alignItems: "center", gap: 4,
-                                  padding: "5px 10px", background: "#FFF7ED",
-                                  border: "1px solid #FED7AA", borderRadius: 8,
-                                  textDecoration: "none", fontSize: 12,
-                                  color: "#C2410C", fontWeight: 700 }}><EmojiIcon emoji={"✉"} size={13} /> 이메일</a>
+                                  padding: "0 12px", minHeight: 44, background: "#FFF7ED",
+                                  border: "1px solid #FED7AA", borderRadius: 10,
+                                  textDecoration: "none", fontSize: 13,
+                                  color: "#C2410C", fontWeight: 700 }}><EmojiIcon emoji={"✉"} size={13} /> {lang === "ko" ? "이메일" : "Email"}</a>
                             )}
                           </div>
                         </div>
@@ -30680,11 +30684,12 @@ export function HebronGuide() {
                   </div>
                   {internalMatches.slice(0, 5).map((m, i) => (
                     <button key={i} onClick={() => { setActiveNav(m.tab); setShowSearch(false); setSearchQuery(""); }}
-                      style={{ width: "100%", textAlign: "left", padding: "10px 16px", border: "none",
-                        background: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 10 }}
+                      style={{ width: "100%", textAlign: "left", padding: "8px 16px", minHeight: 56, border: "none",
+                        background: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 12 }}
                       onMouseEnter={e => (e.currentTarget.style.background = "#F8FAFC")}
                       onMouseLeave={e => (e.currentTarget.style.background = "none")}>
-                      <span style={{ fontSize: 18 }}>{QUICK_MENU.find(qm => qm.tab === m.tab)?.emoji || "📌"}</span>
+                      {(() => { const Ico = QM_ICON_MAP[QUICK_MENU.find(qm => qm.tab === m.tab)?.icon || ""] || MapPin;
+                        return <span aria-hidden="true" style={{ width: 36, height: 36, borderRadius: 10, background: "var(--color-surface-warm)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}><Ico size={18} strokeWidth={2} color="var(--color-text-primary)" /></span>; })()}
                       <div>
                         <div style={{ fontFamily: "'Pretendard Variable',sans-serif", fontWeight: 600, fontSize: 14, color: "#1B2A4A" }}>
                           {lang === "ko" ? m.labelKo : m.labelEn}
@@ -30693,7 +30698,7 @@ export function HebronGuide() {
                           {lang === "ko" ? "탭으로 이동" : "Go to section"}
                         </div>
                       </div>
-                      <span style={{ marginLeft: "auto", color: "#F2994A", fontSize: 16 }}>→</span>
+                      <span aria-hidden="true" style={{ marginLeft: "auto", color: "var(--color-accent-text)", fontSize: 16 }}>→</span>
                     </button>
                   ))}
                 </div>
@@ -30706,7 +30711,7 @@ export function HebronGuide() {
                   borderTop: "1px solid rgba(120,120,128,0.08)",
                 }}>
                   <div style={{ fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif",
-                    fontSize:12, color:"#C7C7CC", marginBottom:7, textAlign:"center" }}>
+                    fontSize:12, color:"var(--color-text-muted)", marginBottom:8, textAlign:"center" }}>
                     {lang === "ko"
                       ? (sbSearchResults.length > 0 || internalMatches.length > 0
                           ? "헤브론에 없으면 외부에서 더 찾기"
@@ -30718,21 +30723,21 @@ export function HebronGuide() {
                   <div style={{ display:"flex", gap:7 }}>
                     <a href={googleUrl} target="_blank" rel="noopener noreferrer" style={{
                       flex:1, display:"flex", alignItems:"center", justifyContent:"center", gap:5,
-                      padding:"7px", borderRadius:8, textDecoration:"none",
+                      padding:"0 8px", minHeight:44, borderRadius:10, textDecoration:"none",
                       background:"rgba(0,0,0,0.03)", border:"1px solid rgba(0,0,0,0.08)",
                     }}>
-                      <Search size={10} strokeWidth={2} />
+                      <Search size={13} strokeWidth={2} aria-hidden="true" />
                       <span style={{ fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif", fontWeight:500,
-                        fontSize:12, color:"#8E8E93" }}>Google</span>
+                        fontSize:13, color:"var(--color-text-secondary)" }}>Google</span>
                     </a>
                     <a href={perplexityUrl} target="_blank" rel="noopener noreferrer" style={{
                       flex:1, display:"flex", alignItems:"center", justifyContent:"center", gap:5,
-                      padding:"7px", borderRadius:8, textDecoration:"none",
+                      padding:"0 8px", minHeight:44, borderRadius:10, textDecoration:"none",
                       background:"rgba(0,0,0,0.03)", border:"1px solid rgba(0,0,0,0.08)",
                     }}>
-                      <Sparkles size={10} strokeWidth={2} />
+                      <Sparkles size={13} strokeWidth={2} aria-hidden="true" />
                       <span style={{ fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif", fontWeight:500,
-                        fontSize:12, color:"#8E8E93" }}>AI Search</span>
+                        fontSize:13, color:"var(--color-text-secondary)" }}>Perplexity</span>
                     </a>
                   </div>
                 </div>

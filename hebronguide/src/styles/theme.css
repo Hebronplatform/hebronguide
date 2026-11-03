@@ -211,6 +211,17 @@
     @apply border-border outline-ring/50;
   }
 
+  /* 키보드 초점 — 2026-11-03: 위 outline-ring/50은 흰 바탕에서 1.3px 반투명이라 거의 안 보였다.
+     Tab으로 다니는 사람이 "지금 여기"를 알 수 있게 정본 값(3px · --color-focus)으로. 마우스·손가락 누름에는 안 뜬다.
+     !important — 선택된 메뉴처럼 인라인 outline으로 상태를 표시한 곳에서도 초점이 이기게. */
+  :focus-visible {
+    outline: 3px solid var(--color-focus) !important;
+    outline-offset: 2px;
+  }
+  input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline-offset: 0;
+  }
+
   body {
     @apply bg-background text-foreground;
   }
