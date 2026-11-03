@@ -16821,7 +16821,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
               </a>
             )}
             <button onClick={() => setWelcomeChurch(null)}
-              style={{ background: "transparent", border: "none", color: "var(--color-text-muted)", fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, cursor: "pointer", padding: "6px", marginTop: 2 }}>
+              style={{ background: "transparent", border: "none", color: "var(--color-text-secondary)", fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 14, cursor: "pointer", minHeight: 44, padding: "6px", marginTop: 2 }}>
               {lang === "ko" ? "닫기" : "Close"}
             </button>
           </div>
@@ -29866,23 +29866,33 @@ function AppBar({ onHome, onSearch }: { onHome?: () => void; onSearch?: () => vo
     c.nameEn.toLowerCase().includes(citySearch.toLowerCase())
   );
 
-  // 지역별 그룹핑
+  // 지역별 그룹핑 — 이름은 글자로만 (2026-11-02: 국기·지구본 이모지 뺌).
+  // 보고타(🇨🇴)가 어느 묶음에도 없어 기본 목록에서 빠져 있었다 → 중남미에 넣고,
+  // 앞으로 새 나라가 생겨도 사라지지 않게 마지막에 "그 밖의 도시" 묶음을 둔다.
+  const REGION_FLAGS: { ko: string; en: string; flags: string[] }[] = [
+    { ko: "미국", en: "USA", flags: ["🇺🇸"] },
+    { ko: "캐나다", en: "Canada", flags: ["🇨🇦"] },
+    { ko: "중남미", en: "Latin America", flags: ["🇲🇽","🇧🇷","🇨🇴"] },
+    { ko: "오세아니아", en: "Oceania", flags: ["🇦🇺","🇳🇿"] },
+    { ko: "유럽·중동", en: "Europe & Middle East", flags: ["🇬🇧","🇩🇪","🇫🇷","🇦🇪"] },
+    { ko: "아시아", en: "Asia", flags: ["🇸🇬","🇹🇭","🇻🇳","🇯🇵"] },
+    { ko: "한국 (역이민·방문)", en: "Korea (Returnees & Visitors)", flags: ["🇰🇷"] },
+  ];
+  const knownFlags = REGION_FLAGS.flatMap(r => r.flags);
   const regions = [
-    { label: lang === "ko" ? "🇺🇸 미국" : "🇺🇸 USA",
-      cities: filteredCities.filter(c => c.flag === "🇺🇸") },
-    { label: lang === "ko" ? "🇨🇦 캐나다" : "🇨🇦 Canada",
-      cities: filteredCities.filter(c => c.flag === "🇨🇦") },
-    { label: lang === "ko" ? "🌎 중남미" : "🌎 Latin America",
-      cities: filteredCities.filter(c => ["🇲🇽","🇧🇷"].includes(c.flag)) },
-    { label: lang === "ko" ? "🌏 오세아니아" : "🌏 Oceania",
-      cities: filteredCities.filter(c => ["🇦🇺","🇳🇿"].includes(c.flag)) },
-    { label: lang === "ko" ? "🌍 유럽·중동" : "🌍 Europe & Middle East",
-      cities: filteredCities.filter(c => ["🇬🇧","🇩🇪","🇫🇷","🇦🇪"].includes(c.flag)) },
-    { label: lang === "ko" ? "🌏 아시아" : "🌏 Asia",
-      cities: filteredCities.filter(c => ["🇸🇬","🇹🇭","🇻🇳","🇯🇵"].includes(c.flag)) },
-    { label: lang === "ko" ? "🇰🇷 한국 (역이민·방문)" : "🇰🇷 Korea (Returnees & Visitors)",
-      cities: filteredCities.filter(c => c.flag === "🇰🇷") },
+    ...REGION_FLAGS.map(r => ({ label: lang === "ko" ? r.ko : r.en,
+      cities: filteredCities.filter(c => r.flags.includes(c.flag)) })),
+    { label: lang === "ko" ? "그 밖의 도시" : "Other cities",
+      cities: filteredCities.filter(c => !knownFlags.includes(c.flag)) },
   ].filter(r => r.cities.length > 0);
+
+  // 시트는 Esc 로도 닫힌다
+  useEffect(() => {
+    if (!showCitySheet) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setShowCitySheet(false); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [showCitySheet]);
 
   return (
     <>
@@ -29896,7 +29906,7 @@ function AppBar({ onHome, onSearch }: { onHome?: () => void; onSearch?: () => vo
         <button
           onClick={onHome}
           style={{ display: "flex", alignItems: "center", gap: 10, background: "none", border: "none",
-            cursor: onHome ? "pointer" : "default", padding: "4px 0", borderRadius: 10, transition: "opacity 0.15s" }}
+            cursor: onHome ? "pointer" : "default", padding: "4px 0", minHeight: 44, borderRadius: 10, transition: "opacity 0.15s" }}
           onMouseEnter={e => { if (onHome) (e.currentTarget as HTMLElement).style.opacity = "0.75"; }}
           onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = "1"; }}
         >
@@ -29919,58 +29929,69 @@ function AppBar({ onHome, onSearch }: { onHome?: () => void; onSearch?: () => vo
         </button>
 
         {/* 도시명 — 클릭하면 도시 전환 시트 */}
+        {/* 누르는 곳은 44px, 보이는 알약은 그대로 (2026-11-02) */}
         <button
           onClick={() => { setShowCitySheet(true); setCitySearch(""); }}
-          style={{ display: "flex", alignItems: "center", gap: 3, background: "rgba(242,153,74,0.08)",
-            border: "1px solid rgba(242,153,74,0.25)", borderRadius: 8, padding: "3px 8px",
-            cursor: "pointer", transition: "all 0.15s" }}
-          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(242,153,74,0.15)"; }}
-          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(242,153,74,0.08)"; }}
-          title={lang === "ko" ? "도시 변경" : "Change city"}
+          style={{ display: "flex", alignItems: "center", minHeight: 44, background: "none", border: "none",
+            padding: 0, cursor: "pointer" }}
+          onMouseEnter={e => { const p = e.currentTarget.firstElementChild as HTMLElement | null; if (p) p.style.background = "rgba(242,153,74,0.15)"; }}
+          onMouseLeave={e => { const p = e.currentTarget.firstElementChild as HTMLElement | null; if (p) p.style.background = "rgba(242,153,74,0.08)"; }}
+          aria-haspopup="dialog"
+          aria-label={lang === "ko" ? `도시 바꾸기 — 지금 ${currentCity.nameKo}` : `Change city — now ${currentCity.nameEn}`}
         >
-          <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, letterSpacing: "1px", color: "#F2994A" }}>
-            {currentCity.nameEn.toUpperCase()}
+          <span style={{ display: "flex", alignItems: "center", gap: 3, background: "rgba(242,153,74,0.08)",
+            border: "1px solid rgba(242,153,74,0.25)", borderRadius: 8, padding: "3px 8px", transition: "background 0.15s" }}>
+            <span style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, letterSpacing: "1px", color: "#B45309" }}>
+              {currentCity.nameEn.toUpperCase()}
+            </span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#B45309" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
           </span>
-          <span style={{ fontSize: 8, color: "#F2994A", lineHeight: 1 }}>▾</span>
         </button>
       </div>
 
       {/* 우측: 검색 아이콘 + 언어 토글 */}
-      <div className="flex items-center gap-[8px]">
-        {/* 🔍 검색 버튼 — 항상 노출 */}
+      {/* 누르는 곳은 44×44, 보이는 동그라미는 32 그대로 (2026-11-02) */}
+      <div className="flex items-center">
         {onSearch && (
           <button
             onClick={onSearch}
             style={{ display: "flex", alignItems: "center", justifyContent: "center",
-              width: 32, height: 32, borderRadius: 10,
-              background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.08)",
-              cursor: "pointer", transition: "all 0.15s", flexShrink: 0 }}
-            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(242,153,74,0.12)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(242,153,74,0.4)"; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(0,0,0,0.04)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(0,0,0,0.08)"; }}
-            title={lang === "ko" ? "검색" : "Search"}
+              width: 44, height: 44, padding: 0, background: "none", border: "none",
+              cursor: "pointer", flexShrink: 0 }}
+            onMouseEnter={e => { const p = e.currentTarget.firstElementChild as HTMLElement | null; if (p) { p.style.background = "rgba(242,153,74,0.12)"; p.style.borderColor = "rgba(242,153,74,0.4)"; } }}
+            onMouseLeave={e => { const p = e.currentTarget.firstElementChild as HTMLElement | null; if (p) { p.style.background = "rgba(0,0,0,0.04)"; p.style.borderColor = "rgba(0,0,0,0.08)"; } }}
+            aria-label={lang === "ko" ? "검색" : "Search"}
           >
-            <svg width="15" height="15" viewBox="0 0 20 20" fill="none">
-              <circle cx="9" cy="9" r="6" stroke="#64748B" strokeWidth="2"/>
-              <path d="M13.5 13.5L17 17" stroke="#64748B" strokeWidth="2" strokeLinecap="round"/>
-            </svg>
+            <span style={{ display: "flex", alignItems: "center", justifyContent: "center",
+              width: 32, height: 32, borderRadius: 10,
+              background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.08)", transition: "all 0.15s" }}>
+              <svg width="15" height="15" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <circle cx="9" cy="9" r="6" stroke="#64748B" strokeWidth="2"/>
+                <path d="M13.5 13.5L17 17" stroke="#64748B" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+            </span>
           </button>
         )}
         {/* 언어 — 지구본 + 글자 한 덩어리. 누르면 바뀐다. (NanuriWeb 과 같은 모양) */}
         <button
           onClick={() => setLang(lang === "ko" ? "en" : "ko")}
           style={{ display: "inline-flex", alignItems: "center", justifyContent: "center",
-            width: 32, height: 32, padding: 0, borderRadius: "50%",
-            background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.08)",
-            color: "#64748B",
-            cursor: "pointer", transition: "all 0.15s", flexShrink: 0 }}
-          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(242,153,74,0.12)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(242,153,74,0.4)"; }}
-          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(0,0,0,0.04)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(0,0,0,0.08)"; }}
+            width: 44, height: 44, padding: 0, background: "none", border: "none",
+            color: "#64748B", cursor: "pointer", flexShrink: 0, marginRight: -6 }}
+          onMouseEnter={e => { const p = e.currentTarget.firstElementChild as HTMLElement | null; if (p) { p.style.background = "rgba(242,153,74,0.12)"; p.style.borderColor = "rgba(242,153,74,0.4)"; } }}
+          onMouseLeave={e => { const p = e.currentTarget.firstElementChild as HTMLElement | null; if (p) { p.style.background = "rgba(0,0,0,0.04)"; p.style.borderColor = "rgba(0,0,0,0.08)"; } }}
           aria-label={lang === "ko" ? "Switch to English" : "한국어로 바꾸기"}
         >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: .75, flex: "none" }} aria-hidden="true">
-            <circle cx="12" cy="12" r="9"/>
-            <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/>
-          </svg>
+          <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center",
+            width: 32, height: 32, borderRadius: "50%",
+            background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.08)", transition: "all 0.15s" }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: .75, flex: "none" }} aria-hidden="true">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/>
+            </svg>
+          </span>
         </button>
       </div>
     </header>
@@ -29986,18 +30007,27 @@ function AppBar({ onHome, onSearch }: { onHome?: () => void; onSearch?: () => vo
             paddingBottom: "env(safe-area-inset-bottom,12px)", maxHeight: "80vh", display: "flex", flexDirection: "column",
             boxShadow: "0 -8px 40px rgba(0,0,0,0.2)" }}
           onClick={e => e.stopPropagation()}
+          role="dialog" aria-modal="true" aria-labelledby="city-sheet-title"
         >
           {/* 핸들 */}
           <div style={{ width: 36, height: 4, borderRadius: 2, background: "#E5E7EB", margin: "12px auto 0", flexShrink: 0 }} />
 
           {/* 헤더 */}
-          <div style={{ padding: "14px 18px 10px", flexShrink: 0 }}>
-            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 16, color: "#1a2535", marginBottom: 2 }}>
-              🌍 {lang === "ko" ? "81개 도시" : "81 Cities"}
+          <div style={{ padding: "10px 8px 10px 18px", flexShrink: 0, display: "flex", alignItems: "flex-start", gap: 8 }}>
+            <div style={{ flex: 1, minWidth: 0, paddingTop: 4 }}>
+              <div id="city-sheet-title" style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 16, color: "#1a2535", marginBottom: 2 }}>
+                {lang === "ko" ? "81개 도시" : "81 Cities"}
+              </div>
+              <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-muted)" }}>
+                {lang === "ko" ? "이사·출장·방문 도시를 선택하세요" : "Select your destination city"}
+              </div>
             </div>
-            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, color: "var(--color-text-muted)" }}>
-              {lang === "ko" ? "이사·출장·방문 도시를 선택하세요" : "Select your destination city"}
-            </div>
+            <button onClick={() => setShowCitySheet(false)}
+              aria-label={lang === "ko" ? "닫기" : "Close"}
+              style={{ width: 44, height: 44, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center",
+                background: "none", border: "none", borderRadius: 12, cursor: "pointer", color: "var(--color-text-secondary)" }}>
+              <X size={20} strokeWidth={2} aria-hidden="true" />
+            </button>
           </div>
 
           {/* 검색 */}
@@ -30046,6 +30076,15 @@ function AppBar({ onHome, onSearch }: { onHome?: () => void; onSearch?: () => vo
   );
 }
 
+/* 도시 카드의 둘째 줄 — 국기 이모지 대신 글자로 [한국어, English] */
+const COUNTRY_BY_FLAG: Record<string, [string, string]> = {
+  "🇺🇸": ["미국", "USA"], "🇨🇦": ["캐나다", "Canada"], "🇲🇽": ["멕시코", "Mexico"], "🇧🇷": ["브라질", "Brazil"],
+  "🇨🇴": ["콜롬비아", "Colombia"], "🇦🇺": ["호주", "Australia"], "🇳🇿": ["뉴질랜드", "New Zealand"],
+  "🇬🇧": ["영국", "UK"], "🇩🇪": ["독일", "Germany"], "🇫🇷": ["프랑스", "France"], "🇦🇪": ["아랍에미리트", "UAE"],
+  "🇸🇬": ["싱가포르", "Singapore"], "🇹🇭": ["태국", "Thailand"], "🇻🇳": ["베트남", "Vietnam"],
+  "🇯🇵": ["일본", "Japan"], "🇰🇷": ["한국", "Korea"],
+};
+
 /* 도시 카드 — 시트 내부 */
 function CityCard({ c, currentCity, lang, onClose }: {
   c: typeof HEBRON_CITIES[0];
@@ -30073,18 +30112,22 @@ function CityCard({ c, currentCity, lang, onClose }: {
         minWidth: 36, height: 26, padding: "0 6px", borderRadius: 7,
         background: CITY_DESIGN[c.nameEn]?.gradient ?? c.color,
         fontFamily: "Geist,Pretendard Variable, sans-serif", fontWeight: 800,
-        fontSize: (CITY_DESIGN[c.nameEn]?.code ?? c.nameEn.slice(0,3)).length > 3 ? 10 : 12,
+        fontSize: 12,
         letterSpacing: "0.5px", color: CITY_DESIGN[c.nameEn]?.textColor ?? "#fff",
         boxShadow: "0 1px 3px rgba(0,0,0,0.12)",
       }}>{CITY_DESIGN[c.nameEn]?.code ?? c.nameEn.slice(0,3).toUpperCase()}</span>
       <div style={{ minWidth: 0 }}>
         <div style={{ fontFamily: "Geist,Pretendard Variable,-apple-system,sans-serif", fontWeight: 700,
-          fontSize: 12, color: isCurrent ? "#F2994A" : "#1a2535",
+          fontSize: 12, color: isCurrent ? "#B45309" : "#1a2535",
           whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
           {lang === "ko" ? c.nameKo : c.nameEn}
         </div>
-        <div style={{ fontSize: 12, color: "var(--color-text-muted)", marginTop: 1 }}>
-          {c.flag}{isCurrent ? (lang === "ko" ? " 현재 위치" : " Current") : ""}
+        {/* 국기 이모지 대신 나라 이름 (2026-11-02) */}
+        <div style={{ fontSize: 12, color: isCurrent ? "#B45309" : "var(--color-text-muted)", marginTop: 1,
+          whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+          {isCurrent
+            ? (lang === "ko" ? "지금 보는 도시" : "You are here")
+            : (COUNTRY_BY_FLAG[c.flag]?.[lang === "ko" ? 0 : 1] ?? "")}
         </div>
       </div>
     </a>
