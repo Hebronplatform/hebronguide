@@ -8514,7 +8514,7 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
           <a href={routeUrl} target="_blank" rel="noopener noreferrer"
             style={{ marginLeft: "auto", display: "inline-flex", alignItems: "center", gap: 4,
               textDecoration: "none", background: `${accentColor}1F`,
-              border: `1px solid ${accentColor}44`, borderRadius: 20, padding: "5px 11px", minHeight: 32 }}>
+              border: `1px solid ${accentColor}44`, borderRadius: 22, padding: "0 12px", minHeight: 44 }}>
             <MapPin size={12} strokeWidth={2.2} color={accentColor} />
             <span style={{ fontFamily: "'Pretendard Variable',sans-serif", fontSize: 12,
               fontWeight: 700, color: inkColor(accentColor) }}>
@@ -8550,7 +8550,7 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
             </div>
             {item.rating && (
               <div style={{ marginBottom: 6 }}>
-                <span style={{ fontSize: 12, color: "#F59E0B", fontWeight: 700 }}>
+                <span style={{ fontSize: 12, color: "#92400E", fontWeight: 700 }}>
                   {"★".repeat(Math.round(item.rating))} {item.rating}
                 </span>
                 {item.ratingCount && <span style={{ fontSize: 12, color: "var(--color-text-muted)" }}> ({item.ratingCount})</span>}
@@ -8573,18 +8573,18 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
               {(
                 <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(placeOf(item))}`}
                   target="_blank" rel="noopener noreferrer"
-                  style={{ display: "inline-flex", alignItems: "center", gap: 3, textDecoration: "none",
-                    background: `${accentColor}18`, border: `1px solid ${accentColor}33`, borderRadius: 20, padding: "3px 8px" }}>
-                  <span style={{ fontSize: 12 }}>📍</span>
+                  style={{ display: "inline-flex", alignItems: "center", gap: 5, textDecoration: "none",
+                    background: `${accentColor}18`, border: `1px solid ${accentColor}33`, borderRadius: 22, padding: "0 12px", minHeight: 44 }}>
+                  <MapPin size={13} strokeWidth={2} aria-hidden="true" />
                   <span style={{ fontSize: 12, color: inkColor(accentColor), fontWeight: 700 }}>Google Maps</span>
                 </a>
               )}
               {/* 전화 */}
               {item.phone && (
                 <a href={`tel:${item.phone}`}
-                  style={{ display: "inline-flex", alignItems: "center", gap: 3, textDecoration: "none",
-                    background: `${accentColor}18`, border: `1px solid ${accentColor}33`, borderRadius: 20, padding: "3px 8px" }}>
-                  <span style={{ fontSize: 12 }}>📞</span>
+                  style={{ display: "inline-flex", alignItems: "center", gap: 5, textDecoration: "none",
+                    background: `${accentColor}18`, border: `1px solid ${accentColor}33`, borderRadius: 22, padding: "0 12px", minHeight: 44 }}>
+                  <Phone size={13} strokeWidth={2} aria-hidden="true" />
                   <span style={{ fontSize: 12, color: inkColor(accentColor), fontWeight: 700 }}>전화</span>
                 </a>
               )}
@@ -8592,9 +8592,9 @@ function Top5Banner({ items, lang, accentColor }: { items: Top5Item[]; lang: str
               {item.website && (
                 <a href={item.website.startsWith("http") ? item.website : `https://${item.website}`}
                   target="_blank" rel="noopener noreferrer"
-                  style={{ display: "inline-flex", alignItems: "center", gap: 3, textDecoration: "none",
-                    background: "rgba(110,231,183,0.12)", border: "1px solid rgba(110,231,183,0.3)", borderRadius: 20, padding: "3px 8px" }}>
-                  <Globe size={9} strokeWidth={2} />
+                  style={{ display: "inline-flex", alignItems: "center", gap: 5, textDecoration: "none",
+                    background: "rgba(110,231,183,0.12)", border: "1px solid rgba(110,231,183,0.3)", borderRadius: 22, padding: "0 12px", minHeight: 44 }}>
+                  <Globe size={13} strokeWidth={2} aria-hidden="true" />
                   <span style={{ fontSize: 12, color: "var(--color-success)", fontWeight: 700 }}>공식 사이트</span>
                 </a>
               )}
@@ -10590,7 +10590,7 @@ interface ScreenHeaderProps {
 function ScreenHeader({ emoji, titleKo, titleEn, descKo, descEn, accentColor, light }: ScreenHeaderProps) {
   const { lang } = useI18n();
   const titleColor = light ? "#1B2A4A" : "#1B2A4A";
-  const descColor  = light ? "rgba(27,42,74,0.65)" : "rgba(27,42,74,0.82)";
+  const descColor  = light ? "var(--color-text-secondary)" : "rgba(27,42,74,0.82)";
   const borderColor = light ? "rgba(0,0,0,0.07)" : "rgba(27,42,74,0.07)";
   return (
     <div className="px-[20px] pt-[24px] pb-[20px]" style={{ borderBottom: `1px solid ${borderColor}` }}>
@@ -10619,7 +10619,7 @@ function SubTabBar({ tabs, active, onChange, accentColor = "rgba(255,255,255,0.9
     <div className="flex overflow-x-auto" style={{ scrollbarWidth: "none", borderBottom: "1px solid rgba(27,42,74,0.08)" }}>
       {tabs.map((tab, i) => (
         <button key={i} onClick={() => onChange(i)} className="flex-shrink-0 border-0 cursor-pointer hover:opacity-80"
-          style={{ padding: "10px 16px", background: "transparent", fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: i === active ? "#1B2A4A" : "rgba(27,42,74,0.72)", borderBottom: i === active ? `2px solid ${accentColor}` : "2px solid transparent", whiteSpace: "nowrap", transition: "all 0.2s ease" }}>
+          style={{ padding: "10px 16px", minHeight: 44, background: "transparent", fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 13, color: i === active ? "#1B2A4A" : "rgba(27,42,74,0.72)", borderBottom: i === active ? `2px solid ${accentColor}` : "2px solid transparent", whiteSpace: "nowrap", transition: "all 0.2s ease" }}>
           {noEmoji(tab)}
         </button>
       ))}
@@ -10705,9 +10705,9 @@ function renderDescWithLinks(desc: string, accentColor: string) {
           {/* Google Maps 버튼 */}
           {googleMapsUrl && (
             <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer"
-              style={{ display: "inline-flex", alignItems: "center", gap: 4, textDecoration: "none",
+              style={{ display: "inline-flex", alignItems: "center", gap: 5, textDecoration: "none",
                 background: `${accentColor}18`, border: `1px solid ${accentColor}33`,
-                borderRadius: 20, padding: "3px 10px" }}>
+                borderRadius: 22, padding: "0 14px", minHeight: 44 }}>
               <MapPin size={13} strokeWidth={2} aria-hidden="true" />
               <span style={{ fontSize: 12, color: inkColor(accentColor), fontWeight: 700 }}>Google Maps</span>
             </a>
@@ -10716,9 +10716,9 @@ function renderDescWithLinks(desc: string, accentColor: string) {
           {/* 전화 버튼 */}
           {phone && (
             <a href={`tel:${phone.replace(/\D/g, "")}`}
-              style={{ display: "inline-flex", alignItems: "center", gap: 4, textDecoration: "none",
+              style={{ display: "inline-flex", alignItems: "center", gap: 5, textDecoration: "none",
                 background: `${accentColor}18`, border: `1px solid ${accentColor}33`,
-                borderRadius: 20, padding: "3px 10px" }}>
+                borderRadius: 22, padding: "0 14px", minHeight: 44 }}>
               <Phone size={13} strokeWidth={2} aria-hidden="true" />
               <span style={{ fontSize: 12, color: inkColor(accentColor), fontWeight: 700 }}>{phone.trim().replace(/^\(/, "").split(")")[0].trim()}</span>
             </a>
@@ -10727,10 +10727,10 @@ function renderDescWithLinks(desc: string, accentColor: string) {
           {/* 공식 웹사이트 버튼 */}
           {webHref && (
             <a href={webHref} target="_blank" rel="noopener noreferrer"
-              style={{ display: "inline-flex", alignItems: "center", gap: 4, textDecoration: "none",
+              style={{ display: "inline-flex", alignItems: "center", gap: 5, textDecoration: "none",
                 background: "rgba(110,231,183,0.12)", border: "1px solid rgba(110,231,183,0.3)",
-                borderRadius: 20, padding: "3px 10px" }}>
-              <Globe size={9} strokeWidth={2} />
+                borderRadius: 22, padding: "0 14px", minHeight: 44 }}>
+              <Globe size={13} strokeWidth={2} aria-hidden="true" />
               <span style={{ fontSize: 12, color: "var(--color-success)", fontWeight: 700 }}>공식 웹사이트</span>
             </a>
           )}
@@ -10763,8 +10763,8 @@ function ContactRow({ website, email, phone, desc, accentColor }:
   const btn: React.CSSProperties = {
     display: "inline-flex", alignItems: "center", gap: 5, textDecoration: "none",
     background: accentColor + "18", border: "1px solid " + accentColor + "33",
-    borderRadius: 20, padding: "8px 12px", minHeight: 36,
-    fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, fontWeight: 700, color: accentColor,
+    borderRadius: 22, padding: "0 14px", minHeight: 44,
+    fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 13, fontWeight: 700, color: inkColor(accentColor),
   };
   const Ico = ({ children }: { children: React.ReactNode }) => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}
@@ -10799,7 +10799,8 @@ function ContactRow({ website, email, phone, desc, accentColor }:
 
 /* 글자용 강조색 — 밝은 바탕에서 읽히도록 (2026-11-02, 설계도 ⑦-7)
    도시 색·금색·주황은 배경·선으로는 좋지만 글자로는 흐리다(대비 2~3).
-   바탕 #F7F8FB 기준 대비 4.5 이상이 될 때까지 짙게 섞는다. 색의 성격은 그대로 남는다. */
+   바탕 #F7F8FB 기준 대비 5.4 이상이 될 때까지 짙게 섞는다. 색의 성격은 그대로 남는다.
+   (2026-11-02: 4.5로 맞추면 같은 색을 엷게 깐 꼬리표·단추 위에서는 3.7~4.4로 떨어졌다. 그래서 여유를 둔다) */
 function inkColor(hex: string): string {
   const m = /^#?([0-9a-f]{6})$/i.exec(hex || "");
   if (!m) return hex;
@@ -10808,7 +10809,7 @@ function inkColor(hex: string): string {
   const lum = (c: number[]) => c.map(v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); })
     .reduce((a, v, i) => a + v * [0.2126, 0.7152, 0.0722][i], 0);
   const bg = lum([247, 248, 251]);
-  for (let k = 0; k < 20 && (bg + 0.05) / (lum(rgb) + 0.05) < 4.5; k++) rgb = rgb.map(v => Math.round(v * 0.88));
+  for (let k = 0; k < 20 && (bg + 0.05) / (lum(rgb) + 0.05) < 5.4; k++) rgb = rgb.map(v => Math.round(v * 0.88));
   return "#" + rgb.map(v => v.toString(16).padStart(2, "0")).join("");
 }
 
@@ -11168,7 +11169,7 @@ function CommunitySection({ category, citySlug, lang }: { category: string; city
           style={{
             background: text.trim() ? "rgba(110,231,183,0.15)" : "rgba(27,42,74,0.04)",
             border: `1px solid ${text.trim() ? "rgba(110,231,183,0.4)" : "rgba(27,42,74,0.08)"}`,
-            color: text.trim() ? "#047857" : "rgba(27,42,74,0.65)",
+            color: text.trim() ? "#047857" : "var(--color-text-secondary)",
             borderRadius: 8, padding: "0 16px", minHeight: 44, fontSize: 13, fontWeight: 700,
             cursor: text.trim() ? "pointer" : "default", fontFamily: "inherit",
           }}
@@ -16471,7 +16472,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                         )}
                         {/* 담임목사 — description에서 추출 또는 denomination */}
                         {(c.description || c.denomination) && (
-                          <div style={{ fontSize: 12, color: "rgba(110,231,183,0.8)", fontFamily: "Geist,Pretendard Variable,sans-serif", marginBottom: 4 }}>
+                          <div style={{ fontSize: 12, color: "var(--color-success)", fontWeight: 600, fontFamily: "Geist,Pretendard Variable,sans-serif", marginBottom: 4 }}>
                             {c.denomination ? `${c.denomination}` : ""}
                             {c.denomination && c.service_time ? " · " : ""}
                             {c.service_time ? `${c.service_time}` : ""}
@@ -16488,7 +16489,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                               style={{
                                 flex: 1, minWidth: 120,
                                 background: "linear-gradient(135deg, rgba(110,231,183,0.9), rgba(52,211,153,0.85))",
-                                color: "#0d1117", borderRadius: 12, padding: "11px 16px",
+                                color: "#0d1117", borderRadius: 12, padding: "11px 16px", minHeight: 44,
                                 fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 800, fontSize: 13,
                                 border: "none", cursor: "pointer",
                               }}
@@ -16502,8 +16503,8 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                               style={{
                                 display: "flex", alignItems: "center", justifyContent: "center", gap: 5,
                                 background: "rgba(27,42,74,0.07)", border: "1px solid rgba(27,42,74,0.15)",
-                                color: "var(--color-text-primary)", borderRadius: 12, padding: "11px 16px",
-                                fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 600, fontSize: 12, textDecoration: "none",
+                                color: "var(--color-text-primary)", borderRadius: 12, padding: "11px 16px", minHeight: 44,
+                                fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 600, fontSize: 13, textDecoration: "none",
                               }}>
                               {lang === "ko" ? "홈페이지" : "Website"}
                             </a>
@@ -23445,7 +23446,7 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
           </div>
           {/* 안전 팁 — 도시별 */}
           <div style={{ margin: "16px 16px 0", background: "rgba(248,113,113,0.07)", border: "1px solid rgba(248,113,113,0.18)", borderRadius: 14, padding: "14px 16px" }}>
-            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 12, color: accent, marginBottom: 6 }}><EmojiIcon emoji={"💡"} size={13} /> {lang === "ko" ? `${city.nameKo} 안전 팁` : `${city.nameEn} Safety Tips`}</div>
+            <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontWeight: 700, fontSize: 13, color: "var(--color-error)", marginBottom: 6 }}><EmojiIcon emoji={"💡"} size={13} /> {lang === "ko" ? `${city.nameKo} 안전 팁` : `${city.nameEn} Safety Tips`}</div>
             <div style={{ fontFamily: "Geist,Pretendard Variable,sans-serif", fontSize: 12, lineHeight: 1.8, color: "var(--color-text-secondary)" }}>
               {lang === "ko" ? em.safetyTips : em.safetyTipsEn}
             </div>
@@ -28349,7 +28350,7 @@ function SupportScreen({ onHome }: { onHome?: () => void }) {
                     </div>
                   </div>
                   {Array.isArray(org.tags) && org.tags.length > 0 && (
-                    <span style={{ background: "#1B2A4A", color: "#059669", fontSize: 12,
+                    <span style={{ background: "rgba(15,118,110,0.08)", color: "var(--color-success)", fontSize: 12,
                       fontWeight: 700, padding: "3px 10px", borderRadius: 99,
                       whiteSpace: "nowrap" as const, marginLeft: 8 }}>
                       {org.tags[0]}
@@ -28371,18 +28372,18 @@ function SupportScreen({ onHome }: { onHome?: () => void }) {
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap" as const }}>
                   {org.phone && (
                     <a href={`tel:${org.phone}`}
-                      style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 14px",
+                      style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 14px", minHeight: 44,
                         background: "#F0FDF4", border: "1px solid #BBF7D0", borderRadius: 10,
-                        textDecoration: "none", fontSize: 12, color: "#16A34A", fontWeight: 700 }}>
+                        textDecoration: "none", fontSize: 13, color: "var(--color-success)", fontWeight: 700 }}>
                       {org.phone}
                     </a>
                   )}
                   {org.website && org.website !== "없음" && (
                     <a href={org.website.startsWith("http") ? org.website : `https://${org.website}`}
                       target="_blank" rel="noopener noreferrer"
-                      style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 14px",
-                        background: "#1B2A4A", border: "1px solid #6EE7B7", borderRadius: 10,
-                        textDecoration: "none", fontSize: 12, color: "#059669", fontWeight: 700 }}>
+                      style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 14px", minHeight: 44,
+                        background: "var(--color-surface)", border: "1px solid var(--color-border)", borderRadius: 10,
+                        textDecoration: "none", fontSize: 13, color: "var(--color-success)", fontWeight: 700 }}>
                       {ko ? "웹사이트" : "Website"}
                     </a>
                   )}
@@ -28489,7 +28490,7 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
           const active = activeCat === c.ko;
           return (
             <button key={c.ko} onClick={() => setActiveCat(c.ko)}
-              style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 14px",
+              style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 14px", minHeight: 44,
                 borderRadius: 99, border: `1.5px solid ${active ? "#6366F1" : "#E2E8F0"}`,
                 background: active ? "#EEF2FF" : "#fff", cursor: "pointer",
                 whiteSpace: "nowrap", fontFamily: "'Pretendard Variable',sans-serif",
@@ -28511,13 +28512,14 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
         ) : filtered.length === 0 ? (
           <div style={{ textAlign: "center", padding: "40px 0" }}>
             <div style={{ marginBottom: 12 }}><Search size={28} strokeWidth={2} /></div>
-            <div style={{ color: "#64748B", fontSize: 14, lineHeight: 1.8 }}>
-              {ko ? `${city.nameKo}에 등재된 업소가 없습니다.\n업소 등재를 신청해 보세요!`
-                   : `No listings yet for ${city.nameEn}.\nBe the first to register!`}
+            {/* 빈 자리도 환대한다 — 재촉 대신 부탁 (DESIGN_DIRECTION 습관 6·8) */}
+            <div style={{ color: "var(--color-text-secondary)", fontSize: 14, lineHeight: 1.8, whiteSpace: "pre-line" }}>
+              {ko ? `아직 ${city.nameKo}에 올라온 업소가 없어요.\n아는 한인 업소가 있으면 알려 주세요.`
+                   : `No listings in ${city.nameEn} yet.\nKnow a Korean-owned business? Let us know.`}
             </div>
             <a href="/ad-request.html#business"
-              style={{ display: "inline-block", marginTop: 16, background: "#6366F1",
-                color: "#fff", padding: "10px 24px", borderRadius: 10, textDecoration: "none",
+              style={{ display: "inline-flex", alignItems: "center", minHeight: 44, marginTop: 16, background: "#6366F1",
+                color: "#fff", padding: "0 24px", borderRadius: 10, textDecoration: "none",
                 fontSize: 13, fontWeight: 700 }}>
               {ko ? "업소 등재 신청 →" : "Register Your Business →"}
             </a>
@@ -28591,16 +28593,16 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                   {b.phone && (
                     <a href={`tel:${b.phone}`}
-                      style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 14px",
+                      style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 14px", minHeight: 44,
                         background: "#F0FDF4", border: "1px solid #BBF7D0", borderRadius: 10,
-                        textDecoration: "none", fontSize: 12, color: "#16A34A", fontWeight: 700 }}>
+                        textDecoration: "none", fontSize: 13, color: "var(--color-success)", fontWeight: 700 }}>
                       📞 {b.phone}
                     </a>
                   )}
                   {b.website && b.website !== "없음" && (
                     <a href={b.website.startsWith("http") ? b.website : `https://${b.website}`}
                       target="_blank" rel="noopener noreferrer"
-                      style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 14px",
+                      style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 14px", minHeight: 44,
                         background: "#EFF6FF", border: "1px solid #BFDBFE", borderRadius: 10,
                         textDecoration: "none", fontSize: 12, color: "#2563EB", fontWeight: 700 }}>
                       🔗 {ko ? "웹사이트" : "Website"}
@@ -28608,7 +28610,7 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
                   )}
                   {b.email && (
                     <a href={`mailto:${b.email}`}
-                      style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 14px",
+                      style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 14px", minHeight: 44,
                         background: "#FFF7ED", border: "1px solid #FED7AA", borderRadius: 10,
                         textDecoration: "none", fontSize: 12, color: "#C2410C", fontWeight: 700 }}>
                       ✉️ {b.email}
@@ -28637,8 +28639,8 @@ function BusinessDirectoryScreen({ onHome }: { onHome?: () => void }) {
             {ko ? "무료로 업소를 등재하고 이민자 고객을 만나세요." : "List your business for free and reach Korean diaspora."}
           </div>
           <a href="/ad-request.html#business"
-            style={{ display: "inline-block", background: "#4F46E5", color: "#fff",
-              padding: "10px 24px", borderRadius: 10, textDecoration: "none",
+            style={{ display: "inline-flex", alignItems: "center", minHeight: 44, background: "#4F46E5", color: "#fff",
+              padding: "0 24px", borderRadius: 10, textDecoration: "none",
               fontSize: 13, fontWeight: 800, fontFamily: "Geist,Pretendard Variable,sans-serif" }}>
             {ko ? "무료 등재 신청 →" : "Register Free →"}
           </a>
