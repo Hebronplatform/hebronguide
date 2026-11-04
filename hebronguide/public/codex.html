@@ -16,7 +16,7 @@
     --bg-deep:   #ded4bf;
     --ink:       #1f1d18;
     --ink-soft:  #4a463c;
-    --ink-mute:  #857e6e;
+    --ink-mute:  #5c564a;   /* 2026-11-04: 본문 글자 대비 4.5 이상 */
     --ink-faint: #676356;   /* 2026-11-02: 글자로 쓰여 대비 4.5 로 */
     --rule:      #cfc5ad;
     --accent:    #7a2f1a;   /* old-leather red — Hebrew manuscript initials */
@@ -603,7 +603,7 @@
     color: var(--ink-mute);
   }
   .voice-pair.good .tag { color: var(--moss); }
-  .voice-pair.bad  .tag { color: #8a3a28; }
+  .voice-pair.bad  .tag { color: #74291b; }
   .voice-pair .sample {
     font-family: var(--serif);
     font-style: italic;
@@ -797,6 +797,12 @@
     .correspondence-system { grid-column: 2; }
     .tokens { grid-template-columns: 1fr; }
   }
+
+  /* 휴대폰 폭 — 옆으로 밀리지 않게 (2026-11-04) */
+  .address-inner{flex-wrap:wrap;row-gap:4px;}
+  .address-meta{flex-wrap:wrap;gap:2px 14px;}
+  .masthead > *, .preface > *, .toc > *, .chapter > *, .colophon > *{min-width:0;}
+  @media (max-width:600px){.address-inner{padding:10px 16px;}.ledger-row{grid-template-columns:auto 1fr;gap:6px 16px;}.ledger-entry{grid-column:1/-1;overflow-wrap:anywhere;}}
 </style>
 </head>
 <body>

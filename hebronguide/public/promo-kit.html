@@ -212,7 +212,7 @@
       margin-bottom: 1rem;
     }
     .poster-feature-tag {
-      font-size: 0.72rem;
+      font-size:.75rem;
       padding: 0.2rem 0.6rem;
       border-radius: 99px;
       background: rgba(110,231,183,0.12);
@@ -283,7 +283,7 @@
       position: relative;
     }
     .sns-card-square .card-sub {
-      font-size: 0.68rem;
+      font-size:.75rem;
       color: var(--muted);
       text-align: center;
       position: relative;
@@ -338,7 +338,7 @@
       position: relative;
     }
     .sns-card-story .card-bullets li {
-      font-size: 0.72rem;
+      font-size:.75rem;
       color: var(--mint);
       padding-left: 1rem;
       position: relative;
@@ -393,7 +393,7 @@
       line-height: 1.4;
     }
     .sns-card-wide .wide-sub {
-      font-size: 0.72rem;
+      font-size:.75rem;
       color: var(--muted);
     }
     .sns-card-wide .wide-right {
@@ -405,7 +405,7 @@
       flex-shrink: 0;
     }
     .sns-card-wide .wide-scan {
-      font-size: 0.62rem;
+      font-size:.75rem;
       color: var(--gold);
       font-weight: 700;
     }
@@ -442,7 +442,7 @@
       flex-shrink: 0;
     }
     .share-label {
-      font-size: 0.68rem;
+      font-size:.75rem;
       color: var(--muted);
       text-align: center;
       font-weight: 500;
@@ -554,7 +554,20 @@
       main { padding: 1rem; }
       #section-posters { margin-bottom: 0; }
     }
-  </style>
+  
+    /* 손가락 크기 · 휴대폰 폭 (2026-11-04) */
+    .nav-logo,.nav-back{display:inline-flex;align-items:center;min-height:44px;}
+    .btn-print{min-height:44px;}
+    :focus-visible{outline:3px solid #F0C040;outline-offset:2px;}
+    .posters-grid > *{min-width:0;}
+    .poster-verse{color:#8FA7A0;}
+    .sns-card-wide .wide-right{flex-shrink:1;min-width:0;}
+    .sns-card-wide .wide-right img{max-width:100%;height:auto;}
+    @media (max-width:480px){
+      .poster-card{padding:2rem 1.25rem;}
+      .sns-card-wide{aspect-ratio:auto;padding:1.25rem;}
+    }
+</style>
 </head>
 <body>
 
@@ -687,7 +700,7 @@
             <li>맛집 · 교회 · 의료 · 취업</li>
             <li>앱처럼 설치 가능 · 완전 무료</li>
           </ul>
-          <div style="font-size:0.68rem;color:var(--gold);font-weight:700;">hebronguide.com</div>
+          <div style="font-size:.75rem;color:var(--gold);font-weight:700;">hebronguide.com</div>
         </div>
       </div>
 
@@ -708,7 +721,7 @@
               />
             </div>
             <div class="wide-scan">스캔하세요</div>
-            <div style="font-size:0.6rem;color:var(--muted);">hebronguide.com</div>
+            <div style="font-size:.75rem;color:var(--muted);">hebronguide.com</div>
           </div>
         </div>
       </div>
@@ -938,15 +951,15 @@
     ← &nbsp;HebronGuide 메인으로 돌아가기
   </a>
   <div style="margin-top:20px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;align-items:center;">
-    <a href="/founding-partner.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Pretendard Variable',sans-serif;">협력 신청</a>
-    <span style="color:rgba(255,255,255,0.12);">·</span>
-    <a href="/ad-request.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Pretendard Variable',sans-serif;">무료 등재</a>
-    <span style="color:rgba(255,255,255,0.12);">·</span>
-    <a href="/about.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Pretendard Variable',sans-serif;">소개</a>
-    <span style="color:rgba(255,255,255,0.12);">·</span>
-    <a href="/privacy.html" style="font-size:.73rem;color:rgba(236,253,245,0.35);text-decoration:none;font-family:'Pretendard Variable',sans-serif;">개인정보</a>
+    <a href="/founding-partner.html" style="font-size:.75rem;color:rgba(236,253,245,0.78);text-decoration:none;display:inline-flex;align-items:center;min-height:44px;min-width:44px;justify-content:center;font-family:'Pretendard Variable',sans-serif;">협력 신청</a>
+    <span aria-hidden="true" style="color:rgba(255,255,255,0.4);">·</span>
+    <a href="/ad-request.html" style="font-size:.75rem;color:rgba(236,253,245,0.78);text-decoration:none;display:inline-flex;align-items:center;min-height:44px;min-width:44px;justify-content:center;font-family:'Pretendard Variable',sans-serif;">무료 등재</a>
+    <span aria-hidden="true" style="color:rgba(255,255,255,0.4);">·</span>
+    <a href="/about.html" style="font-size:.75rem;color:rgba(236,253,245,0.78);text-decoration:none;display:inline-flex;align-items:center;min-height:44px;min-width:44px;justify-content:center;font-family:'Pretendard Variable',sans-serif;">소개</a>
+    <span aria-hidden="true" style="color:rgba(255,255,255,0.4);">·</span>
+    <a href="/privacy.html" style="font-size:.75rem;color:rgba(236,253,245,0.78);text-decoration:none;display:inline-flex;align-items:center;min-height:44px;min-width:44px;justify-content:center;font-family:'Pretendard Variable',sans-serif;">개인정보</a>
   </div>
-  <div style="margin-top:14px;font-size:.67rem;color:rgba(236,253,245,0.18);font-family:'Pretendard Variable',sans-serif;">© 2026 HebronGuide · hebronguide.com</div>
+  <div style="margin-top:14px;font-size:.75rem;color:rgba(236,253,245,0.6);font-family:'Pretendard Variable',sans-serif;">© 2026 HebronGuide · hebronguide.com</div>
 </div>
 <script>
 /* HebronGuide — 도시 자동 복귀 (모든 사용자가 자기 도시로) */

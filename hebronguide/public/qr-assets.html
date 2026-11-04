@@ -22,9 +22,9 @@ h2{font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:6px;}
 .qr-card.gold{border-color:rgba(201,162,39,.5);background:rgba(201,162,39,.05);}
 .qr-card.mint{border-color:rgba(110,231,183,.35);background:rgba(110,231,183,.04);}
 .qr-wrap{background:#fff;border-radius:12px;padding:10px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:12px;overflow:hidden;}
-.qr-size{font-size:.7rem;color:var(--muted);margin-bottom:6px;}
+.qr-size{font-size:.75rem;color:var(--muted);margin-bottom:6px;}
 .qr-label{font-size:.88rem;font-weight:800;color:#fff;margin-bottom:3px;}
-.qr-url{font-size:.7rem;color:var(--gold);margin-bottom:14px;}
+.qr-url{font-size:.75rem;color:var(--gold);margin-bottom:14px;}
 .btn-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
 .btn-dl{background:rgba(201,162,39,.18);color:#C9A227;border:1px solid rgba(201,162,39,.4);border-radius:8px;padding:7px 16px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'Pretendard Variable',sans-serif;}
 .btn-zoom{background:rgba(110,231,183,.1);color:#6EE7B7;border:1px solid rgba(110,231,183,.3);border-radius:8px;padding:7px 16px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'Pretendard Variable',sans-serif;}
@@ -36,13 +36,17 @@ h2{font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:6px;}
 .banner-qr{background:#fff;border-radius:8px;padding:8px;flex-shrink:0;}
 .card-preview{background:#0d1117;border:1px solid rgba(201,162,39,.4);border-radius:12px;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;max-width:420px;margin-bottom:16px;}
 .card-info .name{font-family:'Cinzel',serif;color:var(--gold);font-size:.9rem;font-weight:700;}
-.card-info .title{font-size:.72rem;color:var(--muted);margin-top:2px;}
-.card-info .contact{font-size:.68rem;color:rgba(236,253,245,.6);margin-top:8px;line-height:1.7;}
+.card-info .title{font-size:.75rem;color:var(--muted);margin-top:2px;}
+.card-info .contact{font-size:.75rem;color:rgba(236,253,245,.6);margin-top:8px;line-height:1.7;}
 #overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:20px;}
 #overlay.show{display:flex;}
 #ov-wrap{background:#fff;padding:28px;border-radius:20px;}
 .info-box{background:rgba(110,231,183,.07);border:1px solid rgba(110,231,183,.2);border-radius:14px;padding:18px 20px;font-size:.82rem;color:rgba(236,253,245,.75);line-height:1.9;margin-bottom:40px;}
 @media print{nav,.btn-row{display:none!important;}body{background:#fff;}}
+  /* 손가락 크기 · 초점 (2026-11-04) */
+  .logo,.nav-back,a[href^="mailto:"]{display:inline-flex;align-items:center;min-height:44px;}
+  .btn-dl,.btn-zoom{min-height:44px;}
+  :focus-visible{outline:3px solid #F0C040;outline-offset:2px;}
 </style>
 </head>
 <body>
@@ -155,7 +159,7 @@ h2{font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:6px;}
     </div>
     <div style="background:#fff;border-radius:8px;padding:8px;"><canvas id="qr-card"></canvas></div>
   </div>
-  <div style="font-size:.72rem;color:var(--muted);">* 인쇄소 납품 시 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg> 다운로드로 600px 고화질 파일을 사용하세요.</div>
+  <div style="font-size:.75rem;color:var(--muted);">* 인쇄소 납품 시 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg> 다운로드로 600px 고화질 파일을 사용하세요.</div>
 
   <div class="info-box" style="margin-top:32px;">
     <strong style="color:var(--mint);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.15em;flex:none"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M8 14a5 5 0 1 1 8 0c-1 1-1.5 2-1.5 3h-5c0-1-.5-2-1.5-3z"/></svg> 사용 방법</strong><br>
