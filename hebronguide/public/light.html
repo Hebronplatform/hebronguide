@@ -24,8 +24,8 @@
     --bg-mist:       #D8D3C5;
     --bg-shadow:     #C9C2B2;
     --text:          #2A2520;
-    --text-muted:    rgba(42,37,32,.62);
-    --text-faint:    rgba(42,37,32,.66);
+    --text-muted:    rgba(42,37,32,.76);
+    --text-faint:    rgba(42,37,32,.76);
     --line:          rgba(42,37,32,.1);
     --line-strong:   rgba(42,37,32,.2);
 
@@ -46,8 +46,8 @@
     --bg-mist:       #1F2733;
     --bg-shadow:     #2A3341;
     --text:          #ECFDF5;
-    --text-muted:    rgba(236,253,245,.62);
-    --text-faint:    rgba(236,253,245,.6);
+    --text-muted:    rgba(236,253,245,.78);
+    --text-faint:    rgba(236,253,245,.74);
     --line:          rgba(255,255,255,.1);
     --line-strong:   rgba(255,255,255,.18);
   }
@@ -354,6 +354,15 @@
     .haganuz { padding: 26px 22px; }
     .playground { padding: 26px 20px; }
   }
+
+  /* 손가락 크기 · 글자 대비 · 초점 (2026-11-04) */
+  nav.top a.home,.mode-toggle{min-height:44px;}
+  .mode-toggle{min-width:44px;}
+  .footnav a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;}
+  .spec-card .city a{display:inline-flex;align-items:center;min-height:44px;}
+  :root:not([data-mode="night"]) .spec-card .city{color:color-mix(in srgb, var(--sp-color) 42%, #2A2520);}
+  [data-mode="night"] .spec-card .city{color:color-mix(in srgb, var(--sp-color) 45%, #ECFDF5);}
+  :focus-visible{outline:3px solid var(--text);outline-offset:2px;}
 </style>
 </head>
 <body>
