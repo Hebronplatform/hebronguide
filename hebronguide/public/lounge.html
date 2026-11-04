@@ -181,6 +181,16 @@
   /* 영어 모드 */
   body.en .ko-only{display:none;}
   body:not(.en) .en-only{display:none;}
+
+  /* 손가락 크기 · 초점 (2026-11-03) */
+  button,input,select,textarea{font-family:inherit;}
+  input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select{min-height:44px;}
+  input[type=checkbox],input[type=radio]{width:20px;height:20px;}
+  footer a{display:inline-flex;align-items:center;min-height:44px;}
+  :focus-visible{outline:3px solid #F0C040;outline-offset:2px;}
+  .nav a.home,.chip{min-height:44px;}
+  footer a{min-width:44px;justify-content:center;}
+  .footnav a{display:inline-flex;align-items:center;min-height:44px;min-width:44px;justify-content:center;}
 </style>
 </head>
 <body>

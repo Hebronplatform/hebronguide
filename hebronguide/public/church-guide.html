@@ -208,6 +208,21 @@ select.city-sel option{background:#1a2535;color:var(--text);}
 
 /* 푸터 */
 footer{background:linear-gradient(135deg,#1a2535,#0d1117);color:rgba(236,253,245,.55);text-align:center;padding:32px 24px 24px;font-size:.75rem;line-height:2;}
+
+  /* 손가락 크기 · 초점 (2026-11-03) */
+  button,input,select,textarea{font-family:inherit;}
+  input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select{min-height:44px;}
+  input[type=checkbox],input[type=radio]{width:20px;height:20px;}
+  footer a{display:inline-flex;align-items:center;min-height:44px;}
+  :focus-visible{outline:3px solid #F0C040;outline-offset:2px;}
+  .logo,.nav-tag{display:inline-flex;align-items:center;min-height:44px;}
+  .lang-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;}
+  .btn-dl,.btn-go,select.city-sel{min-height:44px;}
+  .btn-apply{padding:14px 10px;}
+  /* 밝은 카드 위 — 금색·초록을 한 단계 짙게 */
+  .p-num{color:#8A6A12;}
+  .faq-a strong{color:#047857;}
+  .drama-scene-head{color:#C9A227;}
 </style>
 </head>
 <body>

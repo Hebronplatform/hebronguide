@@ -119,6 +119,20 @@ nav{position:sticky;top:0;z-index:100;background:rgba(10,14,20,.97);backdrop-fil
 .hebron-plug-link{color:var(--mint);font-weight:700;font-size:.78rem;text-decoration:none;}
 
 footer{text-align:center;padding:30px 20px;color:rgba(236,253,245,.62);font-size:.78rem;border-top:1px solid var(--border);}
+
+  /* 손가락 크기 · 초점 (2026-11-03) */
+  button,input,select,textarea{font-family:inherit;}
+  input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select{min-height:44px;}
+  input[type=checkbox],input[type=radio]{width:20px;height:20px;}
+  footer a{display:inline-flex;align-items:center;min-height:44px;}
+  :focus-visible{outline:3px solid #F0C040;outline-offset:2px;}
+  .logo,.nav-back,.hebron-plug-link{display:inline-flex;align-items:center;min-height:44px;}
+  .lang-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;}
+  .nav-back{white-space:nowrap;}
+  .tag.red{display:inline-flex;align-items:center;min-height:44px;}
+  a[download],a[href$=".png"],a[href$=".pdf"]{min-height:44px;}
+  /* 좁은 화면 — 단추를 키운 만큼 간격을 줄여 가로로 넘치지 않게 */
+  @media (max-width:420px){.nav-right{gap:2px;}.lang-btn{padding-left:8px;padding-right:8px;}.logo-word{font-size:.92rem;}}
 </style>
 </head>
 <body>

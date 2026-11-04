@@ -82,6 +82,22 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-fil
 .btn-next{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#C9A227,#f0c040);color:#0d1117;font-weight:800;font-size:.9rem;border-radius:50px;padding:13px 30px;text-decoration:none;font-family:'Pretendard Variable',sans-serif;}
 
 footer{background:rgba(255,255,255,.02);border-top:1px solid var(--border);text-align:center;padding:24px;font-size:.78rem;color:rgba(236,253,245,.62);}
+
+  /* 손가락 크기 · 초점 (2026-11-03) */
+  button,input,select,textarea{font-family:inherit;}
+  input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select{min-height:44px;}
+  input[type=checkbox],input[type=radio]{width:20px;height:20px;}
+  footer a{display:inline-flex;align-items:center;min-height:44px;}
+  :focus-visible{outline:3px solid #F0C040;outline-offset:2px;}
+  .logo{display:inline-flex;align-items:center;min-height:44px;}
+  .lang-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;}
+  .btn-share{min-height:44px;}
+  /* 어두운 바탕 — 출처 글씨를 흐리게 두지 않는다 */
+  .qs,.quote-source{color:#C9A227;}
+  .insight-source{color:rgba(110,231,183,.85);}
+  .src a{color:#6EE7B7;text-decoration:underline;text-underline-offset:2px;}
+  .src strong{color:rgba(236,253,245,.85);}
+  footer div[style*="opacity"]{opacity:1!important;}
 </style>
 </head>
 <body>

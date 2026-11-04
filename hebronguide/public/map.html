@@ -161,6 +161,16 @@
   .loading .verse-ko small{display:block;color:var(--muted2);font-size:.78rem;
                            font-family:'Pretendard Variable','Pretendard Variable',sans-serif;margin-top:4px;}
   @keyframes spin{to{transform:rotate(360deg);}}
+
+  /* 손가락 크기 · 초점 (2026-11-03) */
+  button,input,select,textarea{font-family:inherit;}
+  input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select{min-height:44px;}
+  input[type=checkbox],input[type=radio]{width:20px;height:20px;}
+  footer a{display:inline-flex;align-items:center;min-height:44px;}
+  :focus-visible{outline:3px solid #F0C040;outline-offset:2px;}
+  .nav a.home,a.home{display:inline-flex;align-items:center;min-height:44px;}
+  .cta a.primary,.cta a.secondary{display:inline-flex;align-items:center;min-height:44px;}
+  .maplibregl-ctrl-group button{width:44px!important;height:44px!important;}
 </style>
 </head>
 <body>

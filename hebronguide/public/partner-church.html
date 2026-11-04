@@ -225,6 +225,21 @@ footer strong{color:var(--text);}
 .ftab:not(.active):hover{border-color:rgba(255,255,255,.62);}
 .form-section{display:none;}
 .form-section.active{display:block;}
+
+  /* 손가락 크기 · 초점 (2026-11-03) */
+  button,input,select,textarea{font-family:inherit;}
+  input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select{min-height:44px;}
+  input[type=checkbox],input[type=radio]{width:20px;height:20px;}
+  footer a{display:inline-flex;align-items:center;min-height:44px;}
+  :focus-visible{outline:3px solid #F0C040;outline-offset:2px;}
+  .logo,a[href^="mailto:"],a[href="https://hebronguide.com"]{display:inline-flex;align-items:center;min-height:44px;}
+  th small{opacity:1!important;}
+  footer p[style*="opacity"]{opacity:.8!important;}
+  div[style*="justify-content:center;gap:18px"] > a{display:inline-flex;align-items:center;min-height:44px;}
+  .btn-submit{min-height:48px;}
+  footer p[style*="opacity"]{opacity:.9!important;}
+  .footer-links a,div[style*="justify-content:center;gap:18px"] > a{min-width:44px;justify-content:center;}
+  input[type=checkbox]{width:20px;height:20px;}
 </style>
 <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
 </head>
@@ -583,7 +598,7 @@ footer strong{color:var(--text);}
             이단 단체를 차단합니다.
           </p>
           <div style="margin-top:9px;padding-top:8px;border-top:1px solid rgba(248,113,113,.15);">
-            <p style="font-size:.78rem;color:rgba(248,113,113,.7);">의심 단체 신고: Hebronplatform@gmail.com</p>
+            <p style="font-size:.78rem;color:#f87171;">의심 단체 신고: Hebronplatform@gmail.com</p>
           </div>
         </div>
       </div>
@@ -715,7 +730,7 @@ footer strong{color:var(--text);}
             border:1px solid rgba(248,113,113,.25);border-radius:10px;">
             <label class="chk" style="align-items:flex-start;gap:10px;color:rgba(236,253,245,.75);">
               <input type="checkbox" name="비이단확인" value="확인" required
-                style="margin-top:2px;width:14px;height:14px;accent-color:#f87171;flex-shrink:0;">
+                style="margin-top:2px;width:20px;height:20px;accent-color:#f87171;flex-shrink:0;">
               <span style="font-size:.78rem;line-height:1.6;">
                 본 교회는 신천지·통일교·JMS·하나님의교회·여호와의증인·몰몬교 등
                 이단·사이비 단체가 아님을 확인합니다.

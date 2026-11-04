@@ -164,6 +164,14 @@ footer{
   background:rgba(255,255,255,.02);border-top:1px solid rgba(255,255,255,.06);
   text-align:center;padding:24px;font-size:.78rem;color:rgba(236,253,245,.62);line-height:2;
 }
+
+  /* 손가락 크기 · 초점 (2026-11-03) */
+  button,input,select,textarea{font-family:inherit;}
+  input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select{min-height:44px;}
+  input[type=checkbox],input[type=radio]{width:20px;height:20px;}
+  footer a{display:inline-flex;align-items:center;min-height:44px;}
+  :focus-visible{outline:3px solid #F0C040;outline-offset:2px;}
+  .logo,.nav-back{display:inline-flex;align-items:center;min-height:44px;}
 </style>
 </head>
 <body>

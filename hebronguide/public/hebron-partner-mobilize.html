@@ -175,6 +175,18 @@ footer strong{color:rgba(236,253,245,.62);}
   border-radius:12px;padding:14px 18px;margin-bottom:18px;
   font-size:.82rem;color:rgba(236,253,245,.7);line-height:1.9;
 }
+
+  /* 손가락 크기 · 초점 (2026-11-03) */
+  button,input,select,textarea{font-family:inherit;}
+  input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select{min-height:44px;}
+  input[type=checkbox],input[type=radio]{width:20px;height:20px;}
+  footer a{display:inline-flex;align-items:center;min-height:44px;}
+  :focus-visible{outline:3px solid #F0C040;outline-offset:2px;}
+  .lang-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;}
+  .lang-bar > a,.lang-bar a[onclick]{display:inline-flex;align-items:center;min-height:44px;min-width:44px;}
+  .qbtn{min-height:44px;}
+  button[onclick^="downloadQR"]{min-height:44px;padding:0 14px!important;}
+  a[href="https://hebronguide.com"][target]{min-height:44px;}
 </style>
 </head>
 <body>
@@ -479,8 +491,8 @@ footer strong{color:rgba(236,253,245,.62);}
           <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Fhebronguide.com%2Fad-request.html&color=0d1117&bgcolor=ffffff&margin=4"
                alt="등록 QR" width="120" height="120" loading="lazy">
         </div>
-        <div style="font-size:.78rem;color:rgba(110,231,183,.6);margin-top:6px;font-weight:700;" data-ko=" QR 스캔" data-en=" Scan QR"></div>
-        <button onclick="downloadQR('register')" style="margin-top:6px;background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.25);color:rgba(110,231,183,.7);font-size:.78rem;font-weight:700;border-radius:8px;padding:4px 10px;cursor:pointer;font-family:'Pretendard Variable',sans-serif;"
+        <div style="font-size:.78rem;color:#6EE7B7;margin-top:6px;font-weight:700;" data-ko=" QR 스캔" data-en=" Scan QR"></div>
+        <button onclick="downloadQR('register')" style="margin-top:6px;background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.25);color:#6EE7B7;font-size:.78rem;font-weight:700;border-radius:8px;padding:4px 10px;cursor:pointer;font-family:'Pretendard Variable',sans-serif;"
           data-ko=" QR 저장" data-en=" Save QR"></button>
       </div>
 
@@ -509,8 +521,8 @@ footer strong{color:rgba(236,253,245,.62);}
           <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Fhebronguide.com&color=0d1117&bgcolor=ffffff&margin=4"
                alt="HebronGuide QR" width="120" height="120" loading="lazy">
         </div>
-        <div style="font-size:.78rem;color:rgba(201,162,39,.6);margin-top:6px;font-weight:700;" data-ko=" QR 스캔" data-en=" Scan QR"></div>
-        <button onclick="downloadQR('main')" style="margin-top:6px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.25);color:rgba(201,162,39,.7);font-size:.78rem;font-weight:700;border-radius:8px;padding:4px 10px;cursor:pointer;font-family:'Pretendard Variable',sans-serif;"
+        <div style="font-size:.78rem;color:#C9A227;margin-top:6px;font-weight:700;" data-ko=" QR 스캔" data-en=" Scan QR"></div>
+        <button onclick="downloadQR('main')" style="margin-top:6px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.25);color:#C9A227;font-size:.78rem;font-weight:700;border-radius:8px;padding:4px 10px;cursor:pointer;font-family:'Pretendard Variable',sans-serif;"
           data-ko=" QR 저장" data-en=" Save QR"></button>
       </div>
 

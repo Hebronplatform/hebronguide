@@ -23,8 +23,8 @@
     --bg-mist:       #D8D3C5;
     --bg-shadow:     #C9C2B2;
     --text:          #2A2520;
-    --text-muted:    rgba(42,37,32,.62);
-    --text-faint:    rgba(42,37,32,.66);
+    --text-muted:    rgba(42,37,32,.76);
+    --text-faint:    rgba(42,37,32,.76);
     --line:          rgba(42,37,32,.1);
     --line-strong:   rgba(42,37,32,.2);
 
@@ -344,6 +344,22 @@
     .cat-row { grid-template-columns: 100px 1fr 40px; gap: 10px; }
     .cat-row .name { font-size: .82rem; }
   }
+
+  /* 손가락 크기 · 초점 (2026-11-03) */
+  button,input,select,textarea{font-family:inherit;}
+  input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select{min-height:44px;}
+  input[type=checkbox],input[type=radio]{width:20px;height:20px;}
+  footer a{display:inline-flex;align-items:center;min-height:44px;}
+  :focus-visible{outline:3px solid var(--text);outline-offset:2px;}
+  nav.top a.home,.mode-toggle{min-height:44px;}
+  .mode-toggle{min-width:44px;}
+  footer a{min-width:44px;justify-content:center;}
+  /* 바뀐 신호 꼬리표 — 밝은 바탕에서 글자를 짙게 */
+  :root:not([data-mode="night"]) .change-card .tag{color:color-mix(in srgb, var(--tag-c, currentColor) 55%, #2A2520);}
+  .change-card.rise .tag{--tag-c:var(--spectrum-06);}
+  .change-card.new .tag{--tag-c:var(--spectrum-04);}
+  .change-card.ease .tag{--tag-c:var(--origin);}
+  [data-mode="night"] .change-card .tag{color:color-mix(in srgb, var(--tag-c, currentColor) 45%, #ECFDF5);}
 </style>
 </head>
 <body>
