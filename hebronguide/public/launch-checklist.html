@@ -25,7 +25,7 @@
       --mint-bg:    rgba(110,231,183,0.10);
       --text:       #ECFDF5;
       --text-muted: #94a3b8;
-      --text-dim:   #64748b;
+      --text-dim:   #8b9ab0;
       --green:      #22c55e;
       --green-bg:   rgba(34,197,94,0.12);
       --green-bdr:  rgba(34,197,94,0.30);
@@ -617,7 +617,13 @@
       .task-action { flex-direction: row; align-items: center; }
       .priority-num { display: none; }
     }
-  </style>
+    /* 손가락 크기 · 초점 (2026-11-05) */
+  .impact-badge.critical{color:#f87171;}
+  .complete-btn{min-height:44px;}
+  .task-link{display:inline-flex;align-items:center;min-height:44px;}
+  footer a,div[style*="justify-content:center;gap:18px"] > a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;}
+  :focus-visible{outline:3px solid #C9A227;outline-offset:2px;}
+</style>
 </head>
 <body>
 
