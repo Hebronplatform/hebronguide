@@ -16647,7 +16647,6 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                             border: c.tier === 1 ? "1px solid rgba(201,162,39,0.35)" : "1px solid rgba(27,42,74,0.08)",
                             borderRadius: 14,
                             background: c.tier === 1 ? "rgba(201,162,39,0.04)" : "rgba(27,42,74,0.02)",
-                            opacity: 0.9,
                           }}>
                             {c.isCommunity && (
                               <div style={{ padding: "5px 12px 0" }}>
