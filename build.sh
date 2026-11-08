@@ -39,6 +39,7 @@ cp index.html    public/index.html
 cp robots.txt    public/robots.txt
 cp sitemap.xml   public/sitemap.xml
 cp llms.txt      public/llms.txt
+cp 98e730ad7206b7185b7b6eb16d313b3e.txt public/98e730ad7206b7185b7b6eb16d313b3e.txt   # IndexNow 열쇠 — 빙 · 네이버에 바로 알리기 (웹 노출 정본, 2026-11-07)
 cp icon-192.png  public/icon-192.png
 cp icon-512.png  public/icon-512.png
 cp icon-192.png  public/apple-touch-icon.png

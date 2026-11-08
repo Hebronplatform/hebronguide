@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 <script>
-/* 언어 결정 — 고른 것 > 윈도우·브라우저 언어 > 영어. 우선 두 언어만. */
+/* 언어 결정 — 고른 것 > 윈도우·브라우저 언어 > 영어. 우선 두 언어만.
+   검색 로봇은 늘 바탕 언어(한국어)로 — 로봇 브라우저는 영어라 영어 제목이 검색에 뜨는 것을 막는다 (목사님 2026-11-08 「한국어를 첫째로」 · 웹 노출 정본 2-A). 보여 주는 글은 사람과 같다. */
 (function(){
+  var bot=/bot|crawl|spider|slurp|yeti|daum|bingpreview|facebookexternalhit|embedly|headless|lighthouse/i.test(navigator.userAgent||'')||navigator.webdriver===true;
+  if(bot){ document.documentElement.lang='ko'; return; }
   var lang=null;
   try{ var s=localStorage.getItem('hg_lang'); if(s==='ko'||s==='en') lang=s; }catch(e){}
   if(!lang){
@@ -32,13 +35,13 @@
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
   <meta name="apple-mobile-web-app-title" content="HebronGuide"/>
-  <title>HebronGuide — Someone is there to welcome you</title>
-  <meta name="description" content="The first day in a new city, with an anxious heart — someone is there to welcome you. 81+ cities worldwide. 불안한 마음으로 새 도시에 도착한 첫날, 반갑게 맞아 주는 이가 있습니다."/>
+  <title>HebronGuide 헤브론가이드 — 반갑게 맞아 주는 이가 있습니다</title>
+  <meta name="description" content="불안한 마음으로 새 도시에 도착한 첫날, 반갑게 맞아 주는 이가 있습니다. 전 세계 81개+ 도시. The first day in a new city, with an anxious heart — someone is there to welcome you."/>
   <meta name="theme-color" content="#0d1117"/>
-  <meta property="og:title" content="HebronGuide — Someone is there to welcome you"/>
-  <meta property="og:locale" content="en_US"/>
-  <meta property="og:locale:alternate" content="ko_KR"/>
-  <meta property="og:description" content="The first day in a new city, with an anxious heart — someone is there to welcome you. 81+ cities worldwide. 불안한 마음으로 새 도시에 도착한 첫날, 반갑게 맞아 주는 이가 있습니다."/>
+  <meta property="og:title" content="HebronGuide 헤브론가이드 — 반갑게 맞아 주는 이가 있습니다"/>
+  <meta property="og:locale" content="ko_KR"/>
+  <meta property="og:locale:alternate" content="en_US"/>
+  <meta property="og:description" content="불안한 마음으로 새 도시에 도착한 첫날, 반갑게 맞아 주는 이가 있습니다. 전 세계 81개+ 도시. The first day in a new city, with an anxious heart — someone is there to welcome you."/>
   <meta property="og:url" content="https://www.hebronguide.com/"/>
   <meta property="og:image" content="https://www.hebronguide.com/icon-512.png"/>
   <link rel="canonical" href="https://www.hebronguide.com/"/>
@@ -713,6 +716,45 @@ details.fold .about-story-wrap{padding-top:0 !important;}
   .leaflet-bar a:hover{background:#1e2735;}
   @media(max-width:640px){#hgWorldMap{height:340px;}.hg-map-stat{padding:6px 16px;}.hg-map-stat b{font-size:1.4rem;}}
   </style>
+  <!-- 웹 노출 정본 2-A: 사이트 주인을 하나의 대상으로 (2026-11-07). 글은 이 쪽에 이미 있는 문장 그대로 -->
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://www.hebronguide.com/#organization",
+   "name": "HebronGuide",
+   "alternateName": [
+    "헤브론가이드",
+    "HebronGuide.Com"
+   ],
+   "description": "사람과 사람을 이어주는 글로벌 환대 플랫폼. The Global Hospitality Platform that connects people to people.",
+   "url": "https://www.hebronguide.com/",
+   "logo": "https://www.hebronguide.com/icon-512.png",
+   "image": "https://www.hebronguide.com/icon-512.png",
+   "email": "Hebronplatform@gmail.com",
+   "parentOrganization": {
+    "@type": "Organization",
+    "name": "Hebron Platform LLC"
+   }
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://www.hebronguide.com/#website",
+   "name": "HebronGuide",
+   "url": "https://www.hebronguide.com/",
+   "inLanguage": [
+    "ko",
+    "en"
+   ],
+   "publisher": {
+    "@id": "https://www.hebronguide.com/#organization"
+   }
+  }
+ ]
+}
+  </script>
 </head>
 <body>
 
