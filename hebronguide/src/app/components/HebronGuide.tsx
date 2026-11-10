@@ -12608,6 +12608,7 @@ function BoardBanner() {
 // 지키지 못할 약속은 쓰지 않는다 — 답할 사람이 생기는 대로 늘린다.
 const CONNECT_READY_CITIES = ["seattle"];
 const HOME_FONT = "'Pretendard Variable',Geist,-apple-system,sans-serif";
+const NARU_URL = "https://www.naruudon.com/";
 
 function HomeWelcome() {
   const { lang } = useI18n();
@@ -12808,11 +12809,44 @@ function ConnectSheet({ open, initialNeed, onClose }: { open: boolean; initialNe
                 : (ko ? <>{city.nameKo}에는 아직 문을 열어 두신 분이 적습니다.<br />그래도 찾아보고 48시간 안에 알려 드리겠습니다.</>
                       : <>Few people have opened their door in {city.nameEn} yet.<br />We'll still look and let you know within 48 hours.</>)}
             </p>
+            {city.slug === "seattle" && (
+              <p style={{ ...soft, fontSize: 14, marginTop: 14 }}>
+                {ko ? "기다리시는 동안, 토요일 아침 따뜻한 우동 한 그릇 드시러 오세요." : "While you wait, come have a warm bowl of udon on a Saturday morning."}
+                <br />
+                <a href={NARU_URL} target="_blank" rel="noopener" style={{ display: "inline-flex", alignItems: "center", minHeight: 44, fontWeight: 700, color: "var(--color-text-primary)" }}>
+                  {ko ? "나루 우동 보기" : "See Naru Udon"}
+                </a>
+              </p>
+            )}
             <button type="button" onClick={onClose} style={{ ...primaryBtn(false), marginTop: 18 }}>{ko ? "닫기" : "Close"}</button>
           </div>
         )}
       </div>
     </div>
+  );
+}
+
+/* 나루 우동 — 에버렛 토요일 아침의 한 그릇 (2026-11-10). 시애틀 홈의 "식탁의 자리" 바로 아래. */
+function NaruUdonLink() {
+  const { lang } = useI18n();
+  const ko = lang === "ko";
+  return (
+    <a href={NARU_URL} target="_blank" rel="noopener" style={{
+      display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10,
+      margin: "8px 16px 0", minHeight: 64, padding: "12px 14px", borderRadius: 14, textDecoration: "none",
+      background: "var(--color-surface)", border: "1px solid var(--color-border)",
+      fontFamily: HOME_FONT, wordBreak: "keep-all", WebkitTapHighlightColor: "transparent",
+    }}>
+      <span>
+        <span style={{ display: "block", fontSize: 15, fontWeight: 700, color: "var(--color-text-primary)" }}>
+          {ko ? "토요일 아침, 우동 한 그릇" : "A warm bowl of udon, Saturday mornings"}
+        </span>
+        <span style={{ display: "block", marginTop: 3, fontSize: 13, color: "var(--color-text-secondary)" }}>
+          {ko ? "나루 우동 · 에버렛 · 오전 7:00–8:30 · 값을 받지 않습니다" : "Naru Udon · Everett · 7:00–8:30 AM · No charge"}
+        </span>
+      </span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-text-muted)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flexShrink: 0 }}><path d="M9 5l7 7-7 7" /></svg>
+    </a>
   );
 }
 
@@ -12877,6 +12911,7 @@ function HomeScreen({ onNavigate, onSearch }: { onNavigate?: (tab: number, subTa
         <HomeCard title={ko ? "교회 찾기" : "Find a church"} sub={ko ? "가까운 곳부터" : "Nearby first"}
           onClick={() => onNavigate?.(2)} />
       </div>
+      {city.slug === "seattle" && <NaruUdonLink />}
       {showChecklist && <ArrivalChecklistSection lang={lang} />}
 
       {onSearch && (
@@ -16325,7 +16360,8 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
   useEffect(() => {
     const hdrs = { apikey: publicAnonKey, Authorization: `Bearer ${publicAnonKey}` };
     fetch(
-      `https://${projectId}.supabase.co/rest/v1/churches?city_slug=eq.${citySlug}&active=eq.true&order=hebron_partner.desc,tier.asc&limit=100`,
+      // id=neq — 베들레헴침례교회는 문을 닫았다 (2026-11-10 목사님 확인, 등재 삭제 지시). DB 연결이 돌아오면 active=false 로 옮기고 이 조건을 뺀다.
+      `https://${projectId}.supabase.co/rest/v1/churches?city_slug=eq.${citySlug}&active=eq.true&id=neq.ccc437c8-6e9d-4828-b4c2-b60d6fce57f3&order=hebron_partner.desc,tier.asc&limit=100`,
       { headers: hdrs }
     )
       .then(r => r.ok ? r.json() : [])
@@ -16356,10 +16392,10 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
     { emoji: "📚", name: lang === "ko" ? "영어 톡타임 · English Talk Time" : "English Talk Time",
       nameEn: lang === "ko" ? "시애틀지구촌교회" : "Global Mission Church of Greater Seattle",
       desc: lang === "ko"
-        ? "매주 주일 예배 후 90분(오후 3시) · Garrett Woods 전도사와 함께. 믿음과 상관없이 누구나 함께하실 수 있습니다. 12918 35th Ave SE, Everett"
-        : "Every Sunday after service, 90 min (3 PM) · with Garrett Woods. Everyone welcome, whatever your faith. 12918 35th Ave SE, Everett",
-      tags: lang === "ko" ? ["영어", "누구나"] : ["English", "Everyone welcome"],
-      website: "https://ijiguchon.org" },
+        ? "영어로 생각하고, 영어로 말해 보는 90분.\n영어가 필요한 이웃과 마주 앉아 편하게 이야기합니다.\n매주 주일 오후 3:00–4:30 · Garrett Woods 전도사와 함께\n믿음과 상관없이 누구나 오실 수 있습니다.\n12918 35th Ave SE, Everett"
+        : "90 minutes of thinking and speaking in English.\nJust sit down and talk with neighbors who need English too.\nSundays 3:00–4:30 PM · with Garrett Woods\nEveryone welcome, whatever your faith.\n12918 35th Ave SE, Everett",
+      tags: lang === "ko" ? ["영어 회화", "주일 오후 3시", "누구나"] : ["English conversation", "Sundays 3 PM", "Everyone welcome"],
+      website: "https://ijiguchon.org", email: "info@ijiguchon.org" },
   ] : [];
 
   const programs = [

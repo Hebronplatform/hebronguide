@@ -14,6 +14,29 @@
   ],
   "events": [
     {
+      "id": "naru-udon",
+      "titleKo": "나루 우동 — 토요일 아침, 우동 한 그릇",
+      "titleEn": "Naru Udon — A warm bowl of udon, Saturday mornings",
+      "kindKo": "이웃 식탁",
+      "kindEn": "Neighborhood table",
+      "leadKo": "누구든 오세요. 따뜻하게 한 그릇 드시고 가세요",
+      "leadEn": "Everyone is welcome. Come have a warm bowl",
+      "whenKo": "매주 토요일 오전 7:00–8:30",
+      "whenEn": "Saturdays, 7:00–8:30 AM",
+      "whereKo": "12918 35th Ave SE, Everett, WA",
+      "whereEn": "12918 35th Ave SE, Everett, WA",
+      "hostKo": "나루 우동",
+      "hostEn": "Naru Udon",
+      "feeKo": "값을 받지 않습니다",
+      "feeEn": "No charge",
+      "page": "/naru-card.html",
+      "registerUrl": "https://www.naruudon.com/#reserve",
+      "until": "2099-12-31",
+      "cities": [
+        "seattle"
+      ]
+    },
+    {
       "id": "planting-seed-2026",
       "titleKo": "2nd PLANTING SEED CONFERENCE 「환대」",
       "titleEn": "2nd Planting Seed Conference — Hospitality",
