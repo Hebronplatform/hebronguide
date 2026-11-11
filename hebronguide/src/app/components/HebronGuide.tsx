@@ -12842,7 +12842,7 @@ function NaruUdonLink() {
           {ko ? "토요일 아침, 우동 한 그릇" : "A warm bowl of udon, Saturday mornings"}
         </span>
         <span style={{ display: "block", marginTop: 3, fontSize: 13, color: "var(--color-text-secondary)" }}>
-          {ko ? "나루 우동 · 에버렛 · 오전 7:00–8:30 · 값을 받지 않습니다" : "Naru Udon · Everett · 7:00–8:30 AM · No charge"}
+          {ko ? "나루 우동 · 에버렛 · 오전 7:00–8:30 · 무료" : "Naru Udon · Everett · 7:00–8:30 AM · Free"}
         </span>
       </span>
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-text-muted)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flexShrink: 0 }}><path d="M9 5l7 7-7 7" /></svg>
