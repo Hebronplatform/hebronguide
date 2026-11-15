@@ -2140,6 +2140,34 @@ const TOP5_RESTAURANTS_NEWYORK: Top5Item[] = [
     tip: "예약 필수. 특별한 날 방문. 점심이 가성비 더 높음", website: "gaonnurinyc.com" },
 ];
 
+// 뉴저지 — 도착 뒤 먼저 들를 곳 (2026-11-14 확인 · 공식 사이트 대조)
+//  뉴저지한인회: kaanj.org · 외교부 한인단체 목록 일치
+//  현장 민원실: 미주중앙일보 2026-06-24 (2026년 하반기 매월 첫째·셋째 목요일, 한인회 통해 예약)
+//  MVC: nj.gov/mvc 면허센터 목록 · Moving to New Jersey (한국 면허 상호인정, 12개월 이상 체류)
+//  SSA: 사무소 주소는 공식 확인 전이라 적지 않음 → ssa.gov/locator
+const TOP5_SETTLE_NEWJERSEY: Top5Item[] = [
+  { rank: 1, emoji: "🏛️", nameKo: "뉴저지한인회", nameEn: "Korean American Association of New Jersey",
+    address: "21 Grand Ave #216-B 2F, Palisades Park NJ 07650",
+    phone: "(201) 945-9456", hours: "월-금 9am-5pm",
+    why: "팰리세이즈파크 뉴저지한인회관. 총영사관 뉴저지 현장 민원실 예약도 이곳을 통해 받습니다",
+    tip: "방문 전 전화 권장", website: "kaanj.org" },
+  { rank: 2, emoji: "🏛️", nameKo: "총영사관 뉴저지 현장 민원실", nameEn: "Korean Consulate — NJ on-site service",
+    address: "장소와 시간은 예약할 때 안내받습니다",
+    hours: "매월 첫째·셋째 목요일 (2026년 하반기)",
+    why: "여권·공증 같은 영사 민원을 맨해튼 총영사관까지 가지 않고 뉴저지에서 볼 수 있습니다",
+    tip: "뉴저지한인회 (201) 945-9456 로 사전 예약", website: "overseas.mofa.go.kr/us-newyork-ko" },
+  { rank: 3, emoji: "🚗", nameKo: "운전면허 — NJ MVC", nameEn: "NJ MVC — Driver License",
+    address: "Lodi: 8 Mill St · North Bergen: 8901 Bergenline Ave",
+    hours: "월-금 8am-4:30pm · 토 8am-3pm (예약)",
+    why: "한국 면허는 필기·실기 시험 없이 뉴저지 면허(Class D)로 바꿀 수 있습니다. 만 18세 이상, 미국 합법 체류 12개월 이상",
+    tip: "한국 면허·영문 운전면허 증명서·번역본·신분증·뉴저지 거주 증명·SSN 증명을 챙기세요. 자세한 서류는 nj.gov/mvc", website: "nj.gov/mvc" },
+  { rank: 4, emoji: "📋", nameKo: "사회보장번호 (SSN) 신청", nameEn: "Social Security Number (SSN)",
+    address: "가까운 사무소는 ssa.gov/locator 에서 우편번호로 찾기",
+    phone: "(800) 772-1213",
+    why: "은행·운전면허·일자리에 필요한 번호. 체류 신분에 따라 신청 자격이 다릅니다",
+    tip: "여권·비자·입국 기록을 챙기세요", website: "ssa.gov/locator" },
+];
+
 const TOP5_SETTLE_NEWYORK: Top5Item[] = [
   { rank: 1, emoji: "🏛️", nameKo: "뉴욕 한인회 (KANY)", nameEn: "Korean Association of New York",
     address: "149 W 24th St 6th Fl, New York NY 10011",
@@ -14511,11 +14539,17 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { emoji: "🌞", title: "서니베일 (Sunnyvale) — 가성비 테크", desc: "Google·LinkedIn·Yahoo 인근. 쿠퍼티노보다 렌트 저렴. 렌트 1BR $2,100–2,600. Sunnyvale SD. 한인 커뮤니티 성장 중. VTA 교통 양호" },
     { emoji: "🌉", title: "프리몬트 (Fremont) — 한인 급성장 지역", desc: "BART 직결 → SF·산호세 출퇴근 가능. 렌트 1BR $2,000–2,500 (상대적 저렴). Fremont USD (Niche A). 한인·중국계 혼합 거주. 테슬라 공장 인근" },
     { emoji: "🏙️", title: "밀피타스 (Milpitas) — 이민자 가성비", desc: "한인·베트남계 혼합. 렌트 1BR $1,900–2,400 (Bay Area 최저렴급). H-Mart 인근. Great Mall 쇼핑. 실리콘밸리 접근 편리. BART 신규 역 개통" },
+  ] : citySlug === "newjersey" ? [
+    // 2026-11-14 · 월세는 매물 기준 (RentCafe · RentHop · Apartments.com · ForRent, 2026-11), 학군은 Niche 2025
+    { emoji: "🏘️", title: "팰리세이즈파크 (Palisades Park) — 뉴저지 한인 1번지", desc: "주민 약 절반이 한인 (ACS 약 48%). Broad Ave 한인 상권과 뉴저지한인회관. 1BR 월세 약 $2,650 (RentCafe, 2026-11)" },
+    { emoji: "🌉", title: "포트리 (Fort Lee) — 맨해튼 건너편", desc: "조지 워싱턴 다리 건너 바로 맨해튼. 1BR 월세 약 $2,250–3,400 (RentHop·Apartments.com, 2026-11 — 출처마다 차이가 큽니다). 공립학교 Niche A (2025)" },
+    { emoji: "⛪", title: "잉글우드 · 잉글우드클립스 (Englewood · Englewood Cliffs)", desc: "1BR 월세 약 $2,000–2,300 (잉글우드 기준, RentHop·ForRent 2026-11). 서번트교회 등 한인 교회가 있습니다" },
+    { emoji: "🎓", title: "크레스킬 (Cresskill) — 학교를 먼저 보는 가족", desc: "공립학교 Niche A (2025). 자녀 학교를 먼저 보고 집을 고르는 가족에게" },
   ] : citySlug === "newyork" ? [
     { emoji: "🌸", title: "플러싱 (Flushing, Queens) — 뉴욕 한인 1번지", desc: "퀸즈 최대 한인·중국계 타운. H-Mart·한식당·교회·노래방 집결. 맨해튼보다 저렴. 렌트 1BR $1,800–2,400. 지하철 7호선 직결. 뉴욕 한인 인구 최다" },
     { emoji: "🏙️", title: "맨해튼 한인타운 (32nd St)", desc: "맨해튼 직장인 한인 선호. 한인타운 도보 거리. 렌트 1BR $2,800–4,000 (매우 비쌈). 출퇴근 최적. 지하철 N/Q/R/W·B/D/F/M 환승 허브" },
-    { emoji: "🌿", title: "포트리 (Fort Lee, NJ) — 뉴저지 한인타운", desc: "뉴저지 최대 한인타운. 맨해튼 허드슨강 건너편. 렌트 1BR $1,900–2,600 (뉴욕보다 저렴). 한식당·마트·교회 집결. 학군 우수 (Fort Lee School District)" },
-    { emoji: "🎓", title: "파라무스·버겐 카운티 (NJ) — 학군·가족", desc: "뉴저지 한인 가족 1순위. 우수 학군. 렌트 1BR $1,800–2,400. 한인 인구 밀집 (NJ 한인 30만+). 퇴근 시 버스·PATH로 맨해튼 접근" },
+    { emoji: "🌿", title: "포트리 (Fort Lee, NJ) — 뉴저지 한인타운", desc: "뉴저지 최대 한인타운. 맨해튼 허드슨강 건너편. 1BR 월세 약 $2,250–3,400 (RentHop·Apartments.com, 2026-11). 한식당·마트·교회 집결. 공립학교 Niche A (2025)" },
+    { emoji: "🎓", title: "파라무스·버겐 카운티 (NJ) — 학군·가족", desc: "뉴저지 한인 가족 1순위. 우수 학군. 렌트 1BR $1,800–2,400. 버겐 카운티 한인 약 6만 4천 명 (ACS). 퇴근 시 버스·PATH로 맨해튼 접근" },
     { emoji: "💰", title: "잭슨 하이츠 (Jackson Heights, Queens)", desc: "다민족 혼합. 렌트 1BR $1,600–2,200 (뉴욕 가성비). 한인·히스패닉·인도계 공존. 지하철 E/F/M/R·7호선. 한인 식당 증가 중" },
   ] : citySlug === "nashville" ? [
     { emoji: "🌆", title: "매디슨 (Madison) — 내쉬빌 한인 1번지", desc: "H-Mart·한인회·한식당 밀집. 내쉬빌 북쪽 15분. 렌트 1BR $1,300–1,700 (저렴). 한인 교회 다수. 안전한 주거 환경" },
@@ -14554,11 +14588,16 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
     { emoji: "🌞", title: "Sunnyvale — Affordable Tech Hub", desc: "Near Google, LinkedIn, Yahoo. More affordable than Cupertino. Rent 1BR $2,100–2,600. Sunnyvale SD. Growing Korean community. Good VTA transit" },
     { emoji: "🌉", title: "Fremont — Fast-Growing Korean Area", desc: "Direct BART to SF & San Jose. Rent 1BR $2,000–2,500 (relatively affordable). Fremont USD (Niche A). Mixed Korean & Chinese community. Near Tesla factory" },
     { emoji: "🏙️", title: "Milpitas — Immigrant Value Pick", desc: "Mixed Korean & Vietnamese community. Rent 1BR $1,900–2,400 (Bay Area's most affordable). Near H-Mart & Great Mall. New BART station. Easy Silicon Valley access" },
+  ] : citySlug === "newjersey" ? [
+    { emoji: "🏘️", title: "Palisades Park — NJ's Korean heart", desc: "About half of residents are Korean (ACS ~48%). Broad Ave Korean main street and the KAANJ community hall. 1BR rent about $2,650 (RentCafe, Nov 2026)" },
+    { emoji: "🌉", title: "Fort Lee — across from Manhattan", desc: "Manhattan is right over the George Washington Bridge. 1BR rent about $2,250–3,400 (RentHop · Apartments.com, Nov 2026 — sources vary widely). Public schools Niche A (2025)" },
+    { emoji: "⛪", title: "Englewood · Englewood Cliffs", desc: "1BR rent about $2,000–2,300 (Englewood, RentHop · ForRent Nov 2026). Korean churches including Servant Church" },
+    { emoji: "🎓", title: "Cresskill — for families who start with schools", desc: "Public schools Niche A (2025). For families who choose a home by the school first" },
   ] : citySlug === "newyork" ? [
     { emoji: "🌸", title: "Flushing, Queens — NYC Korean Hub #1", desc: "Queens' largest Korean & Chinese town. H-Mart, Korean restaurants, churches & karaoke. More affordable than Manhattan. Rent 1BR $1,800–2,400. Direct subway line 7. Most Korean residents in NYC" },
     { emoji: "🏙️", title: "Manhattan Koreatown (32nd St)", desc: "Preferred by Manhattan-based Korean workers. Walking distance to Koreatown. Rent 1BR $2,800–4,000 (very expensive). Best commute. Subway N/Q/R/W · B/D/F/M transfer hub" },
-    { emoji: "🌿", title: "Fort Lee, NJ — New Jersey Koreatown", desc: "NJ's largest Koreatown. Across Hudson River from Manhattan. Rent 1BR $1,900–2,600 (cheaper than NYC). Korean restaurants, grocery & churches. Excellent schools (Fort Lee School District)" },
-    { emoji: "🎓", title: "Paramus & Bergen County, NJ — Schools & Families", desc: "NJ's #1 choice for Korean families. Top-ranked schools. Rent 1BR $1,800–2,400. Dense Korean population (NJ has 300K+ Koreans). Manhattan commute by bus or PATH" },
+    { emoji: "🌿", title: "Fort Lee, NJ — New Jersey Koreatown", desc: "NJ's largest Koreatown. Across Hudson River from Manhattan. 1BR rent about $2,250–3,400 (RentHop · Apartments.com, Nov 2026). Korean restaurants, grocery & churches. Public schools Niche A (2025)" },
+    { emoji: "🎓", title: "Paramus & Bergen County, NJ — Schools & Families", desc: "NJ's #1 choice for Korean families. Top-ranked schools. Rent 1BR $1,800–2,400. About 64,000 Korean Americans in Bergen County (ACS). Manhattan commute by bus or PATH" },
     { emoji: "💰", title: "Jackson Heights, Queens — Affordable Pick", desc: "Multi-ethnic neighborhood. Rent 1BR $1,600–2,200 (NYC's most affordable). Korean, Hispanic & Indian communities. Subway E/F/M/R + line 7. Growing Korean restaurant scene" },
   ] : citySlug === "nashville" ? [
     { emoji: "🌆", title: "Madison — Nashville Korean Hub #1", desc: "H-Mart, Korean association & restaurants clustered. 15 min north of Nashville. Rent 1BR $1,300–1,700 (affordable). Many Korean churches. Safe residential environment" },
@@ -14730,6 +14769,7 @@ function SettleScreen({ onHome, initialSub = 0 }: { onHome?: () => void; initial
             useCityConfig().slug === "dallas"   ? TOP5_SETTLE_DALLAS :
             useCityConfig().slug === "sf"       ? TOP5_SETTLE_SF :
             useCityConfig().slug === "newyork"  ? TOP5_SETTLE_NEWYORK :
+            useCityConfig().slug === "newjersey" ? TOP5_SETTLE_NEWJERSEY :
             useCityConfig().slug === "nashville"? TOP5_SETTLE_NASHVILLE :
             useCityConfig().slug === "memphis"   ? TOP5_SETTLE_MEMPHIS :
             useCityConfig().slug === "huntsville"? TOP5_SETTLE_HUNTSVILLE :
@@ -16404,7 +16444,8 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
   // ── Supabase 교회 데이터 (CKSBCA + 파트너 등록 교회) ──
   const [sbChurches, setSbChurches] = useState<any[]>([]);
   // ── 아코디언 열림/닫힘 상태 ──
-  const [openOtherChurches, setOpenOtherChurches] = useState(true);
+  // 다른 한인 교회는 기본 접힘 (2026-11-14 목사님). 단 협력교회가 없는 도시는 빈 화면이 되지 않게 펼쳐 둔다.
+  const [openOtherChurchesPick, setOpenOtherChurches] = useState<boolean | null>(null);
   const [openOther, setOpenOther] = useState(false);
   useEffect(() => {
     const hdrs = { apikey: publicAnonKey, Authorization: `Bearer ${publicAnonKey}` };
@@ -16511,6 +16552,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
     ...staticSorted.filter((c: any) => !isPartner(c) && !isHome(c)),
     ...communityChurches,
   ];
+  const openOtherChurches = openOtherChurchesPick ?? allPartner.length === 0;
 
   // 사람 탭 (2026-11-02, 설계도 ⑦-5) — 교회 목록 위에 사람·식탁을 먼저 둔다
   const [connect, setConnect] = useState<{ open: boolean; need?: string }>({ open: false });
@@ -16684,7 +16726,7 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
                 <div style={{ border: "1px solid rgba(27,42,74,0.1)", borderRadius: 16, overflow: "hidden", marginBottom: 16 }}>
                   {/* 폴더 헤더 — 클릭해서 열기 */}
                   <button
-                    onClick={() => setOpenOtherChurches(p => !p)}
+                    onClick={() => setOpenOtherChurches(!openOtherChurches)}
                     style={{
                       display: "flex", alignItems: "center", gap: 10, width: "100%",
                       padding: "13px 16px", background: "rgba(27,42,74,0.03)",
@@ -23378,6 +23420,14 @@ function HelpScreen({ onHome, initialSub = 0, fromQuickMenu = false }: { onHome?
         { emoji: "🏪", name: ko ? "코리아타운 (Wilshire/Olympic)" : "LA Koreatown",
           desc: ko ? "미국 최대 한인타운. 한식당·H-Mart·한인 업소 밀집. 32번 Metro 버스" : "Largest US Koreatown. Korean restaurants, H-Mart, businesses. Metro Bus 32", tags: ["코리아타운","H-Mart","Wilshire"] },
       ];
+      if (slug === "newjersey") return [
+        { emoji: "🏛️", name: ko ? "뉴저지한인회" : "Korean American Association of New Jersey",
+          desc: ko ? "팰리세이즈파크 뉴저지한인회관. 영사업무 예약 창구. 📞 (201) 945-9456 | 🔗 kaanj.org" : "KAANJ hall in Palisades Park. Consular appointment desk. 📞 (201) 945-9456 | 🔗 kaanj.org", tags: ["한인회","팰리세이즈파크","NJ"] },
+        { emoji: "📰", name: ko ? "뉴욕중앙일보" : "Korea Daily New York",
+          desc: ko ? "뉴욕·뉴저지 한인 일간지. 구인·부동산·지역소식. 🔗 ny.koreadaily.com" : "NY/NJ Korean daily. Jobs, real estate, local news. 🔗 ny.koreadaily.com", tags: ["뉴욕중앙","NJ","일간지"] },
+        { emoji: "📻", name: ko ? "라디오코리아 NY" : "Radio Korea NY",
+          desc: ko ? "뉴욕·뉴저지 한인 라디오. 🔗 nyradiokorea.com" : "NY/NJ Korean radio. 🔗 nyradiokorea.com", tags: ["라디오","NJ","뉴욕"] },
+      ];
       if (slug === "newyork") return [
         { emoji: "📰", name: ko ? "뉴욕중앙일보" : "Korea Daily New York",
           desc: ko ? "뉴욕·NJ 한인 일간지. 구인·부동산·지역소식. 🔗 ny.koreadaily.com" : "NY/NJ Korean daily. Jobs, real estate, local news. 🔗 ny.koreadaily.com", tags: ["뉴욕중앙","NY","일간지"] },
@@ -24935,9 +24985,9 @@ function getCityDistrictData(slug: string, lang: string) {
                  : "Diamond Bar. Diamond Bar HS (top 3% nationally). Dense Korean & Chinese population. Niche A+. Very high UC admission rate.\n📍 Diamond Bar, Walnut | 🔗 wvusd.k12.ca.us", tags: ["다이아몬드바","UC진학","A+"] },
     ],
     newyork: [
-      { emoji: "⭐", name: "Fort Lee School District (NJ)", nameEn: "Fort Lee — #1 Korean NJ",
-        desc: ko ? "NJ 포트리. 한인 학생 최고 비율. 포트리 HS 전국 상위 1%. Niche A+. 직접 학교 등록 가능.\n📍 포트리·NJ | 🔗 fortlee.k12.nj.us"
-                 : "Fort Lee NJ. Highest Korean student ratio in NJ. Fort Lee HS top 1% nationally. Niche A+. Direct enrollment available.\n📍 Fort Lee, NJ | 🔗 fortlee.k12.nj.us", tags: ["포트리","NJ","한인밀집"] },
+      { emoji: "⭐", name: "Fort Lee School District (NJ)", nameEn: "Fort Lee — Korean families, NJ",
+        desc: ko ? "NJ 포트리. 한인 학생이 많은 학군. 공립학교 Niche A (2025). 직접 학교 등록 가능.\n📍 포트리·NJ | 🔗 fortlee.k12.nj.us"
+                 : "Fort Lee NJ. District with many Korean students. Public schools Niche A (2025). Direct enrollment available.\n📍 Fort Lee, NJ | 🔗 fortlee.k12.nj.us", tags: ["포트리","NJ","한인밀집"] },
       { emoji: "⭐", name: "Palisades Park School District (NJ)", nameEn: "Palisades Park — Korean Community",
         desc: ko ? "NJ 팰리세이즈파크. 한인 인구 75%+. 소규모 학군 (학생 수 적어 밀착 교육). 커뮤니티 매우 강함.\n📍 팰리세이즈파크·NJ | 🔗 ppsd.org"
                  : "Palisades Park NJ. 75%+ Korean population. Small district = personalized education. Very strong community.\n📍 Palisades Park, NJ | 🔗 ppsd.org", tags: ["팰리세이즈파크","한인75%","NJ"] },
