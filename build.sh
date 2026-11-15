@@ -234,6 +234,9 @@ cp hebronguide/public/planting-seed-2026-poster.jpg  public/planting-seed-2026-p
 cp hebronguide/public/servant-thanksgiving-2026-poster.jpg public/servant-thanksgiving-2026-poster.jpg 2>/dev/null || true
 # 환대 게시판 — 행사 목록(events.json)과 게시판 페이지. 루트 복사가 없으면 404 가 난다
 cp hebronguide/public/hospitality-board.html        public/hospitality-board.html          2>/dev/null || true
+# 환대 기록관 — 끝난 행사가 주마다 남는 곳 (2026-11-14). 행사 페이지도 루트에서 서비스
+cp hebronguide/public/hospitality-archive.html      public/hospitality-archive.html        2>/dev/null || true
+cp hebronguide/public/event-servant-thanksgiving-2026.html public/event-servant-thanksgiving-2026.html 2>/dev/null || true
 # 식탁을 여는 가정 — 3종 등록의 세 번째 (2026-09-21)
 cp hebronguide/public/home-table.html               public/home-table.html                 2>/dev/null || true
 # 문을 하나 열어 두시겠어요 — 교회·업체·가정 셋을 하나로 (2026-09-21)
