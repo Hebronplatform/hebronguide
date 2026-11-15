@@ -192,11 +192,37 @@ async function checkLive(cities) {
   return targets.length;
 }
 
+// ── 협력교회 판정은 한 곳에서만 (2026-11-14) ───────────────────────────────────
+// 「교회 찾기」와 「교회 등록」이 서로 다른 기준으로 협력교회를 세어 서번트교회가 한쪽에만 뜬 사고.
+// 판정은 HebronGuide.tsx 의 isHebronPartnerChurch() 하나로만 한다.
+// 그 함수 밖에서 c.hebronPartner / c.hebron_partner 를 직접 읽으면 오류로 막는다.
+// (데이터에 hebronPartner: true 라고 적는 것은 괜찮다 — 읽는 코드만 막는다.)
+function checkPartnerRule() {
+  const file = path.join(ROOT, 'hebronguide', 'src', 'app', 'components', 'HebronGuide.tsx');
+  if (!exists(file)) return 0;
+  const lines = fs.readFileSync(file, 'utf8').split(/\r?\n/);
+  let inRule = false, bad = 0, ruleSeen = false;
+  lines.forEach((line, i) => {
+    if (line.includes('partner-rule:begin')) { inRule = true; ruleSeen = true; return; }
+    if (line.includes('partner-rule:end')) { inRule = false; return; }
+    if (inRule) return;
+    if (/[\w)\]?]\??\.(hebronPartner|hebron_partner)\b/.test(line)) {
+      bad++;
+      add('ERROR', '협력교회 판정', `HebronGuide.tsx:${i + 1} 에서 협력 여부를 직접 읽습니다`,
+        'isHebronPartnerChurch(c) 를 쓰세요 — 화면마다 기준이 달라지면 협력교회가 한쪽에만 뜹니다');
+    }
+  });
+  if (!ruleSeen) add('ERROR', '협력교회 판정', 'isHebronPartnerChurch() 기준 함수(partner-rule 표시)를 찾지 못했습니다',
+    'HebronGuide.tsx 에 협력교회 판정 함수를 되살리세요');
+  return bad;
+}
+
 // ── 실행 ─────────────────────────────────────────────────────────────────────
 const vercel = readJson(VERCEL_JSON);
 const cities = liveCities();
 const shadowChecked = checkShadows(vercel);
 const linkCount = checkDeadLinks(vercel, cities);
+checkPartnerRule();
 let liveChecked = 0;
 if (WANT_LIVE) liveChecked = await checkLive(cities);
 

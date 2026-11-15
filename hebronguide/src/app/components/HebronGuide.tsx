@@ -8526,6 +8526,19 @@ function withWorldCupTransit(slug: CitySlug, items: Top5Item[]): Top5Item[] {
 /* ─────────────────────────────────────────
    COMPONENT: Top5Banner (가로 스크롤 카드)
 ───────────────────────────────────────── */
+/* ─────────────────────────────────────────
+   Hebron 협력교회 판정 — 단 하나의 기준 (2026-11-14)
+   모든 화면이 이 함수만 쓴다. 정적 데이터 hebronPartner · Supabase hebron_partner ·
+   태그 "hebron_partner" 중 하나라도 참이면 협력교회.
+   scripts/link-check.mjs 가 이 함수 밖에서 협력 여부를 직접 읽는 코드를 찾아 막는다.
+───────────────────────────────────────── */
+// partner-rule:begin
+function isHebronPartnerChurch(c: any): boolean {
+  if (!c) return false;
+  return !!(c.hebronPartner || c.hebron_partner || (Array.isArray(c.tags) && c.tags.includes("hebron_partner")));
+}
+// partner-rule:end
+
 function ComingSoonCard({ lang, accentColor }: { lang: string; accentColor?: string }) {
   return (
     <div style={{
@@ -16512,13 +16525,13 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
 
   // ── 교회 통합 정렬 (컴포넌트 레벨) ──
   const staticSorted = (churches as any[]).slice().sort((a: any, b: any) =>
-    (b.hebronPartner ? 1 : 0) - (a.hebronPartner ? 1 : 0) || (a.tier ?? 9) - (b.tier ?? 9)
+    (isHebronPartnerChurch(b) ? 1 : 0) - (isHebronPartnerChurch(a) ? 1 : 0) || (a.tier ?? 9) - (b.tier ?? 9)
   );
   // 헬퍼: 가정교회 여부
   // - 정적 데이터: tier===1이고 hcmi 필드 없음 (undefined)
   // - Supabase: hcmi===true 인 것만 가정교회 (hcmi===false → 협력교회)
   const isHome = (c: any) => c.hcmi === true;
-  const isPartner = (c: any) => c.hebronPartner || c.hebron_partner;
+  const isPartner = isHebronPartnerChurch;
   // 이모티콘 금지 원칙(목사님 지시) — 기존 데이터의 줄머리 이모지를 렌더 시 제거
   const stripEmoji = (s: string) => (s || "")
     .split("\n")
@@ -16841,8 +16854,13 @@ function ChurchScreen({ onHome }: { onHome?: () => void }) {
 
             {/* 아코디언 — Hebron 협력교회 */}
             {(() => {
-              const partnerChurches = churches.filter((c: any) => c.hebronPartner);
-              const otherChurches   = churches.filter((c: any) => !c.hebronPartner);
+              // 「교회 찾기」와 같은 목록을 그대로 쓴다 — 두 화면이 다르게 셀 수 없게 (2026-11-14)
+              const asCard = (c: any) => ({
+                ...c,
+                desc: stripEmoji(c.desc || c.description || [c.denomination, c.service_time].filter(Boolean).join(" · ")),
+              });
+              const partnerChurches = allPartner.map(asCard);
+              const otherChurches   = allOther.map(asCard);
               return (
                 <>
                   {/* 협력교회 폴더 (항상 열림) */}
