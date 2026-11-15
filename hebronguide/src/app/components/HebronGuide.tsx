@@ -12850,6 +12850,54 @@ function NaruUdonLink() {
   );
 }
 
+/* 홈 "이번 주" 아래 행사 한 줄 (2026-11-14). events.json 에서 home:true · 이 도시 · 아직 안 끝난 행사만.
+   새 행사는 events.json 에 home:true 를 적으면 된다. 코드를 안 고친다. 못 읽으면 아무것도 안 뜬다. */
+function HomeEventLink() {
+  const { lang } = useI18n();
+  const ko = lang === "ko";
+  const city = useCityConfig();
+  const [ev, setEv] = useState<any | null>(null);
+  useEffect(() => {
+    let alive = true;
+    fetch("/events.json", { cache: "no-store" })
+      .then(r => (r.ok ? r.json() : { events: [] }))
+      .then(d => {
+        if (!alive) return;
+        const today = new Date(); today.setHours(0, 0, 0, 0);
+        const hit = (d.events || [])
+          .filter((e: any) => e && e.home === true)
+          .filter((e: any) => !e.until || new Date(e.until + "T00:00:00") >= today)
+          .filter((e: any) => Array.isArray(e.cities) && e.cities.map((x: string) => String(x).toLowerCase()).includes(city.slug))
+          .sort((a: any, b: any) => ((a.until || "") < (b.until || "") ? -1 : 1))[0];
+        if (hit) setEv(hit);
+      })
+      .catch(() => { /* 못 읽으면 그냥 안 뜬다 */ });
+    return () => { alive = false; };
+  }, [city.slug]);
+  if (!ev || !ev.page) return null;
+  return (
+    <a href={ev.page} style={{
+      display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10,
+      margin: "8px 16px 0", minHeight: 64, padding: "12px 14px", borderRadius: 14, textDecoration: "none",
+      background: "var(--color-surface)", border: "1px solid var(--color-border)",
+      fontFamily: HOME_FONT, wordBreak: "keep-all", WebkitTapHighlightColor: "transparent",
+    }}>
+      {ev.poster && (<img src={ev.poster} alt="" aria-hidden="true" loading="lazy" decoding="async" width={66} height={88}
+        onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+        style={{ width: 66, height: 88, objectFit: "cover", borderRadius: 8, flexShrink: 0, border: "1px solid var(--color-border)" }} />)}
+      <span style={{ flex: 1, minWidth: 0 }}>
+        <span style={{ display: "block", fontSize: 15, fontWeight: 700, color: "var(--color-text-primary)" }}>
+          {ko ? ev.titleKo : (ev.titleEn || ev.titleKo)}
+        </span>
+        <span style={{ display: "block", marginTop: 3, fontSize: 13, color: "var(--color-text-secondary)" }}>
+          {[ko ? ev.hostKo : (ev.hostEn || ev.hostKo), ko ? ev.whenKo : (ev.whenEn || ev.whenKo), ko ? ev.feeKo : ev.feeEn].filter(Boolean).join(" · ")}
+        </span>
+      </span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-text-muted)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flexShrink: 0 }}><path d="M9 5l7 7-7 7" /></svg>
+    </a>
+  );
+}
+
 function HomeCard({ title, sub, onClick }: { title: string; sub: string; onClick: () => void }) {
   return (
     <button type="button" onClick={onClick} style={{
@@ -12911,6 +12959,7 @@ function HomeScreen({ onNavigate, onSearch }: { onNavigate?: (tab: number, subTa
         <HomeCard title={ko ? "교회 찾기" : "Find a church"} sub={ko ? "가까운 곳부터" : "Nearby first"}
           onClick={() => onNavigate?.(2)} />
       </div>
+      <HomeEventLink />
       {city.slug === "seattle" && <NaruUdonLink />}
       {showChecklist && <ArrivalChecklistSection lang={lang} />}
 

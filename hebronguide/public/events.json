@@ -87,6 +87,32 @@
       "cities": [
         "seattle"
       ]
+    },
+    {
+      "id": "servant-thanksgiving-2026",
+      "titleKo": "추수감사절 디너 처치 — 감사의 식탁으로 초대합니다",
+      "titleEn": "Thanksgiving Dinner Church — A table of thanks",
+      "kindKo": "추수감사절 식탁",
+      "kindEn": "Thanksgiving table",
+      "leadKo": "말씀과 식탁, 감사로 하나 되는 시간. 모든 분을 환영합니다",
+      "leadEn": "Word, table and thanks together. Everyone is welcome",
+      "whenKo": "11월 17일(화) 오전 10시",
+      "whenEn": "Tue, Nov 17 · 10 AM",
+      "whereKo": "580 Sylvan Ave Ste 2A, Englewood Cliffs, NJ",
+      "whereEn": "580 Sylvan Ave Ste 2A, Englewood Cliffs, NJ",
+      "hostKo": "뉴저지 서번트교회",
+      "hostEn": "Servant Church New Jersey",
+      "feeKo": "무료",
+      "feeEn": "Free",
+      "page": "/event-servant-thanksgiving-2026.html",
+      "poster": "/servant-thanksgiving-2026-poster.jpg",
+      "churchUrl": "https://www.servantchurchnj.com/",
+      "until": "2026-11-17",
+      "home": true,
+      "cities": [
+        "newjersey",
+        "newyork"
+      ]
     }
   ]
 }
