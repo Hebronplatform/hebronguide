@@ -324,9 +324,10 @@ done
 echo "  OK: all root HTML files copied (index.html protected)"
 
 # HebronPeople (2026-11-20) — /people/ 폴더째 루트로 (사진은 *.jpg gitignore → git add -f)
-if [ -d hebronguide/dist/people ]; then
+# ⚠️ dist/ 가 아니라 원본(public/people)에서 복사 — 위 4단계가 dist/ 의 하위 폴더를 지운다 (2026-11-20 사고)
+if [ -d hebronguide/public/people ]; then
   mkdir -p public/people
-  cp -r hebronguide/dist/people/* public/people/
+  cp -r hebronguide/public/people/* public/people/
   echo "  OK: people/ copied"
 fi
 
