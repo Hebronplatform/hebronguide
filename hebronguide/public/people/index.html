@@ -21,7 +21,10 @@
   "name": "HebronPeople · 환대의 얼굴들",
   "alternateName": ["HebronPeople", "환대의 얼굴들", "하나님과 동행한 사람들", "Faces of Hospitality"],
   "inLanguage": ["ko", "en"],
-  "publisher": { "@type": "Organization", "name": "Hebron Platform LLC", "url": "https://www.hebronguide.com/" }
+  "publisher": { "@type": "Organization", "name": "Hebron Platform LLC", "url": "https://www.hebronguide.com/" },
+  "hasPart": [
+    { "@type": "ProfilePage", "url": "https://www.hebronguide.com/people/ahn-jeongseop.html", "name": "안정섭 목사" }
+  ]
 }
 </script>
 <style>
@@ -186,7 +189,11 @@ footer a{display:inline-flex;align-items:center;min-height:44px;}
 (function () {
   // 실린 사람 — 가나다순. 새 쪽을 만들면 한 줄 더한다.
   // 본인 허락 · 증언 셋 이상 · 3인 심사를 마친 분만 여기에 더한다 (docs/HEBRONPEOPLE_RUBRIC.md)
-  var PEOPLE = [];
+  var PEOPLE = [
+    { slug: 'ahn-jeongseop', name: '안정섭', where: '미시시피', role: '목회자', photo: 'img/ahn-jeongseop-face.jpg',
+      line: '성경 본문의 뿌리까지 내려갔다가, 주일마다 성도 곁으로 돌아온 목사.',
+      tags: ['목회자', '신약학자', '전 초등학교 교사'] }
+  ];
   var cards = document.getElementById('cards');
   var chips = document.getElementById('chips');
   var esc = function (t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
