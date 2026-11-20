@@ -9,6 +9,20 @@
     <priority>1.0</priority>
   </url>
 
+  <!-- ══ HebronPeople · 환대의 얼굴들 ═══════════════════════ -->
+  <url>
+    <loc>https://www.hebronguide.com/people/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.hebronguide.com/people/recommend.html</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <!-- ══ 이야기 스튜디오 (환대 스토리 참여) ══════════════════ -->
   <url>
     <loc>https://www.hebronguide.com/story-submit.html</loc>

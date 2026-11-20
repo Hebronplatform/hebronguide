@@ -787,6 +787,7 @@ details.fold .about-story-wrap{padding-top:0 !important;}
     <a href="#cities" onclick="return focusCitySearch()"><span class="ko">도시</span><span class="en">City</span></a>
     <a href="/arrive.html"><span class="ko">도착</span><span class="en">Arrived</span></a>
     <a href="/open.html"><span class="ko">도움</span><span class="en">Help</span></a>
+    <a href="/people/"><span class="ko">얼굴들</span><span class="en">People</span></a>
   </nav>
   <div class="nav-actions">
     <button class="lang-btn" onclick="toggleLang()" id="lang-btn"
@@ -808,6 +809,8 @@ details.fold .about-story-wrap{padding-top:0 !important;}
     </button>
   </div>
   <nav class="hg-drawer-links">
+    <a href="/people/" class="hg-drawer-faces" onclick="closeMenu()">
+      <span class="ko">환대의 얼굴들 · HebronPeople</span><span class="en">Faces of Hospitality</span></a>
     <!-- 두 묶음 (2026-10-30) — 처음 오신 분 / 함께하는 분 -->
     <p class="hg-drawer-group"><span class="ko">처음 오신 분</span><span class="en">Just arriving</span></p>
     <a href="/arrive.html" onclick="closeMenu()">
@@ -1141,11 +1144,39 @@ details.fold .about-story-wrap{padding-top:0 !important;}
     <a class="hero-link" href="/open.html"><span class="ko">돕고 싶어요</span><span class="en">I'd like to help</span></a>
   </p>
 
+  <!-- HebronPeople — 도시 버튼 바로 아래, 첫 화면 안에 (2026-11-20) -->
+  <a class="hero-faces" href="/people/">
+    <span class="hf-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><circle cx="16.5" cy="9.5" r="2.6"/><path d="M3.5 19c.6-3.2 2.9-5 5.5-5s4.9 1.8 5.5 5"/><path d="M14.6 14.3c.6-.2 1.2-.3 1.9-.3 2.2 0 4 1.5 4.5 4.2"/></svg>
+    </span>
+    <span class="hf-text">
+      <span class="hf-kicker">HebronPeople</span>
+      <span class="hf-line"><span class="ko">환대의 얼굴들 — 누군가에게 문을 열어 준 사람들</span><span class="en">Faces of Hospitality — people who opened a door for someone</span></span>
+    </span>
+    <svg class="hf-arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+  </a>
+
 
 
 </div>
 
 <style>
+/* HebronPeople 카드 — 도시 버튼보다 한 단계 낮게 (Primary는 도시 하나) */
+.hero-faces{display:flex;align-items:center;gap:12px;max-width:420px;margin:22px auto 0;padding:12px 16px;
+  min-height:56px;border-radius:16px;text-decoration:none;text-align:left;
+  background:rgba(255,255,255,.05);border:1px solid rgba(240,192,64,.28);color:var(--text);
+  transition:background .18s ease,border-color .18s ease;}
+.hero-faces:hover{background:rgba(240,192,64,.08);border-color:rgba(240,192,64,.5);}
+.hero-faces:focus-visible{outline:2px solid var(--gold2);outline-offset:3px;}
+.hf-mark{flex:0 0 36px;height:36px;border-radius:9999px;display:flex;align-items:center;justify-content:center;
+  background:rgba(240,192,64,.12);color:var(--gold2);}
+.hf-mark svg{width:20px;height:20px;}
+.hf-text{flex:1;min-width:0;display:flex;flex-direction:column;}
+.hf-kicker{font-family:Geist,'Pretendard Variable',sans-serif;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--gold2);}
+.hf-line{font-size:.92rem;font-weight:600;line-height:1.45;word-break:keep-all;}
+.hf-arw{flex:0 0 18px;width:18px;height:18px;color:var(--muted);}
+.hg-drawer-links a.hg-drawer-faces{border:1px solid rgba(240,192,64,.3);color:var(--gold2);font-weight:700;margin-bottom:6px;}
+@media (prefers-reduced-motion:reduce){.hero-faces{transition:none;}}
 /* 1면 — 무엇인지 한 줄, 강조 버튼 하나, 나머지는 글자 링크 (2026-10-30) */
 .hero-what{margin:0 auto 18px;max-width:340px;text-align:center;
   color:var(--muted);font-size:.95rem;font-weight:500;line-height:1.55;

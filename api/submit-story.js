@@ -27,9 +27,13 @@ export default async function handler(req, res) {
 
   try {
     const { type, role, name, email, city, city_slug, content, title, ebookConsent, theme } = req.body || {}
-    const tier = type === 'story_studio' ? 'story_studio' : 'story_share'
+    // HebronPeople 「한 사람 추천」(2026-11-20) — 다른 사람의 이름과 이야기라 자동 공개 금지, 늘 사람 검토.
+    // category는 이미 쓰는 story_studio를 그대로 쓰고 태그로 구분한다 (DB 제약을 건드리지 않으려고).
+    const isPeople = type === 'people_recommend'
+    const tier = (type === 'story_studio' || isPeople) ? 'story_studio' : 'story_share'
     // 선집(eBook) 후보 태깅 — admin에서 'ebook_ok'로 골라 봄. 주제 캠페인도 태그로 묶음.
     const tags = [
+      ...(isPeople ? ['people_recommend'] : []),
       ...(ebookConsent ? ['ebook_ok'] : []),
       ...(theme ? [`theme:${theme}`] : []),
     ]
@@ -80,6 +84,7 @@ export default async function handler(req, res) {
     else if (aiOk === true)   { status = 'approved'; confidence = 90; autoApproved = true  }  // 통과 → 자동 공개
     else if (aiOk === false)  { status = 'pending';  confidence = 55; autoApproved = false }  // 경계선 → admin 검토
     else                      { status = 'pending';  confidence = 50; autoApproved = false }  // AI 미가동 → 안전하게 검토 대기
+    if (isPeople && status === 'approved') { status = 'pending'; autoApproved = false }  // 사람 추천은 AI가 통과시켜도 공개하지 않는다
 
     // 거절: 저장 없이 부드러운 안내
     if (status === 'rejected') {
@@ -122,7 +127,9 @@ export default async function handler(req, res) {
           from:    `"HebronGuide 이야기" <${FROM_EMAIL}>`,
           to:      ADMIN_EMAIL,
           replyTo: email || FROM_EMAIL,
-          subject: `[HebronGuide] 새 이야기 (${tier === 'story_studio' ? '스튜디오' : '환대나눔'}) — ${city || city_slug} [${status === 'approved' ? '자동게시' : '검토대기'}]`,
+          subject: isPeople
+            ? `[HebronPeople] 한 사람 추천 — ${name || '이름 미상'} [검토대기]`
+            : `[HebronGuide] 새 이야기 (${tier === 'story_studio' ? '스튜디오' : '환대나눔'}) — ${city || city_slug} [${status === 'approved' ? '자동게시' : '검토대기'}]`,
           text: [
             `새 이야기가 접수되었습니다. (${status === 'approved' ? 'AI 통과 · 자동 게시됨' : '검토 대기'})`,
             '─────────────────────────────────────',

@@ -323,6 +323,13 @@ for f in hebronguide/dist/*.html; do
 done
 echo "  OK: all root HTML files copied (index.html protected)"
 
+# HebronPeople (2026-11-20) — /people/ 폴더째 루트로 (사진은 *.jpg gitignore → git add -f)
+if [ -d hebronguide/dist/people ]; then
+  mkdir -p public/people
+  cp -r hebronguide/dist/people/* public/people/
+  echo "  OK: people/ copied"
+fi
+
 # 6. API 함수는 Vercel이 자동 라우팅 (hebronguide/api/*.js → /api/*)
 
 # 7. 배포 버전 타임스탬프 — 앱이 이 파일을 보고 캐시 자동 초기화
