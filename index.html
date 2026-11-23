@@ -1105,8 +1105,8 @@ details.fold .about-story-wrap{padding-top:0 !important;}
 
   <!-- 부르는 문구 (2026-11-23 김목사 — 이름표는 「글로벌 환대 플랫폼」, 첫 화면은 사람을 부르는 말) -->
   <p class="hero-tag">
-    <span class="ko"><strong>낯선 도시에서, 먼저 손 내미는 이웃</strong><span class="hero-tag-sub">어느 도시에 가든, 환대가 기다립니다</span></span>
-    <span class="en"><strong>In an unfamiliar city, a neighbor who reaches out first</strong><span class="hero-tag-sub">Wherever you go, hospitality is waiting</span></span>
+    <span class="ko"><strong>낯선 도시에서,<br>먼저 손 내미는 이웃</strong></span>
+    <span class="en"><strong>In an unfamiliar city,<br>a neighbor who reaches out first</strong></span>
   </p>
 
   <!-- 이게 무엇인지 — 5초 안에 글자로 보이게 (2026-10-30) -->
@@ -1185,10 +1185,12 @@ details.fold .about-story-wrap{padding-top:0 !important;}
 @media (prefers-reduced-motion:reduce){.hero-faces{transition:none;}}
 /* 1면 — 무엇인지 한 줄, 강조 버튼 하나, 나머지는 글자 링크 (2026-10-30) */
 .hero-tag{margin:0 auto 12px;max-width:560px;text-align:center;word-break:keep-all;position:relative;z-index:2;}
-.hero-tag strong{display:block;color:var(--gold2,#f0c040);font-size:clamp(1.3rem,3.8vw,1.8rem);font-weight:800;
-  letter-spacing:-.025em;line-height:1.35;}
-.hero-tag-sub{display:block;margin-top:6px;color:var(--text,#ECFDF5);opacity:.88;font-size:clamp(1rem,2.4vw,1.15rem);
-  font-weight:500;line-height:1.5;letter-spacing:-.01em;}
+.hero-tag strong{display:block;color:var(--gold2,#f0c040);font-size:clamp(1.55rem,6.2vw,2.4rem);font-weight:800;
+  letter-spacing:-.03em;line-height:1.3;}
+/* 한눈에 하나만 (2026-11-23 김목사 「글이 너무 많아 지저분해 보인다」) — 지구 위로 날아오던 글은 쉰다.
+   지구는 그림으로만, 말은 아래 금빛 한 줄로. 그 문장은 숨은 h1(.hero-quiet)에 남아 검색이 읽는다. */
+.hero-creed{display:none !important;}
+html[lang="en"] .hero-tag strong{font-size:clamp(1.3rem,5.2vw,2.2rem);text-wrap:balance;}
 .hero-what{margin:0 auto 18px;max-width:340px;text-align:center;
   color:var(--muted);font-size:.95rem;font-weight:500;line-height:1.55;
   letter-spacing:-.01em;word-break:keep-all;}
