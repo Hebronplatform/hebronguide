@@ -435,7 +435,7 @@
   .footer-copy{font-size:.7rem;color:var(--muted2);}
   /* 맨 뒤에 있던 문장을 로고 바로 밑으로 올렸다 (2026-09-21).
      나눔 아이콘 위에 서므로, 왜 나누는지가 먼저 읽힌다. */
-  .footer-soul{font-size:.86rem;color:rgba(201,162,39,.62);font-style:italic;margin:0 auto 16px;line-height:1.85;max-width:30em;word-break:keep-all;}
+  .footer-soul{font-size:.95rem;color:var(--gold2);font-weight:500;font-style:normal;margin:0 auto 16px;line-height:1.85;max-width:30em;word-break:keep-all;}
   .footer-share{margin-bottom:20px;}
   .footer-share-label{display:block;font-size:.9rem;color:var(--text);line-height:1.6;word-break:keep-all;margin:4px 0 14px;}
   .footer-share-icons{display:flex;justify-content:center;flex-wrap:wrap;gap:9px;}
@@ -1374,7 +1374,7 @@ html[lang="en"] .hg-lb .en{display:inline;}
 .hg-drawer-more .hg-map-wrap,
 .hg-drawer-more .btn-hero{display:none !important;}
 .hg-drawer-more details.fold > summary{padding:15px 4px;font-size:.92rem;}
-.hg-drawer-more .footer-soul{font-size:.8rem;line-height:1.8;opacity:.62;margin-bottom:14px;}
+.hg-drawer-more .footer-soul{font-size:.92rem;line-height:1.8;margin-bottom:14px;}
 .hg-drawer-more .footer-share-icons{gap:8px;}
 .hg-drawer-more .footer-copy{font-size:.78rem;opacity:.7;line-height:1.7;}
 
@@ -1462,7 +1462,8 @@ html[lang="en"] .hg-lb .en{display:inline;}
 .hg-drawer-more footer{padding-top:4px !important;}
 
 /* 드로어 아래쪽 안내 글은 작게 — 읽을 사람만 읽으면 되는 줄들 (2026-09-24) */
-.hg-drawer-more .footer-soul{font-size:.78rem !important;line-height:1.75;opacity:.72;}
+/* 이 문장은 흐리게 두지 않는다 — 셀폰에서 안 보였다 (2026-11-24 김목사) */
+.hg-drawer-more .footer-soul{font-size:.92rem !important;line-height:1.8;opacity:1;}
 .hg-drawer-more a[href^="mailto:"]{font-size:.78rem !important;opacity:.75;}
 .hg-drawer-more .footer-copy{font-size:.78rem !important;opacity:.62;line-height:1.7;}
 .hg-drawer-more .footer-share-icons button{width:44px;height:44px;}
