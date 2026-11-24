@@ -1465,11 +1465,13 @@ html[lang="en"] .hg-lb .en{display:inline;}
 /* 이 문장은 흐리게 두지 않는다 — 셀폰에서 안 보였다 (2026-11-24 김목사) */
 .hg-drawer-more .footer-soul{font-size:.92rem !important;line-height:1.8;opacity:1;}
 .hg-drawer-more a[href^="mailto:"]{font-size:.9rem !important;opacity:1;} /* 2026-11-24 셀폰에서 선명하게 */
-.hg-drawer-more .footer-copy{font-size:.78rem !important;opacity:.62;line-height:1.7;}
+.hg-drawer-more .footer-copy{font-size:.8rem !important;opacity:1;color:rgba(236,253,245,.6);line-height:1.7;}
 .hg-drawer-more .footer-share-icons button{width:44px;height:44px;}
 .hg-drawer-more .footer-share-icons svg{width:15px;height:15px;}
-.hg-drawer-legal{font-size:.78rem !important;opacity:.78;}
-.hg-drawer-foot{font-size:.78rem !important;opacity:.7;}
+/* 2026-11-24 셀폰에서 흐려 안 보였다 — 저작권·약관은 조용하지만 읽히게, 마지막 문장은 금색으로 */
+.hg-drawer-legal{font-size:.85rem !important;opacity:1;}
+.hg-drawer-legal a{color:rgba(236,253,245,.72);}
+.hg-drawer-foot{font-size:.92rem !important;opacity:1;color:var(--gold2);font-weight:500;}
 
 /* 검색 칸 — 흰 막대가 지구보다 눈에 띄면 안 된다 (2026-09-24) */
 @media(min-width:0px){
