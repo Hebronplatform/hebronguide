@@ -11952,6 +11952,10 @@ const MUSIC_GENRES: MusicGenre[] = [
     { type: "video",    id: "yCJwrVoxFLI", sub: "Cozy Jazz" },
     { type: "playlist", id: "PLMgAKjEdoLHsPHqdamlR-BO8o0Q7_dQSk", sub: "The Mason Nook (전곡)" },
   ] },
+  // Worship — 찬양 (2026-11-23 김목사 추가). 첫 항목이 기본 재생.
+  { id: "worship", labelKo: "Worship", labelEn: "Worship", items: [
+    { type: "video",    id: "xG9KXSf20vk", sub: "Shepherd — Amanda Cook (Cover)" },
+  ] },
 ];
 
 const CHILDREN_ITEMS: GenreItem[] = [
